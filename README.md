@@ -19,4 +19,4 @@ The Core Model can be used to create a nice way to see the data.
 
 The goal of the project is to deliver an app in any plataform. More especific the descktop or tablet plataform.
 
-<img src="showcase/screen-1.png" width="512"/>
+<img src="showcase/screen-1.png" width="1920"/>
