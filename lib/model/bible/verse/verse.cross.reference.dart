@@ -1,4 +1,4 @@
-import 'package:aletheia_core_model/bible/verse/verse.dart';
+import 'verse.dart';
 
 class VerseCrossReference {
   int id;

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:aletheia_core_model/bible/verse/referece.dart';
+import 'referece.dart';
 
 enum TypeAttributes {
   bold,

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:aletheia_core_model/bible/verse/verse.cross.reference.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +7,7 @@ import '../bible/bible.version.dart';
 import '../book/book.dart';
 import '../../lexico/lexico.dictionary.dart';
 import 'verse.content.dart';
+import 'verse.cross.reference.dart';
 
 abstract class VerseCore {
   int id;
