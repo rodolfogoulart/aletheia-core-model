@@ -1,9 +1,15 @@
+
 # Welcome Aletheia Project!
 
-This Repository is for core model of the ****Aletheia Project**** [*private project yeat*] .
+This Repository is for *core model* of the ****Aletheia Project**** [*private project yeat*] .
 
 Aletheia Project is a **Bible Study App** made in Flutter.
-The goal of the project is to give a really userfull app that you can study the bible more precisely, the app include some of this feactures:
+The goal of the project is to give a really useful and easy to use app (shared in different platforms) that you can study the bible more precisely.
+
+### The target of the project is ***Christian*** (***Protestant***) software that includes features to really delve into the word and be a platform for preachers/missionaries/students/teachers and people who are enthusiastic about the ***Word of God***.
+
+
+The app include some of this feactures:
 
 	 - Compore versions of the bible
 	 - References of the verse
@@ -13,6 +19,7 @@ The goal of the project is to give a really userfull app that you can study the 
 	 - PDF printing
 	 - PDF reading
 	 - Import [not all]  database from myBible.zone app
+	 - Lexico dictionary
 
 The Core Model can be used to create a nice way to see the data.
 
@@ -33,10 +40,10 @@ The goal of the project is to deliver an app in any plataform. More especific th
 ## Commentary from the chapter/verse
 <img src="showcase/screen5.png" width="1920"/>
 
-## Lexico Word
+## Lexico Word related to the version
 <img src="showcase/screen6.png" width="1920"/>
 
-## Some experiment with Chat-GPT [biblica exegesis]
+## Some experiment with Chat-GPT [bible exegesis]
 <img src="showcase/screen7.png" width="1920"/>
 
 ## Print pdf
@@ -50,3 +57,5 @@ The goal of the project is to deliver an app in any plataform. More especific th
    	- Internationalization, need to implement translation
     	- release package
      	- responsible layout *just working for tablet and descktop now
+
+## Check the release for the installer [*windows*]
