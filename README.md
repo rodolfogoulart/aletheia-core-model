@@ -10,6 +10,7 @@ The goal of the project is to give a really userfull app that you can study the 
 	 - Anotations of the verse
 	 - Dictionary for words [related to the verse os not]
 	 - Commentaries, linked to the chapter/verse
+  	 - Lexico dictionary
 	 - PDF printing
 	 - PDF reading
 	 - Import [not all]  database from myBible.zone app
@@ -17,3 +18,5 @@ The goal of the project is to give a really userfull app that you can study the 
 The Core Model can be used to create a nice way to see the data.
 
 The goal of the project is to deliver an app in any plataform. More especific the descktop or tablet plataform.
+
+<img src="showcase/screen-1.png" width="512"/>
