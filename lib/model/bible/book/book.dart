@@ -3,22 +3,22 @@ import 'dart:convert';
 enum Division {
   oldTestament,
   newTestament,
-  other,
+  apocryphal,
   none;
 
   const Division();
-  getName([bool shortTerm = true]) {
+  String getName([bool shortTerm = true]) {
     switch (this) {
       case Division.oldTestament:
-        return shortTerm ? 'AT' : 'Antigo Testamento';
+        return shortTerm ? 'OT' : 'Old Testament';
       case Division.newTestament:
-        return shortTerm ? 'NT' : 'Novo Testamento';
-      case Division.other:
-        return shortTerm ? 'A' : 'Apócrifo';
+        return shortTerm ? 'NT' : 'New Testament';
+      case Division.apocryphal:
+        return shortTerm ? 'A' : 'Apocryphal';
       case Division.none:
-        return shortTerm ? 'O' : 'Outro';
+        return shortTerm ? 'O' : 'Other';
     }
-  }  
+  }
 
   toMap() {
     return name;
@@ -68,7 +68,7 @@ class Book {
     required this.abrev,
     required this.division,
     required this.literaryGenre,
-    this.cannon = 'Protestante',
+    this.cannon = 'Protestant',
   });
 
   Book copyWith({
@@ -91,16 +91,16 @@ class Book {
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
-  
+
     result.addAll({'id': id});
     result.addAll({'name': name});
     result.addAll({'abrev': abrev});
     result.addAll({'division': division.toMap()});
     result.addAll({'literaryGenre': literaryGenre});
-    if(cannon != null){
+    if (cannon != null) {
       result.addAll({'cannon': cannon});
     }
-  
+
     return result;
   }
 

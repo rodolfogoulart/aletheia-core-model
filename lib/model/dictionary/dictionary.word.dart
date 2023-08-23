@@ -9,7 +9,7 @@ enum TypeWord {
   place,
   other;
 
-  const TypeWord();
+  const TypeWord();  
 
   toMap() {
     return name;
