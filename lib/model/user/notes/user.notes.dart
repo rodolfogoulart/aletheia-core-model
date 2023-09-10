@@ -1,6 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../../bible/verse/referece.dart';
 
 enum TypeNotes {
   devocional,
@@ -33,6 +36,7 @@ class UserNotes {
   DateTime date;
   TypeNotes? type;
   Color? color;
+  List<Reference>? references;
   UserNotes({
     required this.id,
     this.title,
@@ -41,6 +45,7 @@ class UserNotes {
     required this.date,
     this.type,
     this.color,
+    this.references,
   });
 
   UserNotes copyWith({
@@ -51,6 +56,7 @@ class UserNotes {
     DateTime? date,
     TypeNotes? type,
     Color? color,
+    List<Reference>? references,
   }) {
     return UserNotes(
       id: id ?? this.id,
@@ -60,12 +66,13 @@ class UserNotes {
       date: date ?? this.date,
       type: type ?? this.type,
       color: color ?? this.color,
+      references: references ?? this.references,
     );
   }
 
   @override
   String toString() {
-    return 'UserNotes(id: $id, title: $title, tags: $tags, notes: $notes, date: $date, type: $type, color: $color)';
+    return 'UserNotes(id: $id, title: $title, tags: $tags, notes: $notes, date: $date, type: $type, color: $color, references: $references)';
   }
 
   @override
@@ -79,12 +86,20 @@ class UserNotes {
         other.notes == notes &&
         other.date == date &&
         other.type == type &&
-        other.color == color;
+        other.color == color &&
+        listEquals(other.references, references);
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ title.hashCode ^ tags.hashCode ^ notes.hashCode ^ date.hashCode ^ type.hashCode ^ color.hashCode;
+    return id.hashCode ^
+        title.hashCode ^
+        tags.hashCode ^
+        notes.hashCode ^
+        date.hashCode ^
+        type.hashCode ^
+        color.hashCode ^
+        references.hashCode;
   }
 
   Map<String, dynamic> toMap() {
@@ -107,6 +122,9 @@ class UserNotes {
     if (color != null) {
       result.addAll({'color': color!.value});
     }
+    if (references != null) {
+      result.addAll({'references': references!.map((x) => x.toMap()).toList()});
+    }
 
     return result;
   }
@@ -120,6 +138,7 @@ class UserNotes {
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
       type: map['type'] != null ? TypeNotes.fromMap(map['type']) : null,
       color: map['color'] != null ? Color(map['color']) : null,
+      references: map['references'] != null ? List<Reference>.from(map['references']?.map((x) => Reference.fromMap(x))) : null,
     );
   }
 

@@ -7,3 +7,7 @@
 
 ## 0.0.3
 * enum translation strings
+
+## 0.0.3
+* add field [List<Reference>? references] to UserNotes
+    * Field is used to store the references of the note
