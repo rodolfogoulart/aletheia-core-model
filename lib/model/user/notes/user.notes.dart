@@ -31,7 +31,7 @@ enum TypeNotes {
 class UserNotes {
   int id;
   String? title;
-  String? tags;
+  List<String>? tags;
   String? notes;
   DateTime date;
   TypeNotes? type;
@@ -51,7 +51,7 @@ class UserNotes {
   UserNotes copyWith({
     int? id,
     String? title,
-    String? tags,
+    List<String>? tags,
     String? notes,
     DateTime? date,
     TypeNotes? type,
@@ -82,7 +82,7 @@ class UserNotes {
     return other is UserNotes &&
         other.id == id &&
         other.title == title &&
-        other.tags == tags &&
+        listEquals(other.tags, tags) &&
         other.notes == notes &&
         other.date == date &&
         other.type == type &&
@@ -123,7 +123,7 @@ class UserNotes {
       result.addAll({'color': color!.value});
     }
     if (references != null) {
-      result.addAll({'references': references!.map((x) => x.toMap()).toList()});
+      result.addAll({'references': references!.map((x) => x?.toMap()).toList()});
     }
 
     return result;
@@ -133,7 +133,7 @@ class UserNotes {
     return UserNotes(
       id: map['id']?.toInt() ?? 0,
       title: map['title'],
-      tags: map['tags'],
+      tags: List<String>.from(map['tags']),
       notes: map['notes'],
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
       type: map['type'] != null ? TypeNotes.fromMap(map['type']) : null,
