@@ -123,7 +123,7 @@ class UserNotes {
       result.addAll({'color': color!.value});
     }
     if (references != null) {
-      result.addAll({'references': references!.map((x) => x?.toMap()).toList()});
+      result.addAll({'references': references!.map((x) => x.toMap()).toList()});
     }
 
     return result;

@@ -31,6 +31,6 @@ export 'model/user/config/user.open.ai.dart';
 export 'model/user/notes/user.notes.dart';
 export 'model/user/notes/user.notes.reference.dart';
 
-export 'model/user/user.verse.dart';
+export 'model/user/verse/user.verse.dart';
 
 export 'model/response.dart';

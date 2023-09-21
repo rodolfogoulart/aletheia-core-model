@@ -14,3 +14,8 @@
 
 ## 0.0.5
 * changed the field tags [String?] on UserNotes to [List<String>? tags]
+
+## 0.0.6
+* Add [List<WordsHighlighted>? wordsHighlighted] to UserNotes
+  * Add [WordsHighlighted] class
+* verse folder for user
