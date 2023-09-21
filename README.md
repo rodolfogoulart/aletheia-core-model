@@ -20,6 +20,7 @@ The app include some of this feactures:
 	 - PDF reading
 	 - Import [not all]  database from myBible.zone app
 	 - Lexico dictionary
+	 - Notes (Message, study, devocional, ...)
 
 The **Core Model** can be used to create a nice way to see the data and creating other applications integrated to the main app.
 
@@ -58,4 +59,4 @@ The goal of the project is to deliver an app in any plataform. More especific th
     	- release package
      	- responsible layout *just working for tablet and desktop now
 
-## Check the ***release*** for the installer [*windows*]
+## Check the ***release*** for the installer [*Windows*] [*MacOS*]

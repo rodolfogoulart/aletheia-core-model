@@ -19,3 +19,6 @@
 * Add [List<WordsHighlighted>? wordsHighlighted] to UserNotes
   * Add [WordsHighlighted] class
 * verse folder for user
+
+## 0.0.7
+* Add [List<WordsHighlighted>? wordsHighlighted] to [VerseView]

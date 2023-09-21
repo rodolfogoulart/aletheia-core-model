@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../lexico/lexico.dictionary.dart';
+import '../../user/verse/user.verse.wordsHighlighted.dart';
 import '../bible/bible.version.dart';
 import '../book/book.dart';
-import '../../lexico/lexico.dictionary.dart';
 import 'verse.content.dart';
 import 'verse.cross.reference.dart';
 
@@ -95,9 +96,6 @@ class Verse extends VerseCore {
 }
 
 class VerseView extends VerseCore {
-  // @Deprecated('use content')
-  // List<VerseContent_oldVersion>? contentOld;
-
   ///from user data
   bool? isVerseHighlighted;
 
@@ -106,6 +104,9 @@ class VerseView extends VerseCore {
 
   ///from user data
   String? notes;
+
+  ///from user data
+  List<WordsHighlighted>? wordsHighlighted;
 
   ///from table cross reference
   List<VerseCrossReference>? crossReferences;
@@ -122,11 +123,11 @@ class VerseView extends VerseCore {
     required super.numberChapter,
     required super.numberVerse,
     super.numberVerseEnd, //v8
-    // this.contentOld,
     required super.contentWithOutFormat,
     this.isVerseHighlighted = false,
     this.verseHighlightedColor = Colors.transparent,
     this.notes,
+    this.wordsHighlighted,
     this.crossReferences,
     required super.content, //v12
     this.strongReferences,
@@ -144,7 +145,6 @@ class VerseView extends VerseCore {
       numberVerseEnd: verseView.numberVerseEnd,
       content: verseView.content,
       contentWithOutFormat: verseView.contentWithOutFormat,
-      // contentOld: [],
     );
   }
 
@@ -160,6 +160,7 @@ class VerseView extends VerseCore {
     bool? isVerseHighlighted,
     Color? verseHighlightedColor,
     String? notes,
+    List<WordsHighlighted>? wordsHighlighted,
     List<VerseCrossReference>? crossReferences,
     List<Content>? content, //v12
     List<Lexico>? strongReferences,
@@ -177,6 +178,7 @@ class VerseView extends VerseCore {
       isVerseHighlighted: isVerseHighlighted ?? this.isVerseHighlighted,
       verseHighlightedColor: verseHighlightedColor ?? this.verseHighlightedColor,
       notes: notes ?? this.notes,
+      wordsHighlighted: wordsHighlighted ?? this.wordsHighlighted,
       crossReferences: crossReferences ?? this.crossReferences,
       content: content ?? this.content,
       strongReferences: strongReferences ?? this.strongReferences,
@@ -190,27 +192,30 @@ class VerseView extends VerseCore {
     if (identical(this, other)) return true;
 
     return other is VerseView &&
-        // listEquals(other.contentOld, contentOld) &&
         other.isVerseHighlighted == isVerseHighlighted &&
         other.verseHighlightedColor == verseHighlightedColor &&
         other.notes == notes &&
+        listEquals(other.wordsHighlighted, wordsHighlighted) &&
         listEquals(other.crossReferences, crossReferences) &&
-        listEquals(other.strongReferences, strongReferences);
+        listEquals(other.strongReferences, strongReferences) &&
+        other.book == book &&
+        other.bibleVersion == bibleVersion;
   }
 
   @override
   int get hashCode {
-    return
-        // contentOld.hashCode ^
-        isVerseHighlighted.hashCode ^
-            verseHighlightedColor.hashCode ^
-            notes.hashCode ^
-            crossReferences.hashCode ^
-            strongReferences.hashCode;
+    return isVerseHighlighted.hashCode ^
+        verseHighlightedColor.hashCode ^
+        notes.hashCode ^
+        wordsHighlighted.hashCode ^
+        crossReferences.hashCode ^
+        strongReferences.hashCode ^
+        book.hashCode ^
+        bibleVersion.hashCode;
   }
 
   @override
   String toString() {
-    return 'VerseView(isVerseHighlighted: $isVerseHighlighted, verseHighlightedColor: $verseHighlightedColor, notes: $notes, crossReferences: $crossReferences, strongReferences: $strongReferences)';
+    return 'VerseView(isVerseHighlighted: $isVerseHighlighted, verseHighlightedColor: $verseHighlightedColor, notes: $notes, wordsHighlighted: $wordsHighlighted, crossReferences: $crossReferences, strongReferences: $strongReferences, book: $book, bibleVersion: $bibleVersion)';
   }
 }
