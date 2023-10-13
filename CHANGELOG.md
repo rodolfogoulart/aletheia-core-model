@@ -22,3 +22,6 @@
 
 ## 0.0.7
 * Add [List<WordsHighlighted>? wordsHighlighted] to [VerseView]
+
+## 0.0.8
+* Add [highlight] type to the enum [TypeAttributes]

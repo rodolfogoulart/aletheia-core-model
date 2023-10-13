@@ -2,18 +2,31 @@ import 'dart:convert';
 
 import 'referece.dart';
 
+///[TypeAttributes] enum to style the text
 enum TypeAttributes {
   bold,
   italic,
   underline,
-  upperCase,
+  // upperCase,
   // aligmentCenter,
   // aligmentLeft,
   // aligmentRight,
+  ///for the color of the text
   color,
+
+  ///background color
   backgroundColor,
+
+  ///Jesus words get special color
   jesuswords,
-  fontSize, //+[number] to default font size
+
+  ///+[number] to default font size
+  fontSize,
+
+  ///for the words that are highlighted by the user
+  highlight,
+
+  ///used for the map, more in case of error
   other,
   ;
 
