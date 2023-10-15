@@ -217,7 +217,7 @@ class SubText {
   String toString() => 'SubText(text: $text, attributes: $attributes)';
 }
 
-//when Generated JSON Serialization, change the tag name to refer the param
+//*when Generated JSON Serialization, change the tag name to refer the param
 class Content {
   int seq; //sq
 
@@ -261,7 +261,7 @@ class Content {
     this.paragraph,
   });
 
-  ///change the name of the param
+  //*DON'T FORGET TO CHANGE THE NAME OF THE PARAM
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 

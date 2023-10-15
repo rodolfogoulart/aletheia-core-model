@@ -25,3 +25,6 @@
 
 ## 0.0.8
 * Add [highlight] type to the enum [TypeAttributes]
+
+## 0.0.9
+* Change the VerseView to use UserVerse, all fields will be on the class
