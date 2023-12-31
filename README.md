@@ -8,6 +8,10 @@ The goal of the project is to give a really useful and easy to use app (shared i
 
 ### The target of the project is ***Christian*** software that includes features to really delve into the word and be a platform for preachers/missionaries/students/teachers and people who are enthusiastic about the ***Word of God***.
 
+Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G3?ocid=pdpshare) for oficial install and updates
+
+For personal Module creation, check the [Wiki](/wiki/), you can create modules, bible translations on another language.
+Please contact by creating a Issue if you create a diferent module or for correction.
 
 The app include some of this feactures:
 
