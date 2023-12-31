@@ -10,7 +10,7 @@ The goal of the project is to give a really useful and easy to use app (shared i
 
 Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G3?ocid=pdpshare) for oficial install and updates
 
-For personal Module creation, check the [Wiki](/wiki/), you can create modules, bible translations on another language.
+For personal Module creation, check the [Wiki](https://github.com/rodolfogoulart/aletheia-core-model/wiki), you can create modules, bible translations on another language.
 Please contact by creating a Issue if you create a diferent module or for correction.
 
 The app include some of this feactures:
