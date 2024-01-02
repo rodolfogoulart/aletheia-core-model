@@ -8,10 +8,14 @@ The goal of the project is to give a really useful and easy to use app (shared i
 
 ### The target of the project is ***Christian*** software that includes features to really delve into the word and be a platform for preachers/missionaries/students/teachers and people who are enthusiastic about the ***Word of God***.
 
+## Download
+Check the [***release***](https://github.com/rodolfogoulart/aletheia-core-model/releases) for the installer [*Windows*] [*MacOS*]
 Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G3?ocid=pdpshare) for oficial install and updates.
+
+## Documentation
 > [!NOTE]
->For personal Module creation, check the [Wiki](https://github.com/rodolfogoulart/aletheia-core-model/wiki), you can create modules, bible translations on another language.
->Please contact by creating a [Issue](https://github.com/rodolfogoulart/aletheia-core-model/issues) if you create a diferent module or for correction.
+> For personal Module creation, check the [Wiki](https://github.com/rodolfogoulart/aletheia-core-model/wiki), you can create modules, bible translations on another language.
+> Please contact by creating a [Issue](https://github.com/rodolfogoulart/aletheia-core-model/issues) if you create a diferent module or for correction.
 
 The app include some of this feactures:
 
@@ -22,9 +26,10 @@ The app include some of this feactures:
 	- Commentaries, linked to the chapter/verse
 	- PDF printing
 	- PDF reading
-	- Import [not all]  database from myBible.zone app
+	- Import [not all]  database from myBible.zone app (Only DEV)
 	- Lexico dictionary
 	- Notes (Message, study, devocional, ...)
+ 	- Highlight on Verse and Words
 
 The **Core Model** can be used to create a nice way to see the data and creating other applications integrated to the main app.
 
@@ -62,5 +67,3 @@ The goal of the project is to deliver an app in any plataform. More especific th
    	- Internationalization
     	- release package
      	- responsible layout *just working for tablet and desktop now
-
-## Check the [***release***](https://github.com/rodolfogoulart/aletheia-core-model/releases) for the installer [*Windows*] [*MacOS*]
