@@ -17,9 +17,9 @@ Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G
 > [!NOTE]
 > For personal Module creation, check the [Wiki](https://github.com/rodolfogoulart/aletheia-core-model/wiki), you can create modules, bible translations on another language.
 > Please contact by creating a [Issue](https://github.com/rodolfogoulart/aletheia-core-model/issues) if you create a diferent module or for correction.
+> The **Core Model** can be used to create a nice way to see the data and creating other applications integrated to the main app.
 
-The app include some of this feactures:
-
+## Feactures:
 	- Compore versions of the bible
 	- References of the verse
 	- Anotations of the verse
@@ -31,10 +31,6 @@ The app include some of this feactures:
 	- Lexico dictionary
 	- Notes (Message, study, devocional, ...)
  	- Highlight on Verse and Words
-
-The **Core Model** can be used to create a nice way to see the data and creating other applications integrated to the main app.
-
-The goal of the project is to deliver an app in any plataform. More especific the desktop or tablet. 
 
 ## Initial Screen
 <img src="showcase/screen1.png" width="1920"/>
@@ -62,9 +58,14 @@ The goal of the project is to deliver an app in any plataform. More especific th
 
 
 ## Goals
+The goal of the project is to deliver an app in any plataform. More especific the desktop or tablet.
+
 	- Import more data from myBible.zone
  	- Epub reading
+		- Limitations with the package on pub.dev
   	- Database syncronization
-   	- Internationalization
-    	- release package
+   	- Internationalization 	
+	- release 
+     		- package on MAC OS (Store), 
+       		- Android For Tablet
      	- responsible layout *just working for tablet and desktop now
