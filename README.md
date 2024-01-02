@@ -10,6 +10,7 @@ The goal of the project is to give a really useful and easy to use app (shared i
 
 ## Download
 Check the [***release***](https://github.com/rodolfogoulart/aletheia-core-model/releases) for the installer [*Windows*] [*MacOS*]
+
 Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G3?ocid=pdpshare) for oficial install and updates.
 
 ## Documentation
