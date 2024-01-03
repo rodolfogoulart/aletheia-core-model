@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+///class based on package googleapis [Token]
 class AnalizeGrammar {
   /// [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the
   /// token.
@@ -21,6 +24,42 @@ class AnalizeGrammar {
     this.wordDependencyEdge,
     this.partOfSpeech,
   });
+
+  Map<String, dynamic> toMap() {
+    final result = <String, dynamic>{};
+
+    if (lemma != null) {
+      result.addAll({'lemma': lemma});
+    }
+    if (word != null) {
+      result.addAll({'word': word});
+    }
+    if (beginOffsetWord != null) {
+      result.addAll({'beginOffsetWord': beginOffsetWord});
+    }
+    if (wordDependencyEdge != null) {
+      result.addAll({'wordDependencyEdge': wordDependencyEdge!.toMap()});
+    }
+    if (partOfSpeech != null) {
+      result.addAll({'partOfSpeech': partOfSpeech!.toMap()});
+    }
+
+    return result;
+  }
+
+  factory AnalizeGrammar.fromMap(Map<String, dynamic> map) {
+    return AnalizeGrammar(
+      lemma: map['lemma'],
+      word: map['word'],
+      beginOffsetWord: map['beginOffsetWord']?.toInt(),
+      wordDependencyEdge: map['wordDependencyEdge'] != null ? WordDependencyEdge.fromMap(map['wordDependencyEdge']) : null,
+      partOfSpeech: map['partOfSpeech'] != null ? WordPartOfSpeech.fromMap(map['partOfSpeech']) : null,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory AnalizeGrammar.fromJson(String source) => AnalizeGrammar.fromMap(json.decode(source));
 }
 
 class WordDependencyEdge {
@@ -123,6 +162,30 @@ class WordDependencyEdge {
     this.headTokenIndex,
     this.label,
   });
+
+  Map<String, dynamic> toMap() {
+    final result = <String, dynamic>{};
+
+    if (headTokenIndex != null) {
+      result.addAll({'headTokenIndex': headTokenIndex});
+    }
+    if (label != null) {
+      result.addAll({'label': label});
+    }
+
+    return result;
+  }
+
+  factory WordDependencyEdge.fromMap(Map<String, dynamic> map) {
+    return WordDependencyEdge(
+      headTokenIndex: map['headTokenIndex']?.toInt(),
+      label: map['label'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory WordDependencyEdge.fromJson(String source) => WordDependencyEdge.fromMap(json.decode(source));
 }
 
 class WordPartOfSpeech {
@@ -280,4 +343,68 @@ class WordPartOfSpeech {
     this.tense,
     this.voice,
   });
+
+  Map<String, dynamic> toMap() {
+    final result = <String, dynamic>{};
+
+    if (aspect != null) {
+      result.addAll({'aspect': aspect});
+    }
+    if (case_ != null) {
+      result.addAll({'case_': case_});
+    }
+    if (form != null) {
+      result.addAll({'form': form});
+    }
+    if (gender != null) {
+      result.addAll({'gender': gender});
+    }
+    if (mood != null) {
+      result.addAll({'mood': mood});
+    }
+    if (number != null) {
+      result.addAll({'number': number});
+    }
+    if (person != null) {
+      result.addAll({'person': person});
+    }
+    if (proper != null) {
+      result.addAll({'proper': proper});
+    }
+    if (reciprocity != null) {
+      result.addAll({'reciprocity': reciprocity});
+    }
+    if (tag != null) {
+      result.addAll({'tag': tag});
+    }
+    if (tense != null) {
+      result.addAll({'tense': tense});
+    }
+    if (voice != null) {
+      result.addAll({'voice': voice});
+    }
+
+    return result;
+  }
+
+  factory WordPartOfSpeech.fromMap(Map<String, dynamic> map) {
+    return WordPartOfSpeech(
+      aspect: map['aspect'],
+      case_: map['case_'],
+      form: map['form'],
+      gender: map['gender'],
+      mood: map['mood'],
+      number: map['number'],
+      person: map['person'],
+      proper: map['proper'],
+      reciprocity: map['reciprocity'],
+      tag: map['tag'],
+      tense: map['tense'],
+      voice: map['voice'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory WordPartOfSpeech.fromJson(String source) => WordPartOfSpeech.fromMap(json.decode(source));
 }

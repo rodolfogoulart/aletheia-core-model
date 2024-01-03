@@ -1,11 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-// import 'package:flutter/material.dart';
 
 import '../../lexico/lexico.dictionary.dart';
 import '../../user/verse/user.verse.dart';
-// import '../../user/verse/user.verse.wordsHighlighted.dart';
 import '../bible/bible.version.dart';
 import '../book/book.dart';
 import 'verse.content.dart';
@@ -97,18 +95,6 @@ class Verse extends VerseCore {
 }
 
 class VerseView extends VerseCore {
-  // ///from user data
-  // bool? isVerseHighlighted;
-
-  // ///from user data
-  // Color? verseHighlightedColor;
-
-  // ///from user data
-  // String? notes;
-
-  // ///from user data
-  // List<WordsHighlighted>? wordsHighlighted;
-
   ///from user data
   UserVerse? userVerseData;
 
@@ -128,13 +114,9 @@ class VerseView extends VerseCore {
     required super.numberVerse,
     super.numberVerseEnd, //v8
     required super.contentWithOutFormat,
-    // this.isVerseHighlighted = false,
-    // this.verseHighlightedColor = Colors.transparent,
-    // this.notes,
-    // this.wordsHighlighted,
+    required super.content, //v12
     this.userVerseData,
     this.crossReferences,
-    required super.content, //v12
     this.strongReferences,
     this.book,
     this.bibleVersion,
@@ -162,10 +144,6 @@ class VerseView extends VerseCore {
     int? numberVerseEnd,
     String? titleVerse,
     String? contentWithOutFormat,
-    // bool? isVerseHighlighted,
-    // Color? verseHighlightedColor,
-    // String? notes,
-    // List<WordsHighlighted>? wordsHighlighted,
     UserVerse? userVerseData,
     List<VerseCrossReference>? crossReferences,
     List<Content>? content, //v12
@@ -182,10 +160,6 @@ class VerseView extends VerseCore {
       numberVerseEnd: numberVerseEnd ?? this.numberVerseEnd,
       contentWithOutFormat: contentWithOutFormat ?? this.contentWithOutFormat,
       userVerseData: userVerseData ?? this.userVerseData,
-      // isVerseHighlighted: isVerseHighlighted ?? this.isVerseHighlighted,
-      // verseHighlightedColor: verseHighlightedColor ?? this.verseHighlightedColor,
-      // notes: notes ?? this.notes,
-      // wordsHighlighted: wordsHighlighted ?? this.wordsHighlighted,
       crossReferences: crossReferences ?? this.crossReferences,
       content: content ?? this.content,
       strongReferences: strongReferences ?? this.strongReferences,
@@ -199,10 +173,6 @@ class VerseView extends VerseCore {
     if (identical(this, other)) return true;
 
     return other is VerseView &&
-        // other.isVerseHighlighted == isVerseHighlighted &&
-        // other.verseHighlightedColor == verseHighlightedColor &&
-        // other.notes == notes &&
-        // listEquals(other.wordsHighlighted, wordsHighlighted) &&
         other.userVerseData == userVerseData &&
         listEquals(other.crossReferences, crossReferences) &&
         listEquals(other.strongReferences, strongReferences) &&
@@ -212,12 +182,7 @@ class VerseView extends VerseCore {
 
   @override
   int get hashCode {
-    return
-        // isVerseHighlighted.hashCode ^
-        // verseHighlightedColor.hashCode ^
-        // notes.hashCode ^
-        // wordsHighlighted.hashCode ^
-        userVerseData.hashCode ^ crossReferences.hashCode ^ strongReferences.hashCode ^ book.hashCode ^ bibleVersion.hashCode;
+    return userVerseData.hashCode ^ crossReferences.hashCode ^ strongReferences.hashCode ^ book.hashCode ^ bibleVersion.hashCode;
   }
 
   @override

@@ -28,3 +28,7 @@
 
 ## 0.0.9
 * Change the VerseView to use UserVerse, all fields will be on the class
+
+## 0.0.10
+* Add json generation to AnalizeGrammar
+* Removed some old code

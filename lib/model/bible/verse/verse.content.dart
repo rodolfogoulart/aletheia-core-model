@@ -61,118 +61,7 @@ enum TypeContent {
   }
 }
 
-// class VerseContent_oldVersion {
-//   int id;
-//   int sequence;
-//   List<TypeAttributes> typeFormat;
-//   TypeContent typeContent;
-//   String content;
-//   String? idRefStrong;
-//   Strong? strong;
-//   VerseContent_oldVersion({
-//     this.id = 0,
-//     required this.sequence,
-//     required this.typeFormat,
-//     required this.typeContent,
-//     required this.content,
-//     this.idRefStrong,
-//     this.strong,
-//   });
-
-//   Content toContent(VerseContent_oldVersion c) {
-//     return Content(seq: c.sequence, text: c.content, type: c.typeContent);
-//   }
-
-//   factory VerseContent_oldVersion.fromContent(Content content) {
-//     return VerseContent_oldVersion(
-//       sequence: content.seq,
-//       typeFormat: [],
-//       typeContent: content.type,
-//       content: content.text,
-//       id: 0,
-//     );
-//   }
-
-//   VerseContent_oldVersion copyWith({
-//     int? id,
-//     int? sequence,
-//     List<TypeAttributes>? typeFormat,
-//     TypeContent? typeContent,
-//     String? content,
-//     String? idRefStrong,
-//     Strong? strong,
-//   }) {
-//     return VerseContent_oldVersion(
-//       id: id ?? this.id,
-//       sequence: sequence ?? this.sequence,
-//       typeFormat: typeFormat ?? this.typeFormat,
-//       typeContent: typeContent ?? this.typeContent,
-//       content: content ?? this.content,
-//       idRefStrong: idRefStrong ?? this.idRefStrong,
-//       strong: strong ?? this.strong,
-//     );
-//   }
-
-//   @override
-//   String toString() {
-//     return 'VerseContent(id: $id, sequence: $sequence, typeFormat: $typeFormat, typeContent: $typeContent, content: $content, idRefStrong: $idRefStrong, strong: $strong)';
-//   }
-
-//   @override
-//   bool operator ==(Object other) {
-//     if (identical(this, other)) return true;
-
-//     return other is VerseContent_oldVersion &&
-//         other.id == id &&
-//         other.sequence == sequence &&
-//         listEquals(other.typeFormat, typeFormat) &&
-//         other.typeContent == typeContent &&
-//         other.content == content &&
-//         other.idRefStrong == idRefStrong &&
-//         other.strong == strong;
-//   }
-
-//   @override
-//   int get hashCode {
-//     return id.hashCode ^
-//         sequence.hashCode ^
-//         typeFormat.hashCode ^
-//         typeContent.hashCode ^
-//         content.hashCode ^
-//         idRefStrong.hashCode ^
-//         strong.hashCode;
-//   }
-
-//   Map<String, dynamic> toMap() {
-//     final result = <String, dynamic>{};
-
-//     result.addAll({'id': id});
-//     result.addAll({'sequence': sequence});
-//     result.addAll({'typeFormat': typeFormat.map((x) => x.name).toList()});
-//     result.addAll({'typeContent': typeContent.name});
-//     result.addAll({'content': content});
-//     if (idRefStrong != null) {
-//       result.addAll({'idRefStrong': idRefStrong});
-//     }
-//     return result;
-//   }
-
-//   factory VerseContent_oldVersion.fromMap(Map<String, dynamic> map) {
-//     return VerseContent_oldVersion(
-//       id: map['id']?.toInt() ?? 0,
-//       sequence: map['sequence']?.toInt() ?? 0,
-//       typeFormat: List<TypeAttributes>.from(map['typeFormat']?.map((x) => TypeAttributes.values.byName(x))),
-//       typeContent: TypeContent.values.byName(map['typeContent']),
-//       content: map['content'] ?? '',
-//       idRefStrong: map['idRefStrong'],
-//     );
-//   }
-
-//   String toJson() => json.encode(toMap());
-
-//   factory VerseContent_oldVersion.fromJson(String source) => VerseContent_oldVersion.fromMap(json.decode(source));
-// }
-
+@Deprecated('will be removed')
 class SubText {
   String text;
   Map<String, dynamic>? attributes;
@@ -236,6 +125,7 @@ class Content {
   ///case the text has more attributes but refer the same **strong, anottation, comment, reference, etc...**
   ///
   ///each `[subText]` inherits the attributes from the `[text]` abouve, so if the [text] has the attribute `bold = true`, and the [subText] dont has bold, [subText] need to have the attribute `bold = false` to reverse
+  @Deprecated('will be removed')
   List<SubText>? subText; //sT
   String? anottation; //an
   String? comment; // cm
