@@ -17,7 +17,7 @@ abstract class VerseCore {
   int numberChapter;
   int numberVerse;
 
-  ///for some type of bible version that has verses jointed
+  ///for some type of bible version that has verses joined
   int? numberVerseEnd;
   List<Content> content;
 

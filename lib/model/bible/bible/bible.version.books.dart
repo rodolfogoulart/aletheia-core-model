@@ -5,13 +5,20 @@ import 'package:flutter/foundation.dart';
 import '../book/book.dart';
 import 'bible.version.dart';
 
+///bible version books generate a relationship between bible version and book
+///
+///some versions don't have all books, some just the old or new testament or have apocryphal books
 class BibleVersionBooks {
   int? id;
   int idBook;
   int idBibleVersion;
   int? sequence;
   int? numberChapters;
+
+  ///this overwrite the [name] of book
   String? nameTranslation;
+
+  ///this overwrite the [abrev] of book
   String? abrevTranslation;
 
   BibleVersionBooks({

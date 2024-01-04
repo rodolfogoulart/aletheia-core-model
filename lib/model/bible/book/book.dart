@@ -51,11 +51,13 @@ enum Division {
 ///
 ///see: **[BibleVersionBooks]** class
 class Book {
-  //id need to be unique and a constant
+  ///id need to be unique and a constant, and not autoincrement
   int id;
-  //overwrite on [BibleVersionBooks]
+
+  ///overwrite on [BibleVersionBooks] by [nameTranslation]
   String name;
-  //overwrite on [BibleVersionBooks]
+
+  ///overwrite on [BibleVersionBooks] by [abrevTranslation]
   String abrev;
   Division division;
 

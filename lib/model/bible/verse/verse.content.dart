@@ -106,11 +106,14 @@ class SubText {
   String toString() => 'SubText(text: $text, attributes: $attributes)';
 }
 
-//*when Generated JSON Serialization, change the tag name to refer the param
+///*when Generated JSON Serialization, change the key to refer the variable
 class Content {
+  ///use KEY [sq]
   int seq; //sq
 
   ///to the text have breakline need to have \n with the text
+  ///
+  ///use KEY [T]
   String text; //T
 
   ///aways use
@@ -118,8 +121,12 @@ class Content {
   ///toMap => result.addAll({'typeContent': typeContent.name});
   ///
   ///fromMap=> typeContent: TypeContent.values.byName(map['typeContent']),
+  ///
+  ///use KEY [tC]
   TypeContent typeContent; //tC
+  ///use KEY [at]
   Map<String, dynamic>? attributes; //at
+  ///use KEY [rS]
   List<String>? refLexicos; //rS
 
   ///case the text has more attributes but refer the same **strong, anottation, comment, reference, etc...**
@@ -127,15 +134,21 @@ class Content {
   ///each `[subText]` inherits the attributes from the `[text]` abouve, so if the [text] has the attribute `bold = true`, and the [subText] dont has bold, [subText] need to have the attribute `bold = false` to reverse
   @Deprecated('will be removed')
   List<SubText>? subText; //sT
+  ///use KEY [an]
   String? anottation; //an
+  ///use KEY [cm]
   String? comment; // cm
   //can be a list of references
+  ///use KEY [rf]
   List<Reference>? reference; //rf
+  ///use KEY [fn]
   String? footnote; //fn
 
   ///tag that represents the beginning of a paragraph
   ///
   ///the first letter will be bold
+  ///
+  ///use KEY [pr]
   bool? paragraph; //pr
   Content({
     required this.seq,
@@ -151,7 +164,7 @@ class Content {
     this.paragraph,
   });
 
-  //*DON'T FORGET TO CHANGE THE NAME OF THE PARAM
+  ///*DON'T FORGET TO CHANGE THE NAME OF THE KEY
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 

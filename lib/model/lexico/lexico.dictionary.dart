@@ -12,6 +12,8 @@ class Lexico {
   String? title;
   String? description;
   String? partOfSpeech;
+
+  ///cognate is the list of other words that is similar or related to this word
   List<String>? cognate;
   Lexico({
     this.id = 0,
