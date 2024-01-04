@@ -39,3 +39,5 @@
   * Default value 'pt-br' to language
 * Commentary on fields
 
+## 0.0.12
+* Fix field type on [hashBibleVersion] on [NlpVerse]

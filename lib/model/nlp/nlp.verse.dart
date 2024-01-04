@@ -5,7 +5,7 @@ class NlpVerse {
   int id;
 
   ///unique hash of the bible version, used to search between versions
-  int hashBibleVersion;
+  String hashBibleVersion;
 
   ///as book has a fixed list of books, can be used to filter
   int idBook;
@@ -31,7 +31,7 @@ class NlpVerse {
 
   NlpVerse copyWith({
     int? id,
-    int? hashBibleVersion,
+    String? hashBibleVersion,
     int? idBook,
     int? numberChapter,
     int? numberVerse,
@@ -68,7 +68,7 @@ class NlpVerse {
   factory NlpVerse.fromMap(Map<String, dynamic> map) {
     return NlpVerse(
       id: map['id']?.toInt() ?? 0,
-      hashBibleVersion: map['hashBibleVersion']?.toInt() ?? 0,
+      hashBibleVersion: map['hashBibleVersion'] ?? '',
       idBook: map['idBook']?.toInt() ?? 0,
       numberChapter: map['numberChapter']?.toInt() ?? 0,
       numberVerse: map['numberVerse']?.toInt() ?? 0,
