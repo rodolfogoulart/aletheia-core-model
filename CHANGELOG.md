@@ -32,3 +32,10 @@
 ## 0.0.10
 * Add json generation to AnalizeGrammar
 * Removed some old code
+
+## 0.0.11
+* Add [NlpVerse] class
+* Add to BibleVersion field [hash]
+  * Default value 'pt-br' to language
+* Commentary on fields
+
