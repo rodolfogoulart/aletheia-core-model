@@ -44,3 +44,7 @@
 
 ## 0.0.12
 * change [analysisGrammar] on [NlpVerse] to [List<AnalizeGrammar>]
+
+## 0.0.13
+* add [WordPartOfSpeechView]
+* add Enum to [WordPartOfSpeech] variables result 

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:aletheia_core_model/model/nlp/type.word.part.of.speech.dart';
+
 ///class based on package googleapis [Token]
 class AnalizeGrammar {
   /// [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the
@@ -407,4 +409,68 @@ class WordPartOfSpeech {
   String toJson() => json.encode(toMap());
 
   factory WordPartOfSpeech.fromJson(String source) => WordPartOfSpeech.fromMap(json.decode(source));
+}
+
+///view for WordPartOfSpeech with the Enum type
+class WordPartOfSpeechView {
+  TypeAspect aspect;
+  TypeCase case_;
+  TypeForm form;
+  TypeGender gender;
+  TypeMood mood;
+  TypeNumber number;
+  TypePerson person;
+  TypeProper proper;
+  TypeReciprocity reciprocity;
+  TypeTag tag;
+  TypeTense tense;
+  TypeVoice voice;
+  WordPartOfSpeechView({
+    required this.aspect,
+    required this.case_,
+    required this.form,
+    required this.gender,
+    required this.mood,
+    required this.number,
+    required this.person,
+    required this.proper,
+    required this.reciprocity,
+    required this.tag,
+    required this.tense,
+    required this.voice,
+  });
+
+  factory WordPartOfSpeechView.fromWordPartOfSpeech(WordPartOfSpeech w) {
+    return WordPartOfSpeechView(
+      aspect: TypeAspect.values.byName(w.aspect ?? TypeAspect.ASPECT_UNKNOWN.name),
+      case_: TypeCase.values.byName(w.case_ ?? TypeCase.CASE_UNKNOWN.name),
+      form: TypeForm.values.byName(w.form ?? TypeForm.FORM_UNKNOWN.name),
+      gender: TypeGender.values.byName(w.gender ?? TypeGender.GENDER_UNKNOWN.name),
+      mood: TypeMood.values.byName(w.mood ?? TypeMood.MOOD_UNKNOWN.name),
+      number: TypeNumber.values.byName(w.number ?? TypeNumber.NUMBER_UNKNOWN.name),
+      person: TypePerson.values.byName(w.person ?? TypePerson.PERSON_UNKNOWN.name),
+      proper: TypeProper.values.byName(w.proper ?? TypeProper.PROPER_UNKNOWN.name),
+      reciprocity: TypeReciprocity.values.byName(w.reciprocity ?? TypeReciprocity.RECIPROCITY_UNKNOWN.name),
+      tag: TypeTag.values.byName(w.tag ?? TypeTag.UNKNOWN.name),
+      tense: TypeTense.values.byName(w.tense ?? TypeTense.TENSE_UNKNOWN.name),
+      voice: TypeVoice.values.byName(w.voice ?? TypeVoice.VOICE_UNKNOWN.name),
+    );
+  }
+
+  wordPartOfSpeechViewToWordPartOfSpeech(WordPartOfSpeechView w) {
+    return WordPartOfSpeech(
+      aspect: w.aspect.name,
+      case_: w.case_.name,
+      form: w.form.name,
+      gender: w.gender.name,
+      mood: w.mood.name,
+      number: w.number.name,
+      person: w.person.name,
+      proper: w.proper.name,
+      reciprocity: w.reciprocity.name,
+      tag: w.tag.name,
+      tense: w.tense.name,
+      voice: w.voice.name,
+    );
+  }
 }
