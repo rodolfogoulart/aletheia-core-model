@@ -41,3 +41,6 @@
 
 ## 0.0.12
 * Fix field type on [hashBibleVersion] on [NlpVerse]
+
+## 0.0.12
+* change [analysisGrammar] on [NlpVerse] to [List<AnalizeGrammar>]

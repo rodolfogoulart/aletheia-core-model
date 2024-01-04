@@ -1,5 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:aletheia_core_model/aletheia_core_model.dart';
+
 class NlpVerse {
   ///primary key
   int id;
@@ -15,10 +19,10 @@ class NlpVerse {
   ///some versions has joined verses
   int? numberVerseEnd;
 
-  ///store as list json
+  ///store as list json of [AnalizeGrammar]
   ///
   ///use the object [AnalizeGrammar] to retrieve the data
-  String analizeGrammar;
+  List<AnalizeGrammar> analizeGrammar;
   NlpVerse({
     required this.id,
     required this.hashBibleVersion,
@@ -36,7 +40,7 @@ class NlpVerse {
     int? numberChapter,
     int? numberVerse,
     int? numberVerseEnd,
-    String? analizeGrammar,
+    List<AnalizeGrammar>? analizeGrammar,
   }) {
     return NlpVerse(
       id: id ?? this.id,
@@ -60,7 +64,7 @@ class NlpVerse {
     if (numberVerseEnd != null) {
       result.addAll({'numberVerseEnd': numberVerseEnd});
     }
-    result.addAll({'analizeGrammar': analizeGrammar});
+    result.addAll({'analizeGrammar': analizeGrammar.map((x) => x.toMap()).toList()});
 
     return result;
   }
@@ -73,7 +77,7 @@ class NlpVerse {
       numberChapter: map['numberChapter']?.toInt() ?? 0,
       numberVerse: map['numberVerse']?.toInt() ?? 0,
       numberVerseEnd: map['numberVerseEnd']?.toInt(),
-      analizeGrammar: map['analizeGrammar'] ?? '',
+      analizeGrammar: List<AnalizeGrammar>.from(map['analizeGrammar']?.map((x) => AnalizeGrammar.fromMap(x))),
     );
   }
 
@@ -97,7 +101,7 @@ class NlpVerse {
         other.numberChapter == numberChapter &&
         other.numberVerse == numberVerse &&
         other.numberVerseEnd == numberVerseEnd &&
-        other.analizeGrammar == analizeGrammar;
+        listEquals(other.analizeGrammar, analizeGrammar);
   }
 
   @override
