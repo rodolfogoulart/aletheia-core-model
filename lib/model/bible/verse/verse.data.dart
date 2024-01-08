@@ -15,10 +15,12 @@ enum TypeData {
 
   const TypeData();
 
+  ///used on Dart Class Generation
   toMap() {
     return name;
   }
 
+  ///used on Dart Class Generation
   factory TypeData.fromMap(dynamic value) {
     try {
       return TypeData.values.byName(value);
@@ -26,6 +28,16 @@ enum TypeData {
       return TypeData.other;
     }
   }
+}
+
+extension TypeDataExtension on TypeData {
+  bool get isVideo => this == TypeData.video;
+  bool get isAudio => this == TypeData.audio;
+  bool get isImage => this == TypeData.image;
+  bool get isMaps => this == TypeData.maps;
+  bool get isExegesis => this == TypeData.exegesis;
+  bool get isVerseDivision => this == TypeData.verseDivision;
+  bool get isOther => this == TypeData.other;
 }
 
 ///to add informations to the verse, can be used to add video, audio, image

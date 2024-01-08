@@ -64,6 +64,10 @@ class AnalizeGrammar {
   factory AnalizeGrammar.fromJson(String source) => AnalizeGrammar.fromMap(json.decode(source));
 }
 
+///look to https://aclanthology.org/P13-2017.pdf for more details
+///
+///https://aclanthology.org/P13-2017/
+///
 class WordDependencyEdge {
   /// Represents the head of this token in the dependency tree.
   ///
@@ -190,6 +194,9 @@ class WordDependencyEdge {
   factory WordDependencyEdge.fromJson(String source) => WordDependencyEdge.fromMap(json.decode(source));
 }
 
+/// Represents part of speech information for a token.
+///
+/// Parts of speech are as defined in http://www.lrec-conf.org/proceedings/lrec2012/pdf/274_Paper.pdf
 class WordPartOfSpeech {
   /// The grammatical aspect.
   /// Possible string values are:

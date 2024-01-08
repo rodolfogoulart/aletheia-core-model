@@ -32,10 +32,12 @@ enum TypeAttributes {
 
   const TypeAttributes();
 
+  ///used on Dart Class Generation
   toMap() {
     return name;
   }
 
+  ///used on Dart Class Generation
   factory TypeAttributes.fromMap(dynamic value) {
     try {
       return TypeAttributes.values.byName(value);
@@ -45,6 +47,18 @@ enum TypeAttributes {
   }
 }
 
+extension TypeAttributesExtension on TypeAttributes {
+  bool get isBold => this == TypeAttributes.bold;
+  bool get isItalic => this == TypeAttributes.italic;
+  bool get isUnderline => this == TypeAttributes.underline;
+  bool get isColor => this == TypeAttributes.color;
+  bool get isBackgroundColor => this == TypeAttributes.backgroundColor;
+  bool get isJesusWords => this == TypeAttributes.jesuswords;
+  bool get isFontSize => this == TypeAttributes.fontSize;
+  bool get isHighlight => this == TypeAttributes.highlight;
+  bool get isOther => this == TypeAttributes.other;
+}
+
 enum TypeContent {
   title,
   verse,
@@ -52,13 +66,20 @@ enum TypeContent {
 
   const TypeContent();
 
+  ///used on Dart Class Generation
   toMap() {
     return name;
   }
 
+  ///used on Dart Class Generation
   factory TypeContent.fromMap(dynamic value) {
     return TypeContent.values.byName(value);
   }
+}
+
+extension TypeContentExtension on TypeContent {
+  bool get isTitle => this == TypeContent.title;
+  bool get isVerse => this == TypeContent.verse;
 }
 
 @Deprecated('will be removed')

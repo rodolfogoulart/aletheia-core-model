@@ -20,10 +20,12 @@ enum Division {
     }
   }
 
+  ///used on Dart Class Generation
   toMap() {
     return name;
   }
 
+  ///used on Dart Class Generation
   factory Division.fromMap(dynamic value) {
     try {
       return Division.values.byName(value);
@@ -31,6 +33,13 @@ enum Division {
       return Division.none;
     }
   }
+}
+
+extension DivisionExtension on Division {
+  bool get isOldTestament => this == Division.oldTestament;
+  bool get isNewTestament => this == Division.newTestament;
+  bool get isApocryphal => this == Division.apocryphal;
+  bool get isNone => this == Division.none;
 }
 
 ///for the books see the table on https://en.wikipedia.org/wiki/Biblical_canon

@@ -15,10 +15,12 @@ enum TypeNotes {
 
   const TypeNotes();
 
+  ///used on Dart Class Generation
   toMap() {
     return name;
   }
 
+  ///used on Dart Class Generation
   factory TypeNotes.fromMap(dynamic value) {
     try {
       return TypeNotes.values.byName(value);
@@ -26,6 +28,14 @@ enum TypeNotes {
       return TypeNotes.other;
     }
   }
+}
+
+extension TypeNotesExtension on TypeNotes {
+  bool get isDevocional => this == TypeNotes.devocional;
+  bool get isMessage => this == TypeNotes.message;
+  bool get isStudy => this == TypeNotes.study;
+  bool get isCommentary => this == TypeNotes.commentary;
+  bool get isOther => this == TypeNotes.other;
 }
 
 class UserNotes {

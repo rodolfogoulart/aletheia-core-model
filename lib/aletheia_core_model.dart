@@ -23,6 +23,8 @@ export 'model/lexico/lexico.dictionary.dart';
 export 'model/lexico/lexico.version.dart';
 //
 export 'model/nlp/analize.grammar.dart';
+export 'model/nlp/nlp.verse.dart';
+export 'model/nlp/type.word.part.of.speech.dart';
 //
 export 'model/user/config/user.developer.dart';
 export 'model/user/config/user.google.service.account.credencial.dart';

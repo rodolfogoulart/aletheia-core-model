@@ -9,12 +9,14 @@ enum TypeWord {
   place,
   other;
 
-  const TypeWord();  
+  const TypeWord();
 
+  ///used on Dart Class Generation
   toMap() {
     return name;
   }
 
+  ///used on Dart Class Generation
   factory TypeWord.fromMap(dynamic value) {
     try {
       return TypeWord.values.byName(value);
@@ -22,6 +24,12 @@ enum TypeWord {
       return TypeWord.other;
     }
   }
+}
+
+extension TypeWordExtension on TypeWord {
+  bool get isPeople => this == TypeWord.people;
+  bool get isPlace => this == TypeWord.place;
+  bool get isOther => this == TypeWord.other;
 }
 
 class DictionaryWord {

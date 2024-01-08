@@ -48,3 +48,9 @@
 ## 0.0.13
 * add [WordPartOfSpeechView]
 * add Enum to [WordPartOfSpeech] variables result 
+
+## 0.0.14
+* Add to Export
+* Add Extensions for Enum
+* Add commentary on enum
+* Add Enum to [WordDependencyEdgeLabel] variables result
