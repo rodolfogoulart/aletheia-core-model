@@ -53,4 +53,8 @@
 * Add to Export
 * Add Extensions for Enum
 * Add commentary on enum
-* Add Enum to [WordDependencyEdgeLabel] variables result
+* Add Enum to [WordDependencyEdge] variables result
+
+## 0.0.15
+* Add Extension for [TypeWordDependencyEdgeLabel]
+* Add title to all type.word.part.of.speech Enums

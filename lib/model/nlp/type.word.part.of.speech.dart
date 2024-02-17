@@ -19,6 +19,7 @@ extension TypeAspectExtension on TypeAspect {
   bool get isPerfective => this == TypeAspect.PERFECTIVE;
   bool get isImperfective => this == TypeAspect.IMPERFECTIVE;
   bool get isProgressive => this == TypeAspect.PROGRESSIVE;
+  String get title => 'Aspect';
 }
 
 enum TypeCase {
@@ -41,6 +42,7 @@ enum TypeCase {
   const TypeCase(this._description);
   final String _description;
   String get description => _description;
+  String get title => 'Case';
 }
 
 extension TypeCaseExtension on TypeCase {
@@ -78,6 +80,7 @@ enum TypeForm {
   const TypeForm(this._description);
   final String _description;
   String get description => _description;
+  String get title => 'Form';
 }
 
 extension TypeFormExtension on TypeForm {
@@ -107,6 +110,7 @@ enum TypeMood {
   const TypeMood(this._description);
   final String _description;
   String get description => _description;
+  String get title => 'Mood';
 }
 
 extension TypeMoodExtension on TypeMood {
@@ -128,6 +132,7 @@ enum TypeGender {
   const TypeGender(this._description);
   final String _description;
   String get description => _description;
+  String get title => 'Gender';
 }
 
 extension TypeGenderExtension on TypeGender {
@@ -146,6 +151,7 @@ enum TypeNumber {
   const TypeNumber(this._description);
   final String _description;
   String get description => _description;
+  String get title => 'Number';
 }
 
 extension TypeNumberExtension on TypeNumber {
@@ -165,6 +171,7 @@ enum TypePerson {
   const TypePerson(this._description);
   final String _description;
   String get description => _description;
+  String get title => 'Person';
 }
 
 extension TypePersonExtension on TypePerson {
@@ -183,6 +190,7 @@ enum TypeProper {
   const TypeProper(this._description);
   final String _description;
   String get description => _description;
+  String get title => 'Substantive';
 }
 
 extension TypeProperExtension on TypeProper {
@@ -199,6 +207,7 @@ enum TypeReciprocity {
   const TypeReciprocity(this._description);
   final String _description;
   String get description => _description;
+  String get title => 'Pronoun';
 }
 
 extension TypeReciprocityExtension on TypeReciprocity {
@@ -226,6 +235,7 @@ enum TypeTag {
   const TypeTag(this._description);
   final String _description;
   String get description => _description;
+  String get title => 'Part of speech';
 }
 
 extension TypeTagExtension on TypeTag {
@@ -257,6 +267,7 @@ enum TypeTense {
   const TypeTense(this._description);
   final String _description;
   String get description => _description;
+  String get title => 'Grammatical tense';
 }
 
 extension TypeTenseExtension on TypeTense {
@@ -278,6 +289,7 @@ enum TypeVoice {
   const TypeVoice(this._description);
   final String _description;
   String get description => _description;
+  String get title => 'Voice';
 }
 
 extension TypeVoiceExtension on TypeVoice {
