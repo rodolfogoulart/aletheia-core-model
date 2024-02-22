@@ -220,7 +220,7 @@ class Entity {
     return Entity(
       mentions: map['mentions'] != null
           ? List<EntityMention>.from(
-              (map['mentions'] as List<int>).map<EntityMention?>(
+              (map['mentions'] as List).map<EntityMention?>(
                 (x) => EntityMention.fromMap(x as Map<String, dynamic>),
               ),
             )
@@ -385,21 +385,21 @@ class AnalizeText {
           map['documentSentiment'] != null ? Sentiment.fromMap(map['documentSentiment'] as Map<String, dynamic>) : null,
       entities: map['entities'] != null
           ? List<Entity>.from(
-              (map['entities'] as List<int>).map<Entity?>(
+              (map['entities'] as List).map<Entity?>(
                 (x) => Entity.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
       sentences: map['sentences'] != null
           ? List<Sentence>.from(
-              (map['sentences'] as List<int>).map<Sentence?>(
+              (map['sentences'] as List).map<Sentence?>(
                 (x) => Sentence.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
       tokens: map['tokens'] != null
           ? List<AnalizeGrammar>.from(
-              (map['tokens'] as List<int>).map<AnalizeGrammar?>(
+              (map['tokens'] as List).map<AnalizeGrammar?>(
                 (x) => AnalizeGrammar.fromMap(x as Map<String, dynamic>),
               ),
             )

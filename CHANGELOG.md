@@ -66,3 +66,6 @@
 ## 0.0.17
 * Add NlpChapter
 * Deprecated NlpVerse (to remove next version of bible aletheia)
+
+## 0.0.18
+* Fix parser fromMap

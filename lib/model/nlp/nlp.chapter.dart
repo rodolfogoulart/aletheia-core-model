@@ -47,7 +47,7 @@ class AnalizeGrammarVerse {
       numberVerse: map['numberVerse'] as int,
       numberVerseEnd: map['numberVerseEnd'] != null ? map['numberVerseEnd'] as int : null,
       analizeGrammar: List<AnalizeGrammar>.from(
-        (map['analizeGrammar'] as List<int>).map<AnalizeGrammar>(
+        (map['analizeGrammar'] as List).map<AnalizeGrammar>(
           (x) => AnalizeGrammar.fromMap(x as Map<String, dynamic>),
         ),
       ),
@@ -158,7 +158,7 @@ class NlpChapter {
       idBook: map['idBook'] as int,
       numberChapter: map['numberChapter'] as int,
       analizeGrammarVerse: List<AnalizeGrammarVerse>.from(
-        (map['analizeGrammarVerse'] as List<int>).map<AnalizeGrammarVerse>(
+        (map['analizeGrammarVerse'] as List).map<AnalizeGrammarVerse>(
           (x) => AnalizeGrammarVerse.fromMap(x as Map<String, dynamic>),
         ),
       ),
@@ -166,14 +166,14 @@ class NlpChapter {
           map['documentSentiment'] != null ? Sentiment.fromMap(map['documentSentiment'] as Map<String, dynamic>) : null,
       entities: map['entities'] != null
           ? List<Entity>.from(
-              (map['entities'] as List<int>).map<Entity?>(
+              (map['entities'] as List).map<Entity?>(
                 (x) => Entity.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
       sentences: map['sentences'] != null
           ? List<Sentence>.from(
-              (map['sentences'] as List<int>).map<Sentence?>(
+              (map['sentences'] as List).map<Sentence?>(
                 (x) => Sentence.fromMap(x as Map<String, dynamic>),
               ),
             )
