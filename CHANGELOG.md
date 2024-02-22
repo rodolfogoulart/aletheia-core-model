@@ -58,3 +58,7 @@
 ## 0.0.15
 * Add Extension for [TypeWordDependencyEdgeLabel]
 * Add title to all type.word.part.of.speech Enums
+
+## 0.0.16
+* Add Custom Extension for Enum
+* Add AnalizeText (Response from Google cloud NLP)

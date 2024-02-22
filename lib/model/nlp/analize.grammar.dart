@@ -16,7 +16,7 @@ class AnalizeGrammar {
   int? beginOffsetWord;
 
   WordDependencyEdge? wordDependencyEdge;
-
+  /// Parts of speech tag for this word.
   WordPartOfSpeech? partOfSpeech;
 
   AnalizeGrammar({
