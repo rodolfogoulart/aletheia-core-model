@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 
 import 'package:aletheia_core_model/aletheia_core_model.dart';
 import 'package:aletheia_core_model/extension/custom.extensions.dart';
-import 'package:aletheia_core_model/model/nlp/type.entity.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class Sentiment {
@@ -330,4 +329,85 @@ class AnalizeText {
   ///
   /// Populated if the user enables AnnotateTextRequest.Features.extract_syntax.
   List<AnalizeGrammar>? tokens;
+  AnalizeText({
+    this.documentSentiment,
+    this.entities,
+    this.sentences,
+    this.tokens,
+  });
+
+  @override
+  String toString() {
+    return 'AnalizeText(documentSentiment: $documentSentiment, entities: $entities, sentences: $sentences, tokens: $tokens)';
+  }
+
+  @override
+  bool operator ==(covariant AnalizeText other) {
+    if (identical(this, other)) return true;
+
+    return other.documentSentiment == documentSentiment &&
+        listEquals(other.entities, entities) &&
+        listEquals(other.sentences, sentences) &&
+        listEquals(other.tokens, tokens);
+  }
+
+  @override
+  int get hashCode {
+    return documentSentiment.hashCode ^ entities.hashCode ^ sentences.hashCode ^ tokens.hashCode;
+  }
+
+  AnalizeText copyWith({
+    Sentiment? documentSentiment,
+    List<Entity>? entities,
+    List<Sentence>? sentences,
+    List<AnalizeGrammar>? tokens,
+  }) {
+    return AnalizeText(
+      documentSentiment: documentSentiment ?? this.documentSentiment,
+      entities: entities ?? this.entities,
+      sentences: sentences ?? this.sentences,
+      tokens: tokens ?? this.tokens,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'documentSentiment': documentSentiment?.toMap(),
+      'entities': entities?.map((x) => x.toMap()).toList(),
+      'sentences': sentences?.map((x) => x.toMap()).toList(),
+      'tokens': tokens?.map((x) => x.toMap()).toList(),
+    };
+  }
+
+  factory AnalizeText.fromMap(Map<String, dynamic> map) {
+    return AnalizeText(
+      documentSentiment:
+          map['documentSentiment'] != null ? Sentiment.fromMap(map['documentSentiment'] as Map<String, dynamic>) : null,
+      entities: map['entities'] != null
+          ? List<Entity>.from(
+              (map['entities'] as List<int>).map<Entity?>(
+                (x) => Entity.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
+      sentences: map['sentences'] != null
+          ? List<Sentence>.from(
+              (map['sentences'] as List<int>).map<Sentence?>(
+                (x) => Sentence.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
+      tokens: map['tokens'] != null
+          ? List<AnalizeGrammar>.from(
+              (map['tokens'] as List<int>).map<AnalizeGrammar?>(
+                (x) => AnalizeGrammar.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory AnalizeText.fromJson(String source) => AnalizeText.fromMap(json.decode(source) as Map<String, dynamic>);
 }

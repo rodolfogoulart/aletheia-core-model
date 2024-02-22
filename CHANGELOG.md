@@ -62,3 +62,7 @@
 ## 0.0.16
 * Add Custom Extension for Enum
 * Add AnalizeText (Response from Google cloud NLP)
+
+## 0.0.17
+* Add NlpChapter
+* Deprecated NlpVerse (to remove next version of bible aletheia)

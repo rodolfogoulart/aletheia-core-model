@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 
 import 'package:aletheia_core_model/aletheia_core_model.dart';
 
+@Deprecated('Use NlpChapter instead')
 class NlpVerse {
   ///primary key
   int id;

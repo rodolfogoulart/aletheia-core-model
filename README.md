@@ -9,7 +9,7 @@ The goal of the project is to give a really useful and easy to use app (shared i
 ### The target of the project is ***Christian*** software that includes features to really delve into the word and be a platform for preachers/missionaries/students/teachers and people who are enthusiastic about the ***Word of God***.
 
 ## Download
-Check the [***release***](https://github.com/rodolfogoulart/aletheia-core-model/releases) for the installer [*Windows*] [*MacOS*]
+Check the [***release***](https://github.com/rodolfogoulart/aletheia-core-model/releases) for the installer [*Windows*] [*MacOS*] [*Linux*]
 
 Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G3?ocid=pdpshare) for oficial install and updates.
 
@@ -20,7 +20,7 @@ Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G
 > The **Core Model** can be used to create a nice way to see the data and creating other applications integrated to the main app.
 
 ## Feactures:
-	- Compore versions of the bible
+	- Compare versions of the bible
 	- References of the verse
 	- Anotations of the verse
 	- Dictionary for words [related to the verse os not]
@@ -60,12 +60,16 @@ Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G
 ## Goals
 The goal of the project is to deliver an app in any plataform. More especific the desktop or tablet.
 
-	- Import more data from myBible.zone
- 	- Epub reading
-		- Limitations with the package on pub.dev
+	- Import more data from myBible.zone 	
   	- Database syncronization
-   	- Internationalization 	
+		- Add some way to download script
+   	- Internationalization
+		- PT-BR and EN for now
 	- release 
      		- package on MAC OS (Store), 
        		- Android For Tablet
-     	- responsible layout *just working for tablet and desktop now
+    - responsible layout *just working for tablet and desktop now
+	- NLP
+		- In Development
+		- Add API to get the text nlp	
+
