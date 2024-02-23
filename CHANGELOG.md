@@ -69,3 +69,6 @@
 
 ## 0.0.18
 * Fix parser fromMap
+
+## 0.0.19
+* Fix parser fromMap for Enum

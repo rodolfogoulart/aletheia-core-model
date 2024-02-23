@@ -107,9 +107,9 @@ class EntityMention {
 
   factory EntityMention.fromMap(Map<String, dynamic> map) {
     return EntityMention(
-      sentiment: map['sentiment'] != null ? Sentiment.fromMap(map['sentiment'] as Map<String, dynamic>) : null,
-      text: map['text'] != null ? $TextSpan.fromMap(map['text'] as Map<String, dynamic>) : null,
-      type: map['type'] != null ? TypeEntityMention.fromMap(map['type'] as Map<String, dynamic>) : null,
+      sentiment: map['sentiment'] != null ? Sentiment.fromMap(map['sentiment']) : null,
+      text: map['text'] != null ? $TextSpan.fromMap(map['text']) : null,
+      type: map['type'] != null ? TypeEntityMention.fromMap(map['type']) : null,
     );
   }
 
@@ -225,11 +225,11 @@ class Entity {
               ),
             )
           : null,
-      metadata: map['metadata'] != null ? Map<String, String>.from((map['metadata'] as Map<String, String>)) : null,
+      metadata: map['metadata'] != null ? Map<String, String>.from((map['metadata'])) : null,
       name: map['name'] != null ? map['name'] as String : null,
       salience: map['salience'] != null ? map['salience'] as double : null,
-      sentiment: map['sentiment'] != null ? Sentiment.fromMap(map['sentiment'] as Map<String, dynamic>) : null,
-      type: map['type'] != null ? TypeEntity.fromMap(map['type'] as Map<String, dynamic>) : null,
+      sentiment: map['sentiment'] != null ? Sentiment.fromMap(map['sentiment']) : null,
+      type: map['type'] != null ? TypeEntity.fromMap(map['type']) : null,
     );
   }
 
