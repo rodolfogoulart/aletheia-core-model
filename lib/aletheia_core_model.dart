@@ -23,7 +23,6 @@ export 'model/lexico/lexico.dictionary.dart';
 export 'model/lexico/lexico.version.dart';
 //NLP
 export 'model/nlp/analize.grammar.dart';
-export 'model/nlp/nlp.verse.dart';
 export 'model/nlp/type.word.part.of.speech.dart';
 export 'model/nlp/type.word.dependency.edge.dart';
 export 'model/nlp/analize.text.dart';

@@ -72,3 +72,6 @@
 
 ## 0.0.19
 * Fix parser fromMap for Enum
+
+## 0.0.20
+* Remove NlpVerse
