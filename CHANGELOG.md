@@ -75,3 +75,9 @@
 
 ## 0.0.20
 * Remove NlpVerse
+
+## 0.0.21
+* Add List<Reference>? references; to UserVerse
+  * User can add personal references to verse
+* Add String? description; to References
+  * Can be used to store some information about the reference

@@ -1,4 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 
 class Reference {
   int bookNumber;
@@ -7,6 +10,11 @@ class Reference {
   int? endChapterNumber;
   int? endVerseNumber;
   List<int>? verseNumbers;
+
+  ///to store a simple description of the reference
+  ///
+  ///used on UserVerse
+  String? description;
   Reference({
     required this.bookNumber,
     required this.chapterNumber,
@@ -14,41 +22,60 @@ class Reference {
     this.endChapterNumber,
     this.endVerseNumber,
     this.verseNumbers,
+    this.description,
   });
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'bookNumber': bookNumber});
-    result.addAll({'chapterNumber': chapterNumber});
-    if (verseNumber != null) {
-      result.addAll({'verseNumber': verseNumber});
-    }
-    if (endChapterNumber != null) {
-      result.addAll({'endChapterNumber': endChapterNumber});
-    }
-    if (endVerseNumber != null) {
-      result.addAll({'endVerseNumber': endVerseNumber});
-    }
-    if (verseNumbers != null) {
-      result.addAll({'verseNumbers': verseNumbers});
-    }
-
-    return result;
+    return <String, dynamic>{
+      'bookNumber': bookNumber,
+      'chapterNumber': chapterNumber,
+      'verseNumber': verseNumber,
+      'endChapterNumber': endChapterNumber,
+      'endVerseNumber': endVerseNumber,
+      'verseNumbers': verseNumbers,
+      'description': description,
+    };
   }
 
   factory Reference.fromMap(Map<String, dynamic> map) {
     return Reference(
-      bookNumber: map['bookNumber']?.toInt() ?? 0,
-      chapterNumber: map['chapterNumber']?.toInt() ?? 0,
-      verseNumber: map['verseNumber']?.toInt(),
-      endChapterNumber: map['endChapterNumber']?.toInt(),
-      endVerseNumber: map['endVerseNumber']?.toInt(),
+      bookNumber: map['bookNumber'] ?? 0,
+      chapterNumber: map['chapterNumber'] ?? 0,
+      verseNumber: map['verseNumber'] != null ? map['verseNumber'] as int : null,
+      endChapterNumber: map['endChapterNumber'] != null ? map['endChapterNumber'] as int : null,
+      endVerseNumber: map['endVerseNumber'] != null ? map['endVerseNumber'] as int : null,
       verseNumbers: map['verseNumbers'] != null ? List<int>.from(map['verseNumbers']) : null,
+      description: map['description'] != null ? map['description'] as String : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Reference.fromJson(String source) => Reference.fromMap(json.decode(source));
+  factory Reference.fromJson(String source) => Reference.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  bool operator ==(covariant Reference other) {
+    if (identical(this, other)) return true;
+    //only compare the values of references
+    return other.bookNumber == bookNumber &&
+        other.chapterNumber == chapterNumber &&
+        other.verseNumber == verseNumber &&
+        other.endChapterNumber == endChapterNumber &&
+        other.endVerseNumber == endVerseNumber &&
+        listEquals(other.verseNumbers, verseNumbers);
+    //  &&
+    // other.description == description;
+  }
+
+  @override
+  int get hashCode {
+    return bookNumber.hashCode ^
+        chapterNumber.hashCode ^
+        verseNumber.hashCode ^
+        endChapterNumber.hashCode ^
+        endVerseNumber.hashCode ^
+        verseNumbers.hashCode;
+    // ^
+    // description.hashCode;
+  }
 }

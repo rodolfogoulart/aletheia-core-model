@@ -4,17 +4,25 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:aletheia_core_model/model/user/verse/user.verse.wordsHighlighted.dart';
+import 'package:aletheia_core_model/model/bible/verse/referece.dart';
 
 class UserVerse {
   int id;
   int numberChapter;
   int numberVerse;
   bool isVersesHighlighted;
+
+  ///store the verse highlighted color
   Color? colorVersesHighlighted;
+
+  ///store a json quill delta
   String? notes;
 
   ///store a json list of the selection highlighted
   List<WordsHighlighted>? wordsHighlighted;
+
+  ///store personal references of the verse
+  List<Reference>? references;
   UserVerse({
     required this.id,
     required this.numberChapter,
