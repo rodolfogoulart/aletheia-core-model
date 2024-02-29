@@ -41,11 +41,11 @@ class Reference {
     return Reference(
       bookNumber: map['bookNumber'] ?? 0,
       chapterNumber: map['chapterNumber'] ?? 0,
-      verseNumber: map['verseNumber'] != null ? map['verseNumber'] as int : null,
-      endChapterNumber: map['endChapterNumber'] != null ? map['endChapterNumber'] as int : null,
-      endVerseNumber: map['endVerseNumber'] != null ? map['endVerseNumber'] as int : null,
+      verseNumber: map['verseNumber'],
+      endChapterNumber: map['endChapterNumber'],
+      endVerseNumber: map['endVerseNumber'],
       verseNumbers: map['verseNumbers'] != null ? List<int>.from(map['verseNumbers']) : null,
-      description: map['description'] != null ? map['description'] as String : null,
+      description: map['description'],
     );
   }
 

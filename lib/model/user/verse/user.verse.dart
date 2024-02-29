@@ -112,9 +112,7 @@ class UserVerse {
       wordsHighlighted: map['wordsHighlighted'] != null
           ? List<WordsHighlighted>.from(map['wordsHighlighted']?.map((x) => WordsHighlighted.fromMap(x)))
           : null,
-      references: map['references'] != null
-          ? List<Reference>.from((map['references']).map<Reference?>((x) => Reference.fromMap(x)))
-          : null,
+      references: map['references'] != null ? List<Reference>.from(map['references']?.map((x) => Reference.fromMap(x))) : null,
     );
   }
 
