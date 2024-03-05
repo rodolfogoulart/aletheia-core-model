@@ -20,3 +20,13 @@ class VerseCrossReference {
     required this.reference,
   });
 }
+
+class ViewCrossReference {
+  VerseView verse;
+  VerseCrossReference verseCrossReference;
+
+  ViewCrossReference({
+    required this.verse,
+    required this.verseCrossReference,
+  });
+}
