@@ -81,3 +81,6 @@
   * User can add personal references to verse
 * Add String? description; to References
   * Can be used to store some information about the reference
+
+## 0.0.22
+* Add interface for the repository. This will create a interface between the repository and the database acess
