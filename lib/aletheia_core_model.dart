@@ -27,7 +27,7 @@ export 'model/nlp/type.word.part.of.speech.dart';
 export 'model/nlp/type.word.dependency.edge.dart';
 export 'model/nlp/analize.text.dart';
 export 'model/nlp/type.entity.dart';
-
+export 'model/nlp/nlp.chapter.dart';
 //
 export 'model/user/config/user.developer.dart';
 export 'model/user/config/user.google.service.account.credencial.dart';
