@@ -84,3 +84,8 @@
 
 ## 0.0.22
 * Add interface for the repository. This will create a interface between the repository and the database acess
+
+
+## 0.0.23
+* Upgrade pubspec
+  * Upgrade sdk version

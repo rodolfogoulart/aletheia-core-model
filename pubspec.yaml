@@ -1,10 +1,11 @@
 name: aletheia_core_model
 description: Aletheia Core Model
-version: 0.0.22
+version: 0.0.23
 homepage: https://www.biblealetheia.com
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: '>=3.0.6 <4.0.0'
+  sdk: '>=3.3.0 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
@@ -14,7 +15,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 
 # The following section is specific to Flutter packages.
