@@ -89,3 +89,6 @@
 ## 0.0.23
 * Upgrade pubspec
   * Upgrade sdk version
+
+## 0.0.24
+* add Equalizer to BookView
