@@ -10,8 +10,12 @@ abstract class InterfaceRepositoryCommentary {
 
   Future<CommentaryContent?> insertCommentaryContent(CommentaryContent content);
 
+  ///## Atention, use this with caution
   Future<int> deleteAllContent(int idCommentary);
 
+  /// when [chapter] is null, get the commentary for the book introduction
+  ///
+  /// this rule need to be set on [DAO] side
   Future<List<CommentaryContent>> getCommentaryContent({
     int? id,
     int? idBook,
