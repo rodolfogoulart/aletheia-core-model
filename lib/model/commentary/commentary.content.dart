@@ -85,22 +85,16 @@ class CommentaryContent {
   }
 }
 
-class CommentaryContentView extends ChangeNotifier {
+class CommentaryContentView {
   List<CommentaryContent> contents;
   List<CommentaryContent>? bookIntroduction;
   Commentary comentary;
-  var _count = -1;
+
   CommentaryContentView({
     required this.contents,
     required this.comentary,
     this.bookIntroduction,
-  }) {
-    _count = contents.length + (bookIntroduction?.length ?? 0);
-  }
-
-  refresh() {
-    notifyListeners();
-  }
+  });
 
   @override
   bool operator ==(covariant CommentaryContentView other) {
@@ -108,12 +102,9 @@ class CommentaryContentView extends ChangeNotifier {
 
     return listEquals(other.contents, contents) &&
         listEquals(other.bookIntroduction, bookIntroduction) &&
-        other.comentary == comentary &&
-        other._count == _count;
+        other.comentary == comentary;
   }
 
   @override
-  int get hashCode {
-    return contents.hashCode ^ bookIntroduction.hashCode ^ comentary.hashCode ^ _count.hashCode;
-  }
+  int get hashCode => contents.hashCode ^ bookIntroduction.hashCode ^ comentary.hashCode;
 }
