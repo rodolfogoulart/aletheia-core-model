@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -86,13 +87,15 @@ class CommentaryContent {
 
 class CommentaryContentView extends ChangeNotifier {
   List<CommentaryContent> contents;
+  List<CommentaryContent>? bookIntroduction;
   Commentary comentary;
   var _count = -1;
   CommentaryContentView({
     required this.contents,
     required this.comentary,
+    this.bookIntroduction,
   }) {
-    _count = contents.length;
+    _count = contents.length + (bookIntroduction?.length ?? 0);
   }
 
   refresh() {
@@ -100,15 +103,17 @@ class CommentaryContentView extends ChangeNotifier {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(covariant CommentaryContentView other) {
     if (identical(this, other)) return true;
 
-    return other is CommentaryContentView &&
-        listEquals(other.contents, contents) &&
+    return listEquals(other.contents, contents) &&
+        listEquals(other.bookIntroduction, bookIntroduction) &&
         other.comentary == comentary &&
         other._count == _count;
   }
 
   @override
-  int get hashCode => contents.hashCode ^ comentary.hashCode ^ _count.hashCode;
+  int get hashCode {
+    return contents.hashCode ^ bookIntroduction.hashCode ^ comentary.hashCode ^ _count.hashCode;
+  }
 }
