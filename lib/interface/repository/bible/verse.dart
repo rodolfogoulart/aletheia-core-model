@@ -49,7 +49,7 @@ abstract class InterfaceRepositoryVerse {
   Future<List<VerseView>> searchVerse({
     required List<String> tokens,
     int? maxResults,
-    int? pagenation,
+    int? pagination,
     Division? division,
     Book? book,
     BibleVersion? bibleVersion,
