@@ -92,3 +92,9 @@
 
 ## 0.0.24
 * add Equalizer to BookView
+
+## 0.0.25
+* Add searchVerse on RepositoryVerse
+  * Search for words on verse, 
+    * filter by: division? book? bibleVersion?
+    * limit request and do pagination

@@ -36,4 +36,22 @@ abstract class InterfaceRepositoryVerse {
       int? numberVerseEnd});
 
   Future<int> isDatabaseEmpty();
+
+  /// This method returns a list of verses that match the given search tokens
+  /// and the maximum number of results.
+  ///
+  /// The search is performed in the specified division, book and bibleVersion if provided.
+  ///
+  /// If no division or book or bibleVersion is provided, the search is performed in all divisions and all books and all bibleVersions.
+  ///
+  /// The search is case-insensitive.
+  ///
+  Future<List<VerseView>> searchVerse({
+    required List<String> tokens,
+    int? maxResults,
+    int? pagenation,
+    Division? division,
+    Book? book,
+    BibleVersion? bibleVersion,
+  });
 }
