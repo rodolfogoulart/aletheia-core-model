@@ -98,3 +98,6 @@
   * Search for words on verse, 
     * filter by: division? book? bibleVersion?
     * limit request and do pagination
+
+## 0.0.26
+* Add to TypeAttributes {underlineColor,  underlineThickness,  underlineStyle} 

@@ -7,6 +7,10 @@ enum TypeAttributes {
   bold,
   italic,
   underline,
+  //add on version 1.0.12
+  underlineColor,
+  underlineThickness,
+  underlineStyle,
   // upperCase,
   // aligmentCenter,
   // aligmentLeft,
