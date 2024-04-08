@@ -1,10 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
-import '../book/book.dart';
-import 'bible.version.dart';
-
 ///bible version books generate a relationship between bible version and book
 ///
 ///some versions don't have all books, some just the old or new testament or have apocryphal books
@@ -120,36 +115,4 @@ class BibleVersionBooks {
   String toJson() => json.encode(toMap());
 
   factory BibleVersionBooks.fromJson(String source) => BibleVersionBooks.fromMap(json.decode(source));
-}
-
-class BibleVersionBooksView {
-  List<BookView> books;
-  BibleVersion bible;
-  BibleVersionBooksView({
-    required this.books,
-    required this.bible,
-  });
-
-  BibleVersionBooksView copyWith({
-    List<BookView>? books,
-    BibleVersion? bible,
-  }) {
-    return BibleVersionBooksView(
-      books: books ?? this.books,
-      bible: bible ?? this.bible,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is BibleVersionBooksView && listEquals(other.books, books) && other.bible == bible;
-  }
-
-  @override
-  int get hashCode => books.hashCode ^ bible.hashCode;
-
-  @override
-  String toString() => 'BibleVersionBooksView(books: $books, bible: $bible)';
 }

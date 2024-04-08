@@ -1,4 +1,4 @@
-import 'verse.dart';
+import 'package:aletheia_core_model/aletheia_core_model.dart';
 
 class VerseCrossReference {
   int id;
@@ -18,15 +18,5 @@ class VerseCrossReference {
     required this.idBookReference,
     this.numberVerseEnd,
     required this.reference,
-  });
-}
-
-class ViewCrossReference {
-  VerseView verse;
-  VerseCrossReference verseCrossReference;
-
-  ViewCrossReference({
-    required this.verse,
-    required this.verseCrossReference,
   });
 }

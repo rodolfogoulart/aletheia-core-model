@@ -2,17 +2,23 @@ library aletheia_core_model;
 
 export 'model/bible/bible/bible.version.books.dart';
 export 'model/bible/bible/bible.version.dart';
+export 'model/bible/bible/view/view.bible.version.book.dart';
 //
 export 'model/bible/book/book.dart';
+export 'model/bible/book/view/view.book.dart';
 //
 export 'model/bible/verse/referece.dart';
 export 'model/bible/verse/verse.content.dart';
 export 'model/bible/verse/verse.cross.reference.dart';
 export 'model/bible/verse/verse.dart';
 export 'model/bible/verse/verse.data.dart';
+export 'model/bible/verse/view/view.cross.reference.dart';
+export 'model/bible/verse/view/view.search.verse.dart';
+export 'model/bible/verse/view/view.verse.dart';
 //
 export 'model/commentary/commentary.content.dart';
 export 'model/commentary/commentary.dart';
+export 'model/commentary/view/view.commentary.content.dart';
 //
 export 'model/datasync/data.sync.dart';
 //

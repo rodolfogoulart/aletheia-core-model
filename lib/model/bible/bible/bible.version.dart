@@ -27,6 +27,14 @@ class BibleVersion {
   ///need to be **unique**. NLP relly on this hash to search the bible version
   ///
   ///this is created because other users can create bible versions modules and [id] is autoincrement by the database
+  ///
+  ///```dart
+  ///getHashBibleVersion({required String abrev, required String language}) {
+  ///   var bytes = utf8.encode('$abrev$language');
+  ///   var hash = md5.convert(bytes).toString();
+  ///   return hash;
+  ///}
+  ///```
   String? hash;
   BibleVersion({
     this.id = 0,

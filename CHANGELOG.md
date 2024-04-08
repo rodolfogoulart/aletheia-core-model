@@ -101,3 +101,7 @@
 
 ## 0.0.26
 * Add to TypeAttributes {underlineColor,  underlineThickness,  underlineStyle} 
+
+## 0.0.27
+* Add Model SearchVerse
+* Organize the View on separete paste

@@ -11,10 +11,7 @@ enum TypeAttributes {
   underlineColor,
   underlineThickness,
   underlineStyle,
-  // upperCase,
-  // aligmentCenter,
-  // aligmentLeft,
-  // aligmentRight,
+
   ///for the color of the text
   color,
 
@@ -55,6 +52,9 @@ extension TypeAttributesExtension on TypeAttributes {
   bool get isBold => this == TypeAttributes.bold;
   bool get isItalic => this == TypeAttributes.italic;
   bool get isUnderline => this == TypeAttributes.underline;
+  bool get isUnderlineColor => this == TypeAttributes.underlineColor;
+  bool get isUnderlineThickness => this == TypeAttributes.underlineThickness;
+  bool get isUnderlineStyle => this == TypeAttributes.underlineStyle;
   bool get isColor => this == TypeAttributes.color;
   bool get isBackgroundColor => this == TypeAttributes.backgroundColor;
   bool get isJesusWords => this == TypeAttributes.jesuswords;
@@ -134,7 +134,7 @@ class SubText {
 ///*when Generated JSON Serialization, change the key to refer the variable
 class Content {
   ///use KEY [sq]
-  int seq; //sq
+  int seq; //sq  
 
   ///to the text have breakline need to have \n with the text
   ///
