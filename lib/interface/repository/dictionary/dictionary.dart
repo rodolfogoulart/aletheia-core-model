@@ -1,5 +1,4 @@
-import 'package:aletheia_core_model/model/dictionary/dictionary.dart';
-import 'package:aletheia_core_model/model/dictionary/dictionary.word.dart';
+import 'package:aletheia_core_model/aletheia_core_model.dart';
 
 abstract class InterfaceRepositoryDictionary {
   Future<List<Dictionary>> getDictionarys({int? id});

@@ -1,4 +1,4 @@
-import 'package:aletheia_core_model/model/user/notes/user.notes.dart';
+import 'package:aletheia_core_model/aletheia_core_model.dart';
 
 abstract class InterfaceRepositoryUserNotes {
   Future<List<UserNotes>> getAllUserNotes();
@@ -12,6 +12,6 @@ abstract class InterfaceRepositoryUserNotes {
   Future<int> updateNotes(UserNotes userNotes);
 
   Future<int> deleteNotes({required dynamic id});
-  
+
   getNotes({int? idNote, int? idBook, int? numberChapter, int? numberVerse});
 }

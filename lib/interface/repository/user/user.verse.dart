@@ -1,6 +1,4 @@
-import 'package:aletheia_core_model/model/bible/verse/referece.dart';
-import 'package:aletheia_core_model/model/user/verse/user.verse.dart';
-import 'package:aletheia_core_model/model/user/verse/user.verse.wordsHighlighted.dart';
+import 'package:aletheia_core_model/aletheia_core_model.dart';
 
 abstract class InterfaceRepositoryUserVerse {
   Future<List<UserVerse>> getVerse({required int idBook, required int numberChapter, int? numberVerse});

@@ -1,6 +1,4 @@
-import 'package:aletheia_core_model/model/user/config/user.developer.dart';
-import 'package:aletheia_core_model/model/user/config/user.google.service.account.credencial.dart';
-import 'package:aletheia_core_model/model/user/config/user.open.ai.dart';
+import 'package:aletheia_core_model/aletheia_core_model.dart';
 
 abstract class InterfaceRepositoryUserConfig {
   Future<R?> getConfig<R>(String key);

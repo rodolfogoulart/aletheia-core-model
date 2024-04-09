@@ -1,5 +1,4 @@
-import 'package:aletheia_core_model/model/commentary/commentary.content.dart';
-import 'package:aletheia_core_model/model/commentary/commentary.dart';
+import 'package:aletheia_core_model/aletheia_core_model.dart';
 
 abstract class InterfaceRepositoryCommentary {
   Future<Commentary?> insertCommentary(Commentary commentary);

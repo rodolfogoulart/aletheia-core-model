@@ -1,5 +1,4 @@
-import 'package:aletheia_core_model/model/lexico/lexico.dictionary.dart';
-import 'package:aletheia_core_model/model/lexico/lexico.version.dart';
+import 'package:aletheia_core_model/aletheia_core_model.dart';
 
 abstract class InterfaceRepositoryLexico {
   Future<Lexico?> insertLexico(Lexico lexico);

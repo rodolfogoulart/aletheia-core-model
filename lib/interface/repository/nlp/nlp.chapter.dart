@@ -1,5 +1,4 @@
-import 'package:aletheia_core_model/model/nlp/analize.text.dart';
-import 'package:aletheia_core_model/model/nlp/nlp.chapter.dart';
+import 'package:aletheia_core_model/aletheia_core_model.dart';
 
 abstract class InterfaceRepositoryNlpChapter {
   Future<int> insertNlpChapter({
