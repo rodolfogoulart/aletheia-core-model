@@ -19,5 +19,5 @@ abstract class InterfaceRepositoryLexico {
   Future<int> setLexicoDictionary({required Lexico lexico});
 
   /// Returns the list of verses that belong to the given lexico
-  Future<List<VerseView>> getVersesByLexico({required int idLexico});
+  Future<List<VerseView>> getVersesByLexico({required String idLexico});
 }
