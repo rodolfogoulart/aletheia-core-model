@@ -67,4 +67,11 @@ abstract class InterfaceRepositoryVerse {
     BibleVersion? bibleVersion,
     bool containAllTokens = false,
   });
+
+  /// Returns the list of verses that belong to the given lexico
+  ///
+  /// * The `idLexico` parameter is the ID of the lexico.
+  ///
+  /// * The `idBibleVersion` parameter is the ID of the Bible version.
+  Future<List<VerseView>> getVersesByLexico({required String idLexico, required int idBibleVersion});
 }
