@@ -1,6 +1,6 @@
 name: aletheia_core_model
 description: Aletheia Core Model
-version: 0.0.26
+version: 0.0.27
 homepage: https://www.biblealetheia.com
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 

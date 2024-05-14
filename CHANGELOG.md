@@ -105,3 +105,4 @@
 ## 0.0.27
 * Add Model SearchVerse
 * Organize the View on separete paste
+* Add getVersesByLexico (get the verses that belong to the lexico)
