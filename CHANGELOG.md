@@ -106,3 +106,8 @@
 * Add Model SearchVerse
 * Organize the View on separete paste
 * Add getVersesByLexico (get the verses that belong to the lexico)
+
+## 0.0.28
+* Change from Flutter package to Dart package
+* Remove the Interface from this package and moved to the aletheia_core_interface_repository and aletheia_core_interface_controller
+* Add json encoding to VerseView and ViewCrossReference
