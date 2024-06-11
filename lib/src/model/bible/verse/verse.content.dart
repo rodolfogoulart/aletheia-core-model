@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'referece.dart';
@@ -71,13 +72,28 @@ enum TypeContent {
   const TypeContent();
 
   ///used on Dart Class Generation
-  toMap() {
+  toMap({bool reduced = false}) {
+    if (reduced) {
+      return name.substring(0, 1);
+    }
     return name;
   }
 
   ///used on Dart Class Generation
   factory TypeContent.fromMap(dynamic value) {
-    return TypeContent.values.byName(value);
+    //check for reduced version 06/05/2024
+    if (value is String) {
+      switch (value) {
+        case 't':
+          return TypeContent.title;
+        case 'v':
+          return TypeContent.verse;
+        default:
+          return TypeContent.values.byName(value);
+      }
+    } else {
+      return TypeContent.values.byName(value);
+    }
   }
 }
 
@@ -134,7 +150,7 @@ class SubText {
 ///*when Generated JSON Serialization, change the key to refer the variable
 class Content {
   ///use KEY [sq]
-  int seq; //sq  
+  int seq; //sq
 
   ///to the text have breakline need to have \n with the text
   ///
@@ -151,7 +167,7 @@ class Content {
   TypeContent typeContent; //tC
   ///use KEY [at]
   Map<String, dynamic>? attributes; //at
-  ///use KEY [rS]
+  ///use KEY [rS] KEY CHANGED TO>>>>> [rL]
   List<String>? refLexicos; //rS
 
   ///case the text has more attributes but refer the same **strong, anottation, comment, reference, etc...**
@@ -190,12 +206,38 @@ class Content {
   });
 
   ///*DON'T FORGET TO CHANGE THE NAME OF THE KEY
+  ///
+  ///use KEY [sq] to seq
+  ///
+  ///use KEY [T] to text
+  ///
+  ///use KEY [tC] to typeContent
+  ///```dart
+  /// result.addAll({'tC': typeContent.toMap(reduced: true)});
+  ///```
+  ///
+  ///use KEY [at] to attributes
+  ///
+  ///use KEY [rS] to refLexicos
+  ///
+  ///
+  ///use KEY [sT] to subText
+  ///
+  ///use KEY [an] to anottation
+  ///
+  ///use KEY [cm] to comment
+  ///
+  ///use KEY [rf] to reference
+  ///
+  ///use KEY [fn] to footnote
+  ///
+  ///use KEY [pr] to paragraph
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
     result.addAll({'sq': seq});
     result.addAll({'T': text});
-    result.addAll({'tC': typeContent.name});
+    result.addAll({'tC': typeContent.toMap(reduced: true)});
     if (attributes != null) {
       if (attributes?.isNotEmpty == true) {
         result.addAll({'at': attributes});
@@ -203,10 +245,14 @@ class Content {
     }
     if (refLexicos != null) {
       //todo: alterar para rL
-      result.addAll({'rS': refLexicos});
+      // result.addAll({'rS': refLexicos});
+      //change the Key name to match the new name 06/05/2024
+      result.addAll({'rL': refLexicos});
     }
     if (subText != null) {
-      result.addAll({'sT': subText!.map((x) => x.toMap()).toList()});
+      if (subText?.isNotEmpty == true) {
+        result.addAll({'sT': subText!.map((x) => x.toMap()).toList()});
+      }
     }
     if (anottation != null) {
       result.addAll({'an': anottation});
@@ -215,7 +261,9 @@ class Content {
       result.addAll({'cm': comment});
     }
     if (reference != null) {
-      result.addAll({'rf': reference!.map((x) => x.toMap()).toList()});
+      if (reference!.isNotEmpty) {
+        result.addAll({'rf': reference!.map((x) => x.toMap()).toList()});
+      }
     }
     if (footnote != null) {
       result.addAll({'fn': footnote});
@@ -233,15 +281,18 @@ class Content {
     return Content(
       seq: map['sq']?.toInt() ?? 0,
       text: map['T'] ?? '',
-      typeContent: TypeContent.values.byName(map['tC']),
+      typeContent: TypeContent.fromMap(map['tC']),
       attributes: map['at'] != null ? Map<String, dynamic>.from(map['at']) : null,
-      refLexicos: map['rS'] != null ? List<String>.from(map['rS']) : null,
+      //change the Key name to match the new name 06/05/2024
+      //assume the refLexicos is rS (to older versions) or rL (to newer versions)
+      // refLexicos: (map['rS'] != null) ? List<String>.from(map['rS']) : null,
+      refLexicos: (map['rS'] != null || map['rL'] != null) ? List<String>.from(map['rS'] ?? map['rL']) : null,
       subText: map['sT'] != null ? List<SubText>.from(map['sT']?.map((x) => SubText.fromMap(x))) : null,
       anottation: map['an'],
       comment: map['cm'],
       reference: map['rf'] != null ? List<Reference>.from(map['rf']?.map((x) => Reference.fromMap(x))) : null,
       footnote: map['fn'],
-      paragraph: map['pr'] == false ? null : map['pr'],
+      paragraph: map['pr'] != null ? (map['pr'] == false ? null : map['pr']) : null,
     );
   }
 
@@ -251,4 +302,32 @@ class Content {
 
   @override
   String toString() => 'Content(text:$text, attributes:$attributes, refLexicos:$refLexicos)';
+
+  Content copyWith({
+    int? seq,
+    String? text,
+    TypeContent? typeContent,
+    Map<String, dynamic>? attributes,
+    List<String>? refLexicos,
+    // List<SubText>? subText,
+    String? anottation,
+    String? comment,
+    List<Reference>? reference,
+    String? footnote,
+    bool? paragraph,
+  }) {
+    return Content(
+      seq: seq ?? this.seq,
+      text: text ?? this.text,
+      typeContent: typeContent ?? this.typeContent,
+      attributes: attributes ?? this.attributes,
+      refLexicos: refLexicos ?? this.refLexicos,
+      // subText: subText ?? this.subText,
+      anottation: anottation ?? this.anottation,
+      comment: comment ?? this.comment,
+      reference: reference ?? this.reference,
+      footnote: footnote ?? this.footnote,
+      paragraph: paragraph ?? this.paragraph,
+    );
+  }
 }
