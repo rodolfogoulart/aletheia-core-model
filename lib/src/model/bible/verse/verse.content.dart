@@ -237,17 +237,16 @@ class Content {
 
     result.addAll({'sq': seq});
     result.addAll({'T': text});
-    result.addAll({'tC': typeContent.toMap(reduced: true)});
+    result.addAll({'tC': typeContent.toMap(reduced: false)});
     if (attributes != null) {
       if (attributes?.isNotEmpty == true) {
         result.addAll({'at': attributes});
       }
     }
     if (refLexicos != null) {
-      //todo: alterar para rL
-      // result.addAll({'rS': refLexicos});
-      //change the Key name to match the new name 06/05/2024
-      result.addAll({'rL': refLexicos});
+      //todo: alterar para 'rL' em próxima versão
+      result.addAll({'rS': refLexicos});
+      // result.addAll({'rL': refLexicos});
     }
     if (subText != null) {
       if (subText?.isNotEmpty == true) {
