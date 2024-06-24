@@ -49,3 +49,11 @@ export 'src/model/user/verse/user.verse.wordsHighlighted.dart';
 export 'src/model/user/history/user.history.search.dart';
 
 export 'src/model/response.dart';
+
+//HOTFIX
+export 'src/model/hotfix/hotfix.link.dart';
+export 'src/model/hotfix/info.hotfix.dart';
+export 'src/model/hotfix/hotfix.dart';
+
+//
+export 'src/model/modules/modules.dart';
