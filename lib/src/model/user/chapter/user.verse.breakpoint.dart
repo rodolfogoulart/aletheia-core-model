@@ -10,7 +10,7 @@ import 'package:aletheia_core_model/aletheia_core_model.dart';
 ///Verse breakpoint for the chapter
 ///
 ///the user can add a breakpoint in the chapter
-class VerseBreakPoint {
+class ChapterBreakPoint {
   ///start of the breakpoint
   int start;
 
@@ -29,7 +29,7 @@ class VerseBreakPoint {
   ///references of the breakpoint
   List<Reference>? references;
 
-  VerseBreakPoint({
+  ChapterBreakPoint({
     required this.start,
     required this.end,
     required this.color,
@@ -38,7 +38,7 @@ class VerseBreakPoint {
     required this.references,
   });
 
-  VerseBreakPoint copyWith({
+  ChapterBreakPoint copyWith({
     int? start,
     int? end,
     int? color,
@@ -46,7 +46,7 @@ class VerseBreakPoint {
     String? description,
     List<Reference>? references,
   }) {
-    return VerseBreakPoint(
+    return ChapterBreakPoint(
       start: start ?? this.start,
       end: end ?? this.end,
       color: color ?? this.color,
@@ -67,8 +67,8 @@ class VerseBreakPoint {
     };
   }
 
-  factory VerseBreakPoint.fromMap(Map<String, dynamic> map) {
-    return VerseBreakPoint(
+  factory ChapterBreakPoint.fromMap(Map<String, dynamic> map) {
+    return ChapterBreakPoint(
       start: map['start'] as int,
       end: map['end'] as int,
       color: map['color'] as int,
@@ -86,15 +86,15 @@ class VerseBreakPoint {
 
   String toJson() => json.encode(toMap());
 
-  factory VerseBreakPoint.fromJson(String source) => VerseBreakPoint.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ChapterBreakPoint.fromJson(String source) => ChapterBreakPoint.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'VerseBreakPoint(start: $start, end: $end, color: $color, title: $title, description: $description, references: $references)';
+    return 'ChapterBreakPoint(start: $start, end: $end, color: $color, title: $title, description: $description, references: $references)';
   }
 
   @override
-  bool operator ==(covariant VerseBreakPoint other) {
+  bool operator ==(covariant ChapterBreakPoint other) {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 

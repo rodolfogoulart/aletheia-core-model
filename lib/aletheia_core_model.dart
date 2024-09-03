@@ -45,7 +45,7 @@ export 'src/model/user/notes/user.notes.reference.dart';
 //
 export 'src/model/user/verse/user.verse.dart';
 export 'src/model/user/verse/user.verse.wordsHighlighted.dart';
-export 'src/model/user/verse/user.verse.breakpoint.dart';
+export 'src/model/user/chapter/user.verse.breakpoint.dart';
 //
 export 'src/model/user/history/user.history.search.dart';
 

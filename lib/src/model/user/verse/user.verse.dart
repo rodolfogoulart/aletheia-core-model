@@ -28,10 +28,6 @@ class UserVerse {
   ///id book of the verse
   int idBook;
 
-  ///
-  ///
-  List<VerseBreakPoint>? breakPoints;
-
   UserVerse({
     required this.id,
     required this.numberChapter,
@@ -42,12 +38,11 @@ class UserVerse {
     this.wordsHighlighted,
     this.references,
     required this.idBook,
-    this.breakPoints,
   });
 
   @override
   String toString() {
-    return 'UserVerse(id: $id, numberChapter: $numberChapter, numberVerse: $numberVerse, isVersesHighlighted: $isVersesHighlighted, colorVersesHighlighted: $colorVersesHighlighted, notes: $notes, wordsHighlighted: $wordsHighlighted, references: $references, idBook: $idBook, breakPoints: $breakPoints)';
+    return 'UserVerse(id: $id, numberChapter: $numberChapter, numberVerse: $numberVerse, isVersesHighlighted: $isVersesHighlighted, colorVersesHighlighted: $colorVersesHighlighted, notes: $notes, wordsHighlighted: $wordsHighlighted, references: $references, idBook: $idBook)';
   }
 
   @override
@@ -63,8 +58,7 @@ class UserVerse {
         other.notes == notes &&
         listEquals(other.wordsHighlighted, wordsHighlighted) &&
         listEquals(other.references, references) &&
-        other.idBook == idBook &&
-        listEquals(other.breakPoints, breakPoints);
+        other.idBook == idBook;
   }
 
   @override
@@ -77,8 +71,7 @@ class UserVerse {
         notes.hashCode ^
         wordsHighlighted.hashCode ^
         references.hashCode ^
-        idBook.hashCode ^
-        breakPoints.hashCode;
+        idBook.hashCode;
   }
 
   UserVerse copyWith({
@@ -91,7 +84,6 @@ class UserVerse {
     List<WordsHighlighted>? wordsHighlighted,
     List<Reference>? references,
     int? idBook,
-    List<VerseBreakPoint>? breakPoints,
   }) {
     return UserVerse(
       id: id ?? this.id,
@@ -103,7 +95,6 @@ class UserVerse {
       wordsHighlighted: wordsHighlighted ?? this.wordsHighlighted,
       references: references ?? this.references,
       idBook: idBook ?? this.idBook,
-      breakPoints: breakPoints ?? this.breakPoints,
     );
   }
 
@@ -118,7 +109,6 @@ class UserVerse {
       'wordsHighlighted': wordsHighlighted?.map((x) => x.toMap()).toList(),
       'references': references?.map((x) => x.toMap()).toList(),
       'idBook': idBook,
-      'breakPoints': breakPoints?.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -135,13 +125,6 @@ class UserVerse {
           : null,
       references: map['references'] != null ? List<Reference>.from(map['references']?.map((x) => Reference.fromMap(x))) : null,
       idBook: map['idBook'] ?? 0,
-      breakPoints: map['breakPoints'] != null
-          ? List<VerseBreakPoint>.from(
-              (map['breakPoints'] as List).map<VerseBreakPoint?>(
-                (x) => VerseBreakPoint.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
     );
   }
 
