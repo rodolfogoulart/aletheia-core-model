@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
 import 'package:collection/collection.dart';
 
 import 'package:aletheia_core_model/aletheia_core_model.dart';
@@ -21,6 +22,16 @@ class UserVerse {
 
   ///store personal references of the verse
   List<Reference>? references;
+
+  ///v1.0.16
+  ///
+  ///id book of the verse
+  int idBook;
+
+  ///
+  ///
+  List<VerseBreakPoint>? breakPoints;
+
   UserVerse({
     required this.id,
     required this.numberChapter,
@@ -30,17 +41,19 @@ class UserVerse {
     this.notes,
     this.wordsHighlighted,
     this.references,
+    required this.idBook,
+    this.breakPoints,
   });
 
   @override
   String toString() {
-    return 'UserVerse(id: $id, numberChapter: $numberChapter, numberVerse: $numberVerse, isVersesHighlighted: $isVersesHighlighted, colorVersesHighlighted: $colorVersesHighlighted, notes: $notes, wordsHighlighted: $wordsHighlighted, references: $references)';
+    return 'UserVerse(id: $id, numberChapter: $numberChapter, numberVerse: $numberVerse, isVersesHighlighted: $isVersesHighlighted, colorVersesHighlighted: $colorVersesHighlighted, notes: $notes, wordsHighlighted: $wordsHighlighted, references: $references, idBook: $idBook, breakPoints: $breakPoints)';
   }
 
   @override
   bool operator ==(covariant UserVerse other) {
     if (identical(this, other)) return true;
-    var listEquals = DeepCollectionEquality().equals;
+    final listEquals = const DeepCollectionEquality().equals;
 
     return other.id == id &&
         other.numberChapter == numberChapter &&
@@ -48,8 +61,10 @@ class UserVerse {
         other.isVersesHighlighted == isVersesHighlighted &&
         other.colorVersesHighlighted == colorVersesHighlighted &&
         other.notes == notes &&
-        DeepCollectionEquality().equals(other.wordsHighlighted, wordsHighlighted) &&
-        listEquals(other.references, references);
+        listEquals(other.wordsHighlighted, wordsHighlighted) &&
+        listEquals(other.references, references) &&
+        other.idBook == idBook &&
+        listEquals(other.breakPoints, breakPoints);
   }
 
   @override
@@ -61,7 +76,9 @@ class UserVerse {
         colorVersesHighlighted.hashCode ^
         notes.hashCode ^
         wordsHighlighted.hashCode ^
-        references.hashCode;
+        references.hashCode ^
+        idBook.hashCode ^
+        breakPoints.hashCode;
   }
 
   UserVerse copyWith({
@@ -73,6 +90,8 @@ class UserVerse {
     String? notes,
     List<WordsHighlighted>? wordsHighlighted,
     List<Reference>? references,
+    int? idBook,
+    List<VerseBreakPoint>? breakPoints,
   }) {
     return UserVerse(
       id: id ?? this.id,
@@ -83,6 +102,8 @@ class UserVerse {
       notes: notes ?? this.notes,
       wordsHighlighted: wordsHighlighted ?? this.wordsHighlighted,
       references: references ?? this.references,
+      idBook: idBook ?? this.idBook,
+      breakPoints: breakPoints ?? this.breakPoints,
     );
   }
 
@@ -96,6 +117,8 @@ class UserVerse {
       'notes': notes,
       'wordsHighlighted': wordsHighlighted?.map((x) => x.toMap()).toList(),
       'references': references?.map((x) => x.toMap()).toList(),
+      'idBook': idBook,
+      'breakPoints': breakPoints?.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -111,6 +134,14 @@ class UserVerse {
           ? List<WordsHighlighted>.from(map['wordsHighlighted']?.map((x) => WordsHighlighted.fromMap(x)))
           : null,
       references: map['references'] != null ? List<Reference>.from(map['references']?.map((x) => Reference.fromMap(x))) : null,
+      idBook: map['idBook'] ?? 0,
+      breakPoints: map['breakPoints'] != null
+          ? List<VerseBreakPoint>.from(
+              (map['breakPoints'] as List).map<VerseBreakPoint?>(
+                (x) => VerseBreakPoint.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
     );
   }
 
