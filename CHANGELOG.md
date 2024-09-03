@@ -111,3 +111,7 @@
 * Change from Flutter package to Dart package
 * Remove the Interface from this package and moved to the aletheia_core_interface_repository and aletheia_core_interface_controller
 * Add json encoding to VerseView and ViewCrossReference
+
+## 0.0.28
+* Add UserChapter and ChapterBreakPoint
+  * this give the option to add breakpoints to the chapter, dividing in sessions

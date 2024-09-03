@@ -45,11 +45,13 @@ export 'src/model/user/notes/user.notes.reference.dart';
 //
 export 'src/model/user/verse/user.verse.dart';
 export 'src/model/user/verse/user.verse.wordsHighlighted.dart';
-export 'src/model/user/chapter/user.verse.breakpoint.dart';
 //
 export 'src/model/user/history/user.history.search.dart';
 
 export 'src/model/response.dart';
+//
+export 'src/model/user/chapter/user.chapter.breakpoint.dart';
+export 'src/model/user/chapter/user.chapter.dart';
 
 //HOTFIX
 export 'src/model/hotfix/hotfix.link.dart';

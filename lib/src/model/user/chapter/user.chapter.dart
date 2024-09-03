@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
@@ -7,7 +6,7 @@ import 'package:aletheia_core_model/aletheia_core_model.dart';
 
 ///v1.0.16
 ///
-class UserVerse {
+class UserChapter {
   int id;
   int numberChapter;
 
@@ -16,7 +15,7 @@ class UserVerse {
 
   ///
   List<ChapterBreakPoint>? breakPoints;
-  UserVerse({
+  UserChapter({
     required this.id,
     required this.numberChapter,
     required this.idBook,
@@ -29,13 +28,13 @@ class UserVerse {
   ///store personal references of the verse
   // List<Reference>? references;
 
-  UserVerse copyWith({
+  UserChapter copyWith({
     int? id,
     int? numberChapter,
     int? idBook,
     List<ChapterBreakPoint>? breakPoints,
   }) {
-    return UserVerse(
+    return UserChapter(
       id: id ?? this.id,
       numberChapter: numberChapter ?? this.numberChapter,
       idBook: idBook ?? this.idBook,
@@ -52,8 +51,8 @@ class UserVerse {
     };
   }
 
-  factory UserVerse.fromMap(Map<String, dynamic> map) {
-    return UserVerse(
+  factory UserChapter.fromMap(Map<String, dynamic> map) {
+    return UserChapter(
       id: map['id'] as int,
       numberChapter: map['numberChapter'] as int,
       idBook: map['idBook'] as int,
@@ -69,15 +68,15 @@ class UserVerse {
 
   String toJson() => json.encode(toMap());
 
-  factory UserVerse.fromJson(String source) => UserVerse.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserChapter.fromJson(String source) => UserChapter.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'UserVerse(id: $id, numberChapter: $numberChapter, idBook: $idBook, breakPoints: $breakPoints)';
+    return 'UserChapter(id: $id, numberChapter: $numberChapter, idBook: $idBook, breakPoints: $breakPoints)';
   }
 
   @override
-  bool operator ==(covariant UserVerse other) {
+  bool operator ==(covariant UserChapter other) {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
