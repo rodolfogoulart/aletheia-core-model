@@ -47,7 +47,7 @@ class Pericope {
   DateTime? updateAt;
 
   Pericope({
-    required this.id,
+    this.id,
     required this.start,
     required this.end,
     required this.color,

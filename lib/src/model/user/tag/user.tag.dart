@@ -21,7 +21,7 @@ class Tags {
   ///update date
   DateTime? updateAt;
   Tags({
-    required this.id,
+    this.id,
     required this.name,
     required this.active,
     this.description,

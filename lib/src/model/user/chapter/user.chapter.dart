@@ -24,7 +24,7 @@ class UserChapter {
   ///store personal references of the chapter
   List<Reference>? references;
   UserChapter({
-    required this.id,
+    this.id,
     required this.chapter,
     required this.idBook,
     this.pericopes,
