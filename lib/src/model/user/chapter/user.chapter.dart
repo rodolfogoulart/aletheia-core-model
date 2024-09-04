@@ -7,59 +7,77 @@ import 'package:aletheia_core_model/aletheia_core_model.dart';
 ///v1.0.16
 ///
 class UserChapter {
-  int id;
-  int numberChapter;
+  dynamic id;
+  int chapter;
 
   ///id book of the verse
   int idBook;
 
-  ///
-  List<ChapterBreakPoint>? breakPoints;
-  UserChapter({
-    required this.id,
-    required this.numberChapter,
-    required this.idBook,
-    this.breakPoints,
-  });
+  ///Pericopes of the chapter
+  List<Pericope>? pericopes;
 
   ///store a json quill delta
-  // String? notes;
+  ///
+  ///user can add personal introduction for the chapter
+  String? notes;
 
-  ///store personal references of the verse
-  // List<Reference>? references;
+  ///store personal references of the chapter
+  List<Reference>? references;
+  UserChapter({
+    required this.id,
+    required this.chapter,
+    required this.idBook,
+    this.pericopes,
+    this.notes,
+    this.references,
+  });
 
   UserChapter copyWith({
-    int? id,
-    int? numberChapter,
+    dynamic id,
+    int? chapter,
     int? idBook,
-    List<ChapterBreakPoint>? breakPoints,
+    List<Pericope>? pericopes,
+    String? notes,
+    List<Reference>? references,
   }) {
     return UserChapter(
       id: id ?? this.id,
-      numberChapter: numberChapter ?? this.numberChapter,
+      chapter: chapter ?? this.chapter,
       idBook: idBook ?? this.idBook,
-      breakPoints: breakPoints ?? this.breakPoints,
+      pericopes: pericopes ?? this.pericopes,
+      notes: notes ?? this.notes,
+      references: references ?? this.references,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'numberChapter': numberChapter,
+      'chapter': chapter,
       'idBook': idBook,
-      'breakPoints': breakPoints?.map((x) => x.toMap()).toList(),
+      'pericopes': pericopes?.map((x) => x.toMap()).toList(),
+      'notes': notes,
+      'references': references?.map((x) => x.toMap()).toList(),
     };
   }
 
   factory UserChapter.fromMap(Map<String, dynamic> map) {
     return UserChapter(
-      id: map['id'] as int,
-      numberChapter: map['numberChapter'] as int,
+      id: map['id'] as dynamic,
+      chapter: map['chapter'] as int,
       idBook: map['idBook'] as int,
-      breakPoints: map['breakPoints'] != null
-          ? List<ChapterBreakPoint>.from(
-              (map['breakPoints'] as List).map<ChapterBreakPoint?>(
-                (x) => ChapterBreakPoint.fromMap(x as Map<String, dynamic>),
+      pericopes: map['pericopes'] != null
+          ? List<Pericope>.from(
+              (map['pericopes'] as List).map<Pericope?>(
+                (x) => Pericope.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
+      notes: map['notes'] != null ? map['notes'] as String : null,
+      references: map['references'] != null
+          ? List<Reference>.from(
+              (map['references'] as List).map<Reference?>(
+                (x) => Reference.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
@@ -72,7 +90,7 @@ class UserChapter {
 
   @override
   String toString() {
-    return 'UserChapter(id: $id, numberChapter: $numberChapter, idBook: $idBook, breakPoints: $breakPoints)';
+    return 'UserChapter(id: $id, chapter: $chapter, idBook: $idBook, pericopes: $pericopes, notes: $notes, references: $references)';
   }
 
   @override
@@ -81,13 +99,15 @@ class UserChapter {
     final listEquals = const DeepCollectionEquality().equals;
 
     return other.id == id &&
-        other.numberChapter == numberChapter &&
+        other.chapter == chapter &&
         other.idBook == idBook &&
-        listEquals(other.breakPoints, breakPoints);
+        listEquals(other.pericopes, pericopes) &&
+        other.notes == notes &&
+        listEquals(other.references, references);
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ numberChapter.hashCode ^ idBook.hashCode ^ breakPoints.hashCode;
+    return id.hashCode ^ chapter.hashCode ^ idBook.hashCode ^ pericopes.hashCode ^ notes.hashCode ^ references.hashCode;
   }
 }
