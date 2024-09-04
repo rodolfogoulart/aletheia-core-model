@@ -112,6 +112,7 @@
 * Remove the Interface from this package and moved to the aletheia_core_interface_repository and aletheia_core_interface_controller
 * Add json encoding to VerseView and ViewCrossReference
 
-## 0.0.28
-* Add UserChapter and ChapterBreakPoint
-  * this give the option to add breakpoints to the chapter, dividing in sessions
+## 0.0.29
+* Add UserChapter, Pericope, Tag
+  * this give the option to add pericope to the chapter
+  * Tag will give the option to add tag to the pericope, and future to add tag to the verse/user notes
