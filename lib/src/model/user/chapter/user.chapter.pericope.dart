@@ -48,7 +48,7 @@ class Pericope {
   ///List of messages related to this Pericope
   ///
   ///store the id of the UserNotes
-  List<dynamic>? idNotesUser;
+  List<dynamic>? idUserNotes;
 
   Pericope({
     this.id,
@@ -62,7 +62,7 @@ class Pericope {
     this.icon,
     this.createAt,
     this.updateAt,
-    this.idNotesUser,
+    this.idUserNotes,
   });
 
   Pericope copyWith({
@@ -77,7 +77,7 @@ class Pericope {
     String? icon,
     DateTime? createAt,
     DateTime? updateAt,
-    List<dynamic>? idNotesUser,
+    List<dynamic>? idUserNotes,
   }) {
     return Pericope(
       id: id ?? this.id,
@@ -91,7 +91,7 @@ class Pericope {
       icon: icon ?? this.icon,
       createAt: createAt ?? this.createAt,
       updateAt: updateAt ?? this.updateAt,
-      idNotesUser: idNotesUser ?? this.idNotesUser,
+      idUserNotes: idUserNotes ?? this.idUserNotes,
     );
   }
 
@@ -108,7 +108,7 @@ class Pericope {
       'icon': icon,
       'createAt': createAt?.millisecondsSinceEpoch,
       'updateAt': updateAt?.millisecondsSinceEpoch,
-      'idNotesUser': idNotesUser,
+      'idUserNotes': idUserNotes,
     };
   }
 
@@ -137,7 +137,7 @@ class Pericope {
       icon: map['icon'] != null ? map['icon'] as String : null,
       createAt: map['createAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['createAt']) : null,
       updateAt: map['updateAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['updateAt']) : null,
-      idNotesUser: map['idNotesUser'] != null ? List.from((map['idNotesUser'] as List)) : null,
+      idUserNotes: map['idUserNotes'] != null ? List.from((map['idUserNotes'] as List)) : null,
     );
   }
 
@@ -147,7 +147,7 @@ class Pericope {
 
   @override
   String toString() {
-    return 'Pericope(id: $id, start: $start, end: $end, color: $color, title: $title, description: $description, references: $references, tags: $tags, icon: $icon, createAt: $createAt, updateAt: $updateAt, idNotesUser: $idNotesUser)';
+    return 'Pericope(id: $id, start: $start, end: $end, color: $color, title: $title, description: $description, references: $references, tags: $tags, icon: $icon, createAt: $createAt, updateAt: $updateAt, idUserNotes: $idUserNotes)';
   }
 
   @override
@@ -166,7 +166,7 @@ class Pericope {
         other.icon == icon &&
         other.createAt == createAt &&
         other.updateAt == updateAt &&
-        listEquals(other.idNotesUser, idNotesUser);
+        listEquals(other.idUserNotes, idUserNotes);
   }
 
   @override
@@ -182,6 +182,6 @@ class Pericope {
         icon.hashCode ^
         createAt.hashCode ^
         updateAt.hashCode ^
-        idNotesUser.hashCode;
+        idUserNotes.hashCode;
   }
 }
