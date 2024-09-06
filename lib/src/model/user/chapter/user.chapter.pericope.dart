@@ -45,6 +45,11 @@ class Pericope {
   ///update date
   DateTime? updateAt;
 
+  ///List of messages related to this Pericope
+  ///
+  ///store the id of the UserNotes
+  List<dynamic>? idNotesUser;
+
   Pericope({
     this.id,
     required this.start,
@@ -57,6 +62,7 @@ class Pericope {
     this.icon,
     this.createAt,
     this.updateAt,
+    this.idNotesUser,
   });
 
   Pericope copyWith({
@@ -71,6 +77,7 @@ class Pericope {
     String? icon,
     DateTime? createAt,
     DateTime? updateAt,
+    List<dynamic>? idNotesUser,
   }) {
     return Pericope(
       id: id ?? this.id,
@@ -84,6 +91,7 @@ class Pericope {
       icon: icon ?? this.icon,
       createAt: createAt ?? this.createAt,
       updateAt: updateAt ?? this.updateAt,
+      idNotesUser: idNotesUser ?? this.idNotesUser,
     );
   }
 
@@ -100,6 +108,7 @@ class Pericope {
       'icon': icon,
       'createAt': createAt?.millisecondsSinceEpoch,
       'updateAt': updateAt?.millisecondsSinceEpoch,
+      'idNotesUser': idNotesUser,
     };
   }
 
@@ -128,6 +137,7 @@ class Pericope {
       icon: map['icon'] != null ? map['icon'] as String : null,
       createAt: map['createAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['createAt']) : null,
       updateAt: map['updateAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['updateAt']) : null,
+      idNotesUser: map['idNotesUser'] != null ? List.from((map['idNotesUser'] as List)) : null,
     );
   }
 
@@ -137,7 +147,7 @@ class Pericope {
 
   @override
   String toString() {
-    return 'Pericope(id: $id, start: $start, end: $end, color: $color, title: $title, description: $description, references: $references, tags: $tags, icon: $icon, createAt: $createAt, updateAt: $updateAt)';
+    return 'Pericope(id: $id, start: $start, end: $end, color: $color, title: $title, description: $description, references: $references, tags: $tags, icon: $icon, createAt: $createAt, updateAt: $updateAt, idNotesUser: $idNotesUser)';
   }
 
   @override
@@ -155,7 +165,8 @@ class Pericope {
         listEquals(other.tags, tags) &&
         other.icon == icon &&
         other.createAt == createAt &&
-        other.updateAt == updateAt;
+        other.updateAt == updateAt &&
+        listEquals(other.idNotesUser, idNotesUser);
   }
 
   @override
@@ -170,6 +181,7 @@ class Pericope {
         tags.hashCode ^
         icon.hashCode ^
         createAt.hashCode ^
-        updateAt.hashCode;
+        updateAt.hashCode ^
+        idNotesUser.hashCode;
   }
 }
