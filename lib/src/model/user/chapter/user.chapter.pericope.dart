@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 
 import 'package:aletheia_core_model/aletheia_core_model.dart';
-import 'package:aletheia_core_model/src/model/user/tag/user.tag.dart';
 
 ///v1.0.16
 ///
@@ -38,7 +37,7 @@ class Pericope {
   List<Tags>? tags;
 
   ///icon of the Pericope
-  int? icon;
+  String? icon;
 
   ///creation date
   DateTime? createAt;
@@ -69,7 +68,7 @@ class Pericope {
     String? description,
     List<Reference>? references,
     List<Tags>? tags,
-    int? icon,
+    String? icon,
     DateTime? createAt,
     DateTime? updateAt,
   }) {
@@ -126,7 +125,7 @@ class Pericope {
               ),
             )
           : null,
-      icon: map['icon'] != null ? map['icon'] as int : null,
+      icon: map['icon'] != null ? map['icon'] as String : null,
       createAt: map['createAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['createAt']) : null,
       updateAt: map['updateAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['updateAt']) : null,
     );
