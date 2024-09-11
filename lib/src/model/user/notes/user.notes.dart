@@ -1,7 +1,9 @@
 import 'dart:convert';
+
 import 'package:collection/collection.dart';
 
-import '../../bible/verse/referece.dart';
+import 'package:aletheia_core_model/src/model/bible/verse/referece.dart';
+import 'package:aletheia_core_model/src/model/user/tag/user.tag.dart';
 
 enum TypeNotes {
   devocional,
@@ -39,7 +41,9 @@ extension TypeNotesExtension on TypeNotes {
 class UserNotes {
   int id;
   String? title;
-  List<String>? tags;
+
+  ///v1.0.16 - change to Tags
+  List<Tags>? tags;
   String? notes;
   DateTime date;
   TypeNotes? type;
@@ -59,7 +63,7 @@ class UserNotes {
   UserNotes copyWith({
     int? id,
     String? title,
-    List<String>? tags,
+    List<Tags>? tags,
     String? notes,
     DateTime? date,
     TypeNotes? type,
@@ -84,12 +88,11 @@ class UserNotes {
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(covariant UserNotes other) {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
-    return other is UserNotes &&
-        other.id == id &&
+    return other.id == id &&
         other.title == title &&
         listEquals(other.tags, tags) &&
         other.notes == notes &&
@@ -112,46 +115,44 @@ class UserNotes {
   }
 
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    result.addAll({'id': id});
-    if (title != null) {
-      result.addAll({'title': title});
-    }
-    if (tags != null) {
-      result.addAll({'tags': tags});
-    }
-    if (notes != null) {
-      result.addAll({'notes': notes});
-    }
-    result.addAll({'date': date.millisecondsSinceEpoch});
-    if (type != null) {
-      result.addAll({'type': type!.toMap()});
-    }
-    if (color != null) {
-      result.addAll({'color': color});
-    }
-    if (references != null) {
-      result.addAll({'references': references!.map((x) => x.toMap()).toList()});
-    }
-
-    return result;
+    return <String, dynamic>{
+      'id': id,
+      'title': title,
+      'tags': tags?.map((x) => x.toMap()).toList(),
+      'notes': notes,
+      'date': date.millisecondsSinceEpoch,
+      'type': type?.toMap(),
+      'color': color,
+      'references': references?.map((x) => x.toMap()).toList(),
+    };
   }
 
   factory UserNotes.fromMap(Map<String, dynamic> map) {
     return UserNotes(
-      id: map['id']?.toInt() ?? 0,
-      title: map['title'],
-      tags: List<String>.from(map['tags']),
-      notes: map['notes'],
+      id: map['id'] ?? 0,
+      title: map['title'] != null ? map['title'] as String : null,
+      tags: map['tags'] != null
+          ? List<Tags>.from(
+              (map['tags'] as List).map<Tags?>(
+                (x) => Tags.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
+      notes: map['notes'] != null ? map['notes'] as String : null,
       date: DateTime.fromMillisecondsSinceEpoch(map['date']),
       type: map['type'] != null ? TypeNotes.fromMap(map['type']) : null,
       color: map['color'] != null ? int.tryParse(map['color']) : null,
-      references: map['references'] != null ? List<Reference>.from(map['references']?.map((x) => Reference.fromMap(x))) : null,
+      references: map['references'] != null
+          ? List<Reference>.from(
+              (map['references']).map<Reference?>(
+                (x) => Reference.fromMap(x),
+              ),
+            )
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory UserNotes.fromJson(String source) => UserNotes.fromMap(json.decode(source));
+  factory UserNotes.fromJson(String source) => UserNotes.fromMap(json.decode(source) as Map<String, dynamic>);
 }
