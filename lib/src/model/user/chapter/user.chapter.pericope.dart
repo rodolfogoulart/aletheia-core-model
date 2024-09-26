@@ -15,6 +15,9 @@ import 'package:aletheia_core_model/aletheia_core_model.dart';
 class Pericope {
   dynamic id;
 
+  ///identifier of the UserChapter
+  dynamic idChapter;
+
   ///start of the Pericope
   int start;
 
@@ -52,6 +55,7 @@ class Pericope {
 
   Pericope({
     this.id,
+    this.idChapter,
     required this.start,
     required this.end,
     required this.color,
@@ -67,6 +71,7 @@ class Pericope {
 
   Pericope copyWith({
     dynamic id,
+    dynamic idChapter,
     int? start,
     int? end,
     int? color,
@@ -81,6 +86,7 @@ class Pericope {
   }) {
     return Pericope(
       id: id ?? this.id,
+      idChapter: idChapter ?? this.idChapter,
       start: start ?? this.start,
       end: end ?? this.end,
       color: color ?? this.color,
@@ -98,6 +104,7 @@ class Pericope {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
+      'idChapter': idChapter,
       'start': start,
       'end': end,
       'color': color,
@@ -115,6 +122,7 @@ class Pericope {
   factory Pericope.fromMap(Map<String, dynamic> map) {
     return Pericope(
       id: map['id'] as dynamic,
+      idChapter: map['idChapter'] as dynamic,
       start: map['start'] as int,
       end: map['end'] as int,
       color: map['color'] as int,
@@ -147,7 +155,7 @@ class Pericope {
 
   @override
   String toString() {
-    return 'Pericope(id: $id, start: $start, end: $end, color: $color, title: $title, description: $description, references: $references, tags: $tags, icon: $icon, createAt: $createAt, updateAt: $updateAt, idUserNotes: $idUserNotes)';
+    return 'Pericope(id: $id, idChapter: $idChapter, start: $start, end: $end, color: $color, title: $title, description: $description, references: $references, tags: $tags, icon: $icon, createAt: $createAt, updateAt: $updateAt, idUserNotes: $idUserNotes)';
   }
 
   @override
@@ -156,6 +164,7 @@ class Pericope {
     final listEquals = const DeepCollectionEquality().equals;
 
     return other.id == id &&
+        other.idChapter == idChapter &&
         other.start == start &&
         other.end == end &&
         other.color == color &&
@@ -172,6 +181,7 @@ class Pericope {
   @override
   int get hashCode {
     return id.hashCode ^
+        idChapter.hashCode ^
         start.hashCode ^
         end.hashCode ^
         color.hashCode ^
