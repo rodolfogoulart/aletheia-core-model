@@ -20,15 +20,20 @@ Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G
 ## Feactures:
 	- Compare versions of the bible
 	- References of the verse
-	- Anotations of the verse
-	- Dictionary for words [related to the verse os not]
+	- Personal Notes of the verse
+	- Dictionary for words [related to the verse or not]
 	- Commentaries, linked to the chapter/verse
 	- PDF printing
 	- PDF reading
 	- Import [not all]  database from myBible.zone app (Only DEV)
 	- Lexico dictionary
-	- Notes (Message, study, devocional, ...)
- 	- Highlight on Verse and Words
+	- Personal Notes (Message, study, devocional, ...)
+	- Bookmark the verse
+ 	- Highlight words on verse
+	- Multiple readings (see side by side bible versions)
+	- Search on the bible
+	- Cross reference
+	- Create your own pericope on the chapter
 
 ## Initial Screen
 <img src="showcase/screen1.png" width="1920"/>
@@ -48,17 +53,24 @@ Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G
 ## Lexico Word related to the version
 <img src="showcase/screen6.png" width="1920"/>
 
-## Some experiment with Chat-GPT [bible exegesis]
+## Personal Notes
 <img src="showcase/screen7.png" width="1920"/>
 
 ## Print pdf
 <img src="showcase/screen8.png" width="1920"/>
 
+## Search on bible
+<img src="showcase/screen9.png" width="1920"/>
+
 
 ## Goals
 The goal of the project is to deliver an app in any plataform. More especific the desktop or tablet.
+* **Why just desktop or tablet?** *It's because the layout of the app. Mobile has already some really good apps like myBible or SwordBible that has many feactures on it, but for desktop you will find hard to see some app, easy and acessible to use.*
+
+List of some goals
 
 	- Import more data from myBible.zone 	
+	- Import data from ebible.org
   	- Database syncronization
 		- Add some way to download script
    	- Internationalization
@@ -70,3 +82,6 @@ The goal of the project is to deliver an app in any plataform. More especific th
 	- NLP
 		- In Development
 		- Add API to get the text nlp	
+	- Improve search on bible
+	- Videos of tutorial
+	- 
