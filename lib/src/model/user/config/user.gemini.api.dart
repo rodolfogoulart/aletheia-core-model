@@ -5,7 +5,7 @@ import 'dart:convert';
 class GeminiApiConfig {
   String apiKey;
   double temperature;
-  double topK;
+  int topK;
   double topP;
   int maxOutputTokens;
   GeminiApiConfig({
@@ -19,7 +19,7 @@ class GeminiApiConfig {
   GeminiApiConfig copyWith({
     String? apiKey,
     double? temperature,
-    double? topK,
+    int? topK,
     double? topP,
     int? maxOutputTokens,
   }) {
@@ -46,7 +46,7 @@ class GeminiApiConfig {
     return GeminiApiConfig(
       apiKey: map['apiKey'] as String,
       temperature: map['temperature'] as double,
-      topK: map['topK'] as double,
+      topK: map['topK'] as int,
       topP: map['topP'] as double,
       maxOutputTokens: map['maxOutputTokens'] as int,
     );
