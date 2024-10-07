@@ -39,6 +39,7 @@ export 'src/model/nlp/nlp.chapter.dart';
 export 'src/model/user/config/user.developer.dart';
 export 'src/model/user/config/user.google.service.account.credencial.dart';
 export 'src/model/user/config/user.open.ai.dart';
+export 'src/model/user/config/user.gemini.api.dart';
 //
 export 'src/model/user/notes/user.notes.dart';
 export 'src/model/user/notes/user.notes.reference.dart';
