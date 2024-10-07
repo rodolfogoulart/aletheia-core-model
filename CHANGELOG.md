@@ -116,3 +116,4 @@
 * Add UserChapter, Pericope, Tag
   * this give the option to add pericope to the chapter
   * Tag will give the option to add tag to the pericope, and future to add tag to the verse/user notes
+* add TypeSearchVerse to define the type of search, if is on the DATABASE or throw AI
