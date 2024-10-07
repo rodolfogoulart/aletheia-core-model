@@ -1,13 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 ///Config for GeminiApi
-class GeminiApi {
+class GeminiApiConfig {
   String apiKey;
   double temperature;
   double topK;
   double topP;
   int maxOutputTokens;
-  GeminiApi({
+  GeminiApiConfig({
     required this.apiKey,
     required this.temperature,
     required this.topK,
@@ -15,14 +16,14 @@ class GeminiApi {
     required this.maxOutputTokens,
   });
 
-  GeminiApi copyWith({
+  GeminiApiConfig copyWith({
     String? apiKey,
     double? temperature,
     double? topK,
     double? topP,
     int? maxOutputTokens,
   }) {
-    return GeminiApi(
+    return GeminiApiConfig(
       apiKey: apiKey ?? this.apiKey,
       temperature: temperature ?? this.temperature,
       topK: topK ?? this.topK,
@@ -41,8 +42,8 @@ class GeminiApi {
     };
   }
 
-  factory GeminiApi.fromMap(Map<String, dynamic> map) {
-    return GeminiApi(
+  factory GeminiApiConfig.fromMap(Map<String, dynamic> map) {
+    return GeminiApiConfig(
       apiKey: map['apiKey'] as String,
       temperature: map['temperature'] as double,
       topK: map['topK'] as double,
@@ -53,15 +54,15 @@ class GeminiApi {
 
   String toJson() => json.encode(toMap());
 
-  factory GeminiApi.fromJson(String source) => GeminiApi.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory GeminiApiConfig.fromJson(String source) => GeminiApiConfig.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'GeminiApi(apiKey: $apiKey, temperature: $temperature, topK: $topK, topP: $topP, maxOutputTokens: $maxOutputTokens)';
+    return 'GeminiApiConfig(apiKey: $apiKey, temperature: $temperature, topK: $topK, topP: $topP, maxOutputTokens: $maxOutputTokens)';
   }
 
   @override
-  bool operator ==(covariant GeminiApi other) {
+  bool operator ==(covariant GeminiApiConfig other) {
     if (identical(this, other)) return true;
 
     return other.apiKey == apiKey &&
