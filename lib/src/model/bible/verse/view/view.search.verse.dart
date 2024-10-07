@@ -1,6 +1,11 @@
 import 'package:aletheia_core_model/aletheia_core_model.dart';
 import 'package:collection/collection.dart';
 
+///v1.0.16
+///
+///define where the search is made
+enum TypeSearchVerse { database, ai }
+
 ///SearchVerse store the result of the search
 ///
 ///**with the following properties**
@@ -15,12 +20,16 @@ import 'package:collection/collection.dart';
 ///
 ///[positions] : the position of the tokens
 ///
+///[typeSearch] : define where the search is made (v1.0.16)
 
 class SearchVerse {
   double relevance;
   int tokensEqual;
   int tokensPartial;
   List<Position> positions;
+
+  ///v1.0.16
+  TypeSearchVerse typeSearch;
 
   VerseView verse;
 
@@ -29,6 +38,7 @@ class SearchVerse {
     required this.tokensEqual,
     required this.tokensPartial,
     required this.positions,
+    this.typeSearch = TypeSearchVerse.database,
     required this.verse,
   });
 
@@ -41,17 +51,23 @@ class SearchVerse {
         other.tokensEqual == tokensEqual &&
         other.tokensPartial == tokensPartial &&
         listEquals(other.positions, positions) &&
+        other.typeSearch == typeSearch &&
         other.verse == verse;
   }
 
   @override
   int get hashCode {
-    return relevance.hashCode ^ tokensEqual.hashCode ^ tokensPartial.hashCode ^ positions.hashCode ^ verse.hashCode;
+    return relevance.hashCode ^
+        tokensEqual.hashCode ^
+        tokensPartial.hashCode ^
+        positions.hashCode ^
+        typeSearch.hashCode ^
+        verse.hashCode;
   }
 
   @override
   String toString() {
-    return 'SearchVerse(relevance: $relevance, tokensEqual: $tokensEqual, tokensPartial: $tokensPartial, positions: $positions, verse: $verse)';
+    return 'SearchVerse(relevance: $relevance, tokensEqual: $tokensEqual, tokensPartial: $tokensPartial, positions: $positions, typeSearch: $typeSearch, verse: $verse)';
   }
 }
 

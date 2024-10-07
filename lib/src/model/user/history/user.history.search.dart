@@ -1,15 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-abstract class TypeSearch {
+abstract class HistoryTypeSearch {
   Map<String, dynamic> toMap();
 
   String toJson() => json.encode(toMap());
 }
 
-class TypeSearchBook extends TypeSearch {
+class HistoryTypeSearchBook extends HistoryTypeSearch {
   int idBook;
-  TypeSearchBook({
+  HistoryTypeSearchBook({
     required this.idBook,
   });
 
@@ -20,20 +20,21 @@ class TypeSearchBook extends TypeSearch {
     };
   }
 
-  factory TypeSearchBook.fromMap(Map<String, dynamic> map) {
-    return TypeSearchBook(
+  factory HistoryTypeSearchBook.fromMap(Map<String, dynamic> map) {
+    return HistoryTypeSearchBook(
       idBook: map['idBook'] as int,
     );
   }
 
-  factory TypeSearchBook.fromJson(String source) => TypeSearchBook.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory HistoryTypeSearchBook.fromJson(String source) =>
+      HistoryTypeSearchBook.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
-class TypeSearchChapter extends TypeSearchBook {
+class HistoryTypeSearchChapter extends HistoryTypeSearchBook {
   int numberChapter;
   int idVersion;
 
-  TypeSearchChapter({
+  HistoryTypeSearchChapter({
     required this.numberChapter,
     required this.idVersion,
     required super.idBook,
@@ -48,21 +49,22 @@ class TypeSearchChapter extends TypeSearchBook {
     };
   }
 
-  factory TypeSearchChapter.fromMap(Map<String, dynamic> map) {
-    return TypeSearchChapter(
+  factory HistoryTypeSearchChapter.fromMap(Map<String, dynamic> map) {
+    return HistoryTypeSearchChapter(
       numberChapter: map['numberChapter'] as int,
       idVersion: map['idVersion'] as int,
       idBook: map['idBook'] as int,
     );
   }
 
-  factory TypeSearchChapter.fromJson(String source) => TypeSearchChapter.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory HistoryTypeSearchChapter.fromJson(String source) =>
+      HistoryTypeSearchChapter.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
-class TypeSearchVerse extends TypeSearchChapter {
+class HistoryTypeSearchVerse extends HistoryTypeSearchChapter {
   int numberVerse;
 
-  TypeSearchVerse({
+  HistoryTypeSearchVerse({
     required this.numberVerse,
     required super.numberChapter,
     required super.idVersion,
@@ -79,8 +81,8 @@ class TypeSearchVerse extends TypeSearchChapter {
     };
   }
 
-  factory TypeSearchVerse.fromMap(Map<String, dynamic> map) {
-    return TypeSearchVerse(
+  factory HistoryTypeSearchVerse.fromMap(Map<String, dynamic> map) {
+    return HistoryTypeSearchVerse(
       numberVerse: map['numberVerse'] as int,
       numberChapter: map['numberChapter'] as int,
       idVersion: map['idVersion'] as int,
@@ -88,7 +90,8 @@ class TypeSearchVerse extends TypeSearchChapter {
     );
   }
 
-  factory TypeSearchVerse.fromJson(String source) => TypeSearchVerse.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory HistoryTypeSearchVerse.fromJson(String source) =>
+      HistoryTypeSearchVerse.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 class UserHistorySearch {
