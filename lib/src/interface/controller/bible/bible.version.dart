@@ -1,0 +1,13 @@
+import 'package:aletheia_core_model/aletheia_core_model.dart';
+
+abstract class InterfaceControllerBibleVersion {
+  Future<List<BibleVersion>> get getAllBibleVersions;
+  Future<List<BibleVersionBooksView>> getAllBibleVersionBooksView();
+
+  String getHashBibleVersion({required String abrev, required String language});
+  Future<int> setBibleVersion(BibleVersion bibleVersion);
+  Future<int> setBibleVersionBook(BibleVersionBooks bibleVersionBooks);
+
+  Future<int> updateBibleVersionBook(BibleVersionBooks bibleVersionBooks);
+  Future<List<BibleVersionBooks>> getBibleVersionBook({required int idBibleVersion, required int? idBook});
+}
