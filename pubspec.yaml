@@ -1,6 +1,6 @@
 name: aletheia_core
 description: Aletheia Core
-version: 0.0.29
+version: 0.0.30
 homepage: https://www.biblealetheia.com
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # repository: https://github.com/my_org/my_repo
