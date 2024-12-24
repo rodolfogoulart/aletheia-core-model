@@ -1,4 +1,4 @@
-import 'package:aletheia_core_model/aletheia_core_interface_controller.dart';
+import 'package:aletheia_core/aletheia_core_interface_controller.dart';
 
 abstract class InterfaceControllerUser {
   InterfaceControllerUserVerse get verse;

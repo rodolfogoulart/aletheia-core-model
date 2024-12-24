@@ -1,4 +1,4 @@
-import 'package:aletheia_core_model/aletheia_core_model.dart';
+import 'package:aletheia_core/aletheia_core_model.dart';
 
 abstract class InterfaceControllerDictionary {
   Future<List<Dictionary>> getDictionarys({int? id});

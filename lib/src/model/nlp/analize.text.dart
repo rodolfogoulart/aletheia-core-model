@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:aletheia_core_model/src/extension/custom.extensions.dart';
+import 'package:aletheia_core/src/extension/custom.extensions.dart';
 import 'package:collection/collection.dart';
 
-import 'package:aletheia_core_model/aletheia_core_model.dart';
+import 'package:aletheia_core/aletheia_core_model.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class Sentiment {

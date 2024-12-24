@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 
-import 'package:aletheia_core_model/src/model/bible/verse/referece.dart';
-import 'package:aletheia_core_model/src/model/user/tag/user.tag.dart';
+import 'package:aletheia_core/src/model/bible/verse/referece.dart';
+import 'package:aletheia_core/src/model/user/tag/user.tag.dart';
 
 enum TypeNotes {
   devocional,

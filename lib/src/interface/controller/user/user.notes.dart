@@ -1,4 +1,4 @@
-import 'package:aletheia_core_model/aletheia_core_model.dart';
+import 'package:aletheia_core/aletheia_core_model.dart';
 
 abstract class InterfaceControllerUserNotes {
   Future<List<UserNotes>> getAllUserNotes({int? idNote, int? idBook, int? numberChapter, int? numberVerse});
