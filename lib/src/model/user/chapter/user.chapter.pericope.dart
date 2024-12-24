@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 
-import 'package:aletheia_core_model/aletheia_core_model.dart';
+import 'package:aletheia_core/aletheia_core_model.dart';
 
 ///v1.0.16
 ///

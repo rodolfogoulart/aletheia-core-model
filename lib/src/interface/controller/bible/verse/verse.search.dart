@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:aletheia_core_model/aletheia_core_model.dart';
+import 'package:aletheia_core/aletheia_core_model.dart';
 
 abstract class InterfaceControllerVerseSearch {
   ///Searches for verses that match the given tokens.

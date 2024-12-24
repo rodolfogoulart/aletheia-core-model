@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "aletheia_core_model",
+            "name": "aletheia_core",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "aletheia_core_model (profile mode)",
+            "name": "aletheia_core (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "aletheia_core_model (release mode)",
+            "name": "aletheia_core (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

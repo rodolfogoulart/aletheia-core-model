@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:aletheia_core_model/aletheia_core_model.dart';
+import 'package:aletheia_core/aletheia_core_model.dart';
 
 class VerseCrossReference {
   int id;

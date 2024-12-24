@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:aletheia_core_model/src/model/modules/modules.dart';
+import 'package:aletheia_core/src/model/modules/modules.dart';
 
 enum HotfixType {
   insert,
