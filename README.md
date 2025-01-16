@@ -7,9 +7,11 @@ The goal of the project is to give a really useful and easy to use app (shared i
 ### The target of the project is ***Christian*** software that includes features to really delve into the word and be a platform for preachers/missionaries/students/teachers and people who are enthusiastic about the ***Word of God***.
 
 ## Download
-Check the [***release***](https://github.com/rodolfogoulart/aletheia-core-model/releases) for the installer [*Windows*] [*MacOS*] [*Linux*]
-
 Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G3?ocid=pdpshare) for oficial install and updates.
+
+Check the [Play Store](https://play.google.com/store/apps/details?id=com.i53.aletheia.bible) for the [*Tablet*] Android version
+
+Check the [***release***](https://github.com/rodolfogoulart/aletheia-core-model/releases) for the installer [*Windows*] [*MacOS*] [*Linux*] (Out of date)
 
 ## Documentation
 > [!NOTE]
@@ -34,6 +36,8 @@ Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G
 	- Search on the bible
 	- Cross reference
 	- Create your own pericope on the chapter
+ 	- Preaching Mode
+  		- Open a window full size with the message and have easy acess to the references that was already filled
 
 ## Initial Screen
 <img src="showcase/screen1.png" width="1920"/>
@@ -62,26 +66,35 @@ Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G
 ## Search on bible
 <img src="showcase/screen9.png" width="1920"/>
 
+## Preaching Mode
+<img src="showcase/screen10.png" width="1920"/>
+
+## Multiple readings
+<img src="showcase/screen12.png" width="1920"/>
+
+## Personal pericope editor for the chapter
+<img src="showcase/screen13.png" width="1920"/>
 
 ## Goals
-The goal of the project is to deliver an app in any plataform. More especific the desktop or tablet.
-* **Why just desktop or tablet?** *It's because the layout of the app. Mobile has already some really good apps like myBible or SwordBible that has many feactures on it, but for desktop you will find hard to see some app, easy and acessible to use.*
+The goal of the project is to deliver an app in any plataform. More especific the desktop and tablet.
+* **Why just desktop and tablet?** *It's because the layout of the app. Mobile(celphone) has already some really good apps like `myBible` or `SwordBible` that has many feactures on it, but for desktop you will find hard to see some app, easy and acessible to use.*
 
 List of some goals
 
 	- Import more data from myBible.zone 	
 	- Import data from ebible.org
-  	- Database syncronization
+  	- Database syncronization between devices
 		- Add some way to download script
    	- Internationalization
 		- PT-BR and EN for now
 	- release 
      		- package on MAC OS (Store), 
-       		- Android For Tablet
+       		- Android For Tablet (On BETA TEST ALREADY)
     - responsible layout *just working for tablet and desktop now
 	- NLP
 		- In Development
 		- Add API to get the text nlp	
 	- Improve search on bible
+ 		- Use of Text embedding to search text more acurraty
 	- Videos of tutorial
-	- 
+	- Auto search for references on the notes and fill the form to use on `preaching mode`
