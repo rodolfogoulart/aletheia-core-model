@@ -18,7 +18,7 @@ Check the [***release***](https://github.com/rodolfogoulart/aletheia-core-model/
 > For personal Module creation, check the [Wiki](https://github.com/rodolfogoulart/aletheia-core-model/wiki), you can create modules, bible translations on another language.
 > Please contact by creating a [Issue](https://github.com/rodolfogoulart/aletheia-core-model/issues) if you create a diferent module or for correction.
 > The **Core Model** can be used to create a nice way to see the data and creating other applications integrated to the main app.
-> *** Important note: as the app is in full development, the database modules used on the app some times will be full replaced during updates, if you develop some type of module, it's important to keep a backup script of your own database or sql insert!!!
+> *** **Important note: as the app is in full development, the database modules used on the app some times will be full replaced during updates, if you develop some type of module, it's important to keep a backup script of your own database or sql insert!!!**
 
 ## Feactures:
 	- Compare versions of the bible
