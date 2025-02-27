@@ -1,4 +1,4 @@
-library aletheia_core_model;
+library;
 
 //BIBLE
 export 'src/model/bible/bible/bible.version.books.dart';
@@ -43,6 +43,7 @@ export 'src/model/user/config/user.gemini.api.dart';
 //
 export 'src/model/user/notes/user.notes.dart';
 export 'src/model/user/notes/user.notes.reference.dart';
+export 'src/model/user/notes/user.notes.local.dart';
 //
 export 'src/model/user/verse/user.verse.dart';
 export 'src/model/user/verse/user.verse.wordsHighlighted.dart';

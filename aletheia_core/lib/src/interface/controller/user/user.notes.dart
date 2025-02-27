@@ -9,16 +9,18 @@ abstract class InterfaceControllerUserNotes {
   ///
   ///update if [id] is provided
   Future<UserNotes> setNotes({
-    required List note,
-    TypeNotes? typeNote,
-    required String title,
-    required List<Tags> tags,
-    required DateTime date,
-    required int? colors,
+    ///v1.0.18 - change to arg the [UserNotesLocal]
+    required UserNotes note,
+    // required List note,
+    // TypeNotes? typeNote,
+    // required String title,
+    // required List<Tags> tags,
+    // required DateTime date,
+    // required int? colors,
 
-    ///if set [id] then update the note
-    int? id,
-    List<Reference>? references,
+    // ///if set [id] then update the note
+    // int? id,
+    // List<Reference>? references,
   });
 
   Future<int> deleteNote({required int id});
