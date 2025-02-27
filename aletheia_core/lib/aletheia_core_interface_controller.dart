@@ -1,4 +1,4 @@
-library aletheia_core_interface_controller;
+library;
 
 export 'src/interface/controller/ai/cloud.natural.language.dart';
 export 'src/interface/controller/ai/open.ai.dart';

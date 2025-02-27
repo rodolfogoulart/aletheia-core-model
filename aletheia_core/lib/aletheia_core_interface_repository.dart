@@ -1,5 +1,5 @@
 /// Support for doing something awesome.
-library aletheia_core_interface_repository;
+library;
 
 //bible
 export 'src/interface/repository/bible/bible.version.books.dart';

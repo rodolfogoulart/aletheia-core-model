@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 
+import 'package:aletheia_core/src/model/user/notes/user.notes.local.dart';
 import 'package:aletheia_core/src/model/bible/verse/referece.dart';
 import 'package:aletheia_core/src/model/user/tag/user.tag.dart';
 
@@ -39,7 +40,8 @@ extension TypeNotesExtension on TypeNotes {
 }
 
 class UserNotes {
-  int id;
+  ///v1.0.18 - change to nullable
+  int? id;
   String? title;
 
   ///v1.0.16 - change to Tags
@@ -49,8 +51,11 @@ class UserNotes {
   TypeNotes? type;
   int? color;
   List<Reference>? references;
+
+  ///v1.0.18 - refer where the user preached the note
+  List<UserNotesLocal>? locals;
   UserNotes({
-    required this.id,
+    this.id,
     this.title,
     this.tags,
     this.notes,
@@ -58,6 +63,7 @@ class UserNotes {
     this.type,
     this.color,
     this.references,
+    this.locals,
   });
 
   UserNotes copyWith({
@@ -69,6 +75,7 @@ class UserNotes {
     TypeNotes? type,
     int? color,
     List<Reference>? references,
+    List<UserNotesLocal>? locals,
   }) {
     return UserNotes(
       id: id ?? this.id,
@@ -79,12 +86,13 @@ class UserNotes {
       type: type ?? this.type,
       color: color ?? this.color,
       references: references ?? this.references,
+      locals: locals ?? this.locals,
     );
   }
 
   @override
   String toString() {
-    return 'UserNotes(id: $id, title: $title, tags: $tags, notes: $notes, date: $date, type: $type, color: $color, references: $references)';
+    return 'UserNotes(id: $id, title: $title, tags: $tags, notes: $notes, date: $date, type: $type, color: $color, references: $references, locals: $locals)';
   }
 
   @override
@@ -99,7 +107,8 @@ class UserNotes {
         other.date == date &&
         other.type == type &&
         other.color == color &&
-        listEquals(other.references, references);
+        listEquals(other.references, references) &&
+        listEquals(other.locals, locals);
   }
 
   @override
@@ -111,6 +120,7 @@ class UserNotes {
         date.hashCode ^
         type.hashCode ^
         color.hashCode ^
+        locals.hashCode ^
         references.hashCode;
   }
 
@@ -124,12 +134,13 @@ class UserNotes {
       'type': type?.toMap(),
       'color': color,
       'references': references?.map((x) => x.toMap()).toList(),
+      'locals': locals?.map((x) => x.toMap()).toList(),
     };
   }
 
   factory UserNotes.fromMap(Map<String, dynamic> map) {
     return UserNotes(
-      id: map['id'] ?? 0,
+      id: map['id'],
       title: map['title'] != null ? map['title'] as String : null,
       tags: map['tags'] != null
           ? List<Tags>.from(
@@ -146,6 +157,13 @@ class UserNotes {
           ? List<Reference>.from(
               (map['references']).map<Reference?>(
                 (x) => Reference.fromMap(x),
+              ),
+            )
+          : null,
+      locals: map['locals'] != null
+          ? List<UserNotesLocal>.from(
+              (map['locals'] as List).map<UserNotesLocal?>(
+                (x) => UserNotesLocal.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,

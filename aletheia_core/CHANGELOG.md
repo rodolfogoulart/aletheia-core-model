@@ -120,3 +120,7 @@
 
 ## 0.0.30
 * Change package name, add interface to the core
+
+## 0.0.31
+* Add field local on UserNotes
+* Add Class UserNotesLocal that refer to the local where the note is preached
