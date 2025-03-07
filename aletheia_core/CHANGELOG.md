@@ -124,3 +124,6 @@
 ## 0.0.31
 * Add field local on UserNotes
 * Add Class UserNotesLocal that refer to the local where the note is preached
+
+## 0.0.32
+* Interface, flag useIsolate
