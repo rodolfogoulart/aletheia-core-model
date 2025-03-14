@@ -11,7 +11,7 @@ class ResponseRequest<T> {
   String? message;
   bool _hasData;
   //request duration in milliseconds
-  final int requestDuration;
+  int requestDuration;
 
   bool get hasData {
     if (data != null) {
