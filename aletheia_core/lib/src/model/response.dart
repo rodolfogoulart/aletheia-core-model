@@ -4,36 +4,53 @@ import 'dart:convert';
 ///classe de tratamento de resultado
 class ResponseRequest<T> {
   T data;
+
+  ///complementary for data
+  dynamic metaData;
   String? error;
   String? message;
-  bool hasData;
-  //request duration in microseconds
+  bool _hasData;
+  //request duration in milliseconds
   final int requestDuration;
+
+  bool get hasData {
+    if (data != null) {
+      _hasData = true;
+      if (data is List && ((data as List).isEmpty)) _hasData = false;
+      if (data is String && ((data as String).isEmpty)) _hasData = false;
+    }
+    if ((error ?? '').isNotEmpty) {
+      _hasData = false;
+    }
+    return _hasData;
+  }
 
   ResponseRequest({
     required this.data,
     this.error,
+    this.metaData,
     this.message,
-    this.hasData = false,
+    bool hasData = false,
     this.requestDuration = 0,
-  }) {
+  }) : _hasData = hasData {
     if (data != null) {
-      hasData = true;
+      _hasData = true;
       if (data is List && ((data as List).isEmpty)) {
-        hasData = false;
+        _hasData = false;
       }
     }
     if ((error ?? '').isNotEmpty) {
-      hasData = false;
+      _hasData = false;
     }
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'data': data,
+      'metaData': metaData,
       'error': error,
       'message': message,
-      'hasData': hasData,
+      'hasData': _hasData,
       'requestDuration': requestDuration,
     };
   }
@@ -41,10 +58,11 @@ class ResponseRequest<T> {
   factory ResponseRequest.fromMap(Map<String, dynamic> map) {
     return ResponseRequest<T>(
       data: map['data'],
-      error: map['error'] != null ? map['error'] as String : null,
-      message: map['message'] != null ? map['message'] as String : null,
-      hasData: map['hasData'] as bool,
-      requestDuration: map['requestDuration'] as int,
+      metaData: map['metaData'],
+      error: map['error'],
+      message: map['message'],
+      hasData: map['hasData'],
+      requestDuration: map['requestDuration'],
     );
   }
 
