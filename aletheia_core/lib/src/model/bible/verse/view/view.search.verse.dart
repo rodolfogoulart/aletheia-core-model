@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 ///v1.0.16
 ///
 ///define where the search is made
-enum TypeSearchVerse { database, ai }
+enum TypeSearchVerse { database, ai, searchEngine }
 
 ///SearchVerse store the result of the search
 ///
