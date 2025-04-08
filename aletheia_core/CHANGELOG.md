@@ -130,3 +130,7 @@
 
 ## 0.0.33
 * Add Json Map to BibleVersionBooksView, BookView
+
+## 0.0.34
+* Add ResultSearch to store the results of the search
+* Add Json serialization to SearchVerse
