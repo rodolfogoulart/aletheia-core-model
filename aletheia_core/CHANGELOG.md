@@ -127,3 +127,6 @@
 
 ## 0.0.32
 * Interface, flag useIsolate
+
+## 0.0.33
+* Add Json Map to BibleVersionBooksView, BookView

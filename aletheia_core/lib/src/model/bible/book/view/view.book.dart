@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:aletheia_core/aletheia_core_model.dart';
 
 class BookView extends Book {
@@ -11,13 +13,22 @@ class BookView extends Book {
     required super.abrev,
     required super.division,
     required super.literaryGenre,
+    super.cannon,
   });
 
   /// when used the factory, **don't forget to add** the fields ```numberChapters``` and ```sequence```
   ///
   /// after the factory
-  factory BookView.fromBook(Book book) =>
-      BookView(abrev: book.abrev, division: book.division, literaryGenre: book.literaryGenre, name: book.name, id: book.id);
+  factory BookView.fromBook(Book book, {int? numberChapters, int? sequence}) => BookView(
+        abrev: book.abrev,
+        division: book.division,
+        literaryGenre: book.literaryGenre,
+        name: book.name,
+        id: book.id,
+        cannon: book.cannon,
+        numberChapters: numberChapters,
+        sequence: sequence,
+      );
 
   @override
   bool operator ==(covariant BookView other) {
@@ -43,4 +54,34 @@ class BookView extends Book {
       division.hashCode ^
       literaryGenre.hashCode ^
       name.hashCode;
+  @override
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'abrev': abrev,
+      'cannon': cannon,
+      'division': division,
+      'literaryGenre': literaryGenre,
+      'name': name,
+      'numberChapters': numberChapters,
+      'sequence': sequence,
+    };
+  }
+
+  factory BookView.fromMap(Map<String, dynamic> map) {
+    return BookView(
+      id: map['id'],
+      name: map['name'],
+      abrev: map['abrev'],
+      division: map['division'],
+      literaryGenre: map['literaryGenre'] as String,
+      cannon: map['cannon'],
+      numberChapters: map['numberChapters'] != null ? map['numberChapters'] as int : null,
+      sequence: map['sequence'] != null ? map['sequence'] as int : null,
+    );
+  }
+  @override
+  String toJson() => json.encode(toMap());
+
+  factory BookView.fromJson(String source) => BookView.fromMap(json.decode(source) as Map<String, dynamic>);
 }
