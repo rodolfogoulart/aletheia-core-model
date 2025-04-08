@@ -22,10 +22,10 @@ abstract class InterfaceControllerVerseSearch {
   ///The `containAllTokens` parameter is an optional boolean that specifies whether all tokens should be found in the verse content.
   ///
   ///if now passed, the query will search using OR operator between all tokens.
-  ///Returns a Future that resolves to a List of [VerseView] objects that match the search criteria.
+  ///Returns a Future that resolves to a [ResultSearch] containing the searchVerse and the metaData related to the search criteria.
   ///
   ///The search is case-insensitive.
-  Future<List<SearchVerse>> searchVerse({
+  Future<ResultSearch> searchVerse({
     required List<String> tokens,
     int? maxResults = 50,
     int pagination = 0,

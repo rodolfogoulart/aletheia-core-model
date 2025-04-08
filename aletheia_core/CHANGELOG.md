@@ -134,3 +134,4 @@
 ## 0.0.34
 * Add ResultSearch to store the results of the search
 * Add Json serialization to SearchVerse
+* Change interface InterfaceControllerVerseSearch
