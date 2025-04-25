@@ -29,12 +29,12 @@ export 'src/model/dictionary/dictionary.word.dart';
 export 'src/model/lexico/lexico.dictionary.dart';
 export 'src/model/lexico/lexico.version.dart';
 //NLP
-export 'src/model/nlp/analize.grammar.dart';
-export 'src/model/nlp/type.word.part.of.speech.dart';
-export 'src/model/nlp/type.word.dependency.edge.dart';
-export 'src/model/nlp/analize.text.dart';
-export 'src/model/nlp/type.entity.dart';
-export 'src/model/nlp/nlp.chapter.dart';
+export 'src/model/services/nlp/analize.grammar.dart';
+export 'src/model/services/nlp/type.word.part.of.speech.dart';
+export 'src/model/services/nlp/type.word.dependency.edge.dart';
+export 'src/model/services/nlp/analize.text.dart';
+export 'src/model/services/nlp/type.entity.dart';
+export 'src/model/services/nlp/nlp.chapter.dart';
 //USER
 export 'src/model/user/config/user.developer.dart';
 export 'src/model/user/config/user.google.service.account.credencial.dart';
@@ -63,3 +63,6 @@ export 'src/model/hotfix/hotfix.dart';
 //
 export 'src/model/modules/modules.dart';
 export 'src/model/response.dart';
+
+//SERVICES
+export 'src/model/services/meilisearch/meilisearch.config.dart';

@@ -135,3 +135,7 @@
 * Add ResultSearch to store the results of the search
 * Add Json serialization to SearchVerse
 * Change interface InterfaceControllerVerseSearch
+
+## 0.0.35
+* Add MeiliSearchConfig model
+* Use MeiliSearchConfig on InterfaceControllerVerseSearch.searchVerse

@@ -20,11 +20,14 @@ abstract class InterfaceControllerVerseSearch {
   ///The `defaultbibleVersion` parameter is required [BibleVersion] object that represents the default bible version, used to search on the AI
   ///
   ///The `containAllTokens` parameter is an optional boolean that specifies whether all tokens should be found in the verse content.
-  ///
   ///if now passed, the query will search using OR operator between all tokens.
+  ///
+  ///
+  ///Them `meiliSearchConfig` parameter is an optional [MeiliSearchConfig] object that represents the MeiliSearch configuration for online search.
+  ///
   ///Returns a Future that resolves to a [ResultSearch] containing the searchVerse and the metaData related to the search criteria.
   ///
-  ///The search is case-insensitive.
+  ///The search is case-insensitive for non online search.
   Future<ResultSearch> searchVerse({
     required List<String> tokens,
     int? maxResults = 50,
@@ -36,6 +39,7 @@ abstract class InterfaceControllerVerseSearch {
     required BibleVersion defaultbibleVersion,
     // bool containAllTokens = false,
     // required StreamController onCompute,
+    MeiliSearchConfig? meiliSearchConfig,
   });
 
   ///extract the verse content without format according the function on RichTextVerse use to addAtributes to the Content
