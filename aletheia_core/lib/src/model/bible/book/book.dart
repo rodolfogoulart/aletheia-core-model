@@ -71,14 +71,16 @@ class Book {
   Division division;
 
   ///the literary genre of the book
-  String literaryGenre;
+  String? literaryGenre;
+
+  ///can be `Protestant`, `Catholic`, `Orthodox` or Others
   String? cannon;
   Book({
     this.id = 0,
     required this.name,
     required this.abrev,
     required this.division,
-    required this.literaryGenre,
+    this.literaryGenre,
     this.cannon = 'Protestant',
   });
 
@@ -107,7 +109,9 @@ class Book {
     result.addAll({'name': name});
     result.addAll({'abrev': abrev});
     result.addAll({'division': division.toMap()});
-    result.addAll({'literaryGenre': literaryGenre});
+    if (literaryGenre != null) {
+      result.addAll({'literaryGenre': literaryGenre});
+    }
     if (cannon != null) {
       result.addAll({'cannon': cannon});
     }
@@ -121,7 +125,7 @@ class Book {
       name: map['name'] ?? '',
       abrev: map['abrev'] ?? '',
       division: Division.fromMap(map['division']),
-      literaryGenre: map['literaryGenre'] ?? '',
+      literaryGenre: map['literaryGenre'],
       cannon: map['cannon'],
     );
   }
