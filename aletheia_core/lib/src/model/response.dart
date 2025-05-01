@@ -11,9 +11,10 @@ class ResponseRequest<T> {
   String? message;
   bool _hasData;
   //request duration in milliseconds
-  int requestDuration;
+  int? duration;
 
   bool get hasData {
+    _hasData = false;
     if (data != null) {
       _hasData = true;
       if (data is List && ((data as List).isEmpty)) _hasData = false;
@@ -31,8 +32,9 @@ class ResponseRequest<T> {
     this.metaData,
     this.message,
     bool hasData = false,
-    this.requestDuration = 0,
+    this.duration,
   }) : _hasData = hasData {
+    _hasData = false;
     if (data != null) {
       _hasData = true;
       if (data is List && ((data as List).isEmpty)) {
@@ -45,14 +47,24 @@ class ResponseRequest<T> {
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    var result = <String, dynamic>{
       'data': data,
-      'metaData': metaData,
-      'error': error,
-      'message': message,
-      'hasData': _hasData,
-      'requestDuration': requestDuration,
+      // 'hasData': _hasData,
     };
+    if (duration != null) {
+      result['duration'] = duration;
+    }
+    if (message != null && message!.isNotEmpty) {
+      result['message'] = message;
+    }
+    if (metaData != null) {
+      result['metaData'] = metaData;
+    }
+    if (error != null) {
+      result['error'] = error;
+    }
+
+    return result;
   }
 
   factory ResponseRequest.fromMap(Map<String, dynamic> map) {
@@ -61,8 +73,8 @@ class ResponseRequest<T> {
       metaData: map['metaData'],
       error: map['error'],
       message: map['message'],
-      hasData: map['hasData'],
-      requestDuration: map['requestDuration'],
+      // hasData: map['hasData'],
+      duration: map['duration'],
     );
   }
 
