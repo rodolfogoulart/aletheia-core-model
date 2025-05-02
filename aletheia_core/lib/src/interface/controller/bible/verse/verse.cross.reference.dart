@@ -6,7 +6,7 @@ abstract class InterfaceControllerCrossReference {
     required BibleVersion bibleVersion,
     // required int chapter,
     required VerseView verse,
-    bool useIsolate = true,
+    // bool useIsolate = true,
   });
 
   Future<int> setVerseCrossReference({

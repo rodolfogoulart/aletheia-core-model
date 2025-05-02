@@ -27,12 +27,12 @@ abstract class InterfaceControllerVerse {
   Future<List<VerseView>> getReference(
       {required Reference reference, required BibleVersion bibleVersion, LexicoVersion? defaultLexicoVersion});
 
-  Future<List<VerseCrossReference>> getCrossReferenceFromVerse({
-    required BookView book,
-    required BibleVersion bibleVersion,
-    // required int chapter,
-    required VerseView verse,
-  });
+  // Future<List<VerseCrossReference>> getCrossReferenceFromVerse({
+  //   required BookView book,
+  //   required BibleVersion bibleVersion,
+  //   // required int chapter,
+  //   required VerseView verse,
+  // });
 
   Future<int> setVerse(
       {Book? book, BibleVersion? bibleVersion, required VerseCore verse, int idBibleVersion = 0, int idBook = 0});
@@ -48,16 +48,16 @@ abstract class InterfaceControllerVerse {
   Future<int> getVerseCountFromBookChapter({required int idBook, required int numberChapter, required int idBibleVersion});
 
   /// set the cross reference for a verse
-  Future<int> setVerseCrossReference({
-    required int idBook,
-    required int numberVerse,
-    required int numberChapter,
-    //
-    required int idBookReference,
-    required int numberChapterReference,
-    required int numberVerseReferenceBegin,
-    required int? numberVerseReferenceEnd,
-  });
+  // Future<int> setVerseCrossReference({
+  //   required int idBook,
+  //   required int numberVerse,
+  //   required int numberChapter,
+  //   //
+  //   required int idBookReference,
+  //   required int numberChapterReference,
+  //   required int numberVerseReferenceBegin,
+  //   required int? numberVerseReferenceEnd,
+  // });
 
   /// Get verses that contain the lexico
   ///
