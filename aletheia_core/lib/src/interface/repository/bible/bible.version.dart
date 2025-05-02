@@ -3,7 +3,9 @@ import 'package:aletheia_core/aletheia_core_model.dart';
 abstract class InterfaceRepositoryBibleVersion {
   Future<List<BibleVersion>> get selectAllBibleVersions;
 
-  Future<BibleVersion?> selectBibleVersions(String abrev);
+  Future<BibleVersion?> getBibleVersionbyId(id);
+  Future<BibleVersion?> getBibleVersionbyHash(hash);
+  Future<BibleVersion?> getBibleVersion(String abrev);
 
   Future<int> setBibleVersion(
       {required String name,
