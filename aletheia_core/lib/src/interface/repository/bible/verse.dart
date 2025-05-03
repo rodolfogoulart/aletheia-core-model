@@ -62,9 +62,9 @@ abstract class InterfaceRepositoryVerse {
     required List<String> tokens,
     int? maxResults,
     int? pagination,
-    Division? division,
-    Book? book,
-    BibleVersion? bibleVersion,
+    int? divisionIndex,
+    int? bookId,
+    int? bibleVersionId,
     bool containAllTokens = false,
   });
 
