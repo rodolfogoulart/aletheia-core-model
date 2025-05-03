@@ -23,32 +23,33 @@ abstract class InterfaceControllerVerseSearch {
   ///if now passed, the query will search using OR operator between all tokens.
   ///
   ///
-  ///Them `meiliSearchConfig` parameter is an optional [MeiliSearchConfig] object that represents the MeiliSearch configuration for online search.
+  ///Them `meiliSearchConfig` parameter is an optional [HybridSearchConfig] object that represents the MeiliSearch configuration for online search.
   ///
   ///Returns a Future that resolves to a [ResultSearch] containing the searchVerse and the metaData related to the search criteria.
   ///
   ///The search is case-insensitive for non online search.
   Future<ResultSearch> searchVerse({
-    required List<String> tokens,
+    required String query,
     int? maxResults = 50,
     int pagination = 0,
-    Division? division,
-    Book? book,
-    BibleVersion? bibleVersion,
+    SearchFilter? filter,
+    // Division? divisionIndex,
+    // Book? bookIdToFilter,
+    // BibleVersion? bibleVersionIdToFilter,
     //used to the search on the AI
-    required BibleVersion defaultbibleVersion,
+    required int defaultBibleVersionId,
     // bool containAllTokens = false,
     // required StreamController onCompute,
-    MeiliSearchConfig? meiliSearchConfig,
+    HybridSearchConfig? hybridSearchConfig,
   });
 
   ///extract the verse content without format according the function on RichTextVerse use to addAtributes to the Content
-  String getTextContentForHighlight(VerseView verse);
+  // String getTextContentForHighlight(VerseView verse);
 
   ///Generate the positions of the token on the verse
   ///
   ///use to highlight the token
   ///
   ///[token] is a list of Words
-  List<Position> getPositionTokenOnVerse(VerseView verse, List<String> tokens);
+  // List<Position> getPositionTokenOnVerse(VerseView verse, List<String> tokens);
 }

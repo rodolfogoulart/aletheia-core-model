@@ -1,18 +1,20 @@
 import 'dart:convert';
 
-class MeiliSearchConfig {
+///
+///[semanticRatio] must be a number between 0.0 and 1.0 indicating the proportion between keyword and semantic search results. 0.0 causes Meilisearch to only return keyword results. 1.0 causes Meilisearch to only return meaning-based results. Defaults to 0.5.
+class HybridSearchConfig {
   String embedder;
   double semanticRatio;
-  MeiliSearchConfig({
+  HybridSearchConfig({
     required this.embedder,
     required this.semanticRatio,
   });
 
-  MeiliSearchConfig copyWith({
+  HybridSearchConfig copyWith({
     String? embedder,
     double? semanticRatio,
   }) {
-    return MeiliSearchConfig(
+    return HybridSearchConfig(
       embedder: embedder ?? this.embedder,
       semanticRatio: semanticRatio ?? this.semanticRatio,
     );
@@ -25,8 +27,8 @@ class MeiliSearchConfig {
     };
   }
 
-  factory MeiliSearchConfig.fromMap(Map<String, dynamic> map) {
-    return MeiliSearchConfig(
+  factory HybridSearchConfig.fromMap(Map<String, dynamic> map) {
+    return HybridSearchConfig(
       embedder: map['embedder'] as String,
       semanticRatio: map['semanticRatio'] as double,
     );
@@ -34,13 +36,13 @@ class MeiliSearchConfig {
 
   String toJson() => json.encode(toMap());
 
-  factory MeiliSearchConfig.fromJson(String source) => MeiliSearchConfig.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory HybridSearchConfig.fromJson(String source) => HybridSearchConfig.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'MeiliSearchConfig(embedder: $embedder, semanticRatio: $semanticRatio)';
+  String toString() => 'HybridSearchConfig(embedder: $embedder, semanticRatio: $semanticRatio)';
 
   @override
-  bool operator ==(covariant MeiliSearchConfig other) {
+  bool operator ==(covariant HybridSearchConfig other) {
     if (identical(this, other)) return true;
 
     return other.embedder == embedder && other.semanticRatio == semanticRatio;

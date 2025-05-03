@@ -65,4 +65,5 @@ export 'src/model/modules/modules.dart';
 export 'src/model/response.dart';
 
 //SERVICES
-export 'src/model/services/meilisearch/meilisearch.config.dart';
+export 'src/model/services/search/hybrid.search.config.dart';
+export 'src/model/services/search/search.filter.dart';
