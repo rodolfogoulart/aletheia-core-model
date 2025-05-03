@@ -128,7 +128,7 @@ class VerseView extends VerseCore {
       idBook: map['idBook'] as int,
       numberChapter: map['numberChapter'] as int,
       numberVerse: map['numberVerse'] as int,
-      numberVerseEnd: map['numberVerseEnd'] as int,
+      numberVerseEnd: map['numberVerseEnd'] as int?,
       contentWithOutFormat: map['contentWithOutFormat'] as String,
       content: map['content'] != null ? List<Content>.from((map['content'] as List).map((x) => Content.fromMap(x))) : [],
       userVerseData: map['userVerseData'] != null ? UserVerse.fromMap(map['userVerseData'] as Map<String, dynamic>) : null,
