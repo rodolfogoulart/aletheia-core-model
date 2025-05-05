@@ -55,8 +55,8 @@ abstract class InterfaceControllerVerse {
   Future<int> updateVerse({required VerseCore verse});
 
   Future<List<VerseView>> getVerse({
-    required int idBibleVersion,
-    required int idBook,
+    required int bibleVersionId,
+    required int bookId,
     required int chapter,
     required int verse,
   });
