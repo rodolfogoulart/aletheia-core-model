@@ -22,7 +22,7 @@ abstract class InterfaceControllerVerse {
   Future<List<VerseView>> getChapterFromAllVersions({
     required int bookId,
     required List<int> bibleVersionIds,
-    required int numberChapter,
+    required int chapter,
     int? defaultLexicoVersionId,
   });
 
@@ -47,11 +47,9 @@ abstract class InterfaceControllerVerse {
   // });
 
   Future<int> setVerse({
-    Book? book,
-    BibleVersion? bibleVersion,
     required VerseCore verse,
-    int idBibleVersion = 0,
-    int idBook = 0,
+    int bibleVersionId = 0,
+    int bookId = 0,
   });
 
   Future<int> updateVerse({required VerseCore verse});
@@ -59,17 +57,17 @@ abstract class InterfaceControllerVerse {
   Future<List<VerseView>> getVerse({
     required int idBibleVersion,
     required int idBook,
-    required int numberChapter,
-    required int numberVerse,
+    required int chapter,
+    required int verse,
   });
 
   /// Get the number of verses in a chapter of a specific version
   ///
   /// if version is not relevant, try to use [getNumberVersesOnChapter]
   Future<int> getVerseCountFromBookChapter({
-    required int idBook,
+    required int bookId,
     required int chapter,
-    required int idBibleVersion,
+    required int bibleVersionId,
   });
 
   /// Get verses that contain the lexico
@@ -81,14 +79,14 @@ abstract class InterfaceControllerVerse {
   /// `return` a list of VerseView that contain the lexico
   ///
   Future<List<VerseView>> getVersesByLexico({
-    required String idLexico,
+    required String lexicoId,
     required int bibleVersionId,
   });
 
   /// Get the number of verses in a chapter
   ///
   Future<int> getNumberVersesOnChapter({
-    required int idBook,
+    required int bookId,
     required int chapter,
   });
 }
