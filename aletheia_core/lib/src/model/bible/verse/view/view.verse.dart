@@ -107,7 +107,7 @@ class VerseView extends VerseCore {
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    var data = <String, dynamic>{
       'id': id,
       'idBibleVersion': idBibleVersion,
       'idBook': idBook,
@@ -123,6 +123,9 @@ class VerseView extends VerseCore {
       'book': book?.toMap(),
       'bibleVersion': bibleVersion?.toMap(),
     };
+    // Remove null values from the map
+    data.removeWhere((key, value) => value == null);
+    return data;
   }
 
   factory VerseView.fromMap(Map<String, dynamic> map) {
