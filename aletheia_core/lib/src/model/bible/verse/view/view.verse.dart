@@ -94,7 +94,11 @@ class VerseView extends VerseCore {
 
   @override
   int get hashCode {
-    return userVerseData.hashCode ^ crossReferences.hashCode ^ strongReferences.hashCode ^ book.hashCode ^ bibleVersion.hashCode;
+    return userVerseData.hashCode ^
+        crossReferences.hashCode ^
+        strongReferences.hashCode ^
+        book.hashCode ^
+        bibleVersion.hashCode;
   }
 
   @override
@@ -130,8 +134,13 @@ class VerseView extends VerseCore {
       numberVerse: map['numberVerse'] as int,
       numberVerseEnd: map['numberVerseEnd'] as int?,
       contentWithOutFormat: map['contentWithOutFormat'] as String,
-      content: map['content'] != null ? List<Content>.from((map['content'] as List).map((x) => Content.fromMap(x))) : [],
-      userVerseData: map['userVerseData'] != null ? UserVerse.fromMap(map['userVerseData'] as Map<String, dynamic>) : null,
+      content: map['content'] != null
+          ? List<Content>.from(
+              (map['content'] as List).map((x) => Content.fromMap(x)))
+          : [],
+      userVerseData: map['userVerseData'] != null
+          ? UserVerse.fromMap(map['userVerseData'] as Map<String, dynamic>)
+          : null,
       crossReferences: map['crossReferences'] != null
           ? List<VerseCrossReference>.from(
               (map['crossReferences'] as List).map<VerseCrossReference?>(
@@ -146,12 +155,17 @@ class VerseView extends VerseCore {
               ),
             )
           : null,
-      book: map['book'] != null ? Book.fromMap(map['book'] as Map<String, dynamic>) : null,
-      bibleVersion: map['bibleVersion'] != null ? BibleVersion.fromMap(map['bibleVersion'] as Map<String, dynamic>) : null,
+      book: map['book'] != null
+          ? Book.fromMap(map['book'] as Map<String, dynamic>)
+          : null,
+      bibleVersion: map['bibleVersion'] != null
+          ? BibleVersion.fromMap(map['bibleVersion'] as Map<String, dynamic>)
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory VerseView.fromJson(String source) => VerseView.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory VerseView.fromJson(String source) =>
+      VerseView.fromMap(json.decode(source) as Map<String, dynamic>);
 }

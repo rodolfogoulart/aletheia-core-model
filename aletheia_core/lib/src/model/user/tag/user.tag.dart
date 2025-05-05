@@ -63,15 +63,21 @@ class Tags {
       id: map['id'] as dynamic,
       name: map['name'] as String,
       active: map['active'] as bool,
-      description: map['description'] != null ? map['description'] as String : null,
-      createAt: map['createAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['createAt'] as int) : null,
-      updateAt: map['updateAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['updateAt'] as int) : null,
+      description:
+          map['description'] != null ? map['description'] as String : null,
+      createAt: map['createAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['createAt'] as int)
+          : null,
+      updateAt: map['updateAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['updateAt'] as int)
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Tags.fromJson(String source) => Tags.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Tags.fromJson(String source) =>
+      Tags.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -92,6 +98,11 @@ class Tags {
 
   @override
   int get hashCode {
-    return id.hashCode ^ name.hashCode ^ active.hashCode ^ description.hashCode ^ createAt.hashCode ^ updateAt.hashCode;
+    return id.hashCode ^
+        name.hashCode ^
+        active.hashCode ^
+        description.hashCode ^
+        createAt.hashCode ^
+        updateAt.hashCode;
   }
 }

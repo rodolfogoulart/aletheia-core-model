@@ -105,7 +105,8 @@ class VerseData {
 
   String toJson() => json.encode(toMap());
 
-  factory VerseData.fromJson(String source) => VerseData.fromMap(json.decode(source));
+  factory VerseData.fromJson(String source) =>
+      VerseData.fromMap(json.decode(source));
 
   @override
   String toString() {

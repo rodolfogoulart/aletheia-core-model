@@ -1,7 +1,8 @@
 import 'package:aletheia_core/aletheia_core_model.dart';
 
 abstract class InterfaceRepositoryUserVerse {
-  Future<List<UserVerse>> getVerse({required int idBook, required int numberChapter, int? numberVerse});
+  Future<List<UserVerse>> getVerse(
+      {required int idBook, required int numberChapter, int? numberVerse});
 
   Future<int> updateAddVerseNotes({
     required int idBook,
@@ -11,9 +12,15 @@ abstract class InterfaceRepositoryUserVerse {
   });
 
   Future<int> updateVerseAddVerseHightLight(
-      {required int idBook, required int numberChapter, required int numberVerse, required int colorVerseHighlighted});
+      {required int idBook,
+      required int numberChapter,
+      required int numberVerse,
+      required int colorVerseHighlighted});
 
-  Future<int> updateVerseRemoveVerseHightLight({required int idBook, required int numberChapter, required int numberVerse});
+  Future<int> updateVerseRemoveVerseHightLight(
+      {required int idBook,
+      required int numberChapter,
+      required int numberVerse});
 
   Future<int> setVerseAddWordHightLighted({
     required int idBook,

@@ -172,5 +172,6 @@ class UserNotes {
 
   String toJson() => json.encode(toMap());
 
-  factory UserNotes.fromJson(String source) => UserNotes.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserNotes.fromJson(String source) =>
+      UserNotes.fromMap(json.decode(source) as Map<String, dynamic>);
 }

@@ -41,5 +41,6 @@ class HotfixLink {
 
   String toJson() => json.encode(toMap());
 
-  factory HotfixLink.fromJson(String source) => HotfixLink.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory HotfixLink.fromJson(String source) =>
+      HotfixLink.fromMap(json.decode(source) as Map<String, dynamic>);
 }

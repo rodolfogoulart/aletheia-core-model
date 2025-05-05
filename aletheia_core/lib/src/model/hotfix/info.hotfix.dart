@@ -29,7 +29,8 @@ class InfoHotfix {
 
   factory InfoHotfix.fromMap(Map<String, dynamic> map) {
     return InfoHotfix(
-      description: Map<String, dynamic>.from((map['description'] as Map<String, dynamic>)),
+      description: Map<String, dynamic>.from(
+          (map['description'] as Map<String, dynamic>)),
       urlLink: map['urlLink'] as String,
       version: map['version'] as int,
       date: DateTime.parse(map['date']), //use toIso8601String on toMap
@@ -39,5 +40,6 @@ class InfoHotfix {
 
   String toJson() => json.encode(toMap());
 
-  factory InfoHotfix.fromJson(String source) => InfoHotfix.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory InfoHotfix.fromJson(String source) =>
+      InfoHotfix.fromMap(json.decode(source) as Map<String, dynamic>);
 }

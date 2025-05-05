@@ -127,7 +127,8 @@ class Pericope {
       end: map['end'] as int,
       color: map['color'] as int,
       title: map['title'] != null ? map['title'] as String : null,
-      description: map['description'] != null ? map['description'] as String : null,
+      description:
+          map['description'] != null ? map['description'] as String : null,
       references: map['references'] != null
           ? List<Reference>.from(
               (map['references'] as List).map<Reference?>(
@@ -143,15 +144,22 @@ class Pericope {
             )
           : null,
       icon: map['icon'] != null ? map['icon'] as String : null,
-      createAt: map['createAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['createAt']) : null,
-      updateAt: map['updateAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['updateAt']) : null,
-      idUserNotes: map['idUserNotes'] != null ? List.from((map['idUserNotes'] as List)) : null,
+      createAt: map['createAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['createAt'])
+          : null,
+      updateAt: map['updateAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['updateAt'])
+          : null,
+      idUserNotes: map['idUserNotes'] != null
+          ? List.from((map['idUserNotes'] as List))
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Pericope.fromJson(String source) => Pericope.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Pericope.fromJson(String source) =>
+      Pericope.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {

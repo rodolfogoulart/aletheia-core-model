@@ -13,7 +13,8 @@ abstract class InterfaceRepositoryUserNotes {
   ///search for notes that has the scope of pericope as reference
   ///
   ///search for notes that has the same tags as pericope has
-  Future<List<dynamic>> getNotesFromPericope({required Pericope pericope, required UserChapter userChapter});
+  Future<List<dynamic>> getNotesFromPericope(
+      {required Pericope pericope, required UserChapter userChapter});
 
   Future<int> insertNotes(UserNotes userNotes);
 

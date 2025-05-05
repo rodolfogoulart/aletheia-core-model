@@ -78,7 +78,8 @@ class OpenAIConfig {
 
   String toJson() => json.encode(toMap());
 
-  factory OpenAIConfig.fromJson(String source) => OpenAIConfig.fromMap(json.decode(source));
+  factory OpenAIConfig.fromJson(String source) =>
+      OpenAIConfig.fromMap(json.decode(source));
 
   @override
   bool operator ==(Object other) {

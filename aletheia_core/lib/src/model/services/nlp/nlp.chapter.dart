@@ -44,7 +44,8 @@ class AnalizeGrammarVerse {
   factory AnalizeGrammarVerse.fromMap(Map<String, dynamic> map) {
     return AnalizeGrammarVerse(
       numberVerse: map['numberVerse'] as int,
-      numberVerseEnd: map['numberVerseEnd'] != null ? map['numberVerseEnd'] as int : null,
+      numberVerseEnd:
+          map['numberVerseEnd'] != null ? map['numberVerseEnd'] as int : null,
       analizeGrammar: List<AnalizeGrammar>.from(
         (map['analizeGrammar'] as List).map<AnalizeGrammar>(
           (x) => AnalizeGrammar.fromMap(x as Map<String, dynamic>),
@@ -55,7 +56,8 @@ class AnalizeGrammarVerse {
 
   String toJson() => json.encode(toMap());
 
-  factory AnalizeGrammarVerse.fromJson(String source) => AnalizeGrammarVerse.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory AnalizeGrammarVerse.fromJson(String source) =>
+      AnalizeGrammarVerse.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() =>
@@ -73,7 +75,8 @@ class AnalizeGrammarVerse {
   }
 
   @override
-  int get hashCode => numberVerse.hashCode ^ numberVerseEnd.hashCode ^ analizeGrammar.hashCode;
+  int get hashCode =>
+      numberVerse.hashCode ^ numberVerseEnd.hashCode ^ analizeGrammar.hashCode;
 }
 
 class NlpChapter {
@@ -163,8 +166,9 @@ class NlpChapter {
           (x) => AnalizeGrammarVerse.fromMap(x as Map<String, dynamic>),
         ),
       ),
-      documentSentiment:
-          map['documentSentiment'] != null ? Sentiment.fromMap(map['documentSentiment'] as Map<String, dynamic>) : null,
+      documentSentiment: map['documentSentiment'] != null
+          ? Sentiment.fromMap(map['documentSentiment'] as Map<String, dynamic>)
+          : null,
       entities: map['entities'] != null
           ? List<Entity>.from(
               (map['entities'] as List).map<Entity?>(
@@ -184,7 +188,8 @@ class NlpChapter {
 
   String toJson() => json.encode(toMap());
 
-  factory NlpChapter.fromJson(String source) => NlpChapter.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory NlpChapter.fromJson(String source) =>
+      NlpChapter.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {

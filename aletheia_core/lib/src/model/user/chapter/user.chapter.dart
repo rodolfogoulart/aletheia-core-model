@@ -86,7 +86,8 @@ class UserChapter {
 
   String toJson() => json.encode(toMap());
 
-  factory UserChapter.fromJson(String source) => UserChapter.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserChapter.fromJson(String source) =>
+      UserChapter.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -108,6 +109,11 @@ class UserChapter {
 
   @override
   int get hashCode {
-    return id.hashCode ^ chapter.hashCode ^ idBook.hashCode ^ pericopes.hashCode ^ notes.hashCode ^ references.hashCode;
+    return id.hashCode ^
+        chapter.hashCode ^
+        idBook.hashCode ^
+        pericopes.hashCode ^
+        notes.hashCode ^
+        references.hashCode;
   }
 }

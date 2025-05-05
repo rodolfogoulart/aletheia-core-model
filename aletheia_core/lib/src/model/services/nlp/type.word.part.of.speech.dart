@@ -3,7 +3,8 @@
 // ignore_for_file: constant_identifier_names
 
 enum TypeAspect {
-  ASPECT_UNKNOWN('Aspect is not applicable in the analyzed language or is not predicted.'),
+  ASPECT_UNKNOWN(
+      'Aspect is not applicable in the analyzed language or is not predicted.'),
   PERFECTIVE('Perfective'),
   IMPERFECTIVE('Imperfective'),
   PROGRESSIVE('Progressive');
@@ -22,7 +23,8 @@ extension TypeAspectExtension on TypeAspect {
 }
 
 enum TypeCase {
-  CASE_UNKNOWN('Case is not applicable in the analyzed language or is not predicted'),
+  CASE_UNKNOWN(
+      'Case is not applicable in the analyzed language or is not predicted'),
   ACCUSATIVE('Accusative'),
   ADVERBIAL('Adverbial'),
   COMPLEMENTIVE('Complementive'),
@@ -63,7 +65,8 @@ extension TypeCaseExtension on TypeCase {
 }
 
 enum TypeForm {
-  FORM_UNKNOWN('Form is not applicable in the analyzed language or is not predicted'),
+  FORM_UNKNOWN(
+      'Form is not applicable in the analyzed language or is not predicted'),
   ADNOMIAL('Adnomial'),
   AUXILIARY('Auxiliary'),
   COMPLEMENTIZER('Complementizer'),
@@ -98,7 +101,8 @@ extension TypeFormExtension on TypeForm {
 }
 
 enum TypeMood {
-  MOOD_UNKNOWN('Mood is not applicable in the analyzed language or is not predicted.'),
+  MOOD_UNKNOWN(
+      'Mood is not applicable in the analyzed language or is not predicted.'),
   CONDITIONAL_MOOD('Conditional'),
   IMPERATIVE('Imperative'),
   INDICATIVE('Indicative'),
@@ -123,7 +127,8 @@ extension TypeMoodExtension on TypeMood {
 }
 
 enum TypeGender {
-  GENDER_UNKNOWN('Gender is not applicable in the analyzed language or is not predicted.'),
+  GENDER_UNKNOWN(
+      'Gender is not applicable in the analyzed language or is not predicted.'),
   FEMININE('Feminine'),
   MASCULINE('Masculine'),
   NEUTER('Neuter');
@@ -142,7 +147,8 @@ extension TypeGenderExtension on TypeGender {
 }
 
 enum TypeNumber {
-  NUMBER_UNKNOWN('Number is not applicable in the analyzed language or is not predicted.'),
+  NUMBER_UNKNOWN(
+      'Number is not applicable in the analyzed language or is not predicted.'),
   SINGULAR('Singular'),
   PLURAL('Plural'),
   DUAL('Dual');
@@ -161,7 +167,8 @@ extension TypeNumberExtension on TypeNumber {
 }
 
 enum TypePerson {
-  PERSON_UNKNOWN('Person is not applicable in the analyzed language or is not predicted.'),
+  PERSON_UNKNOWN(
+      'Person is not applicable in the analyzed language or is not predicted.'),
   FIRST('First'),
   SECOND('Second'),
   THIRD('Third'),
@@ -182,7 +189,8 @@ extension TypePersonExtension on TypePerson {
 }
 
 enum TypeProper {
-  PROPER_UNKNOWN('Proper is not applicable in the analyzed language or is not predicted.'),
+  PROPER_UNKNOWN(
+      'Proper is not applicable in the analyzed language or is not predicted.'),
   PROPER('Proper'),
   NOT_PROPER('Not proper');
 
@@ -199,7 +207,8 @@ extension TypeProperExtension on TypeProper {
 }
 
 enum TypeReciprocity {
-  RECIPROCITY_UNKNOWN('Reciprocity is not applicable in the analyzed language or is not predicted.'),
+  RECIPROCITY_UNKNOWN(
+      'Reciprocity is not applicable in the analyzed language or is not predicted.'),
   RECIPROCAL('Reciprocal'),
   NON_RECIPROCAL('Non-reciprocal');
 
@@ -255,7 +264,8 @@ extension TypeTagExtension on TypeTag {
 }
 
 enum TypeTense {
-  TENSE_UNKNOWN('Tense is not applicable in the analyzed language or is not predicted.'),
+  TENSE_UNKNOWN(
+      'Tense is not applicable in the analyzed language or is not predicted.'),
   CONDITIONAL_TENSE('Conditional'),
   FUTURE('Future'),
   PAST('Past'),
@@ -280,7 +290,8 @@ extension TypeTenseExtension on TypeTense {
 }
 
 enum TypeVoice {
-  VOICE_UNKNOWN('Voice is not applicable in the analyzed language or is not predicted.'),
+  VOICE_UNKNOWN(
+      'Voice is not applicable in the analyzed language or is not predicted.'),
   ACTIVE('Active'),
   CAUSATIVE('Causative'),
   PASSIVE('Passive');

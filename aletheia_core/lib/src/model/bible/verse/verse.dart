@@ -64,7 +64,8 @@ class Verse extends VerseCore {
       numberChapter: map['numberChapter']?.toInt() ?? 0,
       numberVerse: map['numberVerse']?.toInt() ?? 0,
       numberVerseEnd: map['numberVerseEnd']?.toInt(),
-      content: List<Content>.from(map['content']?.map((x) => Content.fromMap(x))),
+      content:
+          List<Content>.from(map['content']?.map((x) => Content.fromMap(x))),
       contentWithOutFormat: map['contentWithOutFormat'] ?? '',
     );
   }

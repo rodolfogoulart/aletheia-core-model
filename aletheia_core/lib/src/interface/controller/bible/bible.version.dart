@@ -11,5 +11,6 @@ abstract class InterfaceControllerBibleVersion {
   Future<int> setBibleVersionBook(BibleVersionBooks bibleVersionBooks);
 
   Future<int> updateBibleVersionBook(BibleVersionBooks bibleVersionBooks);
-  Future<List<BibleVersionBooks>> getBibleVersionBook({required int idBibleVersion, required int? idBook});
+  Future<List<BibleVersionBooks>> getBibleVersionBook(
+      {required int idBibleVersion, required int? idBook});
 }

@@ -54,7 +54,8 @@ class GeminiApiConfig {
 
   String toJson() => json.encode(toMap());
 
-  factory GeminiApiConfig.fromJson(String source) => GeminiApiConfig.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory GeminiApiConfig.fromJson(String source) =>
+      GeminiApiConfig.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -74,6 +75,10 @@ class GeminiApiConfig {
 
   @override
   int get hashCode {
-    return apiKey.hashCode ^ temperature.hashCode ^ topK.hashCode ^ topP.hashCode ^ maxOutputTokens.hashCode;
+    return apiKey.hashCode ^
+        temperature.hashCode ^
+        topK.hashCode ^
+        topP.hashCode ^
+        maxOutputTokens.hashCode;
   }
 }

@@ -55,14 +55,19 @@ class AnalizeGrammar {
       lemma: map['lemma'],
       word: map['word'],
       beginOffsetWord: map['beginOffsetWord']?.toInt(),
-      wordDependencyEdge: map['wordDependencyEdge'] != null ? WordDependencyEdge.fromMap(map['wordDependencyEdge']) : null,
-      partOfSpeech: map['partOfSpeech'] != null ? WordPartOfSpeech.fromMap(map['partOfSpeech']) : null,
+      wordDependencyEdge: map['wordDependencyEdge'] != null
+          ? WordDependencyEdge.fromMap(map['wordDependencyEdge'])
+          : null,
+      partOfSpeech: map['partOfSpeech'] != null
+          ? WordPartOfSpeech.fromMap(map['partOfSpeech'])
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory AnalizeGrammar.fromJson(String source) => AnalizeGrammar.fromMap(json.decode(source));
+  factory AnalizeGrammar.fromJson(String source) =>
+      AnalizeGrammar.fromMap(json.decode(source));
 }
 
 ///look to https://aclanthology.org/P13-2017.pdf for more details
@@ -192,7 +197,8 @@ class WordDependencyEdge {
 
   String toJson() => json.encode(toMap());
 
-  factory WordDependencyEdge.fromJson(String source) => WordDependencyEdge.fromMap(json.decode(source));
+  factory WordDependencyEdge.fromJson(String source) =>
+      WordDependencyEdge.fromMap(json.decode(source));
 }
 
 /// Represents part of speech information for a token.
@@ -416,7 +422,8 @@ class WordPartOfSpeech {
 
   String toJson() => json.encode(toMap());
 
-  factory WordPartOfSpeech.fromJson(String source) => WordPartOfSpeech.fromMap(json.decode(source));
+  factory WordPartOfSpeech.fromJson(String source) =>
+      WordPartOfSpeech.fromMap(json.decode(source));
 }
 
 ///view for WordPartOfSpeech with the Enum type
@@ -450,15 +457,21 @@ class WordPartOfSpeechView {
 
   factory WordPartOfSpeechView.fromWordPartOfSpeech(WordPartOfSpeech w) {
     return WordPartOfSpeechView(
-      aspect: TypeAspect.values.byName(w.aspect ?? TypeAspect.ASPECT_UNKNOWN.name),
+      aspect:
+          TypeAspect.values.byName(w.aspect ?? TypeAspect.ASPECT_UNKNOWN.name),
       case_: TypeCase.values.byName(w.case_ ?? TypeCase.CASE_UNKNOWN.name),
       form: TypeForm.values.byName(w.form ?? TypeForm.FORM_UNKNOWN.name),
-      gender: TypeGender.values.byName(w.gender ?? TypeGender.GENDER_UNKNOWN.name),
+      gender:
+          TypeGender.values.byName(w.gender ?? TypeGender.GENDER_UNKNOWN.name),
       mood: TypeMood.values.byName(w.mood ?? TypeMood.MOOD_UNKNOWN.name),
-      number: TypeNumber.values.byName(w.number ?? TypeNumber.NUMBER_UNKNOWN.name),
-      person: TypePerson.values.byName(w.person ?? TypePerson.PERSON_UNKNOWN.name),
-      proper: TypeProper.values.byName(w.proper ?? TypeProper.PROPER_UNKNOWN.name),
-      reciprocity: TypeReciprocity.values.byName(w.reciprocity ?? TypeReciprocity.RECIPROCITY_UNKNOWN.name),
+      number:
+          TypeNumber.values.byName(w.number ?? TypeNumber.NUMBER_UNKNOWN.name),
+      person:
+          TypePerson.values.byName(w.person ?? TypePerson.PERSON_UNKNOWN.name),
+      proper:
+          TypeProper.values.byName(w.proper ?? TypeProper.PROPER_UNKNOWN.name),
+      reciprocity: TypeReciprocity.values
+          .byName(w.reciprocity ?? TypeReciprocity.RECIPROCITY_UNKNOWN.name),
       tag: TypeTag.values.byName(w.tag ?? TypeTag.UNKNOWN.name),
       tense: TypeTense.values.byName(w.tense ?? TypeTense.TENSE_UNKNOWN.name),
       voice: TypeVoice.values.byName(w.voice ?? TypeVoice.VOICE_UNKNOWN.name),

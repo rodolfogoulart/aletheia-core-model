@@ -154,6 +154,11 @@ class Book {
 
   @override
   int get hashCode {
-    return id.hashCode ^ name.hashCode ^ abrev.hashCode ^ division.hashCode ^ literaryGenre.hashCode ^ cannon.hashCode;
+    return id.hashCode ^
+        name.hashCode ^
+        abrev.hashCode ^
+        division.hashCode ^
+        literaryGenre.hashCode ^
+        cannon.hashCode;
   }
 }

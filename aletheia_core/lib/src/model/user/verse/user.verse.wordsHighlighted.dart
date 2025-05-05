@@ -36,7 +36,8 @@ class WordsHighlighted {
 
   String toJson() => json.encode(toMap());
 
-  factory WordsHighlighted.fromJson(String source) => WordsHighlighted.fromMap(json.decode(source));
+  factory WordsHighlighted.fromJson(String source) =>
+      WordsHighlighted.fromMap(json.decode(source));
 
   WordsHighlighted copyWith({
     int? version,

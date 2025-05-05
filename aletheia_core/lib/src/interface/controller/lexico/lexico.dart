@@ -5,11 +5,13 @@ abstract class InterfaceControllerLexico {
 
   Future<Object> updateLexico(Lexico lexico);
 
-  Future<List<Lexico>> getLexicoDictionary({int? idLexicoVersion, String? refLexico});
+  Future<List<Lexico>> getLexicoDictionary(
+      {int? idLexicoVersion, String? refLexico});
 
   Future<int> deleteLexico(int id);
 
-  Future<List<Lexico>> getManyLexicoDictionary({required List<String> idRefLexico, int? idLexicoVersion});
+  Future<List<Lexico>> getManyLexicoDictionary(
+      {required List<String> idRefLexico, int? idLexicoVersion});
 
   Future<List<LexicoVersion>> getLexicoVersion({int? id});
 

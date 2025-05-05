@@ -13,13 +13,16 @@ abstract class InterfaceRepositoryUserPericope {
   ///
   ///**this is not searching on pericope.reference**
 
-  Future<List> getIdPericopeFromReference({required idBook, chapter, start, end});
+  Future<List> getIdPericopeFromReference(
+      {required idBook, chapter, start, end});
 
   ///return the number of pericopes affected
-  Future<int> updateJustPericopeIdUserNotesAdd({required List idPericope, required idUserNotes});
+  Future<int> updateJustPericopeIdUserNotesAdd(
+      {required List idPericope, required idUserNotes});
 
   ///return the number of pericopes affected
-  Future<int> updateJustPericopeIdUserNotesRemove({required List idPericope, required idUserNotes});
+  Future<int> updateJustPericopeIdUserNotesRemove(
+      {required List idPericope, required idUserNotes});
 
   Future<Pericope?> getPericopesById({required int id});
 

@@ -69,7 +69,8 @@ class UserNotesReference {
 
   String toJson() => json.encode(toMap());
 
-  factory UserNotesReference.fromJson(String source) => UserNotesReference.fromMap(json.decode(source));
+  factory UserNotesReference.fromJson(String source) =>
+      UserNotesReference.fromMap(json.decode(source));
 
   @override
   String toString() {

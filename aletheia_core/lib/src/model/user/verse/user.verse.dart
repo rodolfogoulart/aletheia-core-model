@@ -90,7 +90,8 @@ class UserVerse {
       numberChapter: numberChapter ?? this.numberChapter,
       numberVerse: numberVerse ?? this.numberVerse,
       isVersesHighlighted: isVersesHighlighted ?? this.isVersesHighlighted,
-      colorVersesHighlighted: colorVersesHighlighted ?? this.colorVersesHighlighted,
+      colorVersesHighlighted:
+          colorVersesHighlighted ?? this.colorVersesHighlighted,
       notes: notes ?? this.notes,
       wordsHighlighted: wordsHighlighted ?? this.wordsHighlighted,
       references: references ?? this.references,
@@ -118,17 +119,24 @@ class UserVerse {
       numberChapter: map['numberChapter'] ?? 0,
       numberVerse: map['numberVerse'] ?? 0,
       isVersesHighlighted: map['isVersesHighlighted'] ?? false,
-      colorVersesHighlighted: map['colorVersesHighlighted'] != null ? int.tryParse(map['colorVersesHighlighted']) : null,
+      colorVersesHighlighted: map['colorVersesHighlighted'] != null
+          ? int.tryParse(map['colorVersesHighlighted'])
+          : null,
       notes: map['notes'],
       wordsHighlighted: map['wordsHighlighted'] != null
-          ? List<WordsHighlighted>.from(map['wordsHighlighted']?.map((x) => WordsHighlighted.fromMap(x)))
+          ? List<WordsHighlighted>.from(
+              map['wordsHighlighted']?.map((x) => WordsHighlighted.fromMap(x)))
           : null,
-      references: map['references'] != null ? List<Reference>.from(map['references']?.map((x) => Reference.fromMap(x))) : null,
+      references: map['references'] != null
+          ? List<Reference>.from(
+              map['references']?.map((x) => Reference.fromMap(x)))
+          : null,
       idBook: map['idBook'] ?? 0,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory UserVerse.fromJson(String source) => UserVerse.fromMap(json.decode(source));
+  factory UserVerse.fromJson(String source) =>
+      UserVerse.fromMap(json.decode(source));
 }

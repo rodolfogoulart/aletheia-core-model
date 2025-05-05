@@ -115,7 +115,8 @@ class SearchVerse {
 
   String toJson() => json.encode(toMap());
 
-  factory SearchVerse.fromJson(String source) => SearchVerse.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory SearchVerse.fromJson(String source) =>
+      SearchVerse.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 class Position {
@@ -145,7 +146,8 @@ class Position {
 
   String toJson() => json.encode(toMap());
 
-  factory Position.fromJson(String source) => Position.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Position.fromJson(String source) =>
+      Position.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 /// ResultSearch store the result of the search
@@ -184,11 +186,13 @@ class ResultSearch {
         ),
       ),
       total: map['total'] as int,
-      metaData: Map<String, dynamic>.from((map['metaData'] as Map<String, dynamic>)),
+      metaData:
+          Map<String, dynamic>.from((map['metaData'] as Map<String, dynamic>)),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory ResultSearch.fromJson(String source) => ResultSearch.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ResultSearch.fromJson(String source) =>
+      ResultSearch.fromMap(json.decode(source) as Map<String, dynamic>);
 }

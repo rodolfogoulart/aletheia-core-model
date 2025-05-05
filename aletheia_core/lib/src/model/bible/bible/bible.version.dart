@@ -102,7 +102,8 @@ class BibleVersion {
 
   String toJson() => json.encode(toMap());
 
-  factory BibleVersion.fromJson(String source) => BibleVersion.fromMap(json.decode(source));
+  factory BibleVersion.fromJson(String source) =>
+      BibleVersion.fromMap(json.decode(source));
 
   @override
   String toString() {

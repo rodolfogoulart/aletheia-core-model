@@ -5,7 +5,8 @@ abstract class InterfaceRepositoryLexico {
 
   Future<List<Lexico?>> updateLexico(Lexico lexico);
 
-  Future<List<Lexico>> getLexicoDictionary({int? idLexicoVersion, String? refLexico});
+  Future<List<Lexico>> getLexicoDictionary(
+      {int? idLexicoVersion, String? refLexico});
 
   Future<List<Lexico>> getManyLexicoDictionary({
     required List<String> idRefLexico,

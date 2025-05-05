@@ -53,5 +53,6 @@ class VerseCrossReference {
 
   String toJson() => json.encode(toMap());
 
-  factory VerseCrossReference.fromJson(String source) => VerseCrossReference.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory VerseCrossReference.fromJson(String source) =>
+      VerseCrossReference.fromMap(json.decode(source) as Map<String, dynamic>);
 }

@@ -13,12 +13,14 @@ class ViewCrossReference {
   bool operator ==(covariant ViewCrossReference other) {
     if (identical(this, other)) return true;
 
-    return other.verse == verse && other.verseCrossReference == verseCrossReference;
+    return other.verse == verse &&
+        other.verseCrossReference == verseCrossReference;
   }
 
   @override
   int get hashCode => verse.hashCode ^ verseCrossReference.hashCode;
 
   @override
-  String toString() => 'ViewCrossReference(verse: $verse, verseCrossReference: $verseCrossReference)';
+  String toString() =>
+      'ViewCrossReference(verse: $verse, verseCrossReference: $verseCrossReference)';
 }

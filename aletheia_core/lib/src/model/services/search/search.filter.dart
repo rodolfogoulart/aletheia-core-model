@@ -34,26 +34,33 @@ class SearchFilter {
 
   factory SearchFilter.fromMap(Map<String, dynamic> map) {
     return SearchFilter(
-      divisionIndex: map['divisionIndex'] != null ? map['divisionIndex'] as int : null,
+      divisionIndex:
+          map['divisionIndex'] != null ? map['divisionIndex'] as int : null,
       bookId: map['bookId'] != null ? map['bookId'] as int : null,
-      bibleVersionId: map['bibleVersionId'] != null ? map['bibleVersionId'] as int : null,
+      bibleVersionId:
+          map['bibleVersionId'] != null ? map['bibleVersionId'] as int : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory SearchFilter.fromJson(String source) => SearchFilter.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory SearchFilter.fromJson(String source) =>
+      SearchFilter.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'SearchFilter(divisionIndex: $divisionIndex, bookId: $bookId, bibleVersionId: $bibleVersionId)';
+  String toString() =>
+      'SearchFilter(divisionIndex: $divisionIndex, bookId: $bookId, bibleVersionId: $bibleVersionId)';
 
   @override
   bool operator ==(covariant SearchFilter other) {
     if (identical(this, other)) return true;
 
-    return other.divisionIndex == divisionIndex && other.bookId == bookId && other.bibleVersionId == bibleVersionId;
+    return other.divisionIndex == divisionIndex &&
+        other.bookId == bookId &&
+        other.bibleVersionId == bibleVersionId;
   }
 
   @override
-  int get hashCode => divisionIndex.hashCode ^ bookId.hashCode ^ bibleVersionId.hashCode;
+  int get hashCode =>
+      divisionIndex.hashCode ^ bookId.hashCode ^ bibleVersionId.hashCode;
 }

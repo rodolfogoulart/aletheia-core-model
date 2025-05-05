@@ -13,17 +13,21 @@ abstract class InterfaceRepositoryUserConfig {
 
   Future<int> deleteOpenAIConfig();
 
-  Future<GoogleServiceAccountCredentialsConfig?> getGoogleServiceAccountCredentialsConfig();
+  Future<GoogleServiceAccountCredentialsConfig?>
+      getGoogleServiceAccountCredentialsConfig();
 
-  Future<int> setGoogleServiceAccountCredentialsConfig({required GoogleServiceAccountCredentialsConfig credencial});
+  Future<int> setGoogleServiceAccountCredentialsConfig(
+      {required GoogleServiceAccountCredentialsConfig credencial});
 
-  Future<int> updateGoogleServiceAccountCredentialsConfig({required GoogleServiceAccountCredentialsConfig credencial});
+  Future<int> updateGoogleServiceAccountCredentialsConfig(
+      {required GoogleServiceAccountCredentialsConfig credencial});
 
   Future<int> deleteGoogleServiceAccountCredentialsConfig();
 
   Future<DeveloperAletheia?> getDeveloperConfig();
 
-  Future<int> setDefaultLanguage({required String languageCode, String? countryCode});
+  Future<int> setDefaultLanguage(
+      {required String languageCode, String? countryCode});
 
   Future<String?> getDefaultLanguage();
 

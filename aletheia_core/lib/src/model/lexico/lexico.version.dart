@@ -53,7 +53,8 @@ class LexicoVersion {
 
   String toJson() => json.encode(toMap());
 
-  factory LexicoVersion.fromJson(String source) => LexicoVersion.fromMap(json.decode(source));
+  factory LexicoVersion.fromJson(String source) =>
+      LexicoVersion.fromMap(json.decode(source));
 
   @override
   bool operator ==(Object other) {
@@ -68,7 +69,10 @@ class LexicoVersion {
 
   @override
   int get hashCode {
-    return id.hashCode ^ name.hashCode ^ description.hashCode ^ htmlStyle.hashCode;
+    return id.hashCode ^
+        name.hashCode ^
+        description.hashCode ^
+        htmlStyle.hashCode;
   }
 
   @override

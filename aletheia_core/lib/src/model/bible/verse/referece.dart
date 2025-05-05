@@ -87,7 +87,9 @@ class Reference {
       verseNumber: map['verseNumber'] ?? map['vn'],
       endChapterNumber: map['endChapterNumber'] ?? map['ecn'],
       endVerseNumber: map['endVerseNumber'] ?? map['evn'],
-      verseNumbers: map['verseNumbers'] != null || map['vns'] != null ? List<int>.from(map['verseNumbers'] ?? map['vns']) : null,
+      verseNumbers: map['verseNumbers'] != null || map['vns'] != null
+          ? List<int>.from(map['verseNumbers'] ?? map['vns'])
+          : null,
       description: map['description'] ?? map['d'],
       bibleVersion: map['bibleVersion'] ?? map['bv'],
       metaData: map['metaData'] ?? map['md'],
@@ -96,7 +98,8 @@ class Reference {
 
   String toJson() => json.encode(toMap());
 
-  factory Reference.fromJson(String source) => Reference.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Reference.fromJson(String source) =>
+      Reference.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   bool operator ==(covariant Reference other) {

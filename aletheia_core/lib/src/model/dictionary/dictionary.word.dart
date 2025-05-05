@@ -64,7 +64,12 @@ class DictionaryWord {
 
   @override
   int get hashCode {
-    return id.hashCode ^ idDictionary.hashCode ^ word.hashCode ^ wordType.hashCode ^ description.hashCode ^ references.hashCode;
+    return id.hashCode ^
+        idDictionary.hashCode ^
+        word.hashCode ^
+        wordType.hashCode ^
+        description.hashCode ^
+        references.hashCode;
   }
 
   @override
@@ -112,13 +117,18 @@ class DictionaryWord {
       id: map['id']?.toInt() ?? 0,
       idDictionary: map['idDictionary']?.toInt() ?? 0,
       word: map['word'] ?? '',
-      wordType: map['wordType'] != null ? TypeWord.fromMap(map['wordType']) : null,
+      wordType:
+          map['wordType'] != null ? TypeWord.fromMap(map['wordType']) : null,
       description: map['description'] ?? '',
-      references: map['references'] != null ? List<Reference>.from(map['references']?.map((x) => Reference.fromMap(x))) : null,
+      references: map['references'] != null
+          ? List<Reference>.from(
+              map['references']?.map((x) => Reference.fromMap(x)))
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory DictionaryWord.fromJson(String source) => DictionaryWord.fromMap(json.decode(source));
+  factory DictionaryWord.fromJson(String source) =>
+      DictionaryWord.fromMap(json.decode(source));
 }

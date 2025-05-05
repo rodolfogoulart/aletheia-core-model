@@ -50,7 +50,8 @@ class Commentary {
 
   String toJson() => json.encode(toMap());
 
-  factory Commentary.fromJson(String source) => Commentary.fromMap(json.decode(source));
+  factory Commentary.fromJson(String source) =>
+      Commentary.fromMap(json.decode(source));
 
   @override
   bool operator ==(Object other) {
@@ -67,6 +68,11 @@ class Commentary {
 
   @override
   int get hashCode {
-    return id.hashCode ^ name.hashCode ^ description.hashCode ^ author.hashCode ^ copyright.hashCode ^ htmlStyle.hashCode;
+    return id.hashCode ^
+        name.hashCode ^
+        description.hashCode ^
+        author.hashCode ^
+        copyright.hashCode ^
+        htmlStyle.hashCode;
   }
 }

@@ -23,5 +23,6 @@ class CommentaryContentView {
   }
 
   @override
-  int get hashCode => contents.hashCode ^ bookIntroduction.hashCode ^ comentary.hashCode;
+  int get hashCode =>
+      contents.hashCode ^ bookIntroduction.hashCode ^ comentary.hashCode;
 }

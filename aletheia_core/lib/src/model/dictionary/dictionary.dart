@@ -54,7 +54,8 @@ class Dictionary {
 
   String toJson() => json.encode(toMap());
 
-  factory Dictionary.fromJson(String source) => Dictionary.fromMap(json.decode(source));
+  factory Dictionary.fromJson(String source) =>
+      Dictionary.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -74,6 +75,9 @@ class Dictionary {
 
   @override
   int get hashCode {
-    return id.hashCode ^ name.hashCode ^ description.hashCode ^ htmlStyle.hashCode;
+    return id.hashCode ^
+        name.hashCode ^
+        description.hashCode ^
+        htmlStyle.hashCode;
   }
 }

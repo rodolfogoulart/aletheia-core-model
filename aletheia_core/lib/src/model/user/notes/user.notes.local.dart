@@ -49,7 +49,8 @@ class UserNotesLocal {
 
   String toJson() => json.encode(toMap());
 
-  factory UserNotesLocal.fromJson(String source) => UserNotesLocal.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserNotesLocal.fromJson(String source) =>
+      UserNotesLocal.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'UserNotesLocal(date: $date, place: $place, obs: $obs)';
@@ -59,7 +60,9 @@ class UserNotesLocal {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
-    return listEquals(other.date, date) && other.place == place && other.obs == obs;
+    return listEquals(other.date, date) &&
+        other.place == place &&
+        other.obs == obs;
   }
 
   @override

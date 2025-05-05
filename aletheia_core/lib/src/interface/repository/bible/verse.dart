@@ -1,28 +1,41 @@
 import 'package:aletheia_core/aletheia_core_model.dart';
 
 abstract class InterfaceRepositoryVerse {
-  Future<List<VerseCore>> selectVersesFromAllOrSingleVersions(int idBook, List<int> idBibleVersion, int chapter);
+  Future<List<VerseCore>> selectVersesFromAllOrSingleVersions(
+      int idBook, List<int> idBibleVersion, int chapter);
 
-  Future<int> getVerseCountFromBook({required int idBook, required int numberChapter, required int idBibleVersion});
+  Future<int> getVerseCountFromBook(
+      {required int idBook,
+      required int numberChapter,
+      required int idBibleVersion});
 
-  Future<bool> hasVerse({required int idBibleVersion, required int idBook, required int numberChapter, required int numberVerse});
+  Future<bool> hasVerse(
+      {required int idBibleVersion,
+      required int idBook,
+      required int numberChapter,
+      required int numberVerse});
 
   /// This method inserts a new verse into the database
   /// and returns an integer representing the ID of the newly added verse.
   Future<int> setVerse({
-    required int idBibleVersion, // ID for the Bible version in which the verse belongs
+    required int
+        idBibleVersion, // ID for the Bible version in which the verse belongs
     required int idBook, // ID for the book in which the verse belongs
     required int numberChapter, // The chapter number in which the verse belongs
     required int numberVerse, // The verse number
-    required String contentWithOutFormat, // The actual text of the verse without format
+    required String
+        contentWithOutFormat, // The actual text of the verse without format
     int? numberVerseEnd, //in case version bible has verses joined
-    required String content, //the verse content with the format, sequence, strong, type
+    required String
+        content, //the verse content with the format, sequence, strong, type
   });
 
   Future<int> updateVerse({
     required int id, // ID
-    required String? contentWithOutFormat, // The actual text of the verse without format
-    required String? content, //the verse content with the format, sequence, strong, type
+    required String?
+        contentWithOutFormat, // The actual text of the verse without format
+    required String?
+        content, //the verse content with the format, sequence, strong, type
     int? numberVerseEnd, //in case version bible has verses joined
   });
 
@@ -73,7 +86,8 @@ abstract class InterfaceRepositoryVerse {
   /// * The `idLexico` parameter is the ID of the lexico.
   ///
   /// * The `idBibleVersion` parameter is the ID of the Bible version.
-  Future<List<VerseView>> getVersesByLexico({required String idLexico, required int idBibleVersion});
+  Future<List<VerseView>> getVersesByLexico(
+      {required String idLexico, required int idBibleVersion});
 
   ///v1.0.16
   ///

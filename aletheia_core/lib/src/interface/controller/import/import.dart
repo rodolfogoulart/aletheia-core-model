@@ -53,7 +53,9 @@ class RangeProgress {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is RangeProgress && other.total == total && other.current == current;
+    return other is RangeProgress &&
+        other.total == total &&
+        other.current == current;
   }
 
   @override
@@ -63,5 +65,7 @@ class RangeProgress {
 abstract class InterfaceControllerImport {
   import({required List<String> dbPath});
 
-  Future<TypeStatus> importMyBibleModules(String pathBible, String? pathCommentaryFootNote, {required String fileBibleName});
+  Future<TypeStatus> importMyBibleModules(
+      String pathBible, String? pathCommentaryFootNote,
+      {required String fileBibleName});
 }

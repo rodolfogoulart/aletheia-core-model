@@ -80,5 +80,6 @@ class ResponseRequest<T> {
 
   String toJson() => json.encode(toMap());
 
-  factory ResponseRequest.fromJson(String source) => ResponseRequest.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ResponseRequest.fromJson(String source) =>
+      ResponseRequest.fromMap(json.decode(source) as Map<String, dynamic>);
 }

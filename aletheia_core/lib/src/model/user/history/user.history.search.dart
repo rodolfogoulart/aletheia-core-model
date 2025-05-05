@@ -27,7 +27,8 @@ class HistoryTypeSearchBook extends HistoryTypeSearch {
   }
 
   factory HistoryTypeSearchBook.fromJson(String source) =>
-      HistoryTypeSearchBook.fromMap(json.decode(source) as Map<String, dynamic>);
+      HistoryTypeSearchBook.fromMap(
+          json.decode(source) as Map<String, dynamic>);
 }
 
 class HistoryTypeSearchChapter extends HistoryTypeSearchBook {
@@ -58,7 +59,8 @@ class HistoryTypeSearchChapter extends HistoryTypeSearchBook {
   }
 
   factory HistoryTypeSearchChapter.fromJson(String source) =>
-      HistoryTypeSearchChapter.fromMap(json.decode(source) as Map<String, dynamic>);
+      HistoryTypeSearchChapter.fromMap(
+          json.decode(source) as Map<String, dynamic>);
 }
 
 class HistoryTypeSearchVerse extends HistoryTypeSearchChapter {
@@ -91,7 +93,8 @@ class HistoryTypeSearchVerse extends HistoryTypeSearchChapter {
   }
 
   factory HistoryTypeSearchVerse.fromJson(String source) =>
-      HistoryTypeSearchVerse.fromMap(json.decode(source) as Map<String, dynamic>);
+      HistoryTypeSearchVerse.fromMap(
+          json.decode(source) as Map<String, dynamic>);
 }
 
 class UserHistorySearch {
@@ -146,7 +149,8 @@ class UserHistorySearch {
 
   String toJson() => json.encode(toMap());
 
-  factory UserHistorySearch.fromJson(String source) => UserHistorySearch.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserHistorySearch.fromJson(String source) =>
+      UserHistorySearch.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -166,6 +170,10 @@ class UserHistorySearch {
 
   @override
   int get hashCode {
-    return id.hashCode ^ idBook.hashCode ^ numberChapter.hashCode ^ value.hashCode ^ date.hashCode;
+    return id.hashCode ^
+        idBook.hashCode ^
+        numberChapter.hashCode ^
+        value.hashCode ^
+        date.hashCode;
   }
 }

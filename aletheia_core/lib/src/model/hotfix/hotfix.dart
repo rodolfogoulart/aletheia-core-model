@@ -100,5 +100,6 @@ class Hotfix {
 
   String toJson() => json.encode(toMap());
 
-  factory Hotfix.fromJson(String source) => Hotfix.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Hotfix.fromJson(String source) =>
+      Hotfix.fromMap(json.decode(source) as Map<String, dynamic>);
 }

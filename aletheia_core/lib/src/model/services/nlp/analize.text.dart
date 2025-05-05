@@ -35,7 +35,8 @@ class Sentiment {
 
   String toJson() => json.encode(toMap());
 
-  factory Sentiment.fromJson(String source) => Sentiment.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Sentiment.fromJson(String source) =>
+      Sentiment.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 class $TextSpan {
@@ -60,14 +61,16 @@ class $TextSpan {
 
   factory $TextSpan.fromMap(Map<String, dynamic> map) {
     return $TextSpan(
-      beginOffset: map['beginOffset'] != null ? map['beginOffset'] as int : null,
+      beginOffset:
+          map['beginOffset'] != null ? map['beginOffset'] as int : null,
       content: map['content'] != null ? map['content'] as String : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory $TextSpan.fromJson(String source) => $TextSpan.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory $TextSpan.fromJson(String source) =>
+      $TextSpan.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 // Represents a mention for an entity in the text.
@@ -106,7 +109,8 @@ class EntityMention {
 
   factory EntityMention.fromMap(Map<String, dynamic> map) {
     return EntityMention(
-      sentiment: map['sentiment'] != null ? Sentiment.fromMap(map['sentiment']) : null,
+      sentiment:
+          map['sentiment'] != null ? Sentiment.fromMap(map['sentiment']) : null,
       text: map['text'] != null ? $TextSpan.fromMap(map['text']) : null,
       type: map['type'] != null ? TypeEntityMention.fromMap(map['type']) : null,
     );
@@ -114,20 +118,24 @@ class EntityMention {
 
   String toJson() => json.encode(toMap());
 
-  factory EntityMention.fromJson(String source) => EntityMention.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory EntityMention.fromJson(String source) =>
+      EntityMention.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   bool operator ==(covariant EntityMention other) {
     if (identical(this, other)) return true;
 
-    return other.sentiment == sentiment && other.text == text && other.type == type;
+    return other.sentiment == sentiment &&
+        other.text == text &&
+        other.type == type;
   }
 
   @override
   int get hashCode => sentiment.hashCode ^ text.hashCode ^ type.hashCode;
 
   @override
-  String toString() => 'EntityMention(sentiment: $sentiment, text: $text, type: $type)';
+  String toString() =>
+      'EntityMention(sentiment: $sentiment, text: $text, type: $type)';
 }
 
 // Represents a phrase in the text that is a known entity, such as a person, an
@@ -224,17 +232,21 @@ class Entity {
               ),
             )
           : null,
-      metadata: map['metadata'] != null ? Map<String, String>.from((map['metadata'])) : null,
+      metadata: map['metadata'] != null
+          ? Map<String, String>.from((map['metadata']))
+          : null,
       name: map['name'] != null ? map['name'] as String : null,
       salience: map['salience'] != null ? map['salience'] as double : null,
-      sentiment: map['sentiment'] != null ? Sentiment.fromMap(map['sentiment']) : null,
+      sentiment:
+          map['sentiment'] != null ? Sentiment.fromMap(map['sentiment']) : null,
       type: map['type'] != null ? TypeEntity.fromMap(map['type']) : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Entity.fromJson(String source) => Entity.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Entity.fromJson(String source) =>
+      Entity.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -256,7 +268,12 @@ class Entity {
 
   @override
   int get hashCode {
-    return mentions.hashCode ^ metadata.hashCode ^ name.hashCode ^ salience.hashCode ^ sentiment.hashCode ^ type.hashCode;
+    return mentions.hashCode ^
+        metadata.hashCode ^
+        name.hashCode ^
+        salience.hashCode ^
+        sentiment.hashCode ^
+        type.hashCode;
   }
 }
 
@@ -284,14 +301,19 @@ class Sentence {
 
   factory Sentence.fromMap(Map<String, dynamic> map) {
     return Sentence(
-      sentiment: map['sentiment'] != null ? Sentiment.fromMap(map['sentiment'] as Map<String, dynamic>) : null,
-      text: map['text'] != null ? $TextSpan.fromMap(map['text'] as Map<String, dynamic>) : null,
+      sentiment: map['sentiment'] != null
+          ? Sentiment.fromMap(map['sentiment'] as Map<String, dynamic>)
+          : null,
+      text: map['text'] != null
+          ? $TextSpan.fromMap(map['text'] as Map<String, dynamic>)
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Sentence.fromJson(String source) => Sentence.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Sentence.fromJson(String source) =>
+      Sentence.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'Sentence(sentiment: $sentiment, text: $text)';
@@ -354,7 +376,10 @@ class AnalizeText {
 
   @override
   int get hashCode {
-    return documentSentiment.hashCode ^ entities.hashCode ^ sentences.hashCode ^ tokens.hashCode;
+    return documentSentiment.hashCode ^
+        entities.hashCode ^
+        sentences.hashCode ^
+        tokens.hashCode;
   }
 
   AnalizeText copyWith({
@@ -382,8 +407,9 @@ class AnalizeText {
 
   factory AnalizeText.fromMap(Map<String, dynamic> map) {
     return AnalizeText(
-      documentSentiment:
-          map['documentSentiment'] != null ? Sentiment.fromMap(map['documentSentiment'] as Map<String, dynamic>) : null,
+      documentSentiment: map['documentSentiment'] != null
+          ? Sentiment.fromMap(map['documentSentiment'] as Map<String, dynamic>)
+          : null,
       entities: map['entities'] != null
           ? List<Entity>.from(
               (map['entities'] as List).map<Entity?>(
@@ -410,5 +436,6 @@ class AnalizeText {
 
   String toJson() => json.encode(toMap());
 
-  factory AnalizeText.fromJson(String source) => AnalizeText.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory AnalizeText.fromJson(String source) =>
+      AnalizeText.fromMap(json.decode(source) as Map<String, dynamic>);
 }

@@ -5,7 +5,8 @@ abstract class InterfaceRepositoryCommentary {
 
   Future<Commentary> updateCommentary(Commentary commentary);
 
-  Future<List<Commentary>> getCommentary({int? id, String? name, bool nameEqual = false});
+  Future<List<Commentary>> getCommentary(
+      {int? id, String? name, bool nameEqual = false});
 
   Future<CommentaryContent?> insertCommentaryContent(CommentaryContent content);
 

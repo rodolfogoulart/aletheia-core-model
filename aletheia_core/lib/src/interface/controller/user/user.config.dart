@@ -8,11 +8,14 @@ abstract class InterfaceControllerUserConfig {
   Future<int> updateToken({required OpenAIConfig openAiConfig});
   Future<int> deleteOpenAIConfig();
 
-  Future<GoogleServiceAccountCredentialsConfig?> getGoogleServiceAccountCredentialsConfig();
+  Future<GoogleServiceAccountCredentialsConfig?>
+      getGoogleServiceAccountCredentialsConfig();
 
-  Future<int> setGoogleServiceAccountCredentialsConfig({required GoogleServiceAccountCredentialsConfig? credencial});
+  Future<int> setGoogleServiceAccountCredentialsConfig(
+      {required GoogleServiceAccountCredentialsConfig? credencial});
 
-  Future<int> updateGoogleServiceAccountCredentialsConfig({required GoogleServiceAccountCredentialsConfig credencial});
+  Future<int> updateGoogleServiceAccountCredentialsConfig(
+      {required GoogleServiceAccountCredentialsConfig credencial});
 
   Future<int> deleteGoogleServiceAccountCredentialsConfig();
 
@@ -42,14 +45,16 @@ abstract class InterfaceControllerUserConfig {
   ///generate your api key here:
   ///https://aistudio.google.com/app/apikey
   ///
-  Future<int> setGenerativeLanguageClientAPIKey({required GeminiApiConfig? value});
+  Future<int> setGenerativeLanguageClientAPIKey(
+      {required GeminiApiConfig? value});
 
   ///Gemini project API key
   ///
   ///generate your api key here:
   ///https://aistudio.google.com/app/apikey
   ///
-  Future<int> updateGenerativeLanguageClientAPIKey({required GeminiApiConfig? value});
+  Future<int> updateGenerativeLanguageClientAPIKey(
+      {required GeminiApiConfig? value});
 
   ///Gemini project API key
   ///

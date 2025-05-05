@@ -30,5 +30,6 @@ class DeveloperAletheia {
 
   String toJson() => json.encode(toMap());
 
-  factory DeveloperAletheia.fromJson(String source) => DeveloperAletheia.fromMap(json.decode(source));
+  factory DeveloperAletheia.fromJson(String source) =>
+      DeveloperAletheia.fromMap(json.decode(source));
 }

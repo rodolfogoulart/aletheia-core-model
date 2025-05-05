@@ -52,7 +52,8 @@ class CommentaryContent {
 
   String toJson() => json.encode(toMap());
 
-  factory CommentaryContent.fromJson(String source) => CommentaryContent.fromMap(json.decode(source));
+  factory CommentaryContent.fromJson(String source) =>
+      CommentaryContent.fromMap(json.decode(source));
 
   @override
   bool operator ==(Object other) {

@@ -17,7 +17,9 @@ abstract class InterfaceControllerNLP {
   });
 
   List<AnalizeGrammarVerse> analizeGrammarToNlpChapter(
-      List<AnalizeGrammar> data, List<VerseView> verses, List<int> offsetTokensVerse);
+      List<AnalizeGrammar> data,
+      List<VerseView> verses,
+      List<int> offsetTokensVerse);
 
   Future<(NlpChapter?, String)> getNlpOrcallGoogleNaturalLanguage({
     required String hashBibleVersion,
@@ -29,7 +31,9 @@ abstract class InterfaceControllerNLP {
     bool saveCall = true,
   });
   //todo: refatorar talvez não incluir o type ServiceAccountCredentials
-  Future<(dynamic, GoogleServiceAccountCredentialsConfig)> get credentialsGoogleServiceAccount;
+  Future<(dynamic, GoogleServiceAccountCredentialsConfig)>
+      get credentialsGoogleServiceAccount;
 
-  Future<AnalizeText> callGoogleNaturalLanguage({required String text, String? language});
+  Future<AnalizeText> callGoogleNaturalLanguage(
+      {required String text, String? language});
 }

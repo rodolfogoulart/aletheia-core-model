@@ -19,7 +19,8 @@ class BookView extends Book {
   /// when used the factory, **don't forget to add** the fields ```numberChapters``` and ```sequence```
   ///
   /// after the factory
-  factory BookView.fromBook(Book book, {int? numberChapters, int? sequence}) => BookView(
+  factory BookView.fromBook(Book book, {int? numberChapters, int? sequence}) =>
+      BookView(
         abrev: book.abrev,
         division: book.division,
         literaryGenre: book.literaryGenre,
@@ -73,15 +74,19 @@ class BookView extends Book {
       id: map['id'],
       name: map['name'],
       abrev: map['abrev'],
-      division: map['division'] != null ? Division.fromMap(map['division']) : Division.none,
+      division: map['division'] != null
+          ? Division.fromMap(map['division'])
+          : Division.none,
       literaryGenre: map['literaryGenre'] as String,
       cannon: map['cannon'],
-      numberChapters: map['numberChapters'] != null ? map['numberChapters'] as int : null,
+      numberChapters:
+          map['numberChapters'] != null ? map['numberChapters'] as int : null,
       sequence: map['sequence'] != null ? map['sequence'] as int : null,
     );
   }
   @override
   String toJson() => json.encode(toMap());
 
-  factory BookView.fromJson(String source) => BookView.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory BookView.fromJson(String source) =>
+      BookView.fromMap(json.decode(source) as Map<String, dynamic>);
 }

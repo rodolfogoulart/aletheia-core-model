@@ -45,7 +45,8 @@ class GoogleServiceAccountCredentialsConfig {
       clientId: clientId ?? this.clientId,
       authUri: authUri ?? this.authUri,
       tokenUri: tokenUri ?? this.tokenUri,
-      authProviderX509CertUrl: authProviderX509CertUrl ?? this.authProviderX509CertUrl,
+      authProviderX509CertUrl:
+          authProviderX509CertUrl ?? this.authProviderX509CertUrl,
       clientX509CertUrl: clientX509CertUrl ?? this.clientX509CertUrl,
     );
   }
@@ -67,7 +68,8 @@ class GoogleServiceAccountCredentialsConfig {
     return result;
   }
 
-  factory GoogleServiceAccountCredentialsConfig.fromMap(Map<String, dynamic> map) {
+  factory GoogleServiceAccountCredentialsConfig.fromMap(
+      Map<String, dynamic> map) {
     return GoogleServiceAccountCredentialsConfig(
       type: map['type'] ?? '',
       projectId: map['project_id'] ?? '',

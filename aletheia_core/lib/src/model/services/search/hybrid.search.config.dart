@@ -36,10 +36,12 @@ class HybridSearchConfig {
 
   String toJson() => json.encode(toMap());
 
-  factory HybridSearchConfig.fromJson(String source) => HybridSearchConfig.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory HybridSearchConfig.fromJson(String source) =>
+      HybridSearchConfig.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'HybridSearchConfig(embedder: $embedder, semanticRatio: $semanticRatio)';
+  String toString() =>
+      'HybridSearchConfig(embedder: $embedder, semanticRatio: $semanticRatio)';
 
   @override
   bool operator ==(covariant HybridSearchConfig other) {

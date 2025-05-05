@@ -15,11 +15,15 @@ class DataSync {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is DataSync && other.version == version && other.url == url && other.dataDescription == dataDescription;
+    return other is DataSync &&
+        other.version == version &&
+        other.url == url &&
+        other.dataDescription == dataDescription;
   }
 
   @override
-  int get hashCode => version.hashCode ^ url.hashCode ^ dataDescription.hashCode;
+  int get hashCode =>
+      version.hashCode ^ url.hashCode ^ dataDescription.hashCode;
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
@@ -41,5 +45,6 @@ class DataSync {
 
   String toJson() => json.encode(toMap());
 
-  factory DataSync.fromJson(String source) => DataSync.fromMap(json.decode(source));
+  factory DataSync.fromJson(String source) =>
+      DataSync.fromMap(json.decode(source));
 }

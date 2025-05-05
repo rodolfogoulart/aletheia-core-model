@@ -131,7 +131,8 @@ class SubText {
 
   String toJson() => json.encode(toMap());
 
-  factory SubText.fromJson(String source) => SubText.fromMap(json.decode(source));
+  factory SubText.fromJson(String source) =>
+      SubText.fromMap(json.decode(source));
 
   SubText copyWith({
     String? text,
@@ -281,26 +282,36 @@ class Content {
       seq: map['sq']?.toInt() ?? 0,
       text: map['T'] ?? '',
       typeContent: TypeContent.fromMap(map['tC']),
-      attributes: map['at'] != null ? Map<String, dynamic>.from(map['at']) : null,
+      attributes:
+          map['at'] != null ? Map<String, dynamic>.from(map['at']) : null,
       //change the Key name to match the new name 06/05/2024
       //assume the refLexicos is rS (to older versions) or rL (to newer versions)
       // refLexicos: (map['rS'] != null) ? List<String>.from(map['rS']) : null,
-      refLexicos: (map['rS'] != null || map['rL'] != null) ? List<String>.from(map['rS'] ?? map['rL']) : null,
-      subText: map['sT'] != null ? List<SubText>.from(map['sT']?.map((x) => SubText.fromMap(x))) : null,
+      refLexicos: (map['rS'] != null || map['rL'] != null)
+          ? List<String>.from(map['rS'] ?? map['rL'])
+          : null,
+      subText: map['sT'] != null
+          ? List<SubText>.from(map['sT']?.map((x) => SubText.fromMap(x)))
+          : null,
       anottation: map['an'],
       comment: map['cm'],
-      reference: map['rf'] != null ? List<Reference>.from(map['rf']?.map((x) => Reference.fromMap(x))) : null,
+      reference: map['rf'] != null
+          ? List<Reference>.from(map['rf']?.map((x) => Reference.fromMap(x)))
+          : null,
       footnote: map['fn'],
-      paragraph: map['pr'] != null ? (map['pr'] == false ? null : map['pr']) : null,
+      paragraph:
+          map['pr'] != null ? (map['pr'] == false ? null : map['pr']) : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Content.fromJson(String source) => Content.fromMap(json.decode(source));
+  factory Content.fromJson(String source) =>
+      Content.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Content(text:$text, attributes:$attributes, refLexicos:$refLexicos)';
+  String toString() =>
+      'Content(text:$text, attributes:$attributes, refLexicos:$refLexicos)';
 
   Content copyWith({
     int? seq,

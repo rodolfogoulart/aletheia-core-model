@@ -27,7 +27,9 @@ class BibleVersionBooksView {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
-    return other is BibleVersionBooksView && listEquals(other.books, books) && other.bible == bible;
+    return other is BibleVersionBooksView &&
+        listEquals(other.books, books) &&
+        other.bible == bible;
   }
 
   @override
@@ -57,5 +59,6 @@ class BibleVersionBooksView {
   String toJson() => json.encode(toMap());
 
   factory BibleVersionBooksView.fromJson(String source) =>
-      BibleVersionBooksView.fromMap(json.decode(source) as Map<String, dynamic>);
+      BibleVersionBooksView.fromMap(
+          json.decode(source) as Map<String, dynamic>);
 }

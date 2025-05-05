@@ -45,7 +45,8 @@ class Lexico {
       idLexicoVersion: idLexicoVersion ?? this.idLexicoVersion,
       idRef: idRef ?? this.idRef,
       originalWord: originalWord ?? this.originalWord,
-      translatedPronunciation: translatedPronunciation ?? this.translatedPronunciation,
+      translatedPronunciation:
+          translatedPronunciation ?? this.translatedPronunciation,
       pronunciation: pronunciation ?? this.pronunciation,
       title: title ?? this.title,
       description: description ?? this.description,
