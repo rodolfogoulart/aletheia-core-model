@@ -134,7 +134,8 @@ class Lexico {
       title: map['title'],
       description: map['description'],
       partOfSpeech: map['partOfSpeech'],
-      cognate: List<String>.from(map['cognate']),
+      cognate:
+          map['cognate'] != null ? List<String>.from(map['cognate']) : null,
     );
   }
 

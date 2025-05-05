@@ -43,11 +43,13 @@ class VerseCrossReference {
       numberVerse: map['numberVerse'],
       idBookReference: map['idBookReference'],
       numberVerseEnd: map['numberVerseEnd'],
-      reference: List<VerseView>.from(
-        (map['reference']).map<VerseView>(
-          (x) => VerseView.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
+      reference: map['reference'] != null
+          ? List<VerseView>.from(
+              (map['reference']).map<VerseView>(
+                (x) => VerseView.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : [],
     );
   }
 
