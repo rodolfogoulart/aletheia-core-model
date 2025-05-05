@@ -238,7 +238,7 @@ class Content {
 
     result.addAll({'sq': seq});
     result.addAll({'T': text});
-    result.addAll({'tC': typeContent.toMap(reduced: false)});
+    result.addAll({'tC': typeContent.toMap(reduced: true)});
     if (attributes != null) {
       if (attributes?.isNotEmpty == true) {
         result.addAll({'at': attributes});
