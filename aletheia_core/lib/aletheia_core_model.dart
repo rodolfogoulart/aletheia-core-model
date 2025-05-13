@@ -16,6 +16,7 @@ export 'src/model/bible/verse/verse.data.dart';
 export 'src/model/bible/verse/view/view.cross.reference.dart';
 export 'src/model/bible/verse/view/view.search.verse.dart';
 export 'src/model/bible/verse/view/view.verse.dart';
+export 'src/model/bible/verse/footnote.dart';
 //COMMENTARY
 export 'src/model/commentary/commentary.content.dart';
 export 'src/model/commentary/commentary.dart';

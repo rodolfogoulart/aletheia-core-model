@@ -139,3 +139,8 @@
 ## 0.0.35
 * Add MeiliSearchConfig model
 * Use MeiliSearchConfig on InterfaceControllerVerseSearch.searchVerse
+
+## 0.0.36
+* Changes to API interface
+* Add Footnote class
+* Change footnote on Content to be List<Footnote>?

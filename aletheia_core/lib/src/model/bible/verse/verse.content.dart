@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:aletheia_core/src/model/bible/verse/footnote.dart';
+
 import 'referece.dart';
 
 ///[TypeAttributes] enum to style the text
@@ -184,7 +186,9 @@ class Content {
   ///use KEY [rf]
   List<Reference>? reference; //rf
   ///use KEY [fn]
-  String? footnote; //fn
+  ///
+  ///v.1.0.19 change footnote to a list of footnotes
+  List<Footnote>? footnote; //fn
 
   ///tag that represents the beginning of a paragraph
   ///
@@ -246,8 +250,8 @@ class Content {
     }
     if (refLexicos != null) {
       //todo: alterar para 'rL' em próxima versão
-      result.addAll({'rS': refLexicos});
-      // result.addAll({'rL': refLexicos});
+      // result.addAll({'rS': refLexicos});
+      result.addAll({'rL': refLexicos});
     }
     if (subText != null) {
       if (subText?.isNotEmpty == true) {
@@ -278,6 +282,23 @@ class Content {
   }
 
   factory Content.fromMap(Map<String, dynamic> map) {
+    List<Footnote>? footnote;
+    try {
+      footnote = map['fn'] != null
+          ? List<Footnote>.from(map['fn']?.map((x) => Footnote.fromMap(x)))
+          : null;
+    } catch (e) {
+      footnote = null;
+    }
+    List<String>? refLexicos;
+    try {
+      refLexicos = (map['rS'] != null || map['rL'] != null)
+          ? List<String>.from(map['rS'] ?? map['rL'])
+          : null;
+    } catch (e) {
+      refLexicos = null;
+    }
+    //
     return Content(
       seq: map['sq']?.toInt() ?? 0,
       text: map['T'] ?? '',
@@ -287,9 +308,7 @@ class Content {
       //change the Key name to match the new name 06/05/2024
       //assume the refLexicos is rS (to older versions) or rL (to newer versions)
       // refLexicos: (map['rS'] != null) ? List<String>.from(map['rS']) : null,
-      refLexicos: (map['rS'] != null || map['rL'] != null)
-          ? List<String>.from(map['rS'] ?? map['rL'])
-          : null,
+      refLexicos: refLexicos,
       subText: map['sT'] != null
           ? List<SubText>.from(map['sT']?.map((x) => SubText.fromMap(x)))
           : null,
@@ -298,7 +317,7 @@ class Content {
       reference: map['rf'] != null
           ? List<Reference>.from(map['rf']?.map((x) => Reference.fromMap(x)))
           : null,
-      footnote: map['fn'],
+      footnote: footnote,
       paragraph:
           map['pr'] != null ? (map['pr'] == false ? null : map['pr']) : null,
     );
@@ -323,7 +342,7 @@ class Content {
     String? anottation,
     String? comment,
     List<Reference>? reference,
-    String? footnote,
+    List<Footnote>? footnote,
     bool? paragraph,
   }) {
     return Content(
