@@ -113,7 +113,7 @@ class SearchVerse {
         verse: VerseView.fromMap(map['verse']),
       );
     } catch (e) {
-      throw Exception('Error in SearchVerse.fromMap: $e');
+      throw Exception('Error in SearchVerse.fromMap: $e\n map: $map');
     }
   }
 
