@@ -99,18 +99,22 @@ class SearchVerse {
   }
 
   factory SearchVerse.fromMap(Map<String, dynamic> map) {
-    return SearchVerse(
-      relevance: map['relevance'] as double,
-      tokensEqual: map['tokensEqual'] as int,
-      tokensPartial: map['tokensPartial'] as int,
-      positions: List<Position>.from(
-        (map['positions'] as List).map<Position>(
-          (x) => Position.fromMap(x as Map<String, dynamic>),
+    try {
+      return SearchVerse(
+        relevance: map['relevance'],
+        tokensEqual: map['tokensEqual'],
+        tokensPartial: map['tokensPartial'],
+        positions: List<Position>.from(
+          (map['positions'] as List).map<Position>(
+            (x) => Position.fromMap(x as Map<String, dynamic>),
+          ),
         ),
-      ),
-      typeSearch: TypeSearchVerse.fromMap(map['typeSearch']),
-      verse: VerseView.fromMap(map['verse'] as Map<String, dynamic>),
-    );
+        typeSearch: TypeSearchVerse.fromMap(map['typeSearch']),
+        verse: VerseView.fromMap(map['verse']),
+      );
+    } catch (e) {
+      throw Exception('Error in SearchVerse.fromMap: $e');
+    }
   }
 
   String toJson() => json.encode(toMap());
@@ -138,10 +142,14 @@ class Position {
   }
 
   factory Position.fromMap(Map<String, dynamic> map) {
-    return Position(
-      start: map['start'] as int,
-      end: map['end'] as int,
-    );
+    try {
+      return Position(
+        start: map['start'] as int,
+        end: map['end'] as int,
+      );
+    } catch (e) {
+      throw Exception('Error in Position.fromMap: $e');
+    }
   }
 
   String toJson() => json.encode(toMap());
@@ -179,16 +187,20 @@ class ResultSearch {
   }
 
   factory ResultSearch.fromMap(Map<String, dynamic> map) {
-    return ResultSearch(
-      searchVerse: List<SearchVerse>.from(
-        (map['searchVerse'] as List).map<SearchVerse>(
-          (x) => SearchVerse.fromMap(x as Map<String, dynamic>),
+    try {
+      return ResultSearch(
+        searchVerse: List<SearchVerse>.from(
+          (map['searchVerse'] as List).map<SearchVerse>(
+            (x) => SearchVerse.fromMap(x as Map<String, dynamic>),
+          ),
         ),
-      ),
-      total: map['total'] as int,
-      metaData:
-          Map<String, dynamic>.from((map['metaData'] as Map<String, dynamic>)),
-    );
+        total: map['total'],
+        metaData: Map<String, dynamic>.from(
+            (map['metaData'] as Map<String, dynamic>)),
+      );
+    } catch (e) {
+      throw Exception('Error in ResultSearch.fromMap: $e');
+    }
   }
 
   String toJson() => json.encode(toMap());
