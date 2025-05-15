@@ -51,10 +51,14 @@ class Footnote {
   ///use KEY [fnN] to note
   ///
   factory Footnote.fromMap(Map<String, dynamic> map) {
-    return Footnote(
-      id: map['fnId'] as String,
-      note: map['fnN'] as String,
-    );
+    try {
+      return Footnote(
+        id: map['fnId'] as String,
+        note: map['fnN'] as String,
+      );
+    } catch (e) {
+      throw Exception('Error parsing Footnote.fromMap: $e, map: $map');
+    }
   }
 
   String toJson() => json.encode(toMap());

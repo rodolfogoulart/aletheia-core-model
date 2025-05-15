@@ -148,7 +148,7 @@ class Position {
         end: map['end'] as int,
       );
     } catch (e) {
-      throw Exception('Error in Position.fromMap: $e');
+      throw Exception('Error in Position.fromMap: $e\nMap: $map');
     }
   }
 

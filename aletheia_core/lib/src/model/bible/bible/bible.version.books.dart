@@ -101,15 +101,19 @@ class BibleVersionBooks {
   }
 
   factory BibleVersionBooks.fromMap(Map<String, dynamic> map) {
-    return BibleVersionBooks(
-      id: map['id']?.toInt(),
-      idBook: map['idBook']?.toInt() ?? 0,
-      idBibleVersion: map['idBibleVersion']?.toInt() ?? 0,
-      sequence: map['sequence']?.toInt(),
-      numberChapters: map['numberChapters']?.toInt(),
-      nameTranslation: map['nameTranslation'],
-      abrevTranslation: map['abrevTranslation'],
-    );
+    try {
+      return BibleVersionBooks(
+        id: map['id']?.toInt(),
+        idBook: map['idBook']?.toInt() ?? 0,
+        idBibleVersion: map['idBibleVersion']?.toInt() ?? 0,
+        sequence: map['sequence']?.toInt(),
+        numberChapters: map['numberChapters']?.toInt(),
+        nameTranslation: map['nameTranslation'],
+        abrevTranslation: map['abrevTranslation'],
+      );
+    } catch (e) {
+      throw Exception('Error parsing BibleVersionBooks.fromMap: $e, map: $map');
+    }
   }
 
   String toJson() => json.encode(toMap());

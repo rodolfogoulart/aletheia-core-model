@@ -79,21 +79,25 @@ class Reference {
   }
 
   factory Reference.fromMap(Map<String, dynamic> map) {
-    ///v1.0.18
-    ///change to abreviation, but try to get the old format before
-    return Reference(
-      bookNumber: map['bookNumber'] ?? map['bn'] ?? 0,
-      chapterNumber: map['chapterNumber'] ?? map['cn'] ?? 0,
-      verseNumber: map['verseNumber'] ?? map['vn'],
-      endChapterNumber: map['endChapterNumber'] ?? map['ecn'],
-      endVerseNumber: map['endVerseNumber'] ?? map['evn'],
-      verseNumbers: map['verseNumbers'] != null || map['vns'] != null
-          ? List<int>.from(map['verseNumbers'] ?? map['vns'])
-          : null,
-      description: map['description'] ?? map['d'],
-      bibleVersion: map['bibleVersion'] ?? map['bv'],
-      metaData: map['metaData'] ?? map['md'],
-    );
+    try {
+      ///v1.0.18
+      ///change to abreviation, but try to get the old format before
+      return Reference(
+        bookNumber: map['bookNumber'] ?? map['bn'] ?? 0,
+        chapterNumber: map['chapterNumber'] ?? map['cn'] ?? 0,
+        verseNumber: map['verseNumber'] ?? map['vn'],
+        endChapterNumber: map['endChapterNumber'] ?? map['ecn'],
+        endVerseNumber: map['endVerseNumber'] ?? map['evn'],
+        verseNumbers: map['verseNumbers'] != null || map['vns'] != null
+            ? List<int>.from(map['verseNumbers'] ?? map['vns'])
+            : null,
+        description: map['description'] ?? map['d'],
+        bibleVersion: map['bibleVersion'] ?? map['bv'],
+        metaData: map['metaData'] ?? map['md'],
+      );
+    } catch (e) {
+      throw Exception('Error parsing Reference.fromMap: $e\nMap: $map');
+    }
   }
 
   String toJson() => json.encode(toMap());

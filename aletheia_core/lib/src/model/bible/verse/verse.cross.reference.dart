@@ -36,21 +36,26 @@ class VerseCrossReference {
   }
 
   factory VerseCrossReference.fromMap(Map<String, dynamic> map) {
-    return VerseCrossReference(
-      id: map['id'],
-      idBook: map['idBook'],
-      numberChapter: map['numberChapter'],
-      numberVerse: map['numberVerse'],
-      idBookReference: map['idBookReference'],
-      numberVerseEnd: map['numberVerseEnd'],
-      reference: map['reference'] != null
-          ? List<VerseView>.from(
-              (map['reference']).map<VerseView>(
-                (x) => VerseView.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : [],
-    );
+    try {
+      return VerseCrossReference(
+        id: map['id'],
+        idBook: map['idBook'],
+        numberChapter: map['numberChapter'],
+        numberVerse: map['numberVerse'],
+        idBookReference: map['idBookReference'],
+        numberVerseEnd: map['numberVerseEnd'],
+        reference: map['reference'] != null
+            ? List<VerseView>.from(
+                (map['reference']).map<VerseView>(
+                  (x) => VerseView.fromMap(x as Map<String, dynamic>),
+                ),
+              )
+            : [],
+      );
+    } catch (e) {
+      throw Exception(
+          'Error parsing VerseCrossReference.fromMap: $e, map: $map');
+    }
   }
 
   String toJson() => json.encode(toMap());

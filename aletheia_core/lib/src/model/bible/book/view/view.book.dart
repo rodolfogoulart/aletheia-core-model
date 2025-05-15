@@ -70,19 +70,23 @@ class BookView extends Book {
   }
 
   factory BookView.fromMap(Map<String, dynamic> map) {
-    return BookView(
-      id: map['id'],
-      name: map['name'],
-      abrev: map['abrev'],
-      division: map['division'] != null
-          ? Division.fromMap(map['division'])
-          : Division.none,
-      literaryGenre: map['literaryGenre'] as String,
-      cannon: map['cannon'],
-      numberChapters:
-          map['numberChapters'] != null ? map['numberChapters'] as int : null,
-      sequence: map['sequence'] != null ? map['sequence'] as int : null,
-    );
+    try {
+      return BookView(
+        id: map['id'],
+        name: map['name'],
+        abrev: map['abrev'],
+        division: map['division'] != null
+            ? Division.fromMap(map['division'])
+            : Division.none,
+        literaryGenre: map['literaryGenre'] as String,
+        cannon: map['cannon'],
+        numberChapters:
+            map['numberChapters'] != null ? map['numberChapters'] as int : null,
+        sequence: map['sequence'] != null ? map['sequence'] as int : null,
+      );
+    } catch (e) {
+      throw Exception('Error parsing BookView.fromMap: $e\nMap: $map');
+    }
   }
   @override
   String toJson() => json.encode(toMap());

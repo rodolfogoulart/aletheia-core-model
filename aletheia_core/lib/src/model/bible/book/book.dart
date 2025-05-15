@@ -120,14 +120,18 @@ class Book {
   }
 
   factory Book.fromMap(Map<String, dynamic> map) {
-    return Book(
-      id: map['id']?.toInt() ?? 0,
-      name: map['name'] ?? '',
-      abrev: map['abrev'] ?? '',
-      division: Division.fromMap(map['division']),
-      literaryGenre: map['literaryGenre'],
-      cannon: map['cannon'],
-    );
+    try {
+      return Book(
+        id: map['id']?.toInt() ?? 0,
+        name: map['name'] ?? '',
+        abrev: map['abrev'] ?? '',
+        division: Division.fromMap(map['division']),
+        literaryGenre: map['literaryGenre'],
+        cannon: map['cannon'],
+      );
+    } catch (e) {
+      throw Exception('Error parsing Book.fromMap: $e, map: $map');
+    }
   }
 
   String toJson() => json.encode(toMap());

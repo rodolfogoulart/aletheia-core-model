@@ -57,17 +57,21 @@ class Verse extends VerseCore {
   }
 
   factory Verse.fromMap(Map<String, dynamic> map) {
-    return Verse(
-      id: map['id']?.toInt() ?? 0,
-      idBibleVersion: map['idBibleVersion']?.toInt() ?? 0,
-      idBook: map['idBook']?.toInt() ?? 0,
-      numberChapter: map['numberChapter']?.toInt() ?? 0,
-      numberVerse: map['numberVerse']?.toInt() ?? 0,
-      numberVerseEnd: map['numberVerseEnd']?.toInt(),
-      content:
-          List<Content>.from(map['content']?.map((x) => Content.fromMap(x))),
-      contentWithOutFormat: map['contentWithOutFormat'] ?? '',
-    );
+    try {
+      return Verse(
+        id: map['id']?.toInt() ?? 0,
+        idBibleVersion: map['idBibleVersion']?.toInt() ?? 0,
+        idBook: map['idBook']?.toInt() ?? 0,
+        numberChapter: map['numberChapter']?.toInt() ?? 0,
+        numberVerse: map['numberVerse']?.toInt() ?? 0,
+        numberVerseEnd: map['numberVerseEnd']?.toInt(),
+        content:
+            List<Content>.from(map['content']?.map((x) => Content.fromMap(x))),
+        contentWithOutFormat: map['contentWithOutFormat'] ?? '',
+      );
+    } catch (e) {
+      throw Exception('Error parsing Verse.fromMap: $e, map: $map');
+    }
   }
 
   factory Verse.fromVerseView(VerseView verseView) {

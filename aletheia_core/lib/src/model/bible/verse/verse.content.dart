@@ -250,8 +250,8 @@ class Content {
     }
     if (refLexicos != null) {
       //todo: alterar para 'rL' em próxima versão
-      // result.addAll({'rS': refLexicos});
-      result.addAll({'rL': refLexicos});
+      result.addAll({'rS': refLexicos});
+      // result.addAll({'rL': refLexicos});
     }
     if (subText != null) {
       if (subText?.isNotEmpty == true) {
@@ -282,45 +282,49 @@ class Content {
   }
 
   factory Content.fromMap(Map<String, dynamic> map) {
-    List<Footnote>? footnote;
     try {
-      footnote = map['fn'] != null
-          ? List<Footnote>.from(map['fn']?.map((x) => Footnote.fromMap(x)))
-          : null;
+      List<Footnote>? footnote;
+      try {
+        footnote = map['fn'] != null
+            ? List<Footnote>.from(map['fn']?.map((x) => Footnote.fromMap(x)))
+            : null;
+      } catch (e) {
+        footnote = null;
+      }
+      List<String>? refLexicos;
+      try {
+        refLexicos = (map['rS'] != null || map['rL'] != null)
+            ? List<String>.from(map['rS'] ?? map['rL'])
+            : null;
+      } catch (e) {
+        refLexicos = null;
+      }
+      //
+      return Content(
+        seq: map['sq']?.toInt() ?? 0,
+        text: map['T'] ?? '',
+        typeContent: TypeContent.fromMap(map['tC']),
+        attributes:
+            map['at'] != null ? Map<String, dynamic>.from(map['at']) : null,
+        //change the Key name to match the new name 06/05/2024
+        //assume the refLexicos is rS (to older versions) or rL (to newer versions)
+        // refLexicos: (map['rS'] != null) ? List<String>.from(map['rS']) : null,
+        refLexicos: refLexicos,
+        subText: map['sT'] != null
+            ? List<SubText>.from(map['sT']?.map((x) => SubText.fromMap(x)))
+            : null,
+        anottation: map['an'],
+        comment: map['cm'],
+        reference: map['rf'] != null
+            ? List<Reference>.from(map['rf']?.map((x) => Reference.fromMap(x)))
+            : null,
+        footnote: footnote,
+        paragraph:
+            map['pr'] != null ? (map['pr'] == false ? null : map['pr']) : null,
+      );
     } catch (e) {
-      footnote = null;
+      throw Exception('Error in Content.fromMap: $e\nMap: $map');
     }
-    List<String>? refLexicos;
-    try {
-      refLexicos = (map['rS'] != null || map['rL'] != null)
-          ? List<String>.from(map['rS'] ?? map['rL'])
-          : null;
-    } catch (e) {
-      refLexicos = null;
-    }
-    //
-    return Content(
-      seq: map['sq']?.toInt() ?? 0,
-      text: map['T'] ?? '',
-      typeContent: TypeContent.fromMap(map['tC']),
-      attributes:
-          map['at'] != null ? Map<String, dynamic>.from(map['at']) : null,
-      //change the Key name to match the new name 06/05/2024
-      //assume the refLexicos is rS (to older versions) or rL (to newer versions)
-      // refLexicos: (map['rS'] != null) ? List<String>.from(map['rS']) : null,
-      refLexicos: refLexicos,
-      subText: map['sT'] != null
-          ? List<SubText>.from(map['sT']?.map((x) => SubText.fromMap(x)))
-          : null,
-      anottation: map['an'],
-      comment: map['cm'],
-      reference: map['rf'] != null
-          ? List<Reference>.from(map['rf']?.map((x) => Reference.fromMap(x)))
-          : null,
-      footnote: footnote,
-      paragraph:
-          map['pr'] != null ? (map['pr'] == false ? null : map['pr']) : null,
-    );
   }
 
   String toJson() => json.encode(toMap());

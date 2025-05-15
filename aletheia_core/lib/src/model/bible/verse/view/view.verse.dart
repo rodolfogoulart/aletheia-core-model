@@ -129,42 +129,46 @@ class VerseView extends VerseCore {
   }
 
   factory VerseView.fromMap(Map<String, dynamic> map) {
-    return VerseView(
-      id: map['id'] as int,
-      idBibleVersion: map['idBibleVersion'] as int,
-      idBook: map['idBook'] as int,
-      numberChapter: map['numberChapter'] as int,
-      numberVerse: map['numberVerse'] as int,
-      numberVerseEnd: map['numberVerseEnd'] as int?,
-      contentWithOutFormat: map['contentWithOutFormat'] as String,
-      content: map['content'] != null
-          ? List<Content>.from(
-              (map['content'] as List).map((x) => Content.fromMap(x)))
-          : [],
-      userVerseData: map['userVerseData'] != null
-          ? UserVerse.fromMap(map['userVerseData'] as Map<String, dynamic>)
-          : null,
-      crossReferences: map['crossReferences'] != null
-          ? List<VerseCrossReference>.from(
-              (map['crossReferences'] as List).map<VerseCrossReference?>(
-                (x) => VerseCrossReference.fromMap(x),
-              ),
-            )
-          : null,
-      strongReferences: map['strongReferences'] != null
-          ? List<Lexico>.from(
-              (map['strongReferences'] as List).map<Lexico?>(
-                (x) => Lexico.fromMap(x),
-              ),
-            )
-          : null,
-      book: map['book'] != null
-          ? Book.fromMap(map['book'] as Map<String, dynamic>)
-          : null,
-      bibleVersion: map['bibleVersion'] != null
-          ? BibleVersion.fromMap(map['bibleVersion'] as Map<String, dynamic>)
-          : null,
-    );
+    try {
+      return VerseView(
+        id: map['id'] as int,
+        idBibleVersion: map['idBibleVersion'] as int,
+        idBook: map['idBook'] as int,
+        numberChapter: map['numberChapter'] as int,
+        numberVerse: map['numberVerse'] as int,
+        numberVerseEnd: map['numberVerseEnd'] as int?,
+        contentWithOutFormat: map['contentWithOutFormat'] as String,
+        content: map['content'] != null
+            ? List<Content>.from(
+                (map['content'] as List).map((x) => Content.fromMap(x)))
+            : [],
+        userVerseData: map['userVerseData'] != null
+            ? UserVerse.fromMap(map['userVerseData'] as Map<String, dynamic>)
+            : null,
+        crossReferences: map['crossReferences'] != null
+            ? List<VerseCrossReference>.from(
+                (map['crossReferences'] as List).map<VerseCrossReference?>(
+                  (x) => VerseCrossReference.fromMap(x),
+                ),
+              )
+            : null,
+        strongReferences: map['strongReferences'] != null
+            ? List<Lexico>.from(
+                (map['strongReferences'] as List).map<Lexico?>(
+                  (x) => Lexico.fromMap(x),
+                ),
+              )
+            : null,
+        book: map['book'] != null
+            ? Book.fromMap(map['book'] as Map<String, dynamic>)
+            : null,
+        bibleVersion: map['bibleVersion'] != null
+            ? BibleVersion.fromMap(map['bibleVersion'] as Map<String, dynamic>)
+            : null,
+      );
+    } catch (e) {
+      throw Exception('Error parsing VerseView.fromMap: $e');
+    }
   }
 
   String toJson() => json.encode(toMap());
