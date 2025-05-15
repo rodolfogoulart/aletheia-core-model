@@ -166,9 +166,9 @@ class VerseView extends VerseCore {
             ? BibleVersion.fromMap(map['bibleVersion'] as Map<String, dynamic>)
             : null,
       );
-    } catch (e) {
+    } catch (e, stackTrace) {
       throw Exception(
-          'Error parsing VerseView.fromMap: $e, stack: ${StackTrace.current}, map: $map');
+          'Error parsing VerseView.fromMap: $e, \nStack: $stackTrace, \nMap: $map');
     }
   }
 
