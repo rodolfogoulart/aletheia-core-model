@@ -167,7 +167,8 @@ class VerseView extends VerseCore {
             : null,
       );
     } catch (e) {
-      throw Exception('Error parsing VerseView.fromMap: $e');
+      throw Exception(
+          'Error parsing VerseView.fromMap: $e, stack: ${StackTrace.current}, map: $map');
     }
   }
 
