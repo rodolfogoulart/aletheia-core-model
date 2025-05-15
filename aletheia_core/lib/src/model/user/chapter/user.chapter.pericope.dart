@@ -120,40 +120,45 @@ class Pericope {
   }
 
   factory Pericope.fromMap(Map<String, dynamic> map) {
-    return Pericope(
-      id: map['id'] as dynamic,
-      idChapter: map['idChapter'] as dynamic,
-      start: map['start'] as int,
-      end: map['end'] as int,
-      color: map['color'] as int,
-      title: map['title'] != null ? map['title'] as String : null,
-      description:
-          map['description'] != null ? map['description'] as String : null,
-      references: map['references'] != null
-          ? List<Reference>.from(
-              (map['references'] as List).map<Reference?>(
-                (x) => Reference.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
-      tags: map['tags'] != null
-          ? List<Tags>.from(
-              (map['tags'] as List).map<Tags?>(
-                (x) => Tags.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
-      icon: map['icon'] != null ? map['icon'] as String : null,
-      createAt: map['createAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['createAt'])
-          : null,
-      updateAt: map['updateAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['updateAt'])
-          : null,
-      idUserNotes: map['idUserNotes'] != null
-          ? List.from((map['idUserNotes'] as List))
-          : null,
-    );
+    try {
+      return Pericope(
+        id: map['id'] as dynamic,
+        idChapter: map['idChapter'] as dynamic,
+        start: map['start'] as int,
+        end: map['end'] as int,
+        color: map['color'] as int,
+        title: map['title'] != null ? map['title'] as String : null,
+        description:
+            map['description'] != null ? map['description'] as String : null,
+        references: map['references'] != null
+            ? List<Reference>.from(
+                (map['references'] as List).map<Reference?>(
+                  (x) => Reference.fromMap(x as Map<String, dynamic>),
+                ),
+              )
+            : null,
+        tags: map['tags'] != null
+            ? List<Tags>.from(
+                (map['tags'] as List).map<Tags?>(
+                  (x) => Tags.fromMap(x as Map<String, dynamic>),
+                ),
+              )
+            : null,
+        icon: map['icon'] != null ? map['icon'] as String : null,
+        createAt: map['createAt'] != null
+            ? DateTime.fromMillisecondsSinceEpoch(map['createAt'])
+            : null,
+        updateAt: map['updateAt'] != null
+            ? DateTime.fromMillisecondsSinceEpoch(map['updateAt'])
+            : null,
+        idUserNotes: map['idUserNotes'] != null
+            ? List.from((map['idUserNotes'] as List))
+            : null,
+      );
+    } catch (e, stackTrace) {
+      throw Exception(
+          'Error parsing Pericope.fromMap: $e, map: $map, stackTrace: $stackTrace');
+    }
   }
 
   String toJson() => json.encode(toMap());

@@ -70,18 +70,23 @@ class GoogleServiceAccountCredentialsConfig {
 
   factory GoogleServiceAccountCredentialsConfig.fromMap(
       Map<String, dynamic> map) {
-    return GoogleServiceAccountCredentialsConfig(
-      type: map['type'] ?? '',
-      projectId: map['project_id'] ?? '',
-      privateKeyId: map['private_key_id'] ?? '',
-      privateKey: map['private_key'] ?? '',
-      clientEmail: map['client_email'] ?? '',
-      clientId: map['client_id'] ?? '',
-      authUri: map['auth_uri'] ?? '',
-      tokenUri: map['token_uri'] ?? '',
-      authProviderX509CertUrl: map['auth_provider_x509_cert_url'] ?? '',
-      clientX509CertUrl: map['client_x509_cert_url'] ?? '',
-    );
+    try {
+      return GoogleServiceAccountCredentialsConfig(
+        type: map['type'] ?? '',
+        projectId: map['project_id'] ?? '',
+        privateKeyId: map['private_key_id'] ?? '',
+        privateKey: map['private_key'] ?? '',
+        clientEmail: map['client_email'] ?? '',
+        clientId: map['client_id'] ?? '',
+        authUri: map['auth_uri'] ?? '',
+        tokenUri: map['token_uri'] ?? '',
+        authProviderX509CertUrl: map['auth_provider_x509_cert_url'] ?? '',
+        clientX509CertUrl: map['client_x509_cert_url'] ?? '',
+      );
+    } catch (e, stackTrace) {
+      throw Exception(
+          'Error parsing GoogleServiceAccountCredentialsConfig.fromMap: $e\nStackTrace: $stackTrace\nMap: $map');
+    }
   }
 
   String toJson() => json.encode(toMap());

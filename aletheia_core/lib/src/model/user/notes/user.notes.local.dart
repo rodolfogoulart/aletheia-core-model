@@ -36,15 +36,19 @@ class UserNotesLocal {
   }
 
   factory UserNotesLocal.fromMap(Map<String, dynamic> map) {
-    return UserNotesLocal(
-      date: List<DateTime>.from(
-        (map['date'] as List).map<DateTime>(
-          (x) => DateTime.fromMillisecondsSinceEpoch(x),
+    try {
+      return UserNotesLocal(
+        date: List<DateTime>.from(
+          (map['date'] as List).map<DateTime>(
+            (x) => DateTime.fromMillisecondsSinceEpoch(x),
+          ),
         ),
-      ),
-      place: map['place'] as String,
-      obs: map['obs'] != null ? map['obs'] as String : null,
-    );
+        place: map['place'] as String,
+        obs: map['obs'] != null ? map['obs'] as String : null,
+      );
+    } catch (e, stackTrace) {
+      throw Exception('Error parsing UserNotesLocal.fromMap: $e\n$stackTrace');
+    }
   }
 
   String toJson() => json.encode(toMap());

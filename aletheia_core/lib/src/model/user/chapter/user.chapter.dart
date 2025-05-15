@@ -62,26 +62,33 @@ class UserChapter {
   }
 
   factory UserChapter.fromMap(Map<String, dynamic> map) {
-    return UserChapter(
-      id: map['id'] as dynamic,
-      chapter: map['chapter'] as int,
-      idBook: map['idBook'] as int,
-      pericopes: map['pericopes'] != null
-          ? List<Pericope>.from(
-              (map['pericopes'] as List).map<Pericope?>(
-                (x) => Pericope.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
-      notes: map['notes'] != null ? map['notes'] as String : null,
-      references: map['references'] != null
-          ? List<Reference>.from(
-              (map['references'] as List).map<Reference?>(
-                (x) => Reference.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
-    );
+    try {
+      return UserChapter(
+        id: map['id'] as dynamic,
+        chapter: map['chapter'] as int,
+        idBook: map['idBook'] as int,
+        pericopes: map['pericopes'] != null
+            ? List<Pericope>.from(
+                (map['pericopes'] as List).map<Pericope?>(
+                  (x) => Pericope.fromMap(x as Map<String, dynamic>),
+                ),
+              )
+            : null,
+        notes: map['notes'] != null ? map['notes'] as String : null,
+        references: map['references'] != null
+            ? List<Reference>.from(
+                (map['references'] as List).map<Reference?>(
+                  (x) => Reference.fromMap(x as Map<String, dynamic>),
+                ),
+              )
+            : null,
+      );
+      
+    } catch (e, stackTrace) {
+      throw Exception(
+          'Error parsing UserChapter.fromMap: $e, stackTrace: $stackTrace, map: $map');
+      
+    }
   }
 
   String toJson() => json.encode(toMap());

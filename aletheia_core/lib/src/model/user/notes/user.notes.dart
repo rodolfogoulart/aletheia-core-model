@@ -139,35 +139,39 @@ class UserNotes {
   }
 
   factory UserNotes.fromMap(Map<String, dynamic> map) {
-    return UserNotes(
-      id: map['id'],
-      title: map['title'] != null ? map['title'] as String : null,
-      tags: map['tags'] != null
-          ? List<Tags>.from(
-              (map['tags'] as List).map<Tags?>(
-                (x) => Tags.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
-      notes: map['notes'] != null ? map['notes'] as String : null,
-      date: DateTime.fromMillisecondsSinceEpoch(map['date']),
-      type: map['type'] != null ? TypeNotes.fromMap(map['type']) : null,
-      color: map['color'] != null ? int.tryParse(map['color']) : null,
-      references: map['references'] != null
-          ? List<Reference>.from(
-              (map['references']).map<Reference?>(
-                (x) => Reference.fromMap(x),
-              ),
-            )
-          : null,
-      locals: map['locals'] != null
-          ? List<UserNotesLocal>.from(
-              (map['locals'] as List).map<UserNotesLocal?>(
-                (x) => UserNotesLocal.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
-    );
+    try {
+      return UserNotes(
+        id: map['id'],
+        title: map['title'] != null ? map['title'] as String : null,
+        tags: map['tags'] != null
+            ? List<Tags>.from(
+                (map['tags'] as List).map<Tags?>(
+                  (x) => Tags.fromMap(x as Map<String, dynamic>),
+                ),
+              )
+            : null,
+        notes: map['notes'] != null ? map['notes'] as String : null,
+        date: DateTime.fromMillisecondsSinceEpoch(map['date']),
+        type: map['type'] != null ? TypeNotes.fromMap(map['type']) : null,
+        color: map['color'] != null ? int.tryParse(map['color']) : null,
+        references: map['references'] != null
+            ? List<Reference>.from(
+                (map['references']).map<Reference?>(
+                  (x) => Reference.fromMap(x),
+                ),
+              )
+            : null,
+        locals: map['locals'] != null
+            ? List<UserNotesLocal>.from(
+                (map['locals'] as List).map<UserNotesLocal?>(
+                  (x) => UserNotesLocal.fromMap(x as Map<String, dynamic>),
+                ),
+              )
+            : null,
+      );
+    } catch (e, stackTrace) {
+      throw Exception('Error parsing UserNotes.fromMap: $e\n$stackTrace');
+    }
   }
 
   String toJson() => json.encode(toMap());

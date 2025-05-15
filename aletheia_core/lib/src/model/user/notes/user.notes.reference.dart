@@ -57,14 +57,19 @@ class UserNotesReference {
   }
 
   factory UserNotesReference.fromMap(Map<String, dynamic> map) {
-    return UserNotesReference(
-      id: map['id']?.toInt() ?? 0,
-      idNotes: map['idNotes']?.toInt() ?? 0,
-      idBook: map['idBook']?.toInt(),
-      numberChapter: map['numberChapter']?.toInt(),
-      numberVerse: map['numberVerse']?.toInt(),
-      numberVerseEnd: map['numberVerseEnd']?.toInt(),
-    );
+    try {
+      return UserNotesReference(
+        id: map['id']?.toInt() ?? 0,
+        idNotes: map['idNotes']?.toInt() ?? 0,
+        idBook: map['idBook']?.toInt(),
+        numberChapter: map['numberChapter']?.toInt(),
+        numberVerse: map['numberVerse']?.toInt(),
+        numberVerseEnd: map['numberVerseEnd']?.toInt(),
+      );
+    } catch (e, stackTrace) {
+      throw Exception(
+          'Error parsing UserNotesReference.fromMap: $e, map: $map, stackTrace: $stackTrace');
+    }
   }
 
   String toJson() => json.encode(toMap());

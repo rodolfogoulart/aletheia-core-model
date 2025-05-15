@@ -26,12 +26,17 @@ class WordsHighlighted {
   }
 
   factory WordsHighlighted.fromMap(Map<String, dynamic> map) {
-    return WordsHighlighted(
-      version: map['version']?.toInt() ?? 0,
-      start: map['start']?.toInt() ?? 0,
-      end: map['end']?.toInt() ?? 0,
-      color: map['color']?.toInt(),
-    );
+    try {
+      return WordsHighlighted(
+        version: map['version']?.toInt() ?? 0,
+        start: map['start']?.toInt() ?? 0,
+        end: map['end']?.toInt() ?? 0,
+        color: map['color']?.toInt(),
+      );
+    } catch (e, stackTrace) {
+      throw Exception(
+          'Error parsing WordsHighlighted.fromMap: $e, \nstackTrace: $stackTrace, \nmap: $map');
+    }
   }
 
   String toJson() => json.encode(toMap());

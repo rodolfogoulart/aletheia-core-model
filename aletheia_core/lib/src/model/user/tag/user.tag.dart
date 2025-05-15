@@ -59,19 +59,24 @@ class Tags {
   }
 
   factory Tags.fromMap(Map<String, dynamic> map) {
-    return Tags(
-      id: map['id'] as dynamic,
-      name: map['name'] as String,
-      active: map['active'] as bool,
-      description:
-          map['description'] != null ? map['description'] as String : null,
-      createAt: map['createAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['createAt'] as int)
-          : null,
-      updateAt: map['updateAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['updateAt'] as int)
-          : null,
-    );
+    try {
+      return Tags(
+        id: map['id'] as dynamic,
+        name: map['name'] as String,
+        active: map['active'] as bool,
+        description:
+            map['description'] != null ? map['description'] as String : null,
+        createAt: map['createAt'] != null
+            ? DateTime.fromMillisecondsSinceEpoch(map['createAt'] as int)
+            : null,
+        updateAt: map['updateAt'] != null
+            ? DateTime.fromMillisecondsSinceEpoch(map['updateAt'] as int)
+            : null,
+      );
+    } catch (e, stackTrace) {
+      throw Exception(
+          'Error parsing Tags.fromMap: $e, \nstackTrace: $stackTrace, \nmap: $map');
+    }
   }
 
   String toJson() => json.encode(toMap());

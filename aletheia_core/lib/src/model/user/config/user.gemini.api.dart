@@ -43,13 +43,17 @@ class GeminiApiConfig {
   }
 
   factory GeminiApiConfig.fromMap(Map<String, dynamic> map) {
-    return GeminiApiConfig(
-      apiKey: map['apiKey'] as String,
-      temperature: map['temperature'] as double,
-      topK: map['topK'] as int,
-      topP: map['topP'] as double,
-      maxOutputTokens: map['maxOutputTokens'] as int,
-    );
+    try {
+      return GeminiApiConfig(
+        apiKey: map['apiKey'] as String,
+        temperature: map['temperature'] as double,
+        topK: map['topK'] as int,
+        topP: map['topP'] as double,
+        maxOutputTokens: map['maxOutputTokens'] as int,
+      );
+    } catch (e, stackTrace) {
+      throw Exception('Error parsing GeminiApiConfig.fromMap: $e\n$stackTrace');
+    }
   }
 
   String toJson() => json.encode(toMap());

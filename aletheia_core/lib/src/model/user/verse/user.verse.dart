@@ -100,7 +100,7 @@ class UserVerse {
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    var data = <String, dynamic>{
       'id': id,
       'numberChapter': numberChapter,
       'numberVerse': numberVerse,
@@ -111,28 +111,36 @@ class UserVerse {
       'references': references?.map((x) => x.toMap()).toList(),
       'idBook': idBook,
     };
+    // Remove null values from the map
+    data.removeWhere((key, value) => value == null);
+    return data;
   }
 
   factory UserVerse.fromMap(Map<String, dynamic> map) {
-    return UserVerse(
-      id: map['id'] ?? 0,
-      numberChapter: map['numberChapter'] ?? 0,
-      numberVerse: map['numberVerse'] ?? 0,
-      isVersesHighlighted: map['isVersesHighlighted'] ?? false,
-      colorVersesHighlighted: map['colorVersesHighlighted'] != null
-          ? int.tryParse(map['colorVersesHighlighted'])
-          : null,
-      notes: map['notes'],
-      wordsHighlighted: map['wordsHighlighted'] != null
-          ? List<WordsHighlighted>.from(
-              map['wordsHighlighted']?.map((x) => WordsHighlighted.fromMap(x)))
-          : null,
-      references: map['references'] != null
-          ? List<Reference>.from(
-              map['references']?.map((x) => Reference.fromMap(x)))
-          : null,
-      idBook: map['idBook'] ?? 0,
-    );
+    try {
+      return UserVerse(
+        id: map['id'] ?? 0,
+        numberChapter: map['numberChapter'] ?? 0,
+        numberVerse: map['numberVerse'] ?? 0,
+        isVersesHighlighted: map['isVersesHighlighted'] ?? false,
+        colorVersesHighlighted: map['colorVersesHighlighted'] != null
+            ? int.tryParse(map['colorVersesHighlighted'].toString())
+            : null,
+        notes: map['notes'],
+        wordsHighlighted: map['wordsHighlighted'] != null
+            ? List<WordsHighlighted>.from(map['wordsHighlighted']
+                ?.map((x) => WordsHighlighted.fromMap(x)))
+            : null,
+        references: map['references'] != null
+            ? List<Reference>.from(
+                map['references']?.map((x) => Reference.fromMap(x)))
+            : null,
+        idBook: map['idBook'] ?? 0,
+      );
+    } catch (e, stackTrace) {
+      throw Exception(
+          'Error parsing UserVerse.fromMap: $e, \nMap: $map\nStack: $stackTrace');
+    }
   }
 
   String toJson() => json.encode(toMap());

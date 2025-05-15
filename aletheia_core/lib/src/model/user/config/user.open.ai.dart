@@ -65,15 +65,20 @@ class OpenAIConfig {
   }
 
   factory OpenAIConfig.fromMap(Map<String, dynamic> map) {
-    return OpenAIConfig(
-      token: map['token'] ?? '',
-      frequencyPenalty: map['frequencyPenalty']?.toDouble() ?? 0.0,
-      maxTokens: map['maxTokens']?.toInt() ?? 0,
-      topP: map['topP']?.toDouble() ?? 0.0,
-      presencePenalty: map['presencePenalty']?.toDouble() ?? 0.0,
-      temperature: map['temperature']?.toDouble() ?? 0.0,
-      model: map['model'] ?? '',
-    );
+    try {
+      return OpenAIConfig(
+        token: map['token'] ?? '',
+        frequencyPenalty: map['frequencyPenalty']?.toDouble() ?? 0.0,
+        maxTokens: map['maxTokens']?.toInt() ?? 0,
+        topP: map['topP']?.toDouble() ?? 0.0,
+        presencePenalty: map['presencePenalty']?.toDouble() ?? 0.0,
+        temperature: map['temperature']?.toDouble() ?? 0.0,
+        model: map['model'] ?? '',
+      );
+    } catch (e, stackTrace) {
+      throw Exception(
+          'Error parsing OpenAIConfig.fromMap: $e, \nstackTrace: $stackTrace, \nmap: $map');
+    }
   }
 
   String toJson() => json.encode(toMap());
