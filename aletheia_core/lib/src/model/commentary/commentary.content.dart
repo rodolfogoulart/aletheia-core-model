@@ -35,19 +35,27 @@ class CommentaryContent {
     }
     result.addAll({'content': content});
 
+    // Remove null values from the map
+    result.removeWhere((key, value) => value == null);
+
     return result;
   }
 
   factory CommentaryContent.fromMap(Map<String, dynamic> map) {
-    return CommentaryContent(
-      id: map['id']?.toInt() ?? 0,
-      idCommentary: map['idCommentary']?.toInt() ?? 0,
-      idBook: map['idBook']?.toInt() ?? 0,
-      chapter: map['chapter']?.toInt(),
-      verse: map['verse']?.toInt(),
-      verseEnd: map['verseEnd']?.toInt(),
-      content: map['content'] ?? '',
-    );
+    try {
+      return CommentaryContent(
+        id: map['id']?.toInt() ?? 0,
+        idCommentary: map['idCommentary']?.toInt() ?? 0,
+        idBook: map['idBook']?.toInt() ?? 0,
+        chapter: map['chapter']?.toInt(),
+        verse: map['verse']?.toInt(),
+        verseEnd: map['verseEnd']?.toInt(),
+        content: map['content'] ?? '',
+      );
+    } catch (e, stackTrace) {
+      throw Exception(
+          'Error parsing CommentaryContent from map: $e\n$stackTrace');
+    }
   }
 
   String toJson() => json.encode(toMap());

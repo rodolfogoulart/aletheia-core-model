@@ -34,18 +34,25 @@ class Commentary {
       result.addAll({'htmlStyle': htmlStyle});
     }
 
+    // Remove null values from the map
+    result.removeWhere((key, value) => value == null);
+
     return result;
   }
 
   factory Commentary.fromMap(Map<String, dynamic> map) {
-    return Commentary(
-      id: map['id']?.toInt() ?? 0,
-      name: map['name'] ?? '',
-      description: map['description'],
-      author: map['author'],
-      copyright: map['copyright'],
-      htmlStyle: map['htmlStyle'],
-    );
+    try {
+      return Commentary(
+        id: map['id']?.toInt() ?? 0,
+        name: map['name'] ?? '',
+        description: map['description'],
+        author: map['author'],
+        copyright: map['copyright'],
+        htmlStyle: map['htmlStyle'],
+      );
+    } catch (e, stackTrace) {
+      throw Exception('Error parsing Commentary from map: $e\n$stackTrace');
+    }
   }
 
   String toJson() => json.encode(toMap());
