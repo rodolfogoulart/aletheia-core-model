@@ -9,10 +9,17 @@ class UserVerse {
   int id;
   int numberChapter;
   int numberVerse;
-  bool isVersesHighlighted;
+  bool isVersesHighlighted = false;
 
   ///store the verse highlighted color
-  int? colorVersesHighlighted;
+  int? _colorVersesHighlighted;
+
+  int? get colorVersesHighlighted => _colorVersesHighlighted;
+
+  set colorVersesHighlighted(int? value) {
+    isVersesHighlighted = value != null;
+    _colorVersesHighlighted = value;
+  }
 
   ///store a json quill delta
   String? notes;
@@ -32,17 +39,19 @@ class UserVerse {
     required this.id,
     required this.numberChapter,
     required this.numberVerse,
-    required this.isVersesHighlighted,
-    this.colorVersesHighlighted,
+    int? colorVersesHighlighted,
     this.notes,
     this.wordsHighlighted,
     this.references,
     required this.idBook,
-  });
+  }) : _colorVersesHighlighted = colorVersesHighlighted {
+    //unnecessary field on the database
+    isVersesHighlighted = _colorVersesHighlighted != null;
+  }
 
   @override
   String toString() {
-    return 'UserVerse(id: $id, numberChapter: $numberChapter, numberVerse: $numberVerse, isVersesHighlighted: $isVersesHighlighted, colorVersesHighlighted: $colorVersesHighlighted, notes: $notes, wordsHighlighted: $wordsHighlighted, references: $references, idBook: $idBook)';
+    return 'UserVerse(id: $id, numberChapter: $numberChapter, numberVerse: $numberVerse, colorVersesHighlighted: $_colorVersesHighlighted, notes: $notes, wordsHighlighted: $wordsHighlighted, references: $references, idBook: $idBook)';
   }
 
   @override
@@ -54,7 +63,7 @@ class UserVerse {
         other.numberChapter == numberChapter &&
         other.numberVerse == numberVerse &&
         other.isVersesHighlighted == isVersesHighlighted &&
-        other.colorVersesHighlighted == colorVersesHighlighted &&
+        other._colorVersesHighlighted == _colorVersesHighlighted &&
         other.notes == notes &&
         listEquals(other.wordsHighlighted, wordsHighlighted) &&
         listEquals(other.references, references) &&
@@ -67,7 +76,7 @@ class UserVerse {
         numberChapter.hashCode ^
         numberVerse.hashCode ^
         isVersesHighlighted.hashCode ^
-        colorVersesHighlighted.hashCode ^
+        _colorVersesHighlighted.hashCode ^
         notes.hashCode ^
         wordsHighlighted.hashCode ^
         references.hashCode ^
@@ -89,9 +98,8 @@ class UserVerse {
       id: id ?? this.id,
       numberChapter: numberChapter ?? this.numberChapter,
       numberVerse: numberVerse ?? this.numberVerse,
-      isVersesHighlighted: isVersesHighlighted ?? this.isVersesHighlighted,
       colorVersesHighlighted:
-          colorVersesHighlighted ?? this.colorVersesHighlighted,
+          colorVersesHighlighted ?? this._colorVersesHighlighted,
       notes: notes ?? this.notes,
       wordsHighlighted: wordsHighlighted ?? this.wordsHighlighted,
       references: references ?? this.references,
@@ -104,8 +112,7 @@ class UserVerse {
       'id': id,
       'numberChapter': numberChapter,
       'numberVerse': numberVerse,
-      'isVersesHighlighted': isVersesHighlighted,
-      'colorVersesHighlighted': colorVersesHighlighted,
+      'colorVersesHighlighted': _colorVersesHighlighted,
       'notes': notes,
       'wordsHighlighted': wordsHighlighted?.map((x) => x.toMap()).toList(),
       'references': references?.map((x) => x.toMap()).toList(),
@@ -122,7 +129,6 @@ class UserVerse {
         id: map['id'] ?? 0,
         numberChapter: map['numberChapter'] ?? 0,
         numberVerse: map['numberVerse'] ?? 0,
-        isVersesHighlighted: map['isVersesHighlighted'] ?? false,
         colorVersesHighlighted: map['colorVersesHighlighted'] != null
             ? int.tryParse(map['colorVersesHighlighted'].toString())
             : null,
