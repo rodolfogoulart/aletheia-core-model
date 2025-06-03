@@ -14,8 +14,8 @@ class VerseView extends VerseCore {
 
   ///from table strong
   List<Lexico>? strongReferences;
-  Book? book;
-  BibleVersion? bibleVersion;
+  // Book? book;
+  // BibleVersion? bibleVersion;
 
   VerseView({
     super.id = 0,
@@ -29,8 +29,8 @@ class VerseView extends VerseCore {
     this.userVerseData,
     this.crossReferences,
     this.strongReferences,
-    this.book,
-    this.bibleVersion,
+    // this.book,
+    // this.bibleVersion,
   });
 
   factory VerseView.fromVerseCore(VerseCore verseCore) {
@@ -74,8 +74,8 @@ class VerseView extends VerseCore {
       crossReferences: crossReferences ?? this.crossReferences,
       content: content ?? this.content,
       strongReferences: strongReferences ?? this.strongReferences,
-      book: book ?? this.book,
-      bibleVersion: bibleVersion ?? this.bibleVersion,
+      // book: book ?? this.book,
+      // bibleVersion: bibleVersion ?? this.bibleVersion,
     );
   }
 
@@ -87,23 +87,25 @@ class VerseView extends VerseCore {
     return other is VerseView &&
         other.userVerseData == userVerseData &&
         listEquals(other.crossReferences, crossReferences) &&
-        listEquals(other.strongReferences, strongReferences) &&
-        other.book == book &&
-        other.bibleVersion == bibleVersion;
+        listEquals(other.strongReferences, strongReferences);
+    // &&
+    // other.book == book &&
+    // other.bibleVersion == bibleVersion;
   }
 
   @override
   int get hashCode {
     return userVerseData.hashCode ^
         crossReferences.hashCode ^
-        strongReferences.hashCode ^
-        book.hashCode ^
-        bibleVersion.hashCode;
+        strongReferences.hashCode;
+    // ^
+    // book.hashCode ^
+    // bibleVersion.hashCode;
   }
 
   @override
   String toString() {
-    return 'VerseView(userVerseData: $userVerseData, crossReferences: $crossReferences, strongReferences: $strongReferences, book: $book, bibleVersion: $bibleVersion)';
+    return 'VerseView(userVerseData: $userVerseData, crossReferences: $crossReferences, strongReferences: $strongReferences,)'; // book: $book, bibleVersion: $bibleVersion)';
   }
 
   Map<String, dynamic> toMap() {
@@ -120,8 +122,8 @@ class VerseView extends VerseCore {
       'userVerseData': userVerseData?.toMap(),
       'crossReferences': crossReferences?.map((x) => x.toMap()).toList(),
       'strongReferences': strongReferences?.map((x) => x.toMap()).toList(),
-      'book': book?.toMap(),
-      'bibleVersion': bibleVersion?.toMap(),
+      // 'book': book?.toMap(),
+      // 'bibleVersion': bibleVersion?.toMap(),
     };
     // Remove null values from the map
     data.removeWhere((key, value) => value == null);
@@ -159,12 +161,12 @@ class VerseView extends VerseCore {
                 ),
               )
             : null,
-        book: map['book'] != null
-            ? Book.fromMap(map['book'] as Map<String, dynamic>)
-            : null,
-        bibleVersion: map['bibleVersion'] != null
-            ? BibleVersion.fromMap(map['bibleVersion'] as Map<String, dynamic>)
-            : null,
+        // book: map['book'] != null
+        //     ? Book.fromMap(map['book'] as Map<String, dynamic>)
+        //     : null,
+        // bibleVersion: map['bibleVersion'] != null
+        //     ? BibleVersion.fromMap(map['bibleVersion'] as Map<String, dynamic>)
+        //     : null,
       );
     } catch (e, stackTrace) {
       throw Exception(
