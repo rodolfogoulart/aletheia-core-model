@@ -13,8 +13,6 @@ import 'package:aletheia_core/aletheia_core_model.dart';
 ///
 ///An extract from a text passage
 class Pericope {
-  dynamic id;
-
   ///identifier of the UserChapter
   dynamic idChapter;
 
@@ -49,12 +47,13 @@ class Pericope {
   DateTime? updateAt;
 
   ///List of messages related to this Pericope
-  ///
   ///store the id of the UserNotes
   List<dynamic>? idUserNotes;
 
+  String? uuid;
+  int? hlc;
+
   Pericope({
-    this.id,
     this.idChapter,
     required this.start,
     required this.end,
@@ -67,10 +66,11 @@ class Pericope {
     this.createAt,
     this.updateAt,
     this.idUserNotes,
+    this.uuid,
+    this.hlc,
   });
 
   Pericope copyWith({
-    dynamic id,
     dynamic idChapter,
     int? start,
     int? end,
@@ -83,9 +83,10 @@ class Pericope {
     DateTime? createAt,
     DateTime? updateAt,
     List<dynamic>? idUserNotes,
+    String? uuid,
+    int? hlc,
   }) {
     return Pericope(
-      id: id ?? this.id,
       idChapter: idChapter ?? this.idChapter,
       start: start ?? this.start,
       end: end ?? this.end,
@@ -98,12 +99,13 @@ class Pericope {
       createAt: createAt ?? this.createAt,
       updateAt: updateAt ?? this.updateAt,
       idUserNotes: idUserNotes ?? this.idUserNotes,
+      uuid: uuid ?? this.uuid,
+      hlc: hlc ?? this.hlc,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
       'idChapter': idChapter,
       'start': start,
       'end': end,
@@ -116,13 +118,14 @@ class Pericope {
       'createAt': createAt?.millisecondsSinceEpoch,
       'updateAt': updateAt?.millisecondsSinceEpoch,
       'idUserNotes': idUserNotes,
+      'uuid': uuid,
+      'hlc': hlc,
     };
   }
 
   factory Pericope.fromMap(Map<String, dynamic> map) {
     try {
       return Pericope(
-        id: map['id'] as dynamic,
         idChapter: map['idChapter'] as dynamic,
         start: map['start'] as int,
         end: map['end'] as int,
@@ -154,6 +157,8 @@ class Pericope {
         idUserNotes: map['idUserNotes'] != null
             ? List.from((map['idUserNotes'] as List))
             : null,
+        uuid: map['uuid'],
+        hlc: map['hlc'],
       );
     } catch (e, stackTrace) {
       throw Exception(
@@ -168,7 +173,7 @@ class Pericope {
 
   @override
   String toString() {
-    return 'Pericope(id: $id, idChapter: $idChapter, start: $start, end: $end, color: $color, title: $title, description: $description, references: $references, tags: $tags, icon: $icon, createAt: $createAt, updateAt: $updateAt, idUserNotes: $idUserNotes)';
+    return 'Pericope(idChapter: $idChapter, start: $start, end: $end, color: $color, title: $title, description: $description, references: $references, tags: $tags, icon: $icon, createAt: $createAt, updateAt: $updateAt, idUserNotes: $idUserNotes, uuid: $uuid, hlc: $hlc)';
   }
 
   @override
@@ -176,8 +181,7 @@ class Pericope {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
-    return other.id == id &&
-        other.idChapter == idChapter &&
+    return other.idChapter == idChapter &&
         other.start == start &&
         other.end == end &&
         other.color == color &&
@@ -188,13 +192,14 @@ class Pericope {
         other.icon == icon &&
         other.createAt == createAt &&
         other.updateAt == updateAt &&
-        listEquals(other.idUserNotes, idUserNotes);
+        listEquals(other.idUserNotes, idUserNotes) &&
+        other.uuid == uuid &&
+        other.hlc == hlc;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-        idChapter.hashCode ^
+    return idChapter.hashCode ^
         start.hashCode ^
         end.hashCode ^
         color.hashCode ^
@@ -205,6 +210,8 @@ class Pericope {
         icon.hashCode ^
         createAt.hashCode ^
         updateAt.hashCode ^
-        idUserNotes.hashCode;
+        idUserNotes.hashCode ^
+        uuid.hashCode ^
+        hlc.hashCode;
   }
 }

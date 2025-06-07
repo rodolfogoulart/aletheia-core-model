@@ -7,7 +7,6 @@ import 'package:aletheia_core/aletheia_core_model.dart';
 ///v1.0.16
 ///
 class UserChapter {
-  dynamic id;
   int chapter;
 
   ///id book of the verse
@@ -23,48 +22,55 @@ class UserChapter {
 
   ///store personal references of the chapter
   List<Reference>? references;
+
+  String? uuid;
+  int? hlc;
+
   UserChapter({
-    this.id,
     required this.chapter,
     required this.idBook,
     this.pericopes,
     this.notes,
     this.references,
+    this.uuid,
+    this.hlc,
   });
 
   UserChapter copyWith({
-    dynamic id,
     int? chapter,
     int? idBook,
     List<Pericope>? pericopes,
     String? notes,
     List<Reference>? references,
+    String? uuid,
+    int? hlc,
   }) {
     return UserChapter(
-      id: id ?? this.id,
       chapter: chapter ?? this.chapter,
       idBook: idBook ?? this.idBook,
       pericopes: pericopes ?? this.pericopes,
       notes: notes ?? this.notes,
       references: references ?? this.references,
+      uuid: uuid ?? this.uuid,
+      hlc: hlc ?? this.hlc,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
       'chapter': chapter,
       'idBook': idBook,
       'pericopes': pericopes?.map((x) => x.toMap()).toList(),
       'notes': notes,
       'references': references?.map((x) => x.toMap()).toList(),
+      'uuid': uuid,
+      'hlc': hlc,
     };
   }
 
   factory UserChapter.fromMap(Map<String, dynamic> map) {
     try {
       return UserChapter(
-        id: map['id'] as dynamic,
         chapter: map['chapter'] as int,
         idBook: map['idBook'] as int,
         pericopes: map['pericopes'] != null
@@ -82,12 +88,12 @@ class UserChapter {
                 ),
               )
             : null,
+        uuid: map['uuid'],
+        hlc: map['hlc'],
       );
-      
     } catch (e, stackTrace) {
       throw Exception(
           'Error parsing UserChapter.fromMap: $e, stackTrace: $stackTrace, map: $map');
-      
     }
   }
 
@@ -98,7 +104,7 @@ class UserChapter {
 
   @override
   String toString() {
-    return 'UserChapter(id: $id, chapter: $chapter, idBook: $idBook, pericopes: $pericopes, notes: $notes, references: $references)';
+    return 'UserChapter(chapter: $chapter, idBook: $idBook, pericopes: $pericopes, notes: $notes, references: $references, uuid: $uuid, hlc: $hlc)';
   }
 
   @override
@@ -106,21 +112,23 @@ class UserChapter {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
-    return other.id == id &&
-        other.chapter == chapter &&
+    return other.chapter == chapter &&
         other.idBook == idBook &&
         listEquals(other.pericopes, pericopes) &&
         other.notes == notes &&
-        listEquals(other.references, references);
+        listEquals(other.references, references) &&
+        other.uuid == uuid &&
+        other.hlc == hlc;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-        chapter.hashCode ^
+    return chapter.hashCode ^
         idBook.hashCode ^
         pericopes.hashCode ^
         notes.hashCode ^
-        references.hashCode;
+        references.hashCode ^
+        uuid.hashCode ^
+        hlc.hashCode;
   }
 }

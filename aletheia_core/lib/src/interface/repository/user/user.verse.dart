@@ -4,25 +4,25 @@ abstract class InterfaceRepositoryUserVerse {
   Future<List<UserVerse>> getVerse(
       {required int idBook, required int numberChapter, int? numberVerse});
 
-  Future<int> updateAddVerseNotes({
+  Future<String> updateAddVerseNotes({
     required int idBook,
     required int numberChapter,
     required int numberVerse,
     required String? notes,
   });
 
-  Future<int> updateVerseAddVerseHightLight(
+  Future<String> updateVerseAddVerseHightLight(
       {required int idBook,
       required int numberChapter,
       required int numberVerse,
       required int colorVerseHighlighted});
 
-  Future<int> updateVerseRemoveVerseHightLight(
+  Future<String> updateVerseRemoveVerseHightLight(
       {required int idBook,
       required int numberChapter,
       required int numberVerse});
 
-  Future<int> setVerseAddWordHightLighted({
+  Future<String> setVerseAddWordHightLighted({
     required int idBook,
     required int numberChapter,
     required int numberVerse,
@@ -30,7 +30,7 @@ abstract class InterfaceRepositoryUserVerse {
     UserVerse? userVerseData,
   });
 
-  Future<int> updateAddVerseReferences({
+  Future<String> updateAddVerseReferences({
     required int idBook,
     required int numberChapter,
     required int numberVerse,

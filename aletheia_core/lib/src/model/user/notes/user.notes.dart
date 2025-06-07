@@ -40,8 +40,6 @@ extension TypeNotesExtension on TypeNotes {
 }
 
 class UserNotes {
-  ///v1.0.18 - change to nullable
-  int? id;
   String? title;
 
   ///v1.0.16 - change to Tags
@@ -54,8 +52,11 @@ class UserNotes {
 
   ///v1.0.18 - refer where the user preached the note
   List<UserNotesLocal>? locals;
+
+  String? uuid;
+  int? hlc;
+
   UserNotes({
-    this.id,
     this.title,
     this.tags,
     this.notes,
@@ -64,10 +65,11 @@ class UserNotes {
     this.color,
     this.references,
     this.locals,
+    this.uuid,
+    this.hlc,
   });
 
   UserNotes copyWith({
-    int? id,
     String? title,
     List<Tags>? tags,
     String? notes,
@@ -76,9 +78,10 @@ class UserNotes {
     int? color,
     List<Reference>? references,
     List<UserNotesLocal>? locals,
+    String? uuid,
+    int? hlc,
   }) {
     return UserNotes(
-      id: id ?? this.id,
       title: title ?? this.title,
       tags: tags ?? this.tags,
       notes: notes ?? this.notes,
@@ -87,12 +90,14 @@ class UserNotes {
       color: color ?? this.color,
       references: references ?? this.references,
       locals: locals ?? this.locals,
+      uuid: uuid ?? this.uuid,
+      hlc: hlc ?? this.hlc,
     );
   }
 
   @override
   String toString() {
-    return 'UserNotes(id: $id, title: $title, tags: $tags, notes: $notes, date: $date, type: $type, color: $color, references: $references, locals: $locals)';
+    return 'UserNotes(title: $title, tags: $tags, notes: $notes, date: $date, type: $type, color: $color, references: $references, locals: $locals, uuid: $uuid, hlc: $hlc)';
   }
 
   @override
@@ -100,33 +105,34 @@ class UserNotes {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
-    return other.id == id &&
-        other.title == title &&
+    return other.title == title &&
         listEquals(other.tags, tags) &&
         other.notes == notes &&
         other.date == date &&
         other.type == type &&
         other.color == color &&
         listEquals(other.references, references) &&
-        listEquals(other.locals, locals);
+        listEquals(other.locals, locals) &&
+        other.uuid == uuid &&
+        other.hlc == hlc;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-        title.hashCode ^
+    return title.hashCode ^
         tags.hashCode ^
         notes.hashCode ^
         date.hashCode ^
         type.hashCode ^
         color.hashCode ^
+        references.hashCode ^
         locals.hashCode ^
-        references.hashCode;
+        uuid.hashCode ^
+        hlc.hashCode;
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
       'title': title,
       'tags': tags?.map((x) => x.toMap()).toList(),
       'notes': notes,
@@ -135,13 +141,14 @@ class UserNotes {
       'color': color,
       'references': references?.map((x) => x.toMap()).toList(),
       'locals': locals?.map((x) => x.toMap()).toList(),
+      'uuid': uuid,
+      'hlc': hlc,
     };
   }
 
   factory UserNotes.fromMap(Map<String, dynamic> map) {
     try {
       return UserNotes(
-        id: map['id'],
         title: map['title'] != null ? map['title'] as String : null,
         tags: map['tags'] != null
             ? List<Tags>.from(
@@ -153,7 +160,8 @@ class UserNotes {
         notes: map['notes'] != null ? map['notes'] as String : null,
         date: DateTime.fromMillisecondsSinceEpoch(map['date']),
         type: map['type'] != null ? TypeNotes.fromMap(map['type']) : null,
-        color: map['color'] != null ? int.tryParse(map['color']) : null,
+        color:
+            map['color'] != null ? int.tryParse(map['color'].toString()) : null,
         references: map['references'] != null
             ? List<Reference>.from(
                 (map['references']).map<Reference?>(
@@ -168,6 +176,8 @@ class UserNotes {
                 ),
               )
             : null,
+        uuid: map['uuid'],
+        hlc: map['hlc'],
       );
     } catch (e, stackTrace) {
       throw Exception('Error parsing UserNotes.fromMap: $e\n$stackTrace');

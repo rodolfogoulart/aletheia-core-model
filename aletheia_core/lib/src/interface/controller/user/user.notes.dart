@@ -2,7 +2,7 @@ import 'package:aletheia_core/aletheia_core_model.dart';
 
 abstract class InterfaceControllerUserNotes {
   Future<List<UserNotes>> getAllUserNotes(
-      {int? idNote, int? idBook, int? numberChapter, int? numberVerse});
+      {String? idNote, int? idBook, int? numberChapter, int? numberVerse});
 
   ///set note
   ///
@@ -24,5 +24,5 @@ abstract class InterfaceControllerUserNotes {
     // List<Reference>? references,
   });
 
-  Future<int> deleteNote({required int id});
+  Future<int> deleteNote({required String uuid});
 }

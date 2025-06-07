@@ -16,12 +16,12 @@ abstract class InterfaceControllerUserPericope {
     required int numberChapter,
   });
 
-  Future<List<Pericope>> getPericopes({required int idChapter});
+  Future<List<Pericope>> getPericopes({required String idChapter});
 
   Future<UserChapter> addOrUpdatePericope({
     required Pericope pericope,
     required UserChapter userChapter,
   });
 
-  Future<int> removePericope({required id});
+  Future<int> removePericope({required String uuid});
 }

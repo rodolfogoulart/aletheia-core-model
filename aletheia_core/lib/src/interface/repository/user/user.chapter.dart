@@ -16,5 +16,5 @@ abstract class InterfaceRepositoryUserChapter {
 
   Future<int> removeChapter({required int idBook, required int chapter});
 
-  Future<UserChapter?> getChapterById({required id});
+  Future<UserChapter?> getChapterById({required uuid});
 }

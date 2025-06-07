@@ -16,11 +16,12 @@ abstract class InterfaceRepositoryUserNotes {
   Future<List<dynamic>> getNotesFromPericope(
       {required Pericope pericope, required UserChapter userChapter});
 
-  Future<int> insertNotes(UserNotes userNotes);
+  Future<String> insertNotes(UserNotes userNotes);
 
-  Future<int> updateNotes(UserNotes userNotes);
+  Future<String> updateNotes(UserNotes userNotes);
 
-  Future<int> deleteNotes({required dynamic id});
+  Future<int> deleteNotes({required dynamic uuid});
 
-  getNotes({int? idNote, int? idBook, int? numberChapter, int? numberVerse});
+  Future<List<UserNotes>> getNotes(
+      {String? uuidNote, int? idBook, int? numberChapter, int? numberVerse});
 }
