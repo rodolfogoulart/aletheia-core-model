@@ -3,8 +3,17 @@ import 'package:aletheia_core/aletheia_core_model.dart';
 abstract class InterfaceRepositoryDictionary {
   Future<List<Dictionary>> getDictionarys({int? id});
 
-  Future<List<DictionaryWord>> getWord(
-      {required int idDictionary, required String word, required bool equal});
+  Future<List<DictionaryWord>> getWord({
+    required int idDictionary,
+    required String word,
+    required bool equal,
+  });
+
+  Future<List<DictionaryWord>> getWords({
+    required int idDictionary,
+    required List<String> words,
+    required bool equal,
+  });
 
   Future<int> setDictionary({required Dictionary dictionary});
 
