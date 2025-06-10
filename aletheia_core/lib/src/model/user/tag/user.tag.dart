@@ -2,8 +2,6 @@
 import 'dart:convert';
 
 class Tags {
-  dynamic id;
-
   ///name of the tag
   String name;
 
@@ -20,13 +18,18 @@ class Tags {
 
   ///update date
   DateTime? updateAt;
+
+  String? uuid;
+  int? hlc;
+
   Tags({
-    this.id,
     required this.name,
     required this.active,
     this.description,
     this.createAt,
     this.updateAt,
+    this.uuid,
+    this.hlc,
   });
 
   Tags copyWith({
@@ -36,42 +39,46 @@ class Tags {
     String? description,
     DateTime? createAt,
     DateTime? updateAt,
+    String? uuid,
+    int? hlc,
   }) {
     return Tags(
-      id: id ?? this.id,
       name: name ?? this.name,
       active: active ?? this.active,
       description: description ?? this.description,
       createAt: createAt ?? this.createAt,
       updateAt: updateAt ?? this.updateAt,
+      uuid: uuid ?? this.uuid,
+      hlc: hlc ?? this.hlc,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
       'name': name,
       'active': active,
       'description': description,
       'createAt': createAt?.millisecondsSinceEpoch,
       'updateAt': updateAt?.millisecondsSinceEpoch,
+      'uuid': uuid,
+      'hlc': hlc,
     };
   }
 
   factory Tags.fromMap(Map<String, dynamic> map) {
     try {
       return Tags(
-        id: map['id'] as dynamic,
-        name: map['name'] as String,
-        active: map['active'] as bool,
-        description:
-            map['description'] != null ? map['description'] as String : null,
+        name: map['name'],
+        active: map['active'],
+        description: map['description'],
         createAt: map['createAt'] != null
             ? DateTime.fromMillisecondsSinceEpoch(map['createAt'] as int)
             : null,
         updateAt: map['updateAt'] != null
             ? DateTime.fromMillisecondsSinceEpoch(map['updateAt'] as int)
             : null,
+        uuid: map['uuid'],
+        hlc: map['hlc'],
       );
     } catch (e, stackTrace) {
       throw Exception(
@@ -86,28 +93,30 @@ class Tags {
 
   @override
   String toString() {
-    return 'Tags(id: $id, name: $name, active: $active, description: $description, createAt: $createAt, updateAt: $updateAt)';
+    return 'Tags(name: $name, active: $active, description: $description, createAt: $createAt, updateAt: $updateAt, uuid: $uuid, hlc: $hlc)';
   }
 
   @override
   bool operator ==(covariant Tags other) {
     if (identical(this, other)) return true;
 
-    return other.id == id &&
-        other.name == name &&
+    return other.name == name &&
         other.active == active &&
         other.description == description &&
         other.createAt == createAt &&
-        other.updateAt == updateAt;
+        other.updateAt == updateAt &&
+        other.uuid == uuid &&
+        other.hlc == hlc;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-        name.hashCode ^
+    return name.hashCode ^
         active.hashCode ^
         description.hashCode ^
         createAt.hashCode ^
-        updateAt.hashCode;
+        updateAt.hashCode ^
+        uuid.hashCode ^
+        hlc.hashCode;
   }
 }

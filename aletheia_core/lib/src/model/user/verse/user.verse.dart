@@ -6,7 +6,6 @@ import 'package:collection/collection.dart';
 import 'package:aletheia_core/aletheia_core_model.dart';
 
 class UserVerse {
-  int id;
   int numberChapter;
   int numberVerse;
   bool isVersesHighlighted = false;
@@ -35,8 +34,10 @@ class UserVerse {
   ///id book of the verse
   int idBook;
 
+  String? uuid;
+  int? hlc;
+
   UserVerse({
-    required this.id,
     required this.numberChapter,
     required this.numberVerse,
     int? colorVersesHighlighted,
@@ -44,14 +45,15 @@ class UserVerse {
     this.wordsHighlighted,
     this.references,
     required this.idBook,
+    this.uuid,
+    this.hlc,
   }) : _colorVersesHighlighted = colorVersesHighlighted {
-    //unnecessary field on the database
     isVersesHighlighted = _colorVersesHighlighted != null;
   }
 
   @override
   String toString() {
-    return 'UserVerse(id: $id, numberChapter: $numberChapter, numberVerse: $numberVerse, colorVersesHighlighted: $_colorVersesHighlighted, notes: $notes, wordsHighlighted: $wordsHighlighted, references: $references, idBook: $idBook)';
+    return 'UserVerse(numberChapter: $numberChapter, numberVerse: $numberVerse, colorVersesHighlighted: $_colorVersesHighlighted, notes: $notes, wordsHighlighted: $wordsHighlighted, references: $references, idBook: $idBook, uuid: $uuid, hlc: $hlc)';
   }
 
   @override
@@ -59,32 +61,33 @@ class UserVerse {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
-    return other.id == id &&
-        other.numberChapter == numberChapter &&
+    return other.numberChapter == numberChapter &&
         other.numberVerse == numberVerse &&
         other.isVersesHighlighted == isVersesHighlighted &&
         other._colorVersesHighlighted == _colorVersesHighlighted &&
         other.notes == notes &&
         listEquals(other.wordsHighlighted, wordsHighlighted) &&
         listEquals(other.references, references) &&
-        other.idBook == idBook;
+        other.idBook == idBook &&
+        other.uuid == uuid &&
+        other.hlc == hlc;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-        numberChapter.hashCode ^
+    return numberChapter.hashCode ^
         numberVerse.hashCode ^
         isVersesHighlighted.hashCode ^
         _colorVersesHighlighted.hashCode ^
         notes.hashCode ^
         wordsHighlighted.hashCode ^
         references.hashCode ^
-        idBook.hashCode;
+        idBook.hashCode ^
+        uuid.hashCode ^
+        hlc.hashCode;
   }
 
   UserVerse copyWith({
-    int? id,
     int? numberChapter,
     int? numberVerse,
     bool? isVersesHighlighted,
@@ -93,23 +96,24 @@ class UserVerse {
     List<WordsHighlighted>? wordsHighlighted,
     List<Reference>? references,
     int? idBook,
+    String? uuid,
+    int? hlc,
   }) {
     return UserVerse(
-      id: id ?? this.id,
       numberChapter: numberChapter ?? this.numberChapter,
       numberVerse: numberVerse ?? this.numberVerse,
-      colorVersesHighlighted:
-          colorVersesHighlighted ?? this._colorVersesHighlighted,
+      colorVersesHighlighted: colorVersesHighlighted ?? _colorVersesHighlighted,
       notes: notes ?? this.notes,
       wordsHighlighted: wordsHighlighted ?? this.wordsHighlighted,
       references: references ?? this.references,
       idBook: idBook ?? this.idBook,
+      uuid: uuid ?? this.uuid,
+      hlc: hlc ?? this.hlc,
     );
   }
 
   Map<String, dynamic> toMap() {
     var data = <String, dynamic>{
-      'id': id,
       'numberChapter': numberChapter,
       'numberVerse': numberVerse,
       'colorVersesHighlighted': _colorVersesHighlighted,
@@ -117,8 +121,9 @@ class UserVerse {
       'wordsHighlighted': wordsHighlighted?.map((x) => x.toMap()).toList(),
       'references': references?.map((x) => x.toMap()).toList(),
       'idBook': idBook,
+      'uuid': uuid,
+      'hlc': hlc,
     };
-    // Remove null values from the map
     data.removeWhere((key, value) => value == null);
     return data;
   }
@@ -126,7 +131,6 @@ class UserVerse {
   factory UserVerse.fromMap(Map<String, dynamic> map) {
     try {
       return UserVerse(
-        id: map['id'] ?? 0,
         numberChapter: map['numberChapter'] ?? 0,
         numberVerse: map['numberVerse'] ?? 0,
         colorVersesHighlighted: map['colorVersesHighlighted'] != null
@@ -142,6 +146,8 @@ class UserVerse {
                 map['references']?.map((x) => Reference.fromMap(x)))
             : null,
         idBook: map['idBook'] ?? 0,
+        uuid: map['uuid'],
+        hlc: map['hlc'],
       );
     } catch (e, stackTrace) {
       throw Exception(
