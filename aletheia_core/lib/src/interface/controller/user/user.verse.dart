@@ -30,7 +30,9 @@ abstract class InterfaceControllerUserVerse {
       required int end});
 
   Future<int> removeWordsHighlighted(
-      {required VerseView verse,
+      {required int idBook,
+      required int numberChapter,
+      required int numberVerse,
       required WordsHighlighted wordHighlightToRemove});
 
   ///add or remove reference to the user verse
