@@ -9,7 +9,10 @@ abstract class InterfaceControllerUserVerse {
   Future<bool> removeVerseHighlight({required VerseView verse});
 
   Future<UserVerse?> addNotesVerse(
-      {required VerseView verse, required String notes});
+      {required int idBook,
+      required int numberChapter,
+      required int numberVerse,
+      required String notes});
 
   Future<bool> removeNotesVerse({
     required int idBook,
