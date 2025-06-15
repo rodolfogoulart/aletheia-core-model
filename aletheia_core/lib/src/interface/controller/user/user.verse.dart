@@ -14,7 +14,10 @@ abstract class InterfaceControllerUserVerse {
   Future<bool> removeNotesVerse({required VerseView verse});
 
   Future<UserVerse?> setwordsHighlighted(
-      {required VerseView verse,
+      {required int idBook,
+      required int numberChapter,
+      required int numberVerse,
+      required int idBibleVersion,
       required int color,
       required int start,
       required int end});
