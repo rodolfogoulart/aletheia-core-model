@@ -18,4 +18,9 @@ abstract class InterfaceControllerLexico {
   Future<Lexico> getSingleLexicoDictionary({required String idRefLexico});
 
   Future<int> setLexicoDictionary({required Lexico lexicoDictionary});
+
+  /// Get lexico by original word
+  ///
+  Future<List<Lexico>> getByOriginalWord(
+      {required String originalWord, int? idLexicoVersion});
 }

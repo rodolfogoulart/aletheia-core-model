@@ -18,4 +18,9 @@ abstract class InterfaceRepositoryLexico {
   Future<int> deleteLexico(int id);
 
   Future<int> setLexicoDictionary({required Lexico lexico});
+
+  /// Get lexico by original word
+  ///
+  Future<List<Lexico>> getByOriginalWord(
+      {required String originalWord, int? idLexicoVersion});
 }

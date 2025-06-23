@@ -144,3 +144,6 @@
 * Changes to API interface
 * Add Footnote class
 * Change footnote on Content to be List<Footnote>?
+
+## 0.0.37
+* Add getByOriginalWord on Lexico Controller and Repository
