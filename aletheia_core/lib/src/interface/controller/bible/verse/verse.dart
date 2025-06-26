@@ -17,6 +17,7 @@ abstract class InterfaceControllerVerse {
     required List<VerseCore> verses,
     // required Book book,
     // required List<BibleVersion> bibleVersion,
+    LexicoVersion? defaultLexicoVersion,
   });
 
   Future<List<VerseView>> getChapterFromAllVersions({
