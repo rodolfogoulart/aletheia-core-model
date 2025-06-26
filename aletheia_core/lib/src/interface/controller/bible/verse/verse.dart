@@ -15,8 +15,8 @@ abstract class InterfaceControllerVerse {
   ///INTERNAL USE ONLY
   Future<List<VerseView>> getVerseData({
     required List<VerseCore> verses,
-    required Book book,
-    required List<BibleVersion> bibleVersion,
+    // required Book book,
+    // required List<BibleVersion> bibleVersion,
   });
 
   Future<List<VerseView>> getChapterFromAllVersions({
