@@ -22,7 +22,9 @@ abstract class InterfaceControllerNLP {
   //     List<int> offsetTokensVerse);
 
   /// Call for get NlpChapter from database or call Google Natural Language API
-  Future<(NlpChapter?, String)> getNlpOrcallGoogleNaturalLanguage({
+  ///
+  /// Need to return NlpChapter and String
+  Future<Map<String, dynamic>> getNlpOrcallGoogleNaturalLanguage({
     required String hashBibleVersion,
     required int idBook,
     required int numberChapter,
@@ -33,8 +35,9 @@ abstract class InterfaceControllerNLP {
   });
   //todo: refatorar talvez não incluir o type ServiceAccountCredentials
   /// Get credentials for Google Service Account
-  Future<(dynamic, GoogleServiceAccountCredentialsConfig)>
-      get credentialsGoogleServiceAccount;
+  ///
+  /// Need to return ServiceAccountCredentials and GoogleServiceAccountCredentialsConfig
+  Future<Map<String, dynamic>> get credentialsGoogleServiceAccount;
 
   // Future<AnalizeText> callGoogleNaturalLanguage(
   //     {required String text, String? language});
