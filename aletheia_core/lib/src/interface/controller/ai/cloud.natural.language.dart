@@ -36,8 +36,9 @@ abstract class InterfaceControllerNLP {
   //todo: refatorar talvez não incluir o type ServiceAccountCredentials
   /// Get credentials for Google Service Account
   ///
-  /// Need to return ServiceAccountCredentials and GoogleServiceAccountCredentialsConfig
-  Future<Map<String, dynamic>> get credentialsGoogleServiceAccount;
+  /// Need to return GoogleServiceAccountCredentialsConfig as a interface of ServiceAccountCredentials (google.api.auth)
+  Future<GoogleServiceAccountCredentialsConfig>
+      get credentialsGoogleServiceAccount;
 
   // Future<AnalizeText> callGoogleNaturalLanguage(
   //     {required String text, String? language});
