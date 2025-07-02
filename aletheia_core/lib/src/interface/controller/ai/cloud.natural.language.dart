@@ -1,26 +1,27 @@
 import 'package:aletheia_core/aletheia_core_model.dart';
 
 abstract class InterfaceControllerNLP {
-  saveNlpChapter(
-      {required String hashBibleVersion,
-      required int idBook,
-      required int numberChapter,
-      required List<AnalizeGrammarVerse> analizeGrammarVerse,
-      Sentiment? documentSentiment,
-      List<Entity>? entities,
-      List<Sentence>? sentences});
+  // saveNlpChapter(
+  //     {required String hashBibleVersion,
+  //     required int idBook,
+  //     required int numberChapter,
+  //     required List<AnalizeGrammarVerse> analizeGrammarVerse,
+  //     Sentiment? documentSentiment,
+  //     List<Entity>? entities,
+  //     List<Sentence>? sentences});
 
-  Future<NlpChapter?> getNlpChapter({
-    required String hashBibleVersion,
-    required int idBook,
-    required int numberChapter,
-  });
+  // Future<NlpChapter?> getNlpChapter({
+  //   required String hashBibleVersion,
+  //   required int idBook,
+  //   required int numberChapter,
+  // });
 
-  List<AnalizeGrammarVerse> analizeGrammarToNlpChapter(
-      List<AnalizeGrammar> data,
-      List<VerseView> verses,
-      List<int> offsetTokensVerse);
+  // List<AnalizeGrammarVerse> analizeGrammarToNlpChapter(
+  //     List<AnalizeGrammar> data,
+  //     List<VerseView> verses,
+  //     List<int> offsetTokensVerse);
 
+  /// Call for get NlpChapter from database or call Google Natural Language API
   Future<(NlpChapter?, String)> getNlpOrcallGoogleNaturalLanguage({
     required String hashBibleVersion,
     required int idBook,
@@ -31,9 +32,10 @@ abstract class InterfaceControllerNLP {
     bool saveCall = true,
   });
   //todo: refatorar talvez não incluir o type ServiceAccountCredentials
+  /// Get credentials for Google Service Account
   Future<(dynamic, GoogleServiceAccountCredentialsConfig)>
       get credentialsGoogleServiceAccount;
 
-  Future<AnalizeText> callGoogleNaturalLanguage(
-      {required String text, String? language});
+  // Future<AnalizeText> callGoogleNaturalLanguage(
+  //     {required String text, String? language});
 }
