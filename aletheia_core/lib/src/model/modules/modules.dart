@@ -5,6 +5,7 @@ enum TypeModules {
   lexico,
   nlp,
   user,
+  sync,
   ;
 
   toMap() {
@@ -23,4 +24,5 @@ extension TypeModulesExtension on TypeModules {
   bool get isLexico => this == TypeModules.lexico;
   bool get isNlp => this == TypeModules.nlp;
   bool get isUser => this == TypeModules.user;
+  bool get isSync => this == TypeModules.sync;
 }
