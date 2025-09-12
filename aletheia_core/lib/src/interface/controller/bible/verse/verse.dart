@@ -25,6 +25,7 @@ abstract class InterfaceControllerVerse {
     required List<int> bibleVersionIds,
     required int chapter,
     int? defaultLexicoVersionId,
+    List<String> extraDataToFetch = const [],
   });
 
   Future<List<VerseView>> getChapterFromSingleVersion({
@@ -32,12 +33,14 @@ abstract class InterfaceControllerVerse {
     required int bibleVersionId,
     required int chapter,
     int? defaultLexicoVersionId,
+    List<String> extraDataToFetch = const [],
   });
 
   Future<List<VerseView>> getReference({
     required Reference reference,
     required int bibleVersionId,
     int? defaultLexicoVersionId,
+    List<String> extraDataToFetch = const [],
   });
 
   // Future<List<VerseCrossReference>> getCrossReferenceFromVerse({
@@ -60,6 +63,7 @@ abstract class InterfaceControllerVerse {
     required int bookId,
     required int chapter,
     required int verse,
+    List<String> extraDataToFetch = const [],
   });
 
   /// Get the number of verses in a chapter of a specific version
