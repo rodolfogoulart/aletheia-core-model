@@ -18,6 +18,7 @@ abstract class InterfaceControllerVerse {
     // required Book book,
     // required List<BibleVersion> bibleVersion,
     LexicoVersion? defaultLexicoVersion,
+    List<String> extraDataToFetch = const [],
   });
 
   Future<List<VerseView>> getChapterFromAllVersions({
