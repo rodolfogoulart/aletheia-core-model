@@ -23,7 +23,7 @@ class VerseView extends VerseCore {
   /// - readingPlans: List
   /// - media: List
   /// - and more...
-  Map<String, dynamic> extraData;
+  Map<String, dynamic>? extraData;
 
   VerseView({
     super.id = 0,
@@ -109,7 +109,7 @@ class VerseView extends VerseCore {
 
   @override
   String toString() {
-    return 'VerseView(userVerseData: $userVerseData, crossReferences: $crossReferences, strongReferences: $strongReferences, extraData: ${extraData.keys})'; // book: $book, bibleVersion: $bibleVersion)';
+    return 'VerseView(userVerseData: $userVerseData, crossReferences: $crossReferences, strongReferences: $strongReferences, extraData: ${extraData?.keys})'; // book: $book, bibleVersion: $bibleVersion)';
   }
 
   Map<String, dynamic> toMap() {
