@@ -147,3 +147,6 @@
 
 ## 0.0.37
 * Add getByOriginalWord on Lexico Controller and Repository
+
+## 0.0.38
+* Add extraData to VerseView to allow more flexibility for future features without changing the model

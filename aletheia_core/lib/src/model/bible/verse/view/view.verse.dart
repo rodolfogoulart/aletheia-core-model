@@ -17,6 +17,14 @@ class VerseView extends VerseCore {
   // Book? book;
   // BibleVersion? bibleVersion;
 
+  /// Extra data that might be needed for extensions or additional features
+  /// For example, it can store data like:
+  /// - wordsPeopleAndPlaces: List
+  /// - readingPlans: List
+  /// - media: List
+  /// - and more...
+  Map<String, dynamic> extraData;
+
   VerseView({
     super.id = 0,
     required super.idBibleVersion,
@@ -29,8 +37,7 @@ class VerseView extends VerseCore {
     this.userVerseData,
     this.crossReferences,
     this.strongReferences,
-    // this.book,
-    // this.bibleVersion,
+    this.extraData = const {},
   });
 
   factory VerseView.fromVerseCore(VerseCore verseCore) {
@@ -43,6 +50,7 @@ class VerseView extends VerseCore {
       numberVerseEnd: verseCore.numberVerseEnd,
       content: verseCore.content,
       contentWithOutFormat: verseCore.contentWithOutFormat,
+      extraData: {},
     );
   }
 
@@ -61,6 +69,7 @@ class VerseView extends VerseCore {
     List<Lexico>? strongReferences,
     Book? book,
     BibleVersion? bibleVersion,
+    Map<String, dynamic>? extraData,
   }) {
     return VerseView(
       id: id ?? this.id,
@@ -74,8 +83,7 @@ class VerseView extends VerseCore {
       crossReferences: crossReferences ?? this.crossReferences,
       content: content ?? this.content,
       strongReferences: strongReferences ?? this.strongReferences,
-      // book: book ?? this.book,
-      // bibleVersion: bibleVersion ?? this.bibleVersion,
+      extraData: extraData ?? this.extraData,
     );
   }
 
@@ -87,25 +95,21 @@ class VerseView extends VerseCore {
     return other is VerseView &&
         other.userVerseData == userVerseData &&
         listEquals(other.crossReferences, crossReferences) &&
-        listEquals(other.strongReferences, strongReferences);
-    // &&
-    // other.book == book &&
-    // other.bibleVersion == bibleVersion;
+        listEquals(other.strongReferences, strongReferences) &&
+        listEquals(other.extraData, extraData);
   }
 
   @override
   int get hashCode {
     return userVerseData.hashCode ^
         crossReferences.hashCode ^
-        strongReferences.hashCode;
-    // ^
-    // book.hashCode ^
-    // bibleVersion.hashCode;
+        strongReferences.hashCode ^
+        extraData.hashCode;
   }
 
   @override
   String toString() {
-    return 'VerseView(userVerseData: $userVerseData, crossReferences: $crossReferences, strongReferences: $strongReferences,)'; // book: $book, bibleVersion: $bibleVersion)';
+    return 'VerseView(userVerseData: $userVerseData, crossReferences: $crossReferences, strongReferences: $strongReferences, extraData: ${extraData.keys})'; // book: $book, bibleVersion: $bibleVersion)';
   }
 
   Map<String, dynamic> toMap() {
@@ -122,11 +126,15 @@ class VerseView extends VerseCore {
       'userVerseData': userVerseData?.toMap(),
       'crossReferences': crossReferences?.map((x) => x.toMap()).toList(),
       'strongReferences': strongReferences?.map((x) => x.toMap()).toList(),
-      // 'book': book?.toMap(),
-      // 'bibleVersion': bibleVersion?.toMap(),
+      'extraData': extraData,
     };
     // Remove null values from the map
     data.removeWhere((key, value) => value == null);
+    // Remove empty extraData
+    if (data['extraData'] == null || (data['extraData'] as Map).isEmpty) {
+      data.remove('extraData');
+    }
+
     return data;
   }
 
@@ -161,12 +169,9 @@ class VerseView extends VerseCore {
                 ),
               )
             : null,
-        // book: map['book'] != null
-        //     ? Book.fromMap(map['book'] as Map<String, dynamic>)
-        //     : null,
-        // bibleVersion: map['bibleVersion'] != null
-        //     ? BibleVersion.fromMap(map['bibleVersion'] as Map<String, dynamic>)
-        //     : null,
+        extraData: map['extraData'] != null
+            ? Map<String, dynamic>.from(map['extraData'] as Map)
+            : {},
       );
     } catch (e, stackTrace) {
       throw Exception(
