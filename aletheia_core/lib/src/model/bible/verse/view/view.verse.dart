@@ -5,6 +5,14 @@ import 'package:collection/collection.dart';
 
 import 'package:aletheia_core/aletheia_core_model.dart';
 
+/// Enum to specify the types of extra data that can be associated with a VerseView
+enum TypeExtraDataVerse {
+  wordsPeopleAndPlaces,
+  readingPlans,
+  media,
+  // Add more types as needed
+}
+
 class VerseView extends VerseCore {
   ///from user data
   UserVerse? userVerseData;
