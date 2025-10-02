@@ -150,3 +150,7 @@
 
 ## 0.0.38
 * Add extraData to VerseView to allow more flexibility for future features without changing the model
+
+## 0.0.39
+* Add class BackupStorage
+  * Store information about the backup made by the user
