@@ -69,3 +69,4 @@ export 'src/model/response.dart';
 export 'src/model/services/search/hybrid.search.config.dart';
 export 'src/model/services/search/search.filter.dart';
 export 'src/model/services/hybrid.logical.clock.dart';
+export 'src/model/services/backup.storage.dart';
