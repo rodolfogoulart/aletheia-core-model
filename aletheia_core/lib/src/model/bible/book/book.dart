@@ -32,13 +32,13 @@ enum Division {
     }
     //
     if (int.tryParse(value) != null) {
-      if (value == 0) {
+      if (int.parse(value) == 0) {
         return Division.oldTestament;
-      } else if (value == 1) {
+      } else if (int.parse(value) == 1) {
         return Division.newTestament;
-      } else if (value == 2) {
+      } else if (int.parse(value) == 2) {
         return Division.apocryphal;
-      } else if (value == 3) {
+      } else if (int.parse(value) == 3) {
         return Division.none;
       } else {
         return Division.none;
