@@ -22,14 +22,33 @@ enum Division {
 
   ///used on Dart Class Generation
   toMap() {
-    return name;
+    return Division.values.indexOf(this);
   }
 
   ///used on Dart Class Generation
   factory Division.fromMap(dynamic value) {
+    if (value == null) {
+      return Division.none;
+    }
+    //
+    if (int.tryParse(value) != null) {
+      if (value == 0) {
+        return Division.oldTestament;
+      } else if (value == 1) {
+        return Division.newTestament;
+      } else if (value == 2) {
+        return Division.apocryphal;
+      } else if (value == 3) {
+        return Division.none;
+      } else {
+        return Division.none;
+      }
+    }
+
     try {
       return Division.values.byName(value);
     } catch (e) {
+      print('Error parsing Division.fromMap: $e, value: $value');
       return Division.none;
     }
   }

@@ -154,3 +154,6 @@
 ## 0.0.39
 * Add class BackupStorage
   * Store information about the backup made by the user
+
+## 0.0.40
+* Change toMap() on Book Division enum to return the index of the enum instead of the name
