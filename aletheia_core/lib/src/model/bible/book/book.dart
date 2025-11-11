@@ -31,18 +31,14 @@ enum Division {
       return Division.none;
     }
     //
-    if (int.tryParse(value) != null) {
-      if (int.parse(value) == 0) {
-        return Division.oldTestament;
-      } else if (int.parse(value) == 1) {
-        return Division.newTestament;
-      } else if (int.parse(value) == 2) {
-        return Division.apocryphal;
-      } else if (int.parse(value) == 3) {
-        return Division.none;
-      } else {
-        return Division.none;
-      }
+    int? valueParsed;
+    if (value is String) {
+      valueParsed = int.tryParse(value);
+    }
+
+    if ((valueParsed ?? -1) <= Division.values.length - 1 &&
+        (valueParsed ?? -1) >= 0) {
+      return Division.values[valueParsed ?? Division.none.index];
     }
 
     try {
