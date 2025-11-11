@@ -34,6 +34,8 @@ enum Division {
     int? valueParsed;
     if (value is String) {
       valueParsed = int.tryParse(value);
+    } else {
+      valueParsed = value is int ? value : null;
     }
 
     if ((valueParsed ?? -1) <= Division.values.length - 1 &&
