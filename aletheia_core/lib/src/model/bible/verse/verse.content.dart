@@ -104,14 +104,14 @@ extension TypeContentExtension on TypeContent {
   bool get isVerse => this == TypeContent.verse;
 }
 
-@Deprecated('will be removed')
-class SubText {
+// @Deprecated('will be removed')
+class Texts {
   /// use KEY [T]
   String text;
 
   /// use KEY [at]
   Map<String, dynamic>? attributes;
-  SubText({
+  Texts({
     required this.text,
     this.attributes,
   });
@@ -132,7 +132,7 @@ class SubText {
     return result;
   }
 
-  factory SubText.fromMap(Map<String, dynamic> map) {
+  factory Texts.fromMap(Map<String, dynamic> map) {
     String text = '';
     try {
       text = map['T'] ?? map['text'] ?? '';
@@ -147,7 +147,7 @@ class SubText {
       attributes = {};
     }
 
-    return SubText(
+    return Texts(
       text: text,
       attributes: attributes.isNotEmpty ? attributes : null,
     );
@@ -155,21 +155,20 @@ class SubText {
 
   String toJson() => json.encode(toMap());
 
-  factory SubText.fromJson(String source) =>
-      SubText.fromMap(json.decode(source));
+  factory Texts.fromJson(String source) => Texts.fromMap(json.decode(source));
 
-  SubText copyWith({
+  Texts copyWith({
     String? text,
     Map<String, dynamic>? attributes,
   }) {
-    return SubText(
+    return Texts(
       text: text ?? this.text,
       attributes: attributes ?? this.attributes,
     );
   }
 
   @override
-  String toString() => 'SubText(text: [$text], attributes: $attributes)';
+  String toString() => 'Texts(text: [$text], attributes: $attributes)';
 }
 
 ///*when Generated JSON Serialization, change the key to refer the variable
@@ -182,6 +181,13 @@ class Content {
   ///use KEY [T]
   String text; //T
 
+  /// Helper to get the full text
+  ///
+  /// get full text including sub texts
+  String get fullText => texts != null && texts!.isNotEmpty
+      ? texts!.map((e) => e.text).join()
+      : text;
+
   ///aways use
   ///
   ///toMap => result.addAll({'typeContent': typeContent.name});
@@ -192,10 +198,12 @@ class Content {
   TypeContent typeContent; //tC
 
   /// attributes of the text (style, color, etc..)
+  /// this will set a default style for the [texts] if they dont have their own style
+  /// but if the [texts] have their own style, will override the parent [attributes]
   ///
   /// map of [TypeAttributes] with dynamic value
   ///
-  ///use KEY [at]
+  /// use KEY [at]
   Map<String, dynamic>? attributes; //at
 
   ///Helper to check if has attributes
@@ -206,11 +214,12 @@ class Content {
   ///use KEY [rS] KEY CHANGED TO>>>>> [rL]
   List<String>? refLexicos; //rS
 
-  ///case the text has more attributes but refer the same **strong, anottation, comment, reference, etc...**
+  ///sub texts to format parts of the main text
   ///
-  ///each `[subText]` inherits the attributes from the `[text]` abouve, so if the [text] has the attribute `bold = true`, and the [subText] dont has bold, [subText] need to have the attribute `bold = false` to reverse
-  @Deprecated('will be removed')
-  List<SubText>? subText; //sT
+  ///each `[texts]` inherits the attributes from the `[attributes]` abouve, so if the [attributes] has `bold = true`, and the [texts] dont has bold, [texts] need to have the attribute `bold = false` to reverse
+  // @Deprecated('will be removed')
+  /// use KEY [Ts]
+  List<Texts>? texts; //Ts
 
   ///use KEY [an]
   String? anottation; //an
@@ -240,7 +249,7 @@ class Content {
     required this.typeContent,
     this.attributes,
     this.refLexicos,
-    this.subText,
+    this.texts,
     this.anottation,
     this.comment,
     this.reference,
@@ -264,7 +273,7 @@ class Content {
   ///use KEY [rS] to refLexicos
   ///
   ///
-  ///use KEY [sT] to subText
+  ///use KEY [Ts] to texts
   ///
   ///use KEY [an] to anottation
   ///
@@ -291,9 +300,9 @@ class Content {
       result.addAll({'rS': refLexicos});
       // result.addAll({'rL': refLexicos});
     }
-    if (subText != null) {
-      if (subText?.isNotEmpty == true) {
-        result.addAll({'sT': subText!.map((x) => x.toMap()).toList()});
+    if (texts != null) {
+      if (texts?.isNotEmpty == true) {
+        result.addAll({'Ts': texts!.map((x) => x.toMap()).toList()});
       }
     }
     if (anottation != null) {
@@ -339,13 +348,13 @@ class Content {
       } catch (e) {
         refLexicos = null;
       }
-      List<SubText>? subText;
+      List<Texts>? texts;
       try {
-        subText = map['sT'] != null
-            ? List<SubText>.from(map['sT']?.map((x) => SubText.fromMap(x)))
+        texts = map['Ts'] != null
+            ? List<Texts>.from(map['Ts']?.map((x) => Texts.fromMap(x)))
             : null;
       } catch (e) {
-        subText = null;
+        texts = null;
       }
       //
       return Content(
@@ -358,7 +367,7 @@ class Content {
         //assume the refLexicos is rS (to older versions) or rL (to newer versions)
         // refLexicos: (map['rS'] != null) ? List<String>.from(map['rS']) : null,
         refLexicos: refLexicos,
-        subText: subText,
+        texts: texts,
         anottation: map['an'],
         comment: map['cm'],
         reference: map['rf'] != null
@@ -389,7 +398,7 @@ class Content {
     Map<String, dynamic>? attributes,
     List<String>? refLexicos,
     //
-    List<SubText>? subText,
+    List<Texts>? texts,
     //
     String? anottation,
     String? comment,
@@ -404,7 +413,7 @@ class Content {
       attributes: attributes ?? this.attributes,
       refLexicos: refLexicos ?? this.refLexicos,
       //
-      subText: subText ?? this.subText,
+      texts: texts ?? this.texts,
       //
       anottation: anottation ?? this.anottation,
       comment: comment ?? this.comment,
