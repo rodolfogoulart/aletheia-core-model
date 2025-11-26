@@ -8,7 +8,8 @@
             "name": "aletheia_core",
             "request": "launch",
             "type": "dart",
-            "program": "example/aletheia_content_text.dart"
+            // "program": "example/aletheia_content_text.dart"
+            "program": "lib/src/services/verse.content.text.dart"
         }
     ]
 }

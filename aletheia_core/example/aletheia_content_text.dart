@@ -79,305 +79,305 @@ bool isBetween(int a, int b, int a1, int b1, {exclusive = true}) {
   }
 }
 
-(List<SubText> texts, int? processNextEnd) setAttributesOnPosition(
-    Content content, Map<String, dynamic> attributesAt, int initAt, int endAt) {
-  print('Original SubTexts:');
-  for (var e in content.subText!) {
-    print(e);
-  }
-  //
-  List<AttributesPosition> positions = [];
+// (List<SubText> texts, int? processNextEnd) setAttributesOnPosition(
+//     Content content, Map<String, dynamic> attributesAt, int initAt, int endAt) {
+//   print('Original SubTexts:');
+//   for (var e in content.subText!) {
+//     print(e);
+//   }
+//   //
+//   List<AttributesPosition> positions = [];
 
-  //
-  int currentPosition = 0;
-  String text = '';
+//   //
+//   int currentPosition = 0;
+//   String text = '';
 
-  ///quando não precisa processar lista, pois novos valores estão entre valores já existentes da lista
-  bool skipProcess = false;
+//   ///quando não precisa processar lista, pois novos valores estão entre valores já existentes da lista
+//   bool skipProcess = false;
 
-  ///retorno caso endAt seja maior que o tamanho total do texto, para processar próximo
-  int? processNextEnd;
+//   ///retorno caso endAt seja maior que o tamanho total do texto, para processar próximo
+//   int? processNextEnd;
 
-  //preenche positions
-  for (var i = 0; i < content.subText!.length; i++) {
-    SubText currentText = content.subText![i];
-    int currentLength = currentText.text.length;
-    text += currentText.text;
-    int currentEnd = currentLength + currentPosition;
-    int currentStart = currentPosition;
-    //
-    Map<String, dynamic>? attributes = currentText.attributes ?? {};
-    //se valor é o mesmo que já é compreendido pela lista
-    if (initAt == currentStart && endAt == currentEnd) {
-      attributes = {...attributes, ...attributesAt};
-      skipProcess = true;
-    }
+//   //preenche positions
+//   for (var i = 0; i < content.subText!.length; i++) {
+//     SubText currentText = content.subText![i];
+//     int currentLength = currentText.text.length;
+//     text += currentText.text;
+//     int currentEnd = currentLength + currentPosition;
+//     int currentStart = currentPosition;
+//     //
+//     Map<String, dynamic>? attributes = currentText.attributes ?? {};
+//     //se valor é o mesmo que já é compreendido pela lista
+//     if (initAt == currentStart && endAt == currentEnd) {
+//       attributes = {...attributes, ...attributesAt};
+//       skipProcess = true;
+//     }
 
-    positions.add(AttributesPosition(
-        attributes: attributes, start: currentStart, end: currentEnd));
-    //
-    currentPosition += currentLength;
-  }
-  //recuperar qual é a ultima posicao
-  positions.sort((a, b) => a.end.compareTo(b.end));
+//     positions.add(AttributesPosition(
+//         attributes: attributes, start: currentStart, end: currentEnd));
+//     //
+//     currentPosition += currentLength;
+//   }
+//   //recuperar qual é a ultima posicao
+//   positions.sort((a, b) => a.end.compareTo(b.end));
 
-  print('-----------------------------------');
-  print('     add $initAt - $endAt         >> $attributesAt\n\n');
+//   print('-----------------------------------');
+//   print('     add $initAt - $endAt         >> $attributesAt\n\n');
 
-  for (var e in positions) {
-    print(
-        '${e.start} - ${e.end} ${isBetween(e.start, e.end, initAt, endAt, exclusive: true) ? 'Adicionar' : ''}');
-  }
-  print('-----------------------------------');
+//   for (var e in positions) {
+//     print(
+//         '${e.start} - ${e.end} ${isBetween(e.start, e.end, initAt, endAt, exclusive: true) ? 'Adicionar' : ''}');
+//   }
+//   print('-----------------------------------');
 
-  void printP(AttributesPosition p) {
-    print('${p.start} - ${p.end}         >> ${p.attributes}\n');
-  }
+//   void printP(AttributesPosition p) {
+//     print('${p.start} - ${p.end}         >> ${p.attributes}\n');
+//   }
 
-  if (skipProcess) {
-    for (var i = 0; i < positions.length; i++) {
-      printP(positions[i]);
-    }
-  }
+//   if (skipProcess) {
+//     for (var i = 0; i < positions.length; i++) {
+//       printP(positions[i]);
+//     }
+//   }
 
-  //quando initAt e endAt compreender todo o range
-  //0 - 5
-  //5 - 11
-  //11- 21
-  //add > 0 - 21
-  //ou add > 0 - 30
-  if (positions.first.start == initAt && positions.last.end <= endAt) {
-    for (var i = 0; i < positions.length; i++) {
-      positions[i].attributes = {...positions[i].attributes, ...attributesAt};
-      printP(positions[i]);
-    }
-    skipProcess = true;
-  }
+//   //quando initAt e endAt compreender todo o range
+//   //0 - 5
+//   //5 - 11
+//   //11- 21
+//   //add > 0 - 21
+//   //ou add > 0 - 30
+//   if (positions.first.start == initAt && positions.last.end <= endAt) {
+//     for (var i = 0; i < positions.length; i++) {
+//       positions[i].attributes = {...positions[i].attributes, ...attributesAt};
+//       printP(positions[i]);
+//     }
+//     skipProcess = true;
+//   }
 
-  //para processar no proximo range content
-  //0 - 5
-  //5 - 11
-  //11- 21
-  //add > 0 - 30
-  //resta 21 - 30 para processar no proximo
-  if (positions.last.end < endAt) {
-    processNextEnd = endAt - positions.last.end;
-    if (processNextEnd <= 0) {
-      processNextEnd = null;
-    }
-    //o start vai ser 0 neste caso
-  }
+//   //para processar no proximo range content
+//   //0 - 5
+//   //5 - 11
+//   //11- 21
+//   //add > 0 - 30
+//   //resta 21 - 30 para processar no proximo
+//   if (positions.last.end < endAt) {
+//     processNextEnd = endAt - positions.last.end;
+//     if (processNextEnd <= 0) {
+//       processNextEnd = null;
+//     }
+//     //o start vai ser 0 neste caso
+//   }
 
-  List<AttributesPosition> newPositions = [];
-  int a1 = initAt;
-  int b1 = endAt;
-  Map<String, dynamic> atn = attributesAt;
-  //
-  for (var i = 0; i < positions.length; i++) {
-    AttributesPosition current = positions[i];
-    int currentPosStart = current.start;
-    int currentPosEnd = current.end;
-    //
-    Map<String, dynamic> at = current.attributes;
+//   List<AttributesPosition> newPositions = [];
+//   int a1 = initAt;
+//   int b1 = endAt;
+//   Map<String, dynamic> atn = attributesAt;
+//   //
+//   for (var i = 0; i < positions.length; i++) {
+//     AttributesPosition current = positions[i];
+//     int currentPosStart = current.start;
+//     int currentPosEnd = current.end;
+//     //
+//     Map<String, dynamic> at = current.attributes;
 
-    //caso esteja finalizado
-    if (currentPosEnd == b1) {
-      //preenche o novo array de posições com as seguintes
-      for (var t = i + 1; t < positions.length; t++) {
-        newPositions.add(positions[t]);
-      }
-      //finaliza o array neste caso
-      break;
-    }
-    //
-    if (currentPosStart == a1 && currentPosEnd == b1) {
-      newPositions.add(AttributesPosition(
-          attributes: {...at, ...atn},
-          start: currentPosStart,
-          end: currentPosEnd));
-      //preenche o novo array de posições com as seguintes
-      for (var t = i + 1; t < positions.length; t++) {
-        newPositions.add(positions[t]);
-      }
-      //finaliza o array neste caso
-      break;
-    } else {
-      /*
-            a=0 - b=3
-            >0 - 2
-            >2 - 3
-            */
+//     //caso esteja finalizado
+//     if (currentPosEnd == b1) {
+//       //preenche o novo array de posições com as seguintes
+//       for (var t = i + 1; t < positions.length; t++) {
+//         newPositions.add(positions[t]);
+//       }
+//       //finaliza o array neste caso
+//       break;
+//     }
+//     //
+//     if (currentPosStart == a1 && currentPosEnd == b1) {
+//       newPositions.add(AttributesPosition(
+//           attributes: {...at, ...atn},
+//           start: currentPosStart,
+//           end: currentPosEnd));
+//       //preenche o novo array de posições com as seguintes
+//       for (var t = i + 1; t < positions.length; t++) {
+//         newPositions.add(positions[t]);
+//       }
+//       //finaliza o array neste caso
+//       break;
+//     } else {
+//       /*
+//             a=0 - b=3
+//             >0 - 2
+//             >2 - 3
+//             */
 
-      //a=0 < a1=2
-      if (currentPosStart < a1) {
-        newPositions.add(AttributesPosition(
-            attributes: {...at}, start: currentPosStart, end: a1)); // 0 - 2
-        if (currentPosEnd < b1) {
-          newPositions.add(AttributesPosition(
-              attributes: {...at, ...atn},
-              start: a1,
-              end: currentPosEnd)); // 2 - 3
-          a1 = currentPosEnd; // 3 - 7
-        }
-      } else if (currentPosStart == a1) {
-        // newPositions.add(AttributesPosition(attributes: {...at, ...atn}, start: a, end: b));
-      }
-    }
-  }
+//       //a=0 < a1=2
+//       if (currentPosStart < a1) {
+//         newPositions.add(AttributesPosition(
+//             attributes: {...at}, start: currentPosStart, end: a1)); // 0 - 2
+//         if (currentPosEnd < b1) {
+//           newPositions.add(AttributesPosition(
+//               attributes: {...at, ...atn},
+//               start: a1,
+//               end: currentPosEnd)); // 2 - 3
+//           a1 = currentPosEnd; // 3 - 7
+//         }
+//       } else if (currentPosStart == a1) {
+//         // newPositions.add(AttributesPosition(attributes: {...at, ...atn}, start: a, end: b));
+//       }
+//     }
+//   }
 
-  List<AttributesPosition> processa() {
-    List<AttributesPosition> newPositions = [];
-    int a1 = initAt;
-    int b1 = endAt;
-    Map<String, dynamic> atn = attributesAt;
-    //
-    for (var i = 0; i < positions.length; i++) {
-      AttributesPosition c = positions[i];
-      int a = c.start;
-      int b = c.end;
-      //
-      Map<String, dynamic> at = c.attributes;
+//   List<AttributesPosition> processa() {
+//     List<AttributesPosition> newPositions = [];
+//     int a1 = initAt;
+//     int b1 = endAt;
+//     Map<String, dynamic> atn = attributesAt;
+//     //
+//     for (var i = 0; i < positions.length; i++) {
+//       AttributesPosition c = positions[i];
+//       int a = c.start;
+//       int b = c.end;
+//       //
+//       Map<String, dynamic> at = c.attributes;
 
-      if (a == a1 && b == b1) {
-        newPositions.add(
-            AttributesPosition(attributes: {...at, ...atn}, start: a, end: b));
-        printP(newPositions.last);
-        //preenche o novo array de posições com as seguintes
-        for (var t = i + 1; t < positions.length; t++) {
-          newPositions.add(positions[t]);
-          printP(newPositions.last);
-        }
-        //finaliza o array neste caso
-        break;
-      } else {
-        /*
-            a=0 - b=3
-            >0 - 2
-            >2 - 3
-            */
-        //só se estiver no range
-        if (isBetween(a, b, a1, b1)) {
-          //a=0 < a1=2
-          if (a < a1) {
-            //caso nao esteja no range
-            if (b < a1) {
-              newPositions.add(AttributesPosition(
-                  attributes: {...at}, start: a, end: b)); // 0 - 2
-              printP(newPositions.last);
-            } else {
-              //caso esteja no range
-              newPositions.add(AttributesPosition(
-                  attributes: {...at}, start: a, end: a1)); // 0 - 2
-              printP(newPositions.last);
-              if (b < b1) {
-                newPositions.add(AttributesPosition(attributes: {
-                  ...at,
-                  ...(isBetween(a1, b, a1, b1, exclusive: false) ? atn : {})
-                }, start: a1, end: b)); // 2 - 3
-                printP(newPositions.last);
-                a1 = b; // 3 - 7
-              } else {
-                if (b == b1) {
-                  //antes de adicionar o restante, adiciona a posição que falta
-                  newPositions.add(AttributesPosition(attributes: {
-                    ...at,
-                    ...(isBetween(a1, b, a1, b1, exclusive: true) ? atn : {})
-                  }, start: a1, end: b)); // 2 - 3
-                  printP(newPositions.last);
-                }
-                //? Adicionado por AI
-                else {
-                  // b > b1: precisa dividir em duas partes
-                  // Parte com atributos novos: a1 até b1
-                  newPositions.add(AttributesPosition(
-                      attributes: {...at, ...atn}, start: a1, end: b1));
-                  printP(newPositions.last);
-                  // Parte sem atributos novos: b1 até b
-                  newPositions.add(AttributesPosition(
-                      attributes: {...at}, start: b1, end: b));
-                  printP(newPositions.last);
-                }
-                //? End Adicionado por AI
-              }
-            }
-          } else if (a == a1) {
-            if (b < b1) {
-              newPositions.add(AttributesPosition(attributes: {
-                ...at,
-                ...(isBetween(a, b, a1, b1, exclusive: false) ? atn : {})
-              }, start: a, end: b));
-              printP(newPositions.last);
-              a1 = b;
-            } else {
-              //0-2 > precisa exclusive:true
-              newPositions.add(AttributesPosition(attributes: {
-                ...at,
-                ...(isBetween(a, b1, a1, b1, exclusive: true) ? atn : {})
-              }, start: a, end: b1));
-              printP(newPositions.last);
-              //caso contrario, b == b1 já foi adicionado acima
-              if (b > b1) {
-                newPositions.add(AttributesPosition(attributes: {
-                  ...at,
-                  ...(isBetween(b1, b, a1, b1, exclusive: false) ? atn : {})
-                }, start: b1, end: b));
-                printP(newPositions.last);
-              }
-              //praticamente, finaliza
-              a1 = b1;
-            }
-          }
-        } else {
-          newPositions.add(positions[i]);
-          printP(newPositions.last);
-        }
+//       if (a == a1 && b == b1) {
+//         newPositions.add(
+//             AttributesPosition(attributes: {...at, ...atn}, start: a, end: b));
+//         printP(newPositions.last);
+//         //preenche o novo array de posições com as seguintes
+//         for (var t = i + 1; t < positions.length; t++) {
+//           newPositions.add(positions[t]);
+//           printP(newPositions.last);
+//         }
+//         //finaliza o array neste caso
+//         break;
+//       } else {
+//         /*
+//             a=0 - b=3
+//             >0 - 2
+//             >2 - 3
+//             */
+//         //só se estiver no range
+//         if (isBetween(a, b, a1, b1)) {
+//           //a=0 < a1=2
+//           if (a < a1) {
+//             //caso nao esteja no range
+//             if (b < a1) {
+//               newPositions.add(AttributesPosition(
+//                   attributes: {...at}, start: a, end: b)); // 0 - 2
+//               printP(newPositions.last);
+//             } else {
+//               //caso esteja no range
+//               newPositions.add(AttributesPosition(
+//                   attributes: {...at}, start: a, end: a1)); // 0 - 2
+//               printP(newPositions.last);
+//               if (b < b1) {
+//                 newPositions.add(AttributesPosition(attributes: {
+//                   ...at,
+//                   ...(isBetween(a1, b, a1, b1, exclusive: false) ? atn : {})
+//                 }, start: a1, end: b)); // 2 - 3
+//                 printP(newPositions.last);
+//                 a1 = b; // 3 - 7
+//               } else {
+//                 if (b == b1) {
+//                   //antes de adicionar o restante, adiciona a posição que falta
+//                   newPositions.add(AttributesPosition(attributes: {
+//                     ...at,
+//                     ...(isBetween(a1, b, a1, b1, exclusive: true) ? atn : {})
+//                   }, start: a1, end: b)); // 2 - 3
+//                   printP(newPositions.last);
+//                 }
+//                 //? Adicionado por AI
+//                 else {
+//                   // b > b1: precisa dividir em duas partes
+//                   // Parte com atributos novos: a1 até b1
+//                   newPositions.add(AttributesPosition(
+//                       attributes: {...at, ...atn}, start: a1, end: b1));
+//                   printP(newPositions.last);
+//                   // Parte sem atributos novos: b1 até b
+//                   newPositions.add(AttributesPosition(
+//                       attributes: {...at}, start: b1, end: b));
+//                   printP(newPositions.last);
+//                 }
+//                 //? End Adicionado por AI
+//               }
+//             }
+//           } else if (a == a1) {
+//             if (b < b1) {
+//               newPositions.add(AttributesPosition(attributes: {
+//                 ...at,
+//                 ...(isBetween(a, b, a1, b1, exclusive: false) ? atn : {})
+//               }, start: a, end: b));
+//               printP(newPositions.last);
+//               a1 = b;
+//             } else {
+//               //0-2 > precisa exclusive:true
+//               newPositions.add(AttributesPosition(attributes: {
+//                 ...at,
+//                 ...(isBetween(a, b1, a1, b1, exclusive: true) ? atn : {})
+//               }, start: a, end: b1));
+//               printP(newPositions.last);
+//               //caso contrario, b == b1 já foi adicionado acima
+//               if (b > b1) {
+//                 newPositions.add(AttributesPosition(attributes: {
+//                   ...at,
+//                   ...(isBetween(b1, b, a1, b1, exclusive: false) ? atn : {})
+//                 }, start: b1, end: b));
+//                 printP(newPositions.last);
+//               }
+//               //praticamente, finaliza
+//               a1 = b1;
+//             }
+//           }
+//         } else {
+//           newPositions.add(positions[i]);
+//           printP(newPositions.last);
+//         }
 
-        if (b == b1 || a1 == b1) {
-          //preenche o novo array de posições com as seguintes
-          for (var t = i + 1; t < positions.length; t++) {
-            newPositions.add(positions[t]);
-            printP(newPositions.last);
-          }
-          //finaliza o array neste caso
-          break;
-        }
-      }
-    }
-    return newPositions;
-  }
+//         if (b == b1 || a1 == b1) {
+//           //preenche o novo array de posições com as seguintes
+//           for (var t = i + 1; t < positions.length; t++) {
+//             newPositions.add(positions[t]);
+//             printP(newPositions.last);
+//           }
+//           //finaliza o array neste caso
+//           break;
+//         }
+//       }
+//     }
+//     return newPositions;
+//   }
 
-  if (!skipProcess) {
-    positions = processa();
-  }
-  //final
-  //nova lista de subTexts
-  List<SubText> subTexts = [];
-  //recriar subText com atributos apartir das posições
-  for (var i = 0; i < positions.length; i++) {
-    //
-    int pStart = positions[i].start;
-    int pEnd = positions[i].end;
-    //
-    String t = text.substring(pStart, pEnd);
-    SubText newSubText = SubText(text: t, attributes: positions[i].attributes);
-    subTexts.add(newSubText);
-  }
+//   if (!skipProcess) {
+//     positions = processa();
+//   }
+//   //final
+//   //nova lista de subTexts
+//   List<SubText> subTexts = [];
+//   //recriar subText com atributos apartir das posições
+//   for (var i = 0; i < positions.length; i++) {
+//     //
+//     int pStart = positions[i].start;
+//     int pEnd = positions[i].end;
+//     //
+//     String t = text.substring(pStart, pEnd);
+//     SubText newSubText = SubText(text: t, attributes: positions[i].attributes);
+//     subTexts.add(newSubText);
+//   }
 
-  //fazer um loop do positions reconstruindo o novo subText com os delimitadores initAt e endAt
+//   //fazer um loop do positions reconstruindo o novo subText com os delimitadores initAt e endAt
 
-  //final tem que retornar um index do initAt e endAt > 0 caso o escopo do content.texts seja maior que o endAt
-  //neste caso o initAt vai ter que ser 0 o endAt vai ter que ser endAt - o tamanho do texto que foi atribuido neste escopo de positions.
-  print('initAt: $initAt | endAt: $endAt\n');
-  print(jsonDecode(jsonEncode(positions)));
-  print('processNextEnd: $processNextEnd');
-  print('\n');
-  print('Result SubTexts:');
-  for (var e in subTexts) {
-    print(e);
-  }
+//   //final tem que retornar um index do initAt e endAt > 0 caso o escopo do content.texts seja maior que o endAt
+//   //neste caso o initAt vai ter que ser 0 o endAt vai ter que ser endAt - o tamanho do texto que foi atribuido neste escopo de positions.
+//   print('initAt: $initAt | endAt: $endAt\n');
+//   print(jsonDecode(jsonEncode(positions)));
+//   print('processNextEnd: $processNextEnd');
+//   print('\n');
+//   print('Result SubTexts:');
+//   for (var e in subTexts) {
+//     print(e);
+//   }
 
-  return (subTexts, processNextEnd);
-}
+//   return (subTexts, processNextEnd);
+// }
 
 /// Aplica atributos em uma lista de Contents baseado em posições globais
 ///
@@ -404,7 +404,7 @@ List<Content> setContentAttributesOnPosition({
     Content currentContent = contents[i];
 
     // Calcula o tamanho total do conteúdo atual
-    int contentLength = currentContent.subText!
+    int contentLength = currentContent.texts!
         .map((e) => e.text.length)
         .fold(0, (a, b) => a + b);
 
@@ -428,9 +428,7 @@ List<Content> setContentAttributesOnPosition({
           '  Local range: $localStart to $localEnd (global: $initAt to $endAt)');
 
       // Aplica os atributos neste conteúdo
-      // processNextEnd é ignorado aqui, pois localEnd já está ajustado para este conteúdo
-      // processNextEnd retorna null neste caso, mas se não ajustado, poderia ser usado para o próximo conteúdo
-      var (updatedSubTexts, processNextEnd) = setAttributesOnPosition(
+      var updatedSubTexts = setAttributesOnPosition(
         currentContent,
         attributesAt,
         //localStart calculado acima
@@ -440,7 +438,7 @@ List<Content> setContentAttributesOnPosition({
       );
 
       // Atualiza o conteúdo com os novos SubTexts
-      updatedContents.add(currentContent..subText = updatedSubTexts);
+      updatedContents.add(currentContent..texts = updatedSubTexts);
     } else {
       // Este conteúdo não é afetado, mantém como está
       updatedContents.add(currentContent);
@@ -492,7 +490,7 @@ List<Content> setContentAttributesOnAWord(
   List<Content> newContents = [];
   //
   for (var content in contents) {
-    String fullText = content.subText!.map((e) => e.text).join();
+    String fullText = content.texts!.map((e) => e.text).join();
     // Ajusta a palavra e o texto completo conforme a sensibilidade de caso
     if (filterBy.caseSensitive == false) {
       word = word.toLowerCase();
@@ -532,7 +530,7 @@ List<Content> setContentAttributesOnAWord(
       int endIndex = foundIndex + word.length;
 
       // Aplica os atributos na ocorrência encontrada
-      var (updatedSubTexts, remain) = setAttributesOnPosition(
+      var updatedSubTexts = setAttributesOnPosition(
         content,
         attributesAt,
         foundIndex,
@@ -540,7 +538,7 @@ List<Content> setContentAttributesOnAWord(
       );
 
       // Atualiza o conteúdo com os novos SubTexts
-      content.subText = updatedSubTexts;
+      content.texts = updatedSubTexts;
 
       // Texto não muda
       // Atualiza o texto completo para refletir as mudanças
@@ -610,15 +608,15 @@ List<Content> setContentAttributesOnAWord(
 // }
 
 void main() {
-  final subText1 = SubText(
+  final subText1 = Texts(
     text: 'Olá, ',
     attributes: {'font': 'Arial'},
   ); // 0-5
-  final subText2 = SubText(
+  final subText2 = Texts(
     text: 'mundo!',
     attributes: {'font': 'Helvetica'},
   ); // 5-11
-  final subText3 = SubText(
+  final subText3 = Texts(
     text: ' Como vai?',
     attributes: {'font': 'Verdana'},
   ); // 11-21
@@ -626,22 +624,22 @@ void main() {
   var content = Content(
       seq: 0,
       text: '',
-      subText: [subText1, subText2, subText3],
+      texts: [subText1, subText2, subText3],
       typeContent: TypeContent.verse);
 
-  final subText6 = SubText(
+  final subText6 = Texts(
     text: ' Aqui tudo bem,',
     attributes: {'font': 'Arial'},
   );
-  final subText7 = SubText(
+  final subText7 = Texts(
     text: ' mas queria',
     attributes: {'font': 'Helvetica'},
   );
-  final subText8 = SubText(
+  final subText8 = Texts(
     text: ' comer.',
     attributes: {'font': 'Verdana'},
   );
-  final subText9 = SubText(
+  final subText9 = Texts(
     text: ' Estou com uma fome!',
     attributes: {'font': 'Verdana'},
   );
@@ -649,7 +647,7 @@ void main() {
   final content2 = Content(
       seq: 1,
       text: '',
-      subText: [subText6, subText7, subText8, subText9],
+      texts: [subText6, subText7, subText8, subText9],
       typeContent: TypeContent.verse);
 
   List<Content> contents = [content, content2];
@@ -667,7 +665,7 @@ void main() {
     int total = 0;
     for (var content in updatedContents) {
       print('Content:');
-      for (var subText in content.subText!) {
+      for (var subText in content.texts!) {
         total += subText.text.length;
         print(
             '  $subText${List.generate(100 - subText.toString().length, (i) => ' ').join()}=> total chars: ${subText.length}  => cumulative total: $total ');
@@ -678,18 +676,152 @@ void main() {
   imprimir();
 
   // Aplica atributo que atravessa múltiplos conteúdos
-  // updatedContents = setContentAttributesOnPosition(
-  //   contents: contents,
-  //   attributesAt: {'NOVO': 'VALOR'},
-  //   initAt: 40,
-  //   endAt: 43,
-  //   // initAt: 13,
-  //   // endAt: 17,
-  //   // initAt: 40,
-  //   // endAt: 47,
+  updatedContents = setContentAttributesOnPosition(
+    contents: contents,
+    attributesAt: {'NOVO': 'VALOR'},
+    // initAt: 15,
+    // endAt: 60,
+    // initAt: 13,
+    // endAt: 17,
+    initAt: 2,
+    endAt: 7,
+  );
+  // updatedContents = setContentAttributesOnAWord(
+  //   contents,
+  //   {'HIGHLIGHT': 'TRUE'},
+  //   'com',
+  //   filterBy: FilterWordBy(caseSensitive: true, wholeWord: false),
   // );
-  updatedContents = setContentAttributesOnAWord(
-      contents, {'HIGHLIGHT': 'TRUE'}, 'olá',
-      filterBy: FilterWordBy(caseSensitive: true, wholeWord: true));
   imprimir();
+}
+
+/// Aplica atributos em um Content baseado em posições locais
+///
+/// [content]: Content a ser modificado
+///
+/// [attributesAt]: Atributos a serem aplicados
+///
+/// [initAt]: Posição inicial local para aplicar os atributos
+///
+/// [endAt]: Posição final local para aplicar os atributos
+///
+/// Retorna a nova lista de SubTexts com os atributos aplicados
+///
+/// Observação: As posições initAt e endAt são relativas ao conteúdo do Content fornecido
+///
+/// Exemplo:
+///```dart
+/// final subText1 = SubText('Olá, ', {'font': 'Arial'});
+/// final subText2 = SubText('mundo!', {'font': 'Helvetica'});
+/// final subText3 = SubText(' Como vai?', {'font': 'Verdana'});
+/// var content = Content([subText1, subText2, subText3]);
+/// content = setAttributesOnPosition(content, {'NOVO': 'VALOR'}, 2, 7);
+/// // Resultado:
+/// // SubText(text: [Ol], attributes: {font: Arial})
+/// // SubText(text: [á, ], attributes: {font: Arial, NOVO: VALOR})
+/// // SubText(text: [mu], attributes: {font: Helvetica, NOVO: VALOR})
+/// // SubText(text: [ndo!], attributes: {font: Helvetica})
+/// // SubText(text: [ Como vai?], attributes: {font: Verdana})
+///
+/// ```
+///
+List<Texts> setAttributesOnPosition(
+    Content content, Map<String, dynamic> attributesAt, int initAt, int endAt) {
+  // Construir texto completo e mapa de posições
+  String fullText = '';
+  List<AttributesPosition> positions = [];
+
+  for (var subText in content.texts!) {
+    int start = fullText.length;
+    fullText += subText.text;
+    int end = fullText.length;
+
+    positions.add(AttributesPosition(
+      attributes: Map<String, dynamic>.from(subText.attributes ?? {}),
+      start: start,
+      end: end,
+    ));
+  }
+
+  // Validar limites
+  if (initAt < 0) initAt = 0;
+  if (endAt > fullText.length) {
+    endAt = fullText.length;
+  }
+
+  // Lista de novas posições
+  List<AttributesPosition> newPositions = [];
+
+  for (var pos in positions) {
+    // Caso 1: Posição completamente fora do range
+    if (pos.end <= initAt || pos.start >= endAt) {
+      newPositions.add(pos);
+      continue;
+    }
+
+    // Caso 2: Posição completamente dentro do range
+    if (pos.start >= initAt && pos.end <= endAt) {
+      newPositions.add(AttributesPosition(
+        attributes: {...pos.attributes, ...attributesAt},
+        start: pos.start,
+        end: pos.end,
+      ));
+      continue;
+    }
+
+    // Caso 3: Range começa no meio da posição
+    if (pos.start < initAt && pos.end > initAt) {
+      // Parte antes do range
+      newPositions.add(AttributesPosition(
+        attributes: pos.attributes,
+        start: pos.start,
+        end: initAt,
+      ));
+
+      // Parte dentro do range
+      int rangeEnd = pos.end < endAt ? pos.end : endAt;
+      newPositions.add(AttributesPosition(
+        attributes: {...pos.attributes, ...attributesAt},
+        start: initAt,
+        end: rangeEnd,
+      ));
+
+      // Parte depois do range (se existir)
+      if (pos.end > endAt) {
+        newPositions.add(AttributesPosition(
+          attributes: pos.attributes,
+          start: endAt,
+          end: pos.end,
+        ));
+      }
+      continue;
+    }
+
+    // Caso 4: Range termina no meio da posição
+    if (pos.start < endAt && pos.end > endAt) {
+      // Parte dentro do range
+      newPositions.add(AttributesPosition(
+        attributes: {...pos.attributes, ...attributesAt},
+        start: pos.start,
+        end: endAt,
+      ));
+
+      // Parte depois do range
+      newPositions.add(AttributesPosition(
+        attributes: pos.attributes,
+        start: endAt,
+        end: pos.end,
+      ));
+      continue;
+    }
+  }
+
+  // Reconstruir SubTexts
+  List<Texts> subTexts = [];
+  for (var pos in newPositions) {
+    String text = fullText.substring(pos.start, pos.end);
+    subTexts.add(Texts(text: text, attributes: pos.attributes));
+  }
+
+  return subTexts;
 }
