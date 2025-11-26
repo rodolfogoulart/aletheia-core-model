@@ -169,7 +169,7 @@ class SubText {
   }
 
   @override
-  String toString() => 'SubText(text: $text, attributes: $attributes)';
+  String toString() => 'SubText(text: [$text], attributes: $attributes)';
 }
 
 ///*when Generated JSON Serialization, change the key to refer the variable
@@ -339,6 +339,14 @@ class Content {
       } catch (e) {
         refLexicos = null;
       }
+      List<SubText>? subText;
+      try {
+        subText = map['sT'] != null
+            ? List<SubText>.from(map['sT']?.map((x) => SubText.fromMap(x)))
+            : null;
+      } catch (e) {
+        subText = null;
+      }
       //
       return Content(
         seq: map['sq']?.toInt() ?? 0,
@@ -350,9 +358,7 @@ class Content {
         //assume the refLexicos is rS (to older versions) or rL (to newer versions)
         // refLexicos: (map['rS'] != null) ? List<String>.from(map['rS']) : null,
         refLexicos: refLexicos,
-        subText: map['sT'] != null
-            ? List<SubText>.from(map['sT']?.map((x) => SubText.fromMap(x)))
-            : null,
+        subText: subText,
         anottation: map['an'],
         comment: map['cm'],
         reference: map['rf'] != null
@@ -382,7 +388,9 @@ class Content {
     TypeContent? typeContent,
     Map<String, dynamic>? attributes,
     List<String>? refLexicos,
-    // List<SubText>? subText,
+    //
+    List<SubText>? subText,
+    //
     String? anottation,
     String? comment,
     List<Reference>? reference,
@@ -395,7 +403,9 @@ class Content {
       typeContent: typeContent ?? this.typeContent,
       attributes: attributes ?? this.attributes,
       refLexicos: refLexicos ?? this.refLexicos,
-      // subText: subText ?? this.subText,
+      //
+      subText: subText ?? this.subText,
+      //
       anottation: anottation ?? this.anottation,
       comment: comment ?? this.comment,
       reference: reference ?? this.reference,
