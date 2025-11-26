@@ -106,28 +106,50 @@ extension TypeContentExtension on TypeContent {
 
 @Deprecated('will be removed')
 class SubText {
+  /// use KEY [T]
   String text;
+
+  /// use KEY [at]
   Map<String, dynamic>? attributes;
   SubText({
     required this.text,
     this.attributes,
   });
+  //getters
+  int get length => text.length;
+  bool get hasAttributes => attributes != null && attributes!.isNotEmpty;
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
-    result.addAll({'text': text});
+    // result.addAll({'text': text});
+    result.addAll({'T': text});
     if (attributes != null) {
-      result.addAll({'attributes': attributes});
+      // result.addAll({'attributes': attributes});
+      result.addAll({'at': attributes});
     }
 
     return result;
   }
 
   factory SubText.fromMap(Map<String, dynamic> map) {
+    String text = '';
+    try {
+      text = map['T'] ?? map['text'] ?? '';
+    } catch (e) {
+      text = '';
+    }
+    Map<String, dynamic> attributes = {};
+    try {
+      attributes =
+          Map<String, dynamic>.from(map['at'] ?? map['attributes'] ?? {});
+    } catch (e) {
+      attributes = {};
+    }
+
     return SubText(
-      text: map['text'] ?? '',
-      attributes: Map<String, dynamic>.from(map['attributes'] ?? {}),
+      text: text,
+      attributes: attributes.isNotEmpty ? attributes : null,
     );
   }
 
@@ -168,8 +190,19 @@ class Content {
   ///
   ///use KEY [tC]
   TypeContent typeContent; //tC
+
+  /// attributes of the text (style, color, etc..)
+  ///
+  /// map of [TypeAttributes] with dynamic value
+  ///
   ///use KEY [at]
   Map<String, dynamic>? attributes; //at
+
+  ///Helper to check if has attributes
+  bool get hasAttributes => attributes != null && attributes!.isNotEmpty;
+
+  ///references to lexicos (strongs, etc..)
+  ///
   ///use KEY [rS] KEY CHANGED TO>>>>> [rL]
   List<String>? refLexicos; //rS
 
@@ -178,13 +211,18 @@ class Content {
   ///each `[subText]` inherits the attributes from the `[text]` abouve, so if the [text] has the attribute `bold = true`, and the [subText] dont has bold, [subText] need to have the attribute `bold = false` to reverse
   @Deprecated('will be removed')
   List<SubText>? subText; //sT
+
   ///use KEY [an]
   String? anottation; //an
+
   ///use KEY [cm]
   String? comment; // cm
-  //can be a list of references
+
+  /// list of references
+  ///
   ///use KEY [rf]
   List<Reference>? reference; //rf
+
   ///use KEY [fn]
   ///
   ///v.1.0.19 change footnote to a list of footnotes
@@ -270,7 +308,9 @@ class Content {
       }
     }
     if (footnote != null) {
-      result.addAll({'fn': footnote});
+      if (footnote!.isNotEmpty) {
+        result.addAll({'fn': footnote!.map((x) => x.toMap()).toList()});
+      }
     }
     if (paragraph != null) {
       if (paragraph != false) {
