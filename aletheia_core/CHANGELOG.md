@@ -157,3 +157,13 @@
 
 ## 0.0.40
 * Change toMap() on Book Division enum to return the index of the enum instead of the name
+
+## 0.0.41
+* Fix deprecated field texts on VerseContent
+  * Changed to use KEY [Ts] instead of [ts]
+  * Removed the deprecated field
+  * Updated related comments and documentations
+* Add folder functions
+  * Add verse.content.text.dart to store functions related to VerseContent text manipulation
+  * Added function setAttributesOnPosition to set attributes on specific positions of the text
+* Exported functions on aletheia_core.dart
