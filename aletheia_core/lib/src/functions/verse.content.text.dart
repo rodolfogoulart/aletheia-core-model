@@ -213,6 +213,11 @@ class ContentTextFormatter {
     required List<Content> contents,
     required Map<String, dynamic> attributesAt,
     FilterWordBy? filterBy,
+
+    /// Filtra os tipos de conteúdo a serem processados
+    ///
+    /// Default: [TypeContent.verse]
+    List<TypeContent> filteredContentTypes = const [TypeContent.verse],
   }) {
     filterBy ??= FilterWordBy();
 
@@ -258,20 +263,23 @@ class ContentTextFormatter {
 
         int endIndex = foundIndex + word.length;
 
-        // Aplica os atributos na ocorrência encontrada
-        var updatedSubTexts = setAttributesOnPosition(
-          content: content,
-          attributesAt: attributesAt,
-          initAt: foundIndex,
-          endAt: endIndex,
-        );
+        // Verifica se o tipo de conteúdo deve ser processado
+        bool process = true;
+        if (!filteredContentTypes.contains(content.typeContent)) {
+          process = false;
+        }
 
-        // Atualiza o conteúdo com os novos SubTexts
-        content.texts = updatedSubTexts;
-
-        // Texto não muda
-        // fullText = content.subText!.map((e) => e.text).join();
-
+        if (process) {
+          // Aplica os atributos na ocorrência encontrada
+          var updatedSubTexts = setAttributesOnPosition(
+            content: content,
+            attributesAt: attributesAt,
+            initAt: foundIndex,
+            endAt: endIndex,
+          );
+          // Atualiza o conteúdo com os novos SubTexts
+          content.texts = updatedSubTexts;
+        }
         // Move o índice inicial para continuar a busca após a ocorrência atual
         startIndex = endIndex;
       }
