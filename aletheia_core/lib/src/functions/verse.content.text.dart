@@ -162,12 +162,12 @@ class ContentTextFormatter {
 
         // Aplica os atributos neste conteúdo
         var updatedSubTexts = setAttributesOnPosition(
-          currentContent,
-          attributesAt,
+          content: currentContent,
+          attributesAt: attributesAt,
           //localStart calculado acima
-          localStart,
+          initAt: localStart,
           //localEnd calculado acima
-          localEnd,
+          endAt: localEnd,
         );
 
         // Atualiza o conteúdo com os novos SubTexts
@@ -192,9 +192,9 @@ class ContentTextFormatter {
   /// [word]: Palavra a ser buscada e modificada
   ///
   static List<Content> setContentAttributesOnAWord(
-    List<Content> contents,
-    Map<String, dynamic> attributesAt,
     String word, {
+    required List<Content> contents,
+    required Map<String, dynamic> attributesAt,
     FilterWordBy? filterBy,
   }) {
     filterBy ??= FilterWordBy();
@@ -243,10 +243,10 @@ class ContentTextFormatter {
 
         // Aplica os atributos na ocorrência encontrada
         var updatedSubTexts = setAttributesOnPosition(
-          content,
-          attributesAt,
-          foundIndex,
-          endIndex,
+          content: content,
+          attributesAt: attributesAt,
+          initAt: foundIndex,
+          endAt: endIndex,
         );
 
         // Atualiza o conteúdo com os novos SubTexts
@@ -292,8 +292,11 @@ class ContentTextFormatter {
   /// // SubText(text: [ Como vai?], attributes: {font: Verdana})
   /// ```
   ///
-  static List<Texts> setAttributesOnPosition(Content content,
-      Map<String, dynamic> attributesAt, int initAt, int endAt) {
+  static List<Texts> setAttributesOnPosition(
+      {required Content content,
+      required Map<String, dynamic> attributesAt,
+      required int initAt,
+      required int endAt}) {
     // Construir texto completo e mapa de posições
     String fullText = '';
     List<AttributesPosition> positions = [];
