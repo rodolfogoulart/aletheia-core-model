@@ -124,7 +124,7 @@ class Texts {
 
     // result.addAll({'text': text});
     result.addAll({'T': text});
-    if (attributes != null) {
+    if (attributes != null && attributes?.isNotEmpty == true) {
       // result.addAll({'attributes': attributes});
       result.addAll({'at': attributes});
     }
@@ -179,6 +179,7 @@ class Content {
   ///to the text have breakline need to have \n with the text
   ///
   ///use KEY [T]
+  @Deprecated("use [texts] instead, this will be removed in future versions")
   String text; //T
 
   /// Helper to get the full text
@@ -245,7 +246,8 @@ class Content {
   bool? paragraph; //pr
   Content({
     required this.seq,
-    required this.text,
+    @Deprecated("use [texts] instead, this will be removed in future versions")
+    this.text = '',
     required this.typeContent,
     this.attributes,
     this.refLexicos,
@@ -303,6 +305,8 @@ class Content {
     if (texts != null) {
       if (texts?.isNotEmpty == true) {
         result.addAll({'Ts': texts!.map((x) => x.toMap()).toList()});
+        //
+        result.remove('T'); //remove the old key to avoid redundancy
       }
     }
     if (anottation != null) {
@@ -356,13 +360,36 @@ class Content {
       } catch (e) {
         texts = null;
       }
+      String text = '';
+      try {
+        text = map['T'] ?? '';
+      } catch (e) {
+        text = '';
+      }
+      Map<String, dynamic>? attributes;
+      try {
+        attributes =
+            map['at'] != null ? Map<String, dynamic>.from(map['at']) : null;
+      } catch (e) {
+        attributes = null;
+      }
+      //Just in case the database is running on older version without texts
+      if (texts == null || texts.isEmpty) {
+        if (text.isNotEmpty) {
+          texts = [
+            Texts(
+              text: text,
+              attributes: attributes,
+            )
+          ];
+        }
+      }
       //
       return Content(
         seq: map['sq']?.toInt() ?? 0,
-        text: map['T'] ?? '',
+        text: text,
         typeContent: TypeContent.fromMap(map['tC']),
-        attributes:
-            map['at'] != null ? Map<String, dynamic>.from(map['at']) : null,
+        attributes: attributes,
         //change the Key name to match the new name 06/05/2024
         //assume the refLexicos is rS (to older versions) or rL (to newer versions)
         // refLexicos: (map['rS'] != null) ? List<String>.from(map['rS']) : null,
@@ -389,7 +416,7 @@ class Content {
 
   @override
   String toString() =>
-      'Content(text:$text, attributes:$attributes, refLexicos:$refLexicos)';
+      'Content(text:$fullText, attributes:$attributes, refLexicos:$refLexicos)';
 
   Content copyWith({
     int? seq,
