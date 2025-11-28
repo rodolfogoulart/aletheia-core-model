@@ -150,7 +150,9 @@ class ContentTextFormatter {
       if (!filteredContentTypes.contains(currentContent.typeContent)) {
         process = false;
         print(
-            'Skipping Content $i of type ${currentContent.typeContent}, not in filtered types.');
+            'Skipping Content $i ${currentContent.typeContent}, not in filtered.');
+        // Este conteúdo não é afetado, mantém como está
+        updatedContents.add(currentContent);
         continue;
       }
       // Calcula o tamanho total do conteúdo atual
@@ -227,6 +229,11 @@ class ContentTextFormatter {
     List<Content> newContents = [];
     //
     for (var content in contents) {
+      // Verifica se o tipo de conteúdo deve ser processado
+      if (!filteredContentTypes.contains(content.typeContent)) {
+        continue;
+      }
+      // Construir texto completo
       String fullText = content.texts!.map((e) => e.text).join();
       // Ajusta a palavra e o texto completo conforme a sensibilidade de caso
       if (filterBy.caseSensitive == false) {
@@ -266,23 +273,15 @@ class ContentTextFormatter {
 
         int endIndex = foundIndex + word.length;
 
-        // Verifica se o tipo de conteúdo deve ser processado
-        bool process = true;
-        if (!filteredContentTypes.contains(content.typeContent)) {
-          process = false;
-        }
-
-        if (process) {
-          // Aplica os atributos na ocorrência encontrada
-          var updatedSubTexts = setAttributesOnPosition(
-            content: content,
-            attributesAt: attributesAt,
-            initAt: foundIndex,
-            endAt: endIndex,
-          );
-          // Atualiza o conteúdo com os novos SubTexts
-          content.texts = updatedSubTexts;
-        }
+        // Aplica os atributos na ocorrência encontrada
+        var updatedSubTexts = setAttributesOnPosition(
+          content: content,
+          attributesAt: attributesAt,
+          initAt: foundIndex,
+          endAt: endIndex,
+        );
+        // Atualiza o conteúdo com os novos SubTexts
+        content.texts = updatedSubTexts;
         // Move o índice inicial para continuar a busca após a ocorrência atual
         startIndex = endIndex;
       }
