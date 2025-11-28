@@ -460,96 +460,96 @@ class ContentTextFormatter {
 }
 
 /// Exemplo de uso
-void main() {
-  final subText1 = Texts(
-    text: 'Olá, ',
-    attributes: {'font': 'Arial'},
-  ); // 0-5
-  final subText2 = Texts(
-    text: 'mundo!',
-    attributes: {'font': 'Helvetica'},
-  ); // 5-11
-  final subText3 = Texts(
-    text: ' Como vai?',
-    attributes: {'font': 'Verdana'},
-  ); // 11-21
+// void main() {
+//   final subText1 = Texts(
+//     text: 'Olá, ',
+//     attributes: {'font': 'Arial'},
+//   ); // 0-5
+//   final subText2 = Texts(
+//     text: 'mundo!',
+//     attributes: {'font': 'Helvetica'},
+//   ); // 5-11
+//   final subText3 = Texts(
+//     text: ' Como vai?',
+//     attributes: {'font': 'Verdana'},
+//   ); // 11-21
 
-  var content = Content(
-      seq: 0,
-      text: '',
-      texts: [subText1, subText2, subText3],
-      typeContent: TypeContent.verse);
+//   var content = Content(
+//       seq: 0,
+//       text: '',
+//       texts: [subText1, subText2, subText3],
+//       typeContent: TypeContent.verse);
 
-  final subText6 = Texts(
-    text: ' Aqui tudo bem,',
-    attributes: {'font': 'Arial'},
-  );
-  final subText7 = Texts(
-    text: ' mas queria',
-    attributes: {'font': 'Helvetica'},
-  );
-  final subText8 = Texts(
-    text: ' comer.',
-    attributes: {'font': 'Verdana'},
-  );
-  final subText9 = Texts(
-    text: ' Estou com uma fome!',
-    attributes: {'font': 'Verdana'},
-  );
+//   final subText6 = Texts(
+//     text: ' Aqui tudo bem,',
+//     attributes: {'font': 'Arial'},
+//   );
+//   final subText7 = Texts(
+//     text: ' mas queria',
+//     attributes: {'font': 'Helvetica'},
+//   );
+//   final subText8 = Texts(
+//     text: ' comer.',
+//     attributes: {'font': 'Verdana'},
+//   );
+//   final subText9 = Texts(
+//     text: ' Estou com uma fome!',
+//     attributes: {'font': 'Verdana'},
+//   );
 
-  final content2 = Content(
-      seq: 1,
-      text: '',
-      texts: [subText6, subText7, subText8, subText9],
-      typeContent: TypeContent.verse);
+//   final content2 = Content(
+//       seq: 1,
+//       text: '',
+//       texts: [subText6, subText7, subText8, subText9],
+//       typeContent: TypeContent.verse);
 
-  List<Content> contents = [content, content2];
+//   List<Content> contents = [content, content2];
 
-  // Aplica atributo da posição 0 a 10 (afeta subText1 completo e parte do subText2)
-  List<Content> updatedContents = [];
-  // = setContentAttributesOnPosition(
-  //   contents: contents,
-  //   attributesAt: {'color': 'red'},
-  //   initAt: 0,
-  //   endAt: 10,
-  // );
-  imprimir() {
-    print('Updated Contents:');
-    int total = 0;
-    for (var content in updatedContents) {
-      print('Content:');
-      for (var textCurrent in content.texts!) {
-        total += textCurrent.text.length;
-        print(
-            '  $textCurrent${List.generate(100 - textCurrent.toString().length, (i) => ' ').join()}=> total chars: ${textCurrent.length}  => cumulative total: $total ');
-      }
-    }
-  }
+//   // Aplica atributo da posição 0 a 10 (afeta subText1 completo e parte do subText2)
+//   List<Content> updatedContents = [];
+//   // = setContentAttributesOnPosition(
+//   //   contents: contents,
+//   //   attributesAt: {'color': 'red'},
+//   //   initAt: 0,
+//   //   endAt: 10,
+//   // );
+//   imprimir() {
+//     print('Updated Contents:');
+//     int total = 0;
+//     for (var content in updatedContents) {
+//       print('Content:');
+//       for (var textCurrent in content.texts!) {
+//         total += textCurrent.text.length;
+//         print(
+//             '  $textCurrent${List.generate(100 - textCurrent.toString().length, (i) => ' ').join()}=> total chars: ${textCurrent.length}  => cumulative total: $total ');
+//       }
+//     }
+//   }
 
-  imprimir();
+//   imprimir();
 
-  List<int> positions = ContentTextFormatter.getPositionOfWordInContent(
-    contents,
-    'com',
-    filterBy: FilterWordBy(caseSensitive: true, wholeWord: false),
-  );
+//   List<int> positions = ContentTextFormatter.getPositionOfWordInContent(
+//     contents,
+//     'com',
+//     filterBy: FilterWordBy(caseSensitive: true, wholeWord: false),
+//   );
 
-  // Aplica atributo que atravessa múltiplos conteúdos
-  updatedContents = ContentTextFormatter.setContentAttributesOnPosition(
-    contents: contents,
-    attributesAt: {'NOVO': 'VALOR'},
-    // initAt: 15,
-    // endAt: 60,
-    // initAt: 13,
-    // endAt: 17,
-    initAt: 61,
-    endAt: 61 + 3,
-  );
-  updatedContents = ContentTextFormatter.setContentAttributesOnAWord(
-    contents,
-    {'HIGHLIGHT': 'TRUE'},
-    'com',
-    filterBy: FilterWordBy(caseSensitive: true, wholeWord: false),
-  );
-  imprimir();
-}
+//   // Aplica atributo que atravessa múltiplos conteúdos
+//   updatedContents = ContentTextFormatter.setContentAttributesOnPosition(
+//     contents: contents,
+//     attributesAt: {'NOVO': 'VALOR'},
+//     // initAt: 15,
+//     // endAt: 60,
+//     // initAt: 13,
+//     // endAt: 17,
+//     initAt: 0,
+//     endAt: 1,
+//   );
+//   updatedContents = ContentTextFormatter.setContentAttributesOnAWord(
+//     contents,
+//     {'HIGHLIGHT': 'TRUE'},
+//     'com',
+//     filterBy: FilterWordBy(caseSensitive: true, wholeWord: false),
+//   );
+//   imprimir();
+// }
