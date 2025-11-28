@@ -149,8 +149,8 @@ class ContentTextFormatter {
       bool process = true;
       if (!filteredContentTypes.contains(currentContent.typeContent)) {
         process = false;
-        print(
-            'Skipping Content $i ${currentContent.typeContent}, not in filtered.');
+        // print(
+        // 'Skipping Content $i ${currentContent.typeContent}, not in filtered.');
         // Este conteúdo não é afetado, mantém como está
         updatedContents.add(currentContent);
         continue;
@@ -177,10 +177,10 @@ class ContentTextFormatter {
         int localEnd =
             endAt >= contentEnd ? contentLength : endAt - contentStart;
 
-        print(
-            'Processing Content $i: globalPos=$globalPosition, contentStart=$contentStart, contentEnd=$contentEnd');
-        print(
-            '  Local range: $localStart to $localEnd (global: $initAt to $endAt)');
+        // print(
+        // 'Processing Content $i: globalPos=$globalPosition, contentStart=$contentStart, contentEnd=$contentEnd');
+        // print(
+        // '  Local range: $localStart to $localEnd (global: $initAt to $endAt)');
 
         // Aplica os atributos neste conteúdo
         var updatedSubTexts = setAttributesOnPosition(
@@ -241,7 +241,7 @@ class ContentTextFormatter {
         fullText = fullText.toLowerCase();
       }
       int startIndex = 0;
-      print('Full text: $fullText');
+      // print('Full text: $fullText');
 
       while (true) {
         // Encontra a próxima ocorrência da palavra
@@ -267,9 +267,9 @@ class ContentTextFormatter {
           break; // Nenhuma ocorrência encontrada
         }
 
-        print('Found "$word" at index: $foundIndex');
-        print(
-            '${fullText.substring(0, foundIndex)}|${fullText.substring(foundIndex, foundIndex + word.length)}|${fullText.substring(foundIndex + word.length)}');
+        // print('Found "$word" at index: $foundIndex');
+        // print(
+        // '${fullText.substring(0, foundIndex)}|${fullText.substring(foundIndex, foundIndex + word.length)}|${fullText.substring(foundIndex + word.length)}');
 
         int endIndex = foundIndex + word.length;
 
@@ -449,8 +449,8 @@ class ContentTextFormatter {
       fullText = fullText.toLowerCase();
     }
     int startIndex = 0;
-    print('----------getPositionOfWordInContent----------');
-    print('Full text: $fullText');
+    // print('----------getPositionOfWordInContent----------');
+    // print('Full text: $fullText');
 
     List<int> positions = [];
 
@@ -478,16 +478,16 @@ class ContentTextFormatter {
         break; // Nenhuma ocorrência encontrada
       }
 
-      print('Found "$word" at index: $foundIndex');
-      print(
-          '    ${fullText.substring(0, foundIndex)}|${fullText.substring(foundIndex, foundIndex + word.length)}|${fullText.substring(foundIndex + word.length)}');
+      // print('Found "$word" at index: $foundIndex');
+      // print(
+      // '    ${fullText.substring(0, foundIndex)}|${fullText.substring(foundIndex, foundIndex + word.length)}|${fullText.substring(foundIndex + word.length)}');
 
       positions.add(foundIndex);
 
       // Move o índice inicial para continuar a busca após a ocorrência atual
       startIndex = foundIndex + word.length;
     }
-    print('----------------------------------------------');
+    // print('----------------------------------------------');
     return positions;
   }
 }
