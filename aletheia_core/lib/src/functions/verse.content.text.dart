@@ -109,6 +109,8 @@ class FilterWordBy {
 }
 
 class ContentTextFormatter {
+  ContentTextFormatter();
+
   /// Aplica atributos em uma lista de Contents baseado em posições globais
   ///
   /// [contents]: Lista de Contents a serem modificados

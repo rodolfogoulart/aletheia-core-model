@@ -1,5 +1,4 @@
 library;
 
 //export only ContentTextFormatter
-export 'src/functions/verse.content.text.dart'
-    show ContentTextFormatter, isBetween;
+export 'src/functions/verse.content.text.dart';
