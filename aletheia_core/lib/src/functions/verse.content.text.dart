@@ -120,11 +120,22 @@ class ContentTextFormatter {
   /// [initAt]: Posição inicial global para aplicar os atributos
   ///
   /// [endAt]: Posição final global para aplicar os atributos
+  ///
+  /// [filteredContentTypes]: Filtra os tipos de conteúdo a serem processados
+  /// Default: [TypeContent.verse]
+  ///
+  /// Retorna a nova lista de Contents com os atributos aplicados
+  ///
   static List<Content> setContentAttributesOnPosition({
     required List<Content> contents,
     required Map<String, dynamic> attributesAt,
     required int initAt,
     required int endAt,
+
+    /// Filtra os tipos de conteúdo a serem processados
+    ///
+    /// Default: [TypeContent.verse]
+    List<TypeContent> filteredContentTypes = const [TypeContent.verse],
   }) {
     /// Posição global atual ao percorrer os Contents
     int globalPosition = 0;
@@ -143,8 +154,14 @@ class ContentTextFormatter {
       int contentStart = globalPosition;
       int contentEnd = globalPosition + contentLength;
 
+      // Verifica se o tipo de conteúdo deve ser processado
+      bool process = true;
+      if (!filteredContentTypes.contains(currentContent.typeContent)) {
+        process = false;
+      }
+
       // Verifica se o intervalo de atributos afeta este conteúdo
-      if (endAt > contentStart && initAt < contentEnd) {
+      if (endAt > contentStart && initAt < contentEnd && process) {
         // Calcula as posições relativas dentro deste conteúdo
         // Se initAt está antes deste content, começa do 0
         // Se initAt está dentro deste content, usa a posição relativa
@@ -264,6 +281,9 @@ class ContentTextFormatter {
   }
 
   /// Aplica atributos em um Content baseado em posições locais
+  ///
+  /// Nota: Esta função não lida com múltiplos Contents, apenas um único Content
+  /// Utilize setContentAttributesOnPosition para múltiplos Contents e verificação de TypeContent[verse, title]
   ///
   /// [content]: Content a ser modificado
   ///
@@ -548,6 +568,8 @@ class ContentTextFormatter {
 //     initAt: 0,
 //     endAt: 1,
 //   );
+//   imprimir();
+
 //   updatedContents = ContentTextFormatter.setContentAttributesOnAWord(
 //     contents,
 //     {'HIGHLIGHT': 'TRUE'},
