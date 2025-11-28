@@ -146,6 +146,13 @@ class ContentTextFormatter {
     for (var i = 0; i < contents.length; i++) {
       Content currentContent = contents[i];
 
+      bool process = true;
+      if (!filteredContentTypes.contains(currentContent.typeContent)) {
+        process = false;
+        print(
+            'Skipping Content $i of type ${currentContent.typeContent}, not in filtered types.');
+        continue;
+      }
       // Calcula o tamanho total do conteúdo atual
       int contentLength = currentContent.texts!
           .map((e) => e.text.length)
@@ -155,10 +162,6 @@ class ContentTextFormatter {
       int contentEnd = globalPosition + contentLength;
 
       // Verifica se o tipo de conteúdo deve ser processado
-      bool process = true;
-      if (!filteredContentTypes.contains(currentContent.typeContent)) {
-        process = false;
-      }
 
       // Verifica se o intervalo de atributos afeta este conteúdo
       if (endAt > contentStart && initAt < contentEnd && process) {
