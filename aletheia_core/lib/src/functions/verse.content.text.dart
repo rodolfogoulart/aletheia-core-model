@@ -428,6 +428,8 @@ class ContentTextFormatter {
 
   /// Obtém as posições de todas as ocorrências de uma palavra em uma lista de Contents
   ///
+  /// *** Atenção: Retorna a posição inicial de cada ocorrência no texto
+  ///
   /// [content]: Lista de Contents a serem pesquisados
   ///
   /// [word]: Palavra a ser buscada
@@ -438,11 +440,20 @@ class ContentTextFormatter {
     List<Content> content,
     String word, {
     FilterWordBy? filterBy,
+
+    /// Filtra os tipos de conteúdo a serem processados
+    ///
+    /// Default: [TypeContent.verse]
+    List<TypeContent> filteredContentTypes = const [TypeContent.verse],
   }) {
     filterBy ??= FilterWordBy();
 
-    String fullText =
-        content.map((c) => c.texts!.map((e) => e.text).join()).join();
+    String fullText = content
+        //filtra os tipos de conteúdo
+        .where((c) => filteredContentTypes.contains(c.typeContent))
+        //concatena os textos
+        .map((c) => c.texts!.map((e) => e.text).join())
+        .join();
     // Ajusta a palavra e o texto completo conforme a sensibilidade de caso
     if (filterBy.caseSensitive == false) {
       word = word.toLowerCase();
@@ -522,7 +533,7 @@ class ContentTextFormatter {
 //     attributes: {'font': 'Helvetica'},
 //   );
 //   final subText8 = Texts(
-//     text: ' comer.',
+//     text: ' comer. com voces,',
 //     attributes: {'font': 'Verdana'},
 //   );
 //   final subText9 = Texts(
@@ -564,7 +575,7 @@ class ContentTextFormatter {
 //   List<int> positions = ContentTextFormatter.getPositionOfWordInContent(
 //     contents,
 //     'com',
-//     filterBy: FilterWordBy(caseSensitive: true, wholeWord: false),
+//     filterBy: FilterWordBy(caseSensitive: true, wholeWord: true),
 //   );
 
 //   // Aplica atributo que atravessa múltiplos conteúdos
@@ -581,9 +592,9 @@ class ContentTextFormatter {
 //   imprimir();
 
 //   updatedContents = ContentTextFormatter.setContentAttributesOnAWord(
-//     contents,
-//     {'HIGHLIGHT': 'TRUE'},
 //     'com',
+//     contents: contents,
+//     attributesAt: {'HIGHLIGHT': 'TRUE'},
 //     filterBy: FilterWordBy(caseSensitive: true, wholeWord: false),
 //   );
 //   imprimir();
