@@ -121,16 +121,20 @@ class ContentTextFormatter {
   ///
   /// [endAt]: Posição final global para aplicar os atributos
   ///
+  /// [isToRemove]: Indica se os atributos fornecidos devem ser removidos ao invés de adicionados, quando
+  /// true, os atributos (key) em attributesAt serão removidos.
+  ///
   /// [filteredContentTypes]: Filtra os tipos de conteúdo a serem processados
   /// Default: [TypeContent.verse]
   ///
   /// Retorna a nova lista de Contents com os atributos aplicados
   ///
-  static List<Content> setContentAttributesOnPosition({
+  static List<Content> updateContentAttributesByPosition({
     required List<Content> contents,
     required Map<String, dynamic> attributesAt,
     required int initAt,
     required int endAt,
+    bool isToRemove = false,
 
     /// Filtra os tipos de conteúdo a serem processados
     ///
@@ -183,13 +187,14 @@ class ContentTextFormatter {
         // '  Local range: $localStart to $localEnd (global: $initAt to $endAt)');
 
         // Aplica os atributos neste conteúdo
-        var updatedSubTexts = setAttributesOnPosition(
+        var updatedSubTexts = updateAttributesAtPosition(
           content: currentContent,
           attributesAt: attributesAt,
           //localStart calculado acima
           initAt: localStart,
           //localEnd calculado acima
           endAt: localEnd,
+          isToRemove: isToRemove,
         );
 
         // Atualiza o conteúdo com os novos SubTexts
@@ -213,11 +218,16 @@ class ContentTextFormatter {
   ///
   /// [word]: Palavra a ser buscada e modificada
   ///
-  static List<Content> setContentAttributesOnAWord(
+  /// [isToRemove]: Indica se os atributos fornecidos devem ser removidos ao invés de adicionados
+  ///
+  /// [filterBy]: Filtros para busca da palavra
+  ///
+  static List<Content> updateContentAttributesOnAWord(
     String word, {
     required List<Content> contents,
     required Map<String, dynamic> attributesAt,
     FilterWordBy? filterBy,
+    bool isToRemove = false,
 
     /// Filtra os tipos de conteúdo a serem processados
     ///
@@ -274,11 +284,12 @@ class ContentTextFormatter {
         int endIndex = foundIndex + word.length;
 
         // Aplica os atributos na ocorrência encontrada
-        var updatedSubTexts = setAttributesOnPosition(
+        var updatedSubTexts = updateAttributesAtPosition(
           content: content,
           attributesAt: attributesAt,
           initAt: foundIndex,
           endAt: endIndex,
+          isToRemove: isToRemove,
         );
         // Atualiza o conteúdo com os novos SubTexts
         content.texts = updatedSubTexts;
@@ -303,6 +314,8 @@ class ContentTextFormatter {
   ///
   /// [endAt]: Posição final local para aplicar os atributos
   ///
+  /// [isToRemove]: Indica se os atributos fornecidos devem ser removidos ao invés de adicionados
+  ///
   /// Retorna a nova lista de SubTexts com os atributos aplicados
   ///
   /// Observação: As posições initAt e endAt são relativas ao conteúdo do Content fornecido
@@ -313,7 +326,7 @@ class ContentTextFormatter {
   /// final subText2 = SubText('mundo!', {'font': 'Helvetica'});
   /// final subText3 = SubText(' Como vai?', {'font': 'Verdana'});
   /// var content = Content([subText1, subText2, subText3]);
-  /// content = setAttributesOnPosition(content, {'NOVO': 'VALOR'}, 2, 7);
+  /// content = updateAttributesAtPosition(content, {'NOVO': 'VALOR'}, 2, 7);
   /// // Resultado:
   /// // SubText(text: [Ol], attributes: {font: Arial})
   /// // SubText(text: [á, ], attributes: {font: Arial, NOVO: VALOR})
@@ -322,11 +335,13 @@ class ContentTextFormatter {
   /// // SubText(text: [ Como vai?], attributes: {font: Verdana})
   /// ```
   ///
-  static List<Texts> setAttributesOnPosition(
-      {required Content content,
-      required Map<String, dynamic> attributesAt,
-      required int initAt,
-      required int endAt}) {
+  static List<Texts> updateAttributesAtPosition({
+    required Content content,
+    required Map<String, dynamic> attributesAt,
+    required int initAt,
+    required int endAt,
+    bool isToRemove = false,
+  }) {
     // Construir texto completo e mapa de posições
     String fullText = '';
     List<AttributesPosition> positions = [];
@@ -349,6 +364,27 @@ class ContentTextFormatter {
       endAt = fullText.length;
     }
 
+    // Função auxiliar para aplicar ou remover atributos
+    Map<String, dynamic> _applyOrRemoveAttributes(
+      Map<String, dynamic> currentAttributes,
+      Map<String, dynamic> targetAttributes,
+    ) {
+      Map<String, dynamic> result =
+          Map<String, dynamic>.from(currentAttributes);
+
+      if (isToRemove) {
+        // Remove as chaves especificadas
+        for (var key in targetAttributes.keys) {
+          result.remove(key);
+        }
+      } else {
+        // Adiciona/atualiza os atributos
+        result.addAll(targetAttributes);
+      }
+
+      return result;
+    }
+
     // Lista de novas posições
     List<AttributesPosition> newPositions = [];
 
@@ -362,7 +398,8 @@ class ContentTextFormatter {
       // Caso 2: Posição completamente dentro do range
       if (pos.start >= initAt && pos.end <= endAt) {
         newPositions.add(AttributesPosition(
-          attributes: {...pos.attributes, ...attributesAt},
+          // attributes: {...pos.attributes, ...attributesAt},
+          attributes: _applyOrRemoveAttributes(pos.attributes, attributesAt),
           start: pos.start,
           end: pos.end,
         ));
@@ -381,7 +418,8 @@ class ContentTextFormatter {
         // Parte dentro do range
         int rangeEnd = pos.end < endAt ? pos.end : endAt;
         newPositions.add(AttributesPosition(
-          attributes: {...pos.attributes, ...attributesAt},
+          // attributes: {...pos.attributes, ...attributesAt},
+          attributes: _applyOrRemoveAttributes(pos.attributes, attributesAt),
           start: initAt,
           end: rangeEnd,
         ));
@@ -401,7 +439,8 @@ class ContentTextFormatter {
       if (pos.start < endAt && pos.end > endAt) {
         // Parte dentro do range
         newPositions.add(AttributesPosition(
-          attributes: {...pos.attributes, ...attributesAt},
+          // attributes: {...pos.attributes, ...attributesAt},
+          attributes: _applyOrRemoveAttributes(pos.attributes, attributesAt),
           start: pos.start,
           end: endAt,
         ));
@@ -504,98 +543,99 @@ class ContentTextFormatter {
 }
 
 /// Exemplo de uso
-// void main() {
-//   final subText1 = Texts(
-//     text: 'Olá, ',
-//     attributes: {'font': 'Arial'},
-//   ); // 0-5
-//   final subText2 = Texts(
-//     text: 'mundo!',
-//     attributes: {'font': 'Helvetica'},
-//   ); // 5-11
-//   final subText3 = Texts(
-//     text: ' Como vai?',
-//     attributes: {'font': 'Verdana'},
-//   ); // 11-21
+void main() {
+  final subText1 = Texts(
+    text: 'Olá, ',
+    attributes: {'font': 'Arial'},
+  ); // 0-5
+  final subText2 = Texts(
+    text: 'mundo!',
+    attributes: {'font': 'Helvetica'},
+  ); // 5-11
+  final subText3 = Texts(
+    text: ' Como vai?',
+    attributes: {'font': 'Verdana'},
+  ); // 11-21
 
-//   var content = Content(
-//       seq: 0,
-//       text: '',
-//       texts: [subText1, subText2, subText3],
-//       typeContent: TypeContent.verse);
+  var content = Content(
+      seq: 0,
+      text: '',
+      texts: [subText1, subText2, subText3],
+      typeContent: TypeContent.verse);
 
-//   final subText6 = Texts(
-//     text: ' Aqui tudo bem,',
-//     attributes: {'font': 'Arial'},
-//   );
-//   final subText7 = Texts(
-//     text: ' mas queria',
-//     attributes: {'font': 'Helvetica'},
-//   );
-//   final subText8 = Texts(
-//     text: ' comer. com voces,',
-//     attributes: {'font': 'Verdana'},
-//   );
-//   final subText9 = Texts(
-//     text: ' Estou com uma fome!',
-//     attributes: {'font': 'Verdana'},
-//   );
+  final subText6 = Texts(
+    text: ' Aqui tudo bem,',
+    attributes: {'font': 'Arial'},
+  );
+  final subText7 = Texts(
+    text: ' mas queria',
+    attributes: {'font': 'Helvetica'},
+  );
+  final subText8 = Texts(
+    text: ' comer. com voces,',
+    attributes: {'font': 'Verdana'},
+  );
+  final subText9 = Texts(
+    text: ' Estou com uma fome!',
+    attributes: {'font': 'Verdana'},
+  );
 
-//   final content2 = Content(
-//       seq: 1,
-//       text: '',
-//       texts: [subText6, subText7, subText8, subText9],
-//       typeContent: TypeContent.verse);
+  final content2 = Content(
+      seq: 1,
+      text: '',
+      texts: [subText6, subText7, subText8, subText9],
+      typeContent: TypeContent.verse);
 
-//   List<Content> contents = [content, content2];
+  List<Content> contents = [content, content2];
 
-//   // Aplica atributo da posição 0 a 10 (afeta subText1 completo e parte do subText2)
-//   List<Content> updatedContents = [];
-//   // = setContentAttributesOnPosition(
-//   //   contents: contents,
-//   //   attributesAt: {'color': 'red'},
-//   //   initAt: 0,
-//   //   endAt: 10,
-//   // );
-//   imprimir() {
-//     print('Updated Contents:');
-//     int total = 0;
-//     for (var content in updatedContents) {
-//       print('Content:');
-//       for (var textCurrent in content.texts!) {
-//         total += textCurrent.text.length;
-//         print(
-//             '  $textCurrent${List.generate(100 - textCurrent.toString().length, (i) => ' ').join()}=> total chars: ${textCurrent.length}  => cumulative total: $total ');
-//       }
-//     }
-//   }
+  // Aplica atributo da posição 0 a 10 (afeta subText1 completo e parte do subText2)
+  List<Content> updatedContents = [];
+  // = setContentAttributesOnPosition(
+  //   contents: contents,
+  //   attributesAt: {'color': 'red'},
+  //   initAt: 0,
+  //   endAt: 10,
+  // );
+  imprimir() {
+    print('Updated Contents:');
+    int total = 0;
+    for (var content in updatedContents) {
+      print('Content:');
+      for (var textCurrent in content.texts!) {
+        total += textCurrent.text.length;
+        print(
+            '  $textCurrent${List.generate(100 - textCurrent.toString().length, (i) => ' ').join()}=> total chars: ${textCurrent.length}  => cumulative total: $total ');
+      }
+    }
+  }
 
-//   imprimir();
+  imprimir();
 
-//   List<int> positions = ContentTextFormatter.getPositionOfWordInContent(
-//     contents,
-//     'com',
-//     filterBy: FilterWordBy(caseSensitive: true, wholeWord: true),
-//   );
+  List<int> positions = ContentTextFormatter.getPositionOfWordInContent(
+    contents,
+    'Olá',
+    filterBy: FilterWordBy(caseSensitive: true, wholeWord: true),
+  );
 
-//   // Aplica atributo que atravessa múltiplos conteúdos
-//   updatedContents = ContentTextFormatter.setContentAttributesOnPosition(
-//     contents: contents,
-//     attributesAt: {'NOVO': 'VALOR'},
-//     // initAt: 15,
-//     // endAt: 60,
-//     // initAt: 13,
-//     // endAt: 17,
-//     initAt: 0,
-//     endAt: 1,
-//   );
-//   imprimir();
+  // Aplica atributo que atravessa múltiplos conteúdos
+  updatedContents = ContentTextFormatter.updateContentAttributesByPosition(
+    contents: contents,
+    attributesAt: {'font': 'Helvetica'},
+    // initAt: 15,
+    // endAt: 60,
+    // initAt: 13,
+    // endAt: 17,
+    initAt: positions.first,
+    endAt: positions.first + 'Olá'.length,
+    isToRemove: true,
+  );
+  imprimir();
 
-//   updatedContents = ContentTextFormatter.setContentAttributesOnAWord(
-//     'com',
-//     contents: contents,
-//     attributesAt: {'HIGHLIGHT': 'TRUE'},
-//     filterBy: FilterWordBy(caseSensitive: true, wholeWord: false),
-//   );
-//   imprimir();
-// }
+  updatedContents = ContentTextFormatter.updateContentAttributesOnAWord(
+    'com',
+    contents: contents,
+    attributesAt: {'HIGHLIGHT': 'TRUE'},
+    filterBy: FilterWordBy(caseSensitive: true, wholeWord: false),
+  );
+  imprimir();
+}
