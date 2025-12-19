@@ -1,15 +1,59 @@
 import 'dart:convert';
 
+enum TypeHighlight {
+  /// Highlight with background color
+  background,
+
+  /// Highlight with underline
+  underline;
+
+  const TypeHighlight();
+
+  /// Get the short name representation of the highlight type
+  /// used on Dart Class Generation
+  toMap() {
+    switch (this) {
+      case TypeHighlight.background:
+        return 'b';
+      case TypeHighlight.underline:
+        return 'u';
+    }
+  }
+
+  ///used on Dart Class Generation
+  factory TypeHighlight.fromMap(dynamic value) {
+    switch (value) {
+      case 'b' || 'background':
+        return TypeHighlight.background;
+      case 'u' || 'underline':
+        return TypeHighlight.underline;
+      default:
+        return TypeHighlight.background;
+    }
+  }
+}
+
+extension TypeHighlightExtension on TypeHighlight {
+  bool get isBackground => this == TypeHighlight.background;
+  bool get isUnderline => this == TypeHighlight.underline;
+}
+
 class WordsHighlighted {
   int version;
   int start;
   int end;
+
+  /// Color represented as integer value
   int? color;
+  TypeHighlight typeHighlight;
   WordsHighlighted({
     required this.version,
     required this.start,
     required this.end,
     this.color,
+
+    /// Default to background highlight
+    this.typeHighlight = TypeHighlight.background,
   });
 
   Map<String, dynamic> toMap() {
@@ -21,6 +65,7 @@ class WordsHighlighted {
     if (color != null) {
       result.addAll({'color': color});
     }
+    result.addAll({'typeHighlight': typeHighlight.toMap()});
 
     return result;
   }
@@ -32,6 +77,9 @@ class WordsHighlighted {
         start: map['start']?.toInt() ?? 0,
         end: map['end']?.toInt() ?? 0,
         color: map['color']?.toInt(),
+        typeHighlight: map['typeHighlight'] != null
+            ? TypeHighlight.fromMap(map['typeHighlight'])
+            : TypeHighlight.background,
       );
     } catch (e, stackTrace) {
       throw Exception(
@@ -49,18 +97,20 @@ class WordsHighlighted {
     int? start,
     int? end,
     int? color,
+    TypeHighlight? typeHighlight,
   }) {
     return WordsHighlighted(
       version: version ?? this.version,
       start: start ?? this.start,
       end: end ?? this.end,
       color: color ?? this.color,
+      typeHighlight: typeHighlight ?? this.typeHighlight,
     );
   }
 
   @override
   String toString() {
-    return 'WordHightLight(version: $version, start: $start, end: $end, color: $color)';
+    return 'WordHightLight(version: $version, start: $start, end: $end, color: $color, typeHighlight: $typeHighlight)';
   }
 
   @override
@@ -71,11 +121,16 @@ class WordsHighlighted {
         other.version == version &&
         other.start == start &&
         other.end == end &&
-        other.color == color;
+        other.color == color &&
+        other.typeHighlight == typeHighlight;
   }
 
   @override
   int get hashCode {
-    return version.hashCode ^ start.hashCode ^ end.hashCode ^ color.hashCode;
+    return version.hashCode ^
+        start.hashCode ^
+        end.hashCode ^
+        color.hashCode ^
+        typeHighlight.hashCode;
   }
 }
