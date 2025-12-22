@@ -1,5 +1,12 @@
 import 'dart:convert';
 
+/// Type of highlight for words in a verse
+///
+/// - background: Highlight with background color
+///
+/// - underline: Highlight with underline
+///
+/// - textColor: Highlight with text color
 enum TypeHighlight {
   /// Highlight with background color
   background,
@@ -46,6 +53,10 @@ extension TypeHighlightExtension on TypeHighlight {
   bool get isTextColor => this == TypeHighlight.textColor;
 }
 
+/// Model class to represent highlighted words in a verse
+/// with properties for Bible version, start and end indices, color, and type of highlight.
+///
+/// Used in user verse highlighting features.
 class WordsHighlighted {
   /// Bible Version ID
   ///
