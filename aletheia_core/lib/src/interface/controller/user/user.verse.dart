@@ -20,14 +20,16 @@ abstract class InterfaceControllerUserVerse {
     required int numberVerse,
   });
 
-  Future<UserVerse?> setwordsHighlighted(
-      {required int idBook,
-      required int numberChapter,
-      required int numberVerse,
-      required int idBibleVersion,
-      required int color,
-      required int start,
-      required int end});
+  Future<UserVerse?> setwordsHighlighted({
+    required int idBook,
+    required int numberChapter,
+    required int numberVerse,
+    required WordsHighlighted wordHighlight,
+    // required int idBibleVersion,
+    // required int color,
+    // required int start,
+    // required int end,
+  });
 
   Future<int> removeWordsHighlighted(
       {required int idBook,

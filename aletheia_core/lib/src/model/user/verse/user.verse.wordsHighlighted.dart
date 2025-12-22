@@ -5,7 +5,10 @@ enum TypeHighlight {
   background,
 
   /// Highlight with underline
-  underline;
+  underline,
+
+  /// Highlight with text color
+  textColor;
 
   const TypeHighlight();
 
@@ -17,6 +20,8 @@ enum TypeHighlight {
         return 'b';
       case TypeHighlight.underline:
         return 'u';
+      case TypeHighlight.textColor:
+        return 't';
     }
   }
 
@@ -27,6 +32,8 @@ enum TypeHighlight {
         return TypeHighlight.background;
       case 'u' || 'underline':
         return TypeHighlight.underline;
+      case 't' || 'textColor':
+        return TypeHighlight.textColor;
       default:
         return TypeHighlight.background;
     }
@@ -36,6 +43,7 @@ enum TypeHighlight {
 extension TypeHighlightExtension on TypeHighlight {
   bool get isBackground => this == TypeHighlight.background;
   bool get isUnderline => this == TypeHighlight.underline;
+  bool get isTextColor => this == TypeHighlight.textColor;
 }
 
 class WordsHighlighted {
