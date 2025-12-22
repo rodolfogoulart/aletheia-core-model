@@ -24,7 +24,7 @@ abstract class InterfaceControllerUserVerse {
     required int idBook,
     required int numberChapter,
     required int numberVerse,
-    required WordsHighlighted wordHighlight,
+    required WordsHighlighted wordsHighlighted,
     // required int idBibleVersion,
     // required int color,
     // required int start,
