@@ -30,6 +30,9 @@ enum TypeAttributes {
   ///for the words that are highlighted by the user
   highlight,
 
+  ///for the words that are highlighted by the user with text color
+  textColor,
+
   ///used for the map, more in case of error
   other,
   ;

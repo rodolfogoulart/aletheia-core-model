@@ -36,13 +36,21 @@ enum TypeHighlight {
   factory TypeHighlight.fromMap(dynamic value) {
     switch (value) {
       case 'b' || 'background':
-        return TypeHighlight.background;
+        {
+          return TypeHighlight.background;
+        }
       case 'u' || 'underline':
-        return TypeHighlight.underline;
+        {
+          return TypeHighlight.underline;
+        }
       case 't' || 'textColor':
-        return TypeHighlight.textColor;
+        {
+          return TypeHighlight.textColor;
+        }
       default:
-        return TypeHighlight.background;
+        {
+          return TypeHighlight.background;
+        }
     }
   }
 }
