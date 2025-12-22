@@ -47,12 +47,31 @@ extension TypeHighlightExtension on TypeHighlight {
 }
 
 class WordsHighlighted {
+  /// Bible Version ID
+  ///
+  /// use param 'v' on map representation
   int version;
+
+  /// Start index of the highlighted word
+  ///
+  /// use param 's' on map representation
   int start;
+
+  /// End index of the highlighted word
+  ///
+  /// use param 'e' on map representation
   int end;
 
   /// Color represented as integer value
+  ///
+  /// use param 'c' on map representation
   int? color;
+
+  /// Type of highlight
+  ///
+  /// default to TypeHighlight.background
+  ///
+  /// use param 'tH' on map representation
   TypeHighlight typeHighlight;
   WordsHighlighted({
     required this.version,
@@ -67,13 +86,13 @@ class WordsHighlighted {
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
-    result.addAll({'version': version});
-    result.addAll({'start': start});
-    result.addAll({'end': end});
+    result.addAll({'v': version});
+    result.addAll({'s': start});
+    result.addAll({'e': end});
     if (color != null) {
-      result.addAll({'color': color});
+      result.addAll({'c': color});
     }
-    result.addAll({'typeHighlight': typeHighlight.toMap()});
+    result.addAll({'tH': typeHighlight.toMap()});
 
     return result;
   }
@@ -81,12 +100,12 @@ class WordsHighlighted {
   factory WordsHighlighted.fromMap(Map<String, dynamic> map) {
     try {
       return WordsHighlighted(
-        version: map['version']?.toInt() ?? 0,
-        start: map['start']?.toInt() ?? 0,
-        end: map['end']?.toInt() ?? 0,
-        color: map['color']?.toInt(),
-        typeHighlight: map['typeHighlight'] != null
-            ? TypeHighlight.fromMap(map['typeHighlight'])
+        version: map['version']?.toInt() ?? map['v']?.toInt() ?? 0,
+        start: map['start']?.toInt() ?? map['s']?.toInt() ?? 0,
+        end: map['end']?.toInt() ?? map['e']?.toInt() ?? 0,
+        color: map['color']?.toInt() ?? map['c']?.toInt(),
+        typeHighlight: map['typeHighlight'] != null || map['tH'] != null
+            ? TypeHighlight.fromMap(map['typeHighlight'] ?? map['tH'])
             : TypeHighlight.background,
       );
     } catch (e, stackTrace) {
