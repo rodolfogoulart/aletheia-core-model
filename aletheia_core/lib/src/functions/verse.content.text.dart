@@ -4,6 +4,7 @@
 import 'dart:convert';
 
 import 'package:aletheia_core/aletheia_core.dart';
+import 'package:aletheia_core/src/model/bible/verse/texts.dart';
 
 // class SubText {
 //   String text;
@@ -335,7 +336,7 @@ class ContentTextFormatter {
   /// // SubText(text: [ Como vai?], attributes: {font: Verdana})
   /// ```
   ///
-  static List<Texts> updateAttributesAtPosition({
+  static List<AText> updateAttributesAtPosition({
     required Content content,
     required Map<String, dynamic> attributesAt,
     required int initAt,
@@ -456,10 +457,10 @@ class ContentTextFormatter {
     }
 
     // Reconstruir SubTexts
-    List<Texts> subTexts = [];
+    List<AText> subTexts = [];
     for (var pos in newPositions) {
       String text = fullText.substring(pos.start, pos.end);
-      subTexts.add(Texts(text: text, attributes: pos.attributes));
+      subTexts.add(AText(text: text, attributes: pos.attributes));
     }
 
     return subTexts;
@@ -544,15 +545,15 @@ class ContentTextFormatter {
 
 /// Exemplo de uso
 void main() {
-  final subText1 = Texts(
+  final subText1 = AText(
     text: 'Olá, ',
     attributes: {'font': 'Arial'},
   ); // 0-5
-  final subText2 = Texts(
+  final subText2 = AText(
     text: 'mundo!',
     attributes: {'font': 'Helvetica'},
   ); // 5-11
-  final subText3 = Texts(
+  final subText3 = AText(
     text: ' Como vai?',
     attributes: {'font': 'Verdana'},
   ); // 11-21
@@ -563,19 +564,19 @@ void main() {
       texts: [subText1, subText2, subText3],
       typeContent: TypeContent.verse);
 
-  final subText6 = Texts(
+  final subText6 = AText(
     text: ' Aqui tudo bem,',
     attributes: {'font': 'Arial'},
   );
-  final subText7 = Texts(
+  final subText7 = AText(
     text: ' mas queria',
     attributes: {'font': 'Helvetica'},
   );
-  final subText8 = Texts(
+  final subText8 = AText(
     text: ' comer. com voces,',
     attributes: {'font': 'Verdana'},
   );
-  final subText9 = Texts(
+  final subText9 = AText(
     text: ' Estou com uma fome!',
     attributes: {'font': 'Verdana'},
   );

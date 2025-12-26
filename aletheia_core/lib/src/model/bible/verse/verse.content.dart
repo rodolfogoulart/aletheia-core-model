@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:aletheia_core/src/model/bible/verse/footnote.dart';
+import 'package:aletheia_core/src/model/bible/verse/texts.dart';
 
 import 'referece.dart';
 
@@ -107,73 +108,6 @@ extension TypeContentExtension on TypeContent {
   bool get isVerse => this == TypeContent.verse;
 }
 
-// @Deprecated('will be removed')
-class Texts {
-  /// use KEY [T]
-  String text;
-
-  /// use KEY [at]
-  Map<String, dynamic>? attributes;
-  Texts({
-    required this.text,
-    this.attributes,
-  });
-  //getters
-  int get length => text.length;
-  bool get hasAttributes => attributes != null && attributes!.isNotEmpty;
-
-  Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
-
-    // result.addAll({'text': text});
-    result.addAll({'T': text});
-    if (attributes != null && attributes?.isNotEmpty == true) {
-      // result.addAll({'attributes': attributes});
-      result.addAll({'at': attributes});
-    }
-
-    return result;
-  }
-
-  factory Texts.fromMap(Map<String, dynamic> map) {
-    String text = '';
-    try {
-      text = map['T'] ?? map['text'] ?? '';
-    } catch (e) {
-      text = '';
-    }
-    Map<String, dynamic> attributes = {};
-    try {
-      attributes =
-          Map<String, dynamic>.from(map['at'] ?? map['attributes'] ?? {});
-    } catch (e) {
-      attributes = {};
-    }
-
-    return Texts(
-      text: text,
-      attributes: attributes.isNotEmpty ? attributes : null,
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Texts.fromJson(String source) => Texts.fromMap(json.decode(source));
-
-  Texts copyWith({
-    String? text,
-    Map<String, dynamic>? attributes,
-  }) {
-    return Texts(
-      text: text ?? this.text,
-      attributes: attributes ?? this.attributes,
-    );
-  }
-
-  @override
-  String toString() => 'Texts(text: [$text], attributes: $attributes)';
-}
-
 ///*when Generated JSON Serialization, change the key to refer the variable
 class Content {
   ///use KEY [sq]
@@ -218,12 +152,11 @@ class Content {
   ///use KEY [rS] KEY CHANGED TO>>>>> [rL]
   List<String>? refLexicos; //rS
 
-  ///sub texts to format parts of the main text
+  ///texts with formatting
   ///
   ///each `[texts]` inherits the attributes from the `[attributes]` abouve, so if the [attributes] has `bold = true`, and the [texts] dont has bold, [texts] need to have the attribute `bold = false` to reverse
-  // @Deprecated('will be removed')
   /// use KEY [Ts]
-  List<Texts>? texts; //Ts
+  List<AText>? texts; //Ts
 
   ///use KEY [an]
   String? anottation; //an
@@ -247,6 +180,17 @@ class Content {
   ///
   ///use KEY [pr]
   bool? paragraph; //pr
+
+  /// indentation level for the content
+  ///
+  ///use KEY [in]
+  int? indentation;
+
+  ///additional metadata for the content
+  ///
+  ///use KEY [md]
+  Map<String, dynamic>? metadata;
+
   Content({
     required this.seq,
     @Deprecated("use [texts] instead, this will be removed in future versions")
@@ -260,6 +204,8 @@ class Content {
     this.reference,
     this.footnote,
     this.paragraph,
+    this.indentation,
+    this.metadata,
   });
 
   ///*DON'T FORGET TO CHANGE THE NAME OF THE KEY
@@ -289,8 +235,12 @@ class Content {
   ///use KEY [fn] to footnote
   ///
   ///use KEY [pr] to paragraph
+  ///
+  ///use KEY [in] to indentation
+  ///
+  ///use KEY [md] to metadata
   Map<String, dynamic> toMap() {
-    final result = <String, dynamic>{};
+    Map<String, dynamic> result = <String, dynamic>{};
 
     result.addAll({'sq': seq});
     result.addAll({'T': text});
@@ -334,6 +284,20 @@ class Content {
       }
     }
 
+    if (indentation != null) {
+      if (indentation! > 0) {
+        result.addAll({'in': indentation});
+      }
+    }
+
+    if (metadata != null) {
+      if (metadata!.isNotEmpty) {
+        result.addAll({'md': metadata});
+      }
+    }
+    // Clean null values
+    result.removeWhere((key, value) => value == null);
+
     return result;
   }
 
@@ -355,10 +319,10 @@ class Content {
       } catch (e) {
         refLexicos = null;
       }
-      List<Texts>? texts;
+      List<AText>? texts;
       try {
         texts = map['Ts'] != null
-            ? List<Texts>.from(map['Ts']?.map((x) => Texts.fromMap(x)))
+            ? List<AText>.from(map['Ts']?.map((x) => AText.fromMap(x)))
             : null;
       } catch (e) {
         texts = null;
@@ -380,12 +344,29 @@ class Content {
       if (texts == null || texts.isEmpty) {
         if (text.isNotEmpty) {
           texts = [
-            Texts(
+            AText(
               text: text,
               attributes: attributes,
             )
           ];
         }
+      }
+
+      List<Reference>? reference;
+      try {
+        reference = map['rf'] != null
+            ? List<Reference>.from(map['rf']?.map((x) => Reference.fromMap(x)))
+            : null;
+      } catch (e) {
+        reference = null;
+      }
+
+      Map<String, dynamic>? metadata;
+      try {
+        metadata =
+            map['md'] != null ? Map<String, dynamic>.from(map['md']) : null;
+      } catch (e) {
+        metadata = null;
       }
       //
       return Content(
@@ -400,12 +381,12 @@ class Content {
         texts: texts,
         anottation: map['an'],
         comment: map['cm'],
-        reference: map['rf'] != null
-            ? List<Reference>.from(map['rf']?.map((x) => Reference.fromMap(x)))
-            : null,
+        reference: reference,
         footnote: footnote,
         paragraph:
             map['pr'] != null ? (map['pr'] == false ? null : map['pr']) : null,
+        indentation: map['in'] != null ? map['in'] as int : null,
+        metadata: metadata,
       );
     } catch (e) {
       throw Exception('Error in Content.fromMap: $e\nMap: $map');
@@ -428,13 +409,15 @@ class Content {
     Map<String, dynamic>? attributes,
     List<String>? refLexicos,
     //
-    List<Texts>? texts,
+    List<AText>? texts,
     //
     String? anottation,
     String? comment,
     List<Reference>? reference,
     List<Footnote>? footnote,
     bool? paragraph,
+    int? indentation,
+    Map<String, dynamic>? metadata,
   }) {
     return Content(
       seq: seq ?? this.seq,
@@ -450,6 +433,8 @@ class Content {
       reference: reference ?? this.reference,
       footnote: footnote ?? this.footnote,
       paragraph: paragraph ?? this.paragraph,
+      indentation: indentation ?? this.indentation,
+      metadata: metadata ?? this.metadata,
     );
   }
 }

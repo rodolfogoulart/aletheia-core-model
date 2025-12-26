@@ -12,6 +12,7 @@ export 'src/model/bible/verse/referece.dart';
 export 'src/model/bible/verse/verse.content.dart';
 export 'src/model/bible/verse/verse.cross.reference.dart';
 export 'src/model/bible/verse/verse.dart';
+export 'src/model/bible/verse/texts.dart';
 export 'src/model/bible/verse/verse.data.dart';
 export 'src/model/bible/verse/view/view.cross.reference.dart';
 export 'src/model/bible/verse/view/view.search.verse.dart';

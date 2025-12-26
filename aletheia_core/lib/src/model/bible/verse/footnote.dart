@@ -14,10 +14,12 @@ class Footnote {
   ///
   final String id;
 
-  ///[note] is the text of the footnote
+  ///[text] is the text of the footnote
   ///
-  ///use key `fnN` to [note] on convert to map and from map
-  final String note;
+  /// It is a list of [AText] to allow for rich text formatting
+  ///
+  ///use key `fnT` to [text] on convert to map and from map
+  final List<AText> text;
 
   ///List of references associated with the footnote
   ///
@@ -27,18 +29,18 @@ class Footnote {
 
   Footnote({
     required this.id,
-    required this.note,
+    required this.text,
     this.references,
   });
 
   Footnote copyWith({
     String? id,
-    String? note,
+    List<AText>? text,
     List<Reference>? references,
   }) {
     return Footnote(
       id: id ?? this.id,
-      note: note ?? this.note,
+      text: text ?? this.text,
       references: references ?? this.references,
     );
   }
@@ -47,27 +49,44 @@ class Footnote {
   ///
   ///use KEY [fnId] to id
   ///
-  ///use KEY [fnN] to note
+  ///use KEY [fnT] to text
   ///
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    Map<String, dynamic> result = <String, dynamic>{
       'fnId': id,
-      'fnN': note,
+      'fnT': text,
       'fnR': references?.map((x) => x.toMap()).toList(),
     };
+
+    ///remove nulls
+    result.removeWhere((key, value) => value == null);
+
+    return result;
   }
 
   ///*DON'T FORGET TO CHANGE THE NAME OF THE KEY
   ///
   ///use KEY [fnId] to id
   ///
-  ///use KEY [fnN] to note
+  ///use KEY [fnT] to text
   ///
   factory Footnote.fromMap(Map<String, dynamic> map) {
     try {
+      var text = <AText>[];
+      try {
+        text = List<AText>.from(
+          (map['fnT'] as List).map<AText>(
+            (x) => AText.fromMap(x),
+          ),
+        );
+      } catch (e) {
+        text = [];
+        print('Error parsing AText list in Footnote.fromMap: $e');
+      }
+
       return Footnote(
         id: map['fnId'] as String,
-        note: map['fnN'] as String,
+        text: text,
         references: map['fnR'] != null
             ? List<Reference>.from(
                 (map['fnR'] as List).map<Reference>(
@@ -88,7 +107,7 @@ class Footnote {
 
   @override
   String toString() =>
-      'Footnote(id: $id, note: $note, references: $references)';
+      'Footnote(id: $id, text: $text, references: $references)';
 
   @override
   bool operator ==(covariant Footnote other) {
@@ -96,10 +115,10 @@ class Footnote {
     final listEquals = const DeepCollectionEquality().equals;
 
     return other.id == id &&
-        other.note == note &&
+        other.text == text &&
         listEquals(other.references, references);
   }
 
   @override
-  int get hashCode => id.hashCode ^ note.hashCode ^ references.hashCode;
+  int get hashCode => id.hashCode ^ text.hashCode ^ references.hashCode;
 }
