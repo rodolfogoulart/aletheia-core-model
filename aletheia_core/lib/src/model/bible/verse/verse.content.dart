@@ -152,6 +152,13 @@ class Content {
   ///use KEY [rS] KEY CHANGED TO>>>>> [rL]
   List<String>? refLexicos; //rS
 
+  /// Citation form for the term
+  ///
+  /// don`t necessary match the lexicon reference
+  ///
+  ///use KEY [le]
+  String? lemma;
+
   ///texts with formatting
   ///
   ///each `[texts]` inherits the attributes from the `[attributes]` abouve, so if the [attributes] has `bold = true`, and the [texts] dont has bold, [texts] need to have the attribute `bold = false` to reverse
@@ -198,6 +205,7 @@ class Content {
     required this.typeContent,
     this.attributes,
     this.refLexicos,
+    this.lemma,
     this.texts,
     this.anottation,
     this.comment,
@@ -223,6 +231,7 @@ class Content {
   ///
   ///use KEY [rS] to refLexicos
   ///
+  ///use KEY [le] to lemma
   ///
   ///use KEY [Ts] to texts
   ///
@@ -254,6 +263,9 @@ class Content {
       //todo: alterar para 'rL' em próxima versão
       result.addAll({'rS': refLexicos});
       // result.addAll({'rL': refLexicos});
+    }
+    if (lemma != null && lemma?.isNotEmpty == true) {
+      result.addAll({'le': lemma});
     }
     if (texts != null) {
       if (texts?.isNotEmpty == true) {
@@ -378,6 +390,7 @@ class Content {
         //assume the refLexicos is rS (to older versions) or rL (to newer versions)
         // refLexicos: (map['rS'] != null) ? List<String>.from(map['rS']) : null,
         refLexicos: refLexicos,
+        lemma: map['le'] != null ? map['le'] as String : null,
         texts: texts,
         anottation: map['an'],
         comment: map['cm'],
@@ -408,6 +421,7 @@ class Content {
     TypeContent? typeContent,
     Map<String, dynamic>? attributes,
     List<String>? refLexicos,
+    String? lemma,
     //
     List<AText>? texts,
     //
@@ -425,6 +439,7 @@ class Content {
       typeContent: typeContent ?? this.typeContent,
       attributes: attributes ?? this.attributes,
       refLexicos: refLexicos ?? this.refLexicos,
+      lemma: lemma ?? this.lemma,
       //
       texts: texts ?? this.texts,
       //
