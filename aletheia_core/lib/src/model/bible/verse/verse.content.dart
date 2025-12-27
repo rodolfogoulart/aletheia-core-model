@@ -156,6 +156,8 @@ class Content {
   ///
   /// don`t necessary match the lexicon reference
   ///
+  /// Check https://docs.usfm.bible/usfm/3.1/char/features/w.html for more details
+  ///
   ///use KEY [le]
   String? lemma;
 
@@ -190,13 +192,22 @@ class Content {
 
   /// indentation level for the content
   ///
-  ///use KEY [in]
+  /// use KEY [in]
   int? indentation;
 
-  ///additional metadata for the content
+  /// additional metadata for the content
   ///
-  ///use KEY [md]
+  /// use KEY [md]
   Map<String, dynamic>? metadata;
+
+  /// quote for the content
+  ///
+  /// Typically used for indicating the speaker of the text
+  ///
+  /// Check https://docs.usfm.bible/usfm/3.1/ms/qt.html for more details
+  ///
+  /// use key [qt]
+  String? quote;
 
   Content({
     required this.seq,
@@ -214,6 +225,7 @@ class Content {
     this.paragraph,
     this.indentation,
     this.metadata,
+    this.quote,
   });
 
   ///*DON'T FORGET TO CHANGE THE NAME OF THE KEY
@@ -248,6 +260,8 @@ class Content {
   ///use KEY [in] to indentation
   ///
   ///use KEY [md] to metadata
+  ///
+  ///use KEY [qt] to quote
   Map<String, dynamic> toMap() {
     Map<String, dynamic> result = <String, dynamic>{};
 
@@ -307,6 +321,10 @@ class Content {
         result.addAll({'md': metadata});
       }
     }
+
+    if (quote != null && quote!.isNotEmpty) {
+      result.addAll({'qt': quote});
+    }
     // Clean null values
     result.removeWhere((key, value) => value == null);
 
@@ -358,9 +376,10 @@ class Content {
           texts = [
             AText(
               text: text,
-              attributes: attributes,
+              attributes: attributes?.map((key, value) => MapEntry(key, value)),
             )
           ];
+          attributes = null;
         }
       }
 
@@ -400,6 +419,7 @@ class Content {
             map['pr'] != null ? (map['pr'] == false ? null : map['pr']) : null,
         indentation: map['in'] != null ? map['in'] as int : null,
         metadata: metadata,
+        quote: map['qt'] != null ? map['qt'] as String : null,
       );
     } catch (e) {
       throw Exception('Error in Content.fromMap: $e\nMap: $map');
@@ -432,6 +452,7 @@ class Content {
     bool? paragraph,
     int? indentation,
     Map<String, dynamic>? metadata,
+    String? quote,
   }) {
     return Content(
       seq: seq ?? this.seq,
@@ -450,6 +471,7 @@ class Content {
       paragraph: paragraph ?? this.paragraph,
       indentation: indentation ?? this.indentation,
       metadata: metadata ?? this.metadata,
+      quote: quote ?? this.quote,
     );
   }
 }
