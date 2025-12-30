@@ -54,7 +54,7 @@ class Footnote {
   Map<String, dynamic> toMap() {
     Map<String, dynamic> result = <String, dynamic>{
       'fnId': id,
-      'fnT': text,
+      'fnT': text.map((x) => x.toMap()).toList(),
       'fnR': references?.map((x) => x.toMap()).toList(),
     };
 
@@ -76,7 +76,9 @@ class Footnote {
       try {
         text = List<AText>.from(
           (map['fnT'] as List).map<AText>(
-            (x) => AText.fromMap(x),
+            (x) => x is String
+                ? AText.fromMap(json.decode(x) as Map<String, dynamic>)
+                : AText.fromMap(x),
           ),
         );
       } catch (e) {
