@@ -7,7 +7,10 @@ abstract class InterfaceControllerBibleVersion {
   Future<List<BibleVersionBooksView>> getAllBibleVersionBooksView();
   String getHashBibleVersion({required String abrev, required String language});
 
+  /// insert or update bible version
   Future<int> setBibleVersion(BibleVersion bibleVersion);
+
+  /// insert or update bible version book
   Future<int> setBibleVersionBook(BibleVersionBooks bibleVersionBooks);
 
   Future<int> updateBibleVersionBook(BibleVersionBooks bibleVersionBooks);
