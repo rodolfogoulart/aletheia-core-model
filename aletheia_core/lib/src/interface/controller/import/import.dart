@@ -68,4 +68,16 @@ abstract class InterfaceControllerImport {
   Future<TypeStatus> importMyBibleModules(
       String pathBible, String? pathCommentaryFootNote,
       {required String fileBibleName});
+
+  /// Import Aletheia Bible Module
+  ///
+  /// Need the file
+  /// - bible-version.json
+  ///   - contains the info about the bible version
+  /// - bible-books.json
+  ///   - contains the list of books in the bible version
+  /// - book-[Book name].json
+  ///   - contains the verses of the book
+  Future<TypeStatus> importAletheiaBibleModule(
+      {required List<String> pathsModule});
 }
