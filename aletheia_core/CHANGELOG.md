@@ -167,3 +167,7 @@
   * Add verse.content.text.dart to store functions related to VerseContent text manipulation
   * Added function setAttributesOnPosition to set attributes on specific positions of the text
 * Exported functions on aletheia_core.dart
+
+## 0.0.42
+* Add VerseAudio model
+* Add getVerseAudio on InterfaceControllerVerse

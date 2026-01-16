@@ -4,7 +4,7 @@
 import 'dart:convert';
 
 import 'package:aletheia_core/aletheia_core.dart';
-import 'package:aletheia_core/src/model/bible/verse/texts.dart';
+// import 'package:aletheia_core/src/model/bible/verse/texts.dart';
 
 // class SubText {
 //   String text;

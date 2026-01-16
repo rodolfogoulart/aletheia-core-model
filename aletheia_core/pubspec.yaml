@@ -1,6 +1,6 @@
 name: aletheia_core
 description: Aletheia Core
-version: 0.0.41
+version: 0.0.42
 
 homepage: https://www.biblealetheia.com
 publish_to: 'none'
@@ -12,7 +12,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   # path: ^1.8.0
-  collection: ^1.18.0
+  collection: ^1.19.0
 
 dev_dependencies:
   lints: ^5.0.0

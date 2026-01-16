@@ -95,4 +95,14 @@ abstract class InterfaceControllerVerse {
     required int bookId,
     required int chapter,
   });
+
+  /// Get verse audio
+  ///
+  /// return null if no audio found
+  Future<VerseAudio?> getVerseAudio({
+    required int bibleVersionId,
+    required int bookId,
+    required int chapter,
+    required int verse,
+  });
 }

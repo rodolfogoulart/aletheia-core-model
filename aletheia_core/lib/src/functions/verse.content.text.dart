@@ -4,7 +4,6 @@
 import 'dart:convert';
 
 import 'package:aletheia_core/aletheia_core.dart';
-import 'package:aletheia_core/src/model/bible/verse/texts.dart';
 
 // class SubText {
 //   String text;
@@ -366,7 +365,7 @@ class ContentTextFormatter {
     }
 
     // Função auxiliar para aplicar ou remover atributos
-    Map<String, dynamic> _applyOrRemoveAttributes(
+    Map<String, dynamic> applyOrRemoveAttributes(
       Map<String, dynamic> currentAttributes,
       Map<String, dynamic> targetAttributes,
     ) {
@@ -400,7 +399,7 @@ class ContentTextFormatter {
       if (pos.start >= initAt && pos.end <= endAt) {
         newPositions.add(AttributesPosition(
           // attributes: {...pos.attributes, ...attributesAt},
-          attributes: _applyOrRemoveAttributes(pos.attributes, attributesAt),
+          attributes: applyOrRemoveAttributes(pos.attributes, attributesAt),
           start: pos.start,
           end: pos.end,
         ));
@@ -420,7 +419,7 @@ class ContentTextFormatter {
         int rangeEnd = pos.end < endAt ? pos.end : endAt;
         newPositions.add(AttributesPosition(
           // attributes: {...pos.attributes, ...attributesAt},
-          attributes: _applyOrRemoveAttributes(pos.attributes, attributesAt),
+          attributes: applyOrRemoveAttributes(pos.attributes, attributesAt),
           start: initAt,
           end: rangeEnd,
         ));
@@ -441,7 +440,7 @@ class ContentTextFormatter {
         // Parte dentro do range
         newPositions.add(AttributesPosition(
           // attributes: {...pos.attributes, ...attributesAt},
-          attributes: _applyOrRemoveAttributes(pos.attributes, attributesAt),
+          attributes: applyOrRemoveAttributes(pos.attributes, attributesAt),
           start: pos.start,
           end: endAt,
         ));
