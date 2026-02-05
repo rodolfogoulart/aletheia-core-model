@@ -62,11 +62,16 @@ class Transcription {
   final List<WordTimestamp> words;
   final double? confidenceScore;
 
+  final String? pedagogicalText;
+  final String? readingMode;
+
   Transcription({
     required this.originalText,
     required this.normalizedText,
     required this.words,
     this.confidenceScore,
+    this.pedagogicalText,
+    this.readingMode,
   });
 
   factory Transcription.fromJson(Map<String, dynamic> json) {
@@ -77,6 +82,8 @@ class Transcription {
           .map((w) => WordTimestamp.fromJson(w as Map<String, dynamic>))
           .toList(),
       confidenceScore: json['confidence_score'] as double?,
+      pedagogicalText: json['pedagogical_text'] as String?,
+      readingMode: json['reading_mode'] as String?,
     );
   }
 
@@ -86,6 +93,8 @@ class Transcription {
       'normalized_text': normalizedText,
       'words': words.map((w) => w.toJson()).toList(),
       'confidence_score': confidenceScore,
+      'pedagogical_text': pedagogicalText,
+      'reading_mode': readingMode,
     };
   }
 }
