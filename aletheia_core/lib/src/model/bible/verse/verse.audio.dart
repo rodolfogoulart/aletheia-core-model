@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 // import 'dart:convert';
 // import 'dart:typed_data';
 
@@ -38,21 +41,26 @@ class VerseAudio {
     required this.transcription,
   });
 
-  factory VerseAudio.fromJson(Map<String, dynamic> json) {
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'audioBase64': audioBase64,
+      'transcription': transcription.toMap(),
+    };
+  }
+
+  factory VerseAudio.fromMap(Map<String, dynamic> map) {
     return VerseAudio(
       audioBase64:
-          json['audio_base64'] != null ? json['audio_base64'] as String : '',
+          map['audioBase64'] != null ? map['audioBase64'] as String : '',
       transcription:
-          Transcription.fromJson(json['transcription'] as Map<String, dynamic>),
+          Transcription.fromMap(map['transcription'] as Map<String, dynamic>),
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'audio_base64': audioBase64,
-      'transcription': transcription.toJson(),
-    };
-  }
+  String toJson() => json.encode(toMap());
+
+  factory VerseAudio.fromJson(String source) =>
+      VerseAudio.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 /// Represents the transcription of audio data
@@ -74,29 +82,41 @@ class Transcription {
     this.readingMode,
   });
 
-  factory Transcription.fromJson(Map<String, dynamic> json) {
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'originalText': originalText,
+      'normalizedText': normalizedText,
+      'words': words.map((x) => x.toMap()).toList(),
+      'confidenceScore': confidenceScore,
+      'pedagogicalText': pedagogicalText,
+      'readingMode': readingMode,
+    };
+  }
+
+  factory Transcription.fromMap(Map<String, dynamic> map) {
     return Transcription(
-      originalText: json['original_text'] as String,
-      normalizedText: json['normalized_text'] as String,
-      words: (json['words'] as List)
-          .map((w) => WordTimestamp.fromJson(w as Map<String, dynamic>))
-          .toList(),
-      confidenceScore: json['confidence_score'] as double?,
-      pedagogicalText: json['pedagogical_text'] as String?,
-      readingMode: json['reading_mode'] as String?,
+      originalText: map['originalText'] as String,
+      normalizedText: map['normalizedText'] as String,
+      words: List<WordTimestamp>.from(
+        (map['words'] as List<dynamic>).map<WordTimestamp>(
+          (x) => WordTimestamp.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
+      confidenceScore: map['confidenceScore'] != null
+          ? map['confidenceScore'] as double
+          : null,
+      pedagogicalText: map['pedagogicalText'] != null
+          ? map['pedagogicalText'] as String
+          : null,
+      readingMode:
+          map['readingMode'] != null ? map['readingMode'] as String : null,
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'original_text': originalText,
-      'normalized_text': normalizedText,
-      'words': words.map((w) => w.toJson()).toList(),
-      'confidence_score': confidenceScore,
-      'pedagogical_text': pedagogicalText,
-      'reading_mode': readingMode,
-    };
-  }
+  String toJson() => json.encode(toMap());
+
+  factory Transcription.fromJson(String source) =>
+      Transcription.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 /// Represents the timestamp information for a word in the transcription
@@ -119,27 +139,33 @@ class WordTimestamp {
     this.aligned = true,
   });
 
-  factory WordTimestamp.fromJson(Map<String, dynamic> json) {
-    return WordTimestamp(
-      word: json['word'] as String,
-      start: (json['start'] as num).toDouble(),
-      end: (json['end'] as num).toDouble(),
-      charStart: json['char_start'] as int,
-      charEnd: json['char_end'] as int,
-      originalWord: json['original_word'] as String?,
-      aligned: json['aligned'] as bool? ?? true,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
       'word': word,
       'start': start,
       'end': end,
-      'char_start': charStart,
-      'char_end': charEnd,
-      'original_word': originalWord,
+      'charStart': charStart,
+      'charEnd': charEnd,
+      'originalWord': originalWord,
       'aligned': aligned,
     };
   }
+
+  factory WordTimestamp.fromMap(Map<String, dynamic> map) {
+    return WordTimestamp(
+      word: map['word'] as String,
+      start: map['start'] as double,
+      end: map['end'] as double,
+      charStart: map['charStart'] as int,
+      charEnd: map['charEnd'] as int,
+      originalWord:
+          map['originalWord'] != null ? map['originalWord'] as String : null,
+      aligned: map['aligned'] as bool,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory WordTimestamp.fromJson(String source) =>
+      WordTimestamp.fromMap(json.decode(source) as Map<String, dynamic>);
 }
