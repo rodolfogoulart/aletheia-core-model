@@ -81,6 +81,18 @@ abstract class InterfaceRepositoryVerse {
     bool containAllTokens = false,
   });
 
+  /// Get verses that contain the word
+  ///
+  /// `word` is the word to search for
+  ///
+  /// `idBibleVersion` is the id of the bible version
+  ///
+  /// `return` a list of VerseView that contain the word
+  Future<List<VerseView>> getVersesHasWordAndLexico({
+    required String word,
+    required int idBibleVersion,
+  });
+
   /// Returns the list of verses that belong to the given lexico
   ///
   /// * The `idLexico` parameter is the ID of the lexico.

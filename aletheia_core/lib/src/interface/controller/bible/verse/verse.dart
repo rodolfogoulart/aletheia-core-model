@@ -76,6 +76,18 @@ abstract class InterfaceControllerVerse {
     required int bibleVersionId,
   });
 
+  /// Get verses that contain the word
+  ///
+  /// `word` is the word to search for
+  ///
+  /// `idBibleVersion` is the id of the bible version
+  ///
+  /// `return` a list of VerseView that contain the word
+  Future<List<VerseView>> getVersesHasWordAndLexico({
+    required String word,
+    required int idBibleVersion,
+  });
+
   /// Get verses that contain the lexico
   ///
   /// `idLexico` is the id of the lexico start with G or H (G for greek and H for hebrew)

@@ -171,3 +171,5 @@
 ## 0.0.42
 * Add VerseAudio model
 * Add getVerseAudio on InterfaceControllerVerse
+* Add getVersesHasWordAndLexico on InterfaceControllerVerse
+  * Get the verses that has the word and lexico, this will be used to show the verses that has the word and lexico on the verse view, to show the highlights and notes related to the word and lexico
