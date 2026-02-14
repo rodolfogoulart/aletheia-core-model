@@ -88,7 +88,7 @@ abstract class InterfaceRepositoryVerse {
   /// `idBibleVersion` is the id of the bible version
   ///
   /// `return` a list of VerseView that contain the word
-  Future<List<VerseView>> getVersesHasWordAndLexico({
+  Future<List<VerseView>> getVersesHasWordWithLexico({
     required String word,
     required int idBibleVersion,
   });
