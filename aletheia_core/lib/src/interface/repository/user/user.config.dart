@@ -45,4 +45,16 @@ abstract class InterfaceRepositoryUserConfig {
 
   ///v1.0.16
   Future<int> deleteGenerativeLanguageClientConfig();
+
+  /// Get the default Bible versions for comparison
+  ///
+  /// Returns a list of hash of Bible version identifiers or null if not set
+  Future<List<String>?> getDefaultCompareBibleVersions();
+
+  /// Set the default Bible versions for comparison
+  ///
+  /// Accepts a list of hash of Bible version identifiers and returns true if the operation was successful
+  Future<bool> setDefaultCompareBibleVersions({
+    required List<String> versions,
+  });
 }
