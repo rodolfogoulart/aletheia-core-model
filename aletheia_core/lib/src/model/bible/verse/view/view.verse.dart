@@ -7,9 +7,18 @@ import 'package:aletheia_core/aletheia_core_model.dart';
 
 /// Enum to specify the types of extra data that can be associated with a VerseView
 enum TypeExtraDataVerse {
+  /// for words, people and places related to the verse
   wordsPeopleAndPlaces,
   readingPlans,
-  media,
+
+  /// for media content related to the verse, like images
+  images,
+
+  /// for media content related to the verse, like audios
+  audios,
+
+  /// for media content related to the verse, like videos
+  videos,
   // Add more types as needed
 }
 
@@ -29,7 +38,9 @@ class VerseView extends VerseCore {
   /// For example, it can store data like:
   /// - wordsPeopleAndPlaces: List
   /// - readingPlans: List
-  /// - media: List
+  /// - images: List
+  /// - audios: List
+  /// - videos: List
   /// - and more...
   Map<String, dynamic>? extraData;
 

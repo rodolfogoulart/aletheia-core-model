@@ -70,9 +70,19 @@ extension TypeAttributesExtension on TypeAttributes {
   bool get isOther => this == TypeAttributes.other;
 }
 
+/// Define the content of a text, with the possibility to have different types of content, like title, verse, etc..
 enum TypeContent {
   title,
   verse,
+
+  /// for custom content that is not title or verse, like footnotes, annotations, etc..
+  ///
+  /// this can be used to add user generated content, like comments, highlights, etc..
+  ///
+  /// with custom attributes in the middle of the verse content
+  ///
+  /// check https://github.com/rodolfogoulart/aletheia-core-model/issues/6#issuecomment-3738122183 for more details
+  custom,
   ;
 
   const TypeContent();
@@ -94,6 +104,8 @@ enum TypeContent {
           return TypeContent.title;
         case 'v':
           return TypeContent.verse;
+        case 'c':
+          return TypeContent.custom;
         default:
           return TypeContent.values.byName(value);
       }
@@ -106,6 +118,7 @@ enum TypeContent {
 extension TypeContentExtension on TypeContent {
   bool get isTitle => this == TypeContent.title;
   bool get isVerse => this == TypeContent.verse;
+  bool get isCustom => this == TypeContent.custom;
 }
 
 ///*when Generated JSON Serialization, change the key to refer the variable
@@ -149,6 +162,8 @@ class Content {
 
   ///references to lexicos (strongs, etc..)
   ///
+  ///for Strong lexico this will be something like G1234 or H5678
+  ///
   ///use KEY [rS] KEY CHANGED TO>>>>> [rL]
   List<String>? refLexicos; //rS
 
@@ -164,6 +179,11 @@ class Content {
   ///texts with formatting
   ///
   ///each `[texts]` inherits the attributes from the `[attributes]` abouve, so if the [attributes] has `bold = true`, and the [texts] dont has bold, [texts] need to have the attribute `bold = false` to reverse
+  ///
+  ///to get the full text with formatting, you can use the [fullText] helper that will join all the [texts] together
+  ///
+  ///to format the [texts], check [ContentTextFormatter] class in the functions folder
+  ///
   /// use KEY [Ts]
   List<AText>? texts; //Ts
 
