@@ -1,5 +1,26 @@
 import 'dart:convert';
 
+enum LanguageDirection {
+  ltr,
+  rtl;
+
+  String toMap() {
+    return name;
+  }
+
+  factory LanguageDirection.fromMap(String value) {
+    return LanguageDirection.values.firstWhere(
+      (e) => e.name == value,
+      orElse: () => LanguageDirection.ltr, // default value
+    );
+  }
+}
+
+extension LanguageDirectionExtension on LanguageDirection {
+  bool get isLTR => this == LanguageDirection.ltr;
+  bool get isRTL => this == LanguageDirection.rtl;
+}
+
 class BibleVersion {
   int id;
 
@@ -36,6 +57,9 @@ class BibleVersion {
   ///}
   ///```
   String? hash;
+
+  LanguageDirection? languageDirection;
+
   BibleVersion({
     this.id = 0,
     this.language = 'pt-br',
@@ -44,6 +68,7 @@ class BibleVersion {
     this.copyright,
     this.hasStrong = false,
     this.hash,
+    this.languageDirection = LanguageDirection.ltr,
   });
 
   BibleVersion copyWith({
@@ -54,6 +79,7 @@ class BibleVersion {
     String? copyright,
     bool? hasStrong,
     String? hash,
+    LanguageDirection? languageDirection,
   }) {
     return BibleVersion(
       id: id ?? this.id,
@@ -63,6 +89,7 @@ class BibleVersion {
       copyright: copyright ?? this.copyright,
       hasStrong: hasStrong ?? this.hasStrong,
       hash: hash ?? this.hash,
+      languageDirection: languageDirection ?? this.languageDirection,
     );
   }
 
@@ -84,6 +111,12 @@ class BibleVersion {
     if (hash != null) {
       result.addAll({'hash': hash});
     }
+    if (languageDirection != null) {
+      result.addAll({
+        'languageDirection':
+            languageDirection?.toMap() ?? LanguageDirection.ltr.toMap()
+      });
+    }
 
     return result;
   }
@@ -98,6 +131,9 @@ class BibleVersion {
         copyright: map['copyright'],
         hasStrong: map['hasStrong'],
         hash: map['hash'],
+        languageDirection: map['languageDirection'] != null
+            ? LanguageDirection.fromMap(map['languageDirection'])
+            : LanguageDirection.ltr,
       );
     } catch (e) {
       throw Exception('Error parsing BibleVersion.fromMap: $e\nMap: $map');
@@ -111,7 +147,7 @@ class BibleVersion {
 
   @override
   String toString() {
-    return 'BibleVersion(id: $id, language: $language, versionName: $versionName, versionAbrev: $versionAbrev, copyright: $copyright, hasStrong: $hasStrong, hash: $hash)';
+    return 'BibleVersion(id: $id, language: $language, versionName: $versionName, versionAbrev: $versionAbrev, copyright: $copyright, hasStrong: $hasStrong, hash: $hash, languageDirection: $languageDirection)';
   }
 
   @override
@@ -125,7 +161,8 @@ class BibleVersion {
         other.versionAbrev == versionAbrev &&
         other.copyright == copyright &&
         other.hasStrong == hasStrong &&
-        other.hash == hash;
+        other.hash == hash &&
+        other.languageDirection == languageDirection;
   }
 
   @override
@@ -136,6 +173,7 @@ class BibleVersion {
         versionAbrev.hashCode ^
         copyright.hashCode ^
         hasStrong.hashCode ^
+        languageDirection.hashCode ^
         hash.hashCode;
   }
 }
