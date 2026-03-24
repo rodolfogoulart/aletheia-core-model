@@ -55,6 +55,9 @@ class UserNotes {
 
   String? uuid;
   int? hlc;
+  //
+  DateTime createdAt;
+  DateTime? updatedAt;
 
   UserNotes({
     this.title,
@@ -67,7 +70,9 @@ class UserNotes {
     this.locals,
     this.uuid,
     this.hlc,
-  });
+    DateTime? createdAt,
+    this.updatedAt,
+  }) : createdAt = createdAt ?? DateTime.now();
 
   UserNotes copyWith({
     String? title,
@@ -80,6 +85,8 @@ class UserNotes {
     List<UserNotesLocal>? locals,
     String? uuid,
     int? hlc,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return UserNotes(
       title: title ?? this.title,
@@ -92,12 +99,14 @@ class UserNotes {
       locals: locals ?? this.locals,
       uuid: uuid ?? this.uuid,
       hlc: hlc ?? this.hlc,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
   @override
   String toString() {
-    return 'UserNotes(title: $title, tags: $tags, notes: $notes, date: $date, type: $type, color: $color, references: $references, locals: $locals, uuid: $uuid, hlc: $hlc)';
+    return 'UserNotes(title: $title, tags: $tags, notes: $notes, date: $date, type: $type, color: $color, references: $references, locals: $locals, uuid: $uuid, hlc: $hlc, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -114,7 +123,9 @@ class UserNotes {
         listEquals(other.references, references) &&
         listEquals(other.locals, locals) &&
         other.uuid == uuid &&
-        other.hlc == hlc;
+        other.hlc == hlc &&
+        other.createdAt == createdAt &&
+        other.updatedAt == updatedAt;
   }
 
   @override
@@ -128,7 +139,9 @@ class UserNotes {
         references.hashCode ^
         locals.hashCode ^
         uuid.hashCode ^
-        hlc.hashCode;
+        hlc.hashCode ^
+        createdAt.hashCode ^
+        updatedAt.hashCode;
   }
 
   Map<String, dynamic> toMap() {
@@ -143,6 +156,8 @@ class UserNotes {
       'locals': locals?.map((x) => x.toMap()).toList(),
       'uuid': uuid,
       'hlc': hlc,
+      'createdAt': createdAt.millisecondsSinceEpoch,
+      'updatedAt': updatedAt?.millisecondsSinceEpoch,
     };
   }
 
@@ -178,6 +193,10 @@ class UserNotes {
             : null,
         uuid: map['uuid'],
         hlc: map['hlc'],
+        createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt']),
+        updatedAt: map['updatedAt'] != null
+            ? DateTime.fromMillisecondsSinceEpoch(map['updatedAt'])
+            : null,
       );
     } catch (e, stackTrace) {
       throw Exception('Error parsing UserNotes.fromMap: $e\n$stackTrace');

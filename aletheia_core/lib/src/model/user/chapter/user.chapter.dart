@@ -25,6 +25,9 @@ class UserChapter {
 
   String? uuid;
   int? hlc;
+  //
+  DateTime createdAt;
+  DateTime? updatedAt;
 
   UserChapter({
     required this.chapter,
@@ -34,7 +37,9 @@ class UserChapter {
     this.references,
     this.uuid,
     this.hlc,
-  });
+    DateTime? createdAt,
+    this.updatedAt,
+  }) : createdAt = createdAt ?? DateTime.now();
 
   UserChapter copyWith({
     int? chapter,
@@ -44,6 +49,8 @@ class UserChapter {
     List<Reference>? references,
     String? uuid,
     int? hlc,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return UserChapter(
       chapter: chapter ?? this.chapter,
@@ -53,6 +60,8 @@ class UserChapter {
       references: references ?? this.references,
       uuid: uuid ?? this.uuid,
       hlc: hlc ?? this.hlc,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
@@ -65,6 +74,8 @@ class UserChapter {
       'references': references?.map((x) => x.toMap()).toList(),
       'uuid': uuid,
       'hlc': hlc,
+      'createdAt': createdAt.millisecondsSinceEpoch,
+      'updatedAt': updatedAt?.millisecondsSinceEpoch,
     };
   }
 
@@ -90,6 +101,11 @@ class UserChapter {
             : null,
         uuid: map['uuid'],
         hlc: map['hlc'],
+        createdAt: DateTime.fromMillisecondsSinceEpoch(
+            map['createdAt'] ?? DateTime.now().millisecondsSinceEpoch),
+        updatedAt: map['updatedAt'] != null
+            ? DateTime.fromMillisecondsSinceEpoch(map['updatedAt'])
+            : null,
       );
     } catch (e, stackTrace) {
       throw Exception(
@@ -104,7 +120,7 @@ class UserChapter {
 
   @override
   String toString() {
-    return 'UserChapter(chapter: $chapter, idBook: $idBook, pericopes: $pericopes, notes: $notes, references: $references, uuid: $uuid, hlc: $hlc)';
+    return 'UserChapter(chapter: $chapter, idBook: $idBook, pericopes: $pericopes, notes: $notes, references: $references, uuid: $uuid, hlc: $hlc, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -118,7 +134,9 @@ class UserChapter {
         other.notes == notes &&
         listEquals(other.references, references) &&
         other.uuid == uuid &&
-        other.hlc == hlc;
+        other.hlc == hlc &&
+        other.createdAt == createdAt &&
+        other.updatedAt == updatedAt;
   }
 
   @override
@@ -129,6 +147,8 @@ class UserChapter {
         notes.hashCode ^
         references.hashCode ^
         uuid.hashCode ^
-        hlc.hashCode;
+        hlc.hashCode ^
+        createdAt.hashCode ^
+        updatedAt.hashCode;
   }
 }
