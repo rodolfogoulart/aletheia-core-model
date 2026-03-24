@@ -26,8 +26,8 @@ class UserChapter {
   String? uuid;
   int? hlc;
   //
-  DateTime createdAt;
-  DateTime? updatedAt;
+  DateTime createAt;
+  DateTime? updateAt;
 
   UserChapter({
     required this.chapter,
@@ -37,9 +37,9 @@ class UserChapter {
     this.references,
     this.uuid,
     this.hlc,
-    DateTime? createdAt,
-    this.updatedAt,
-  }) : createdAt = createdAt ?? DateTime.now();
+    DateTime? createAt,
+    this.updateAt,
+  }) : createAt = createAt ?? DateTime.now();
 
   UserChapter copyWith({
     int? chapter,
@@ -49,8 +49,8 @@ class UserChapter {
     List<Reference>? references,
     String? uuid,
     int? hlc,
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    DateTime? createAt,
+    DateTime? updateAt,
   }) {
     return UserChapter(
       chapter: chapter ?? this.chapter,
@@ -60,8 +60,8 @@ class UserChapter {
       references: references ?? this.references,
       uuid: uuid ?? this.uuid,
       hlc: hlc ?? this.hlc,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
+      createAt: createAt ?? this.createAt,
+      updateAt: updateAt ?? this.updateAt,
     );
   }
 
@@ -74,8 +74,8 @@ class UserChapter {
       'references': references?.map((x) => x.toMap()).toList(),
       'uuid': uuid,
       'hlc': hlc,
-      'createdAt': createdAt.millisecondsSinceEpoch,
-      'updatedAt': updatedAt?.millisecondsSinceEpoch,
+      'createAt': createAt.millisecondsSinceEpoch,
+      'updateAt': updateAt?.millisecondsSinceEpoch,
     };
   }
 
@@ -101,10 +101,10 @@ class UserChapter {
             : null,
         uuid: map['uuid'],
         hlc: map['hlc'],
-        createdAt: DateTime.fromMillisecondsSinceEpoch(
-            map['createdAt'] ?? DateTime.now().millisecondsSinceEpoch),
-        updatedAt: map['updatedAt'] != null
-            ? DateTime.fromMillisecondsSinceEpoch(map['updatedAt'])
+        createAt: DateTime.fromMillisecondsSinceEpoch(
+            map['createAt'] ?? DateTime.now().millisecondsSinceEpoch),
+        updateAt: map['updateAt'] != null
+            ? DateTime.fromMillisecondsSinceEpoch(map['updateAt'])
             : null,
       );
     } catch (e, stackTrace) {
@@ -120,7 +120,7 @@ class UserChapter {
 
   @override
   String toString() {
-    return 'UserChapter(chapter: $chapter, idBook: $idBook, pericopes: $pericopes, notes: $notes, references: $references, uuid: $uuid, hlc: $hlc, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'UserChapter(chapter: $chapter, idBook: $idBook, pericopes: $pericopes, notes: $notes, references: $references, uuid: $uuid, hlc: $hlc, createAt: $createAt, updateAt: $updateAt)';
   }
 
   @override
@@ -135,8 +135,8 @@ class UserChapter {
         listEquals(other.references, references) &&
         other.uuid == uuid &&
         other.hlc == hlc &&
-        other.createdAt == createdAt &&
-        other.updatedAt == updatedAt;
+        other.createAt == createAt &&
+        other.updateAt == updateAt;
   }
 
   @override
@@ -148,7 +148,7 @@ class UserChapter {
         references.hashCode ^
         uuid.hashCode ^
         hlc.hashCode ^
-        createdAt.hashCode ^
-        updatedAt.hashCode;
+        createAt.hashCode ^
+        updateAt.hashCode;
   }
 }
