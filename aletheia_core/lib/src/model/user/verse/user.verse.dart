@@ -37,6 +37,9 @@ class UserVerse {
   String? uuid;
   int? hlc;
 
+  DateTime createAt;
+  DateTime? updateAt;
+
   UserVerse({
     required this.numberChapter,
     required this.numberVerse,
@@ -47,13 +50,16 @@ class UserVerse {
     required this.idBook,
     this.uuid,
     this.hlc,
-  }) : _colorVersesHighlighted = colorVersesHighlighted {
+    DateTime? createAt,
+    this.updateAt,
+  })  : createAt = createAt ?? DateTime.now(),
+        _colorVersesHighlighted = colorVersesHighlighted {
     isVersesHighlighted = _colorVersesHighlighted != null;
   }
 
   @override
   String toString() {
-    return 'UserVerse(numberChapter: $numberChapter, numberVerse: $numberVerse, colorVersesHighlighted: $_colorVersesHighlighted, notes: $notes, wordsHighlighted: $wordsHighlighted, references: $references, idBook: $idBook, uuid: $uuid, hlc: $hlc)';
+    return 'UserVerse(numberChapter: $numberChapter, numberVerse: $numberVerse, colorVersesHighlighted: $_colorVersesHighlighted, notes: $notes, wordsHighlighted: $wordsHighlighted, references: $references, idBook: $idBook, uuid: $uuid, hlc: $hlc, createAt: $createAt, updateAt: $updateAt)';
   }
 
   @override
@@ -70,7 +76,9 @@ class UserVerse {
         listEquals(other.references, references) &&
         other.idBook == idBook &&
         other.uuid == uuid &&
-        other.hlc == hlc;
+        other.hlc == hlc &&
+        other.createAt == createAt &&
+        other.updateAt == updateAt;
   }
 
   @override
@@ -84,7 +92,9 @@ class UserVerse {
         references.hashCode ^
         idBook.hashCode ^
         uuid.hashCode ^
-        hlc.hashCode;
+        hlc.hashCode ^
+        createAt.hashCode ^
+        updateAt.hashCode;
   }
 
   UserVerse copyWith({
@@ -98,6 +108,8 @@ class UserVerse {
     int? idBook,
     String? uuid,
     int? hlc,
+    DateTime? createAt,
+    DateTime? updateAt,
   }) {
     return UserVerse(
       numberChapter: numberChapter ?? this.numberChapter,
@@ -108,6 +120,8 @@ class UserVerse {
       references: references ?? this.references,
       idBook: idBook ?? this.idBook,
       uuid: uuid ?? this.uuid,
+      createAt: createAt ?? this.createAt,
+      updateAt: updateAt ?? this.updateAt,
       hlc: hlc ?? this.hlc,
     );
   }
@@ -123,6 +137,8 @@ class UserVerse {
       'idBook': idBook,
       'uuid': uuid,
       'hlc': hlc,
+      'createAt': createAt.millisecondsSinceEpoch,
+      'updateAt': updateAt?.millisecondsSinceEpoch,
     };
     data.removeWhere((key, value) => value == null);
     return data;
@@ -148,6 +164,11 @@ class UserVerse {
         idBook: map['idBook'] ?? 0,
         uuid: map['uuid'],
         hlc: map['hlc'],
+        createAt: DateTime.fromMillisecondsSinceEpoch(
+            map['createAt'] ?? DateTime.now().millisecondsSinceEpoch),
+        updateAt: map['updateAt'] != null
+            ? DateTime.fromMillisecondsSinceEpoch(map['updateAt'])
+            : null,
       );
     } catch (e, stackTrace) {
       throw Exception(
