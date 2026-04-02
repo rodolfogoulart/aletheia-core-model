@@ -70,9 +70,9 @@ class UserNotes {
     this.locals,
     this.uuid,
     this.hlc,
-    DateTime? createAt,
+    required this.createAt,
     this.updateAt,
-  }) : createAt = createAt ?? DateTime.now();
+  });
 
   UserNotes copyWith({
     String? title,
