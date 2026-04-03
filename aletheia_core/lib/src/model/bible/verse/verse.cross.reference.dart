@@ -19,7 +19,7 @@ class VerseCrossReference {
   ///metadata can be used to store some information about the cross reference
   ///
   ///use as json string to store more complex data
-  String? metaData;
+  Map<String, dynamic>? metaData;
   VerseCrossReference({
     required this.id,
     required this.idBook,
@@ -60,7 +60,9 @@ class VerseCrossReference {
                 ),
               )
             : [],
-        metaData: map['metaData'],
+        metaData: map['metaData'] != null
+            ? Map<String, dynamic>.from(map['metaData'])
+            : null,
       );
     } catch (e) {
       throw Exception(
