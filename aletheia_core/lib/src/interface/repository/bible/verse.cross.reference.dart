@@ -30,5 +30,6 @@ abstract class InterfaceRepositoryVerseCrossReference {
     required int numberChapterReference,
     required int numberVerseReferenceBegin,
     required int? numberVerseReferenceEnd,
+    Map<String, dynamic>? metaData,
   });
 }
