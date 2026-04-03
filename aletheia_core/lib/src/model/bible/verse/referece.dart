@@ -135,4 +135,9 @@ class Reference {
     // description.hashCode;
     //dont compare metadata
   }
+
+  @override
+  String toString() {
+    return 'Reference(bookNumber: $bookNumber, chapterNumber: $chapterNumber, verseNumber: $verseNumber, endChapterNumber: $endChapterNumber, endVerseNumber: $endVerseNumber, verseNumbers: $verseNumbers, description: $description, bibleVersion: $bibleVersion, metaData: $metaData)';
+  }
 }

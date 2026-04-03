@@ -13,6 +13,13 @@ class VerseCrossReference {
   int idBookReference;
   int? numberVerseEnd;
   List<VerseView> reference;
+
+  ///v1.0.22
+  ///
+  ///metadata can be used to store some information about the cross reference
+  ///
+  ///use as json string to store more complex data
+  String? metaData;
   VerseCrossReference({
     required this.id,
     required this.idBook,
@@ -21,6 +28,7 @@ class VerseCrossReference {
     required this.idBookReference,
     this.numberVerseEnd,
     required this.reference,
+    this.metaData,
   });
 
   Map<String, dynamic> toMap() {
@@ -32,6 +40,7 @@ class VerseCrossReference {
       'idBookReference': idBookReference,
       'numberVerseEnd': numberVerseEnd,
       'reference': reference.map((x) => x.toMap()).toList(),
+      'metaData': metaData,
     };
   }
 
@@ -51,6 +60,7 @@ class VerseCrossReference {
                 ),
               )
             : [],
+        metaData: map['metaData'],
       );
     } catch (e) {
       throw Exception(
