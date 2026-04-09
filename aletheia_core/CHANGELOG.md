@@ -169,7 +169,11 @@
 * Exported functions on aletheia_core.dart
 
 ## 0.0.42
-* Add VerseAudio model
+* Add VerseAudio model for verse audio payload
+  * Includes Transcription and WordTimestamp structures
+  * Includes toMap/fromMap and toJson/fromJson serialization helpers
 * Add getVerseAudio on InterfaceControllerVerse
-* Add getVersesHasWordWithLexico on InterfaceControllerVerse
-  * Get the verses that has the word and lexico, this will be used to show the verses that has the word and lexico on the verse view, to show the highlights and notes related to the word and lexico
+* Add getVersesHasWordWithLexico on verse contracts
+  * Available on InterfaceControllerVerse
+  * Available on InterfaceRepositoryVerse
+* Add CountWord
