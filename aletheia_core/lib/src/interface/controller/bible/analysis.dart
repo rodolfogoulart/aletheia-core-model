@@ -4,7 +4,7 @@ abstract class InterfaceControllerAnalysis {
   /// Get the count of a word in the bible, with optional filters for book, chapter, and division.
   Future<List<CountWord>> getCountWord({
     required String word,
-    int idBibleVersion,
+    required int idBibleVersion,
     int? idBook,
     int? numberChapter,
     Division? division,
@@ -13,6 +13,6 @@ abstract class InterfaceControllerAnalysis {
   /// Get the total count of a word in the entire bible for a specific version.
   Future<int> getTotalCountWordInBible({
     required String word,
-    required int version,
+    required int idBibleVersion,
   });
 }

@@ -3,7 +3,7 @@ import 'package:aletheia_core/aletheia_core_model.dart';
 abstract class InterfaceRepositoryAnalysis {
   Future<List<CountWord>> getCountWord({
     required String word,
-    int idBibleVersion,
+    required int idBibleVersion,
     int? idBook,
     int? numberChapter,
     Division? division,
@@ -11,6 +11,6 @@ abstract class InterfaceRepositoryAnalysis {
 
   Future<int> getTotalCountWordInBible({
     required String word,
-    required int version,
+    required int idBibleVersion,
   });
 }
