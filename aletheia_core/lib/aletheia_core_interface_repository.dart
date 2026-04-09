@@ -23,3 +23,6 @@ export 'src/interface/repository/user/user.verse.dart';
 export 'src/interface/repository/user/user.chapter.dart';
 export 'src/interface/repository/user/user.pericope.dart';
 export 'src/interface/repository/user/user.tag.dart';
+
+//ANALYSIS
+export 'src/interface/repository/bible/analysis.dart';

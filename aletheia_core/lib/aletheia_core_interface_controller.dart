@@ -24,3 +24,6 @@ export 'src/interface/controller/user/user.verse.dart';
 export 'src/interface/controller/user/user.chapter.dart';
 export 'src/interface/controller/user/user.pericope.dart';
 export 'src/interface/controller/user/user.tag.dart';
+
+//ANALYSIS
+export 'src/interface/controller/bible/analysis.dart';
