@@ -7,10 +7,12 @@ abstract class InterfaceRepositoryAnalysis {
     int? idBook,
     int? numberChapter,
     Division? division,
+    bool ignoreCase = false,
   });
 
   Future<int> getTotalCountWordInBible({
     required String word,
     required int idBibleVersion,
+    bool ignoreCase = false,
   });
 }
