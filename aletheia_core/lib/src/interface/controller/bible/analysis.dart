@@ -8,13 +8,13 @@ abstract class InterfaceControllerAnalysis {
     int? idBook,
     int? numberChapter,
     Division? division,
-    bool ignoreCase = false,
+    bool isCaseSensitive = true,
   });
 
   /// Get the total count of a word in the entire bible for a specific version.
   Future<int> getTotalCountWordInBible({
     required String word,
     required int idBibleVersion,
-    bool ignoreCase = false,
+    bool isCaseSensitive = true,
   });
 }
