@@ -6,22 +6,22 @@ import 'package:collection/collection.dart';
 ///Refer where the user preached the note
 class UserNotesLocal {
   //can be preached many times in the same place
-  List<DateTime> date;
+  List<DateTime> dates;
   String place;
   String? obs;
   UserNotesLocal({
-    required this.date,
+    required this.dates,
     required this.place,
     required this.obs,
   });
 
   UserNotesLocal copyWith({
-    List<DateTime>? date,
+    List<DateTime>? dates,
     String? place,
     String? obs,
   }) {
     return UserNotesLocal(
-      date: date ?? this.date,
+      dates: dates ?? this.dates,
       place: place ?? this.place,
       obs: obs ?? this.obs,
     );
@@ -29,7 +29,7 @@ class UserNotesLocal {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'date': date.map((x) => x.millisecondsSinceEpoch).toList(),
+      'dates': dates.map((x) => x.millisecondsSinceEpoch).toList(),
       'place': place,
       'obs': obs,
     };
@@ -38,9 +38,9 @@ class UserNotesLocal {
   factory UserNotesLocal.fromMap(Map<String, dynamic> map) {
     try {
       return UserNotesLocal(
-        date: map['date'] != null
+        dates: map['dates'] != null
             ? List<DateTime>.from(
-                (map['date'] as List).map<DateTime>(
+                (map['dates'] as List).map<DateTime>(
                   (x) => DateTime.fromMillisecondsSinceEpoch(x),
                 ),
               )
@@ -59,18 +59,19 @@ class UserNotesLocal {
       UserNotesLocal.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'UserNotesLocal(date: $date, place: $place, obs: $obs)';
+  String toString() =>
+      'UserNotesLocal(dates: $dates, place: $place, obs: $obs)';
 
   @override
   bool operator ==(covariant UserNotesLocal other) {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
-    return listEquals(other.date, date) &&
+    return listEquals(other.dates, dates) &&
         other.place == place &&
         other.obs == obs;
   }
 
   @override
-  int get hashCode => date.hashCode ^ place.hashCode ^ obs.hashCode;
+  int get hashCode => dates.hashCode ^ place.hashCode ^ obs.hashCode;
 }
