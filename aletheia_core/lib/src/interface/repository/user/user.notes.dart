@@ -24,4 +24,11 @@ abstract class InterfaceRepositoryUserNotes {
 
   Future<List<UserNotes>> getNotes(
       {String? uuidNote, int? idBook, int? numberChapter, int? numberVerse});
+
+  Future<List<UserNotes>> getNotesContainReference({
+    required int idBook,
+    required int numberChapter,
+    int? numberVerse,
+    int? numberVerseEnd,
+  });
 }
