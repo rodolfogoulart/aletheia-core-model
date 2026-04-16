@@ -45,7 +45,7 @@ class UserNotesLocal {
                 ),
               )
             : [],
-        place: map['place'] as String,
+        place: map['place'] != null ? map['place'] as String : '',
         obs: map['obs'] != null ? map['obs'] as String : null,
       );
     } catch (e, stackTrace) {
