@@ -19,6 +19,12 @@ enum TypeExtraDataVerse {
 
   /// for media content related to the verse, like videos
   videos,
+
+  /// for user notes related to the verse
+  notesFromVerse,
+
+  /// for cross references related to the verse, used to search for others cross references that has the same reference of the verse
+  referencesFromCrossReference,
   // Add more types as needed
 }
 
