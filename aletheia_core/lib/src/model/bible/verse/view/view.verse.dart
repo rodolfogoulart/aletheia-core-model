@@ -165,7 +165,7 @@ class VerseView extends VerseCore {
 
   factory VerseView.fromMap(Map<String, dynamic> map) {
     try {
-      return VerseView(
+      var verse = VerseView(
         id: map['id'] as int,
         idBibleVersion: map['idBibleVersion'] as int,
         idBook: map['idBook'] as int,
@@ -198,6 +198,42 @@ class VerseView extends VerseCore {
             ? Map<String, dynamic>.from(map['extraData'] as Map)
             : {},
       );
+
+      bool hasNotesFromVerse = verse.extraData?.containsKey(
+            TypeExtraDataVerse.notesFromVerse.name,
+          ) ??
+          false;
+
+      try {
+        if (hasNotesFromVerse &&
+            verse.extraData?[TypeExtraDataVerse.notesFromVerse.name] != null &&
+            (verse.extraData?[TypeExtraDataVerse.notesFromVerse.name] as List)
+                .isNotEmpty) {
+          hasNotesFromVerse = true;
+          var notes =
+              (verse.extraData?[TypeExtraDataVerse.notesFromVerse.name] as List)
+                  .map((e) {
+            if (e is String) {
+              return UserNotes.fromJson(e);
+            } else if (e is Map<String, dynamic>) {
+              return UserNotes.fromMap(e);
+            } else {
+              if (e is UserNotes) {
+                return e;
+              } else {
+                throw Exception(
+                    'Invalid type for notesFromVerse: ${e.runtimeType}');
+              }
+            }
+          }).toList();
+
+          verse.extraData![TypeExtraDataVerse.notesFromVerse.name] = notes;
+        }
+      } catch (e) {
+        print('Error parsing notesFromVerse: $e');
+      }
+
+      return verse;
     } catch (e, stackTrace) {
       throw Exception(
           'Error parsing VerseView.fromMap: $e, \nStack: $stackTrace, \nMap: $map');
