@@ -38,11 +38,13 @@ class UserNotesLocal {
   factory UserNotesLocal.fromMap(Map<String, dynamic> map) {
     try {
       return UserNotesLocal(
-        date: List<DateTime>.from(
-          (map['date'] as List).map<DateTime>(
-            (x) => DateTime.fromMillisecondsSinceEpoch(x),
-          ),
-        ),
+        date: map['date'] != null
+            ? List<DateTime>.from(
+                (map['date'] as List).map<DateTime>(
+                  (x) => DateTime.fromMillisecondsSinceEpoch(x),
+                ),
+              )
+            : [],
         place: map['place'] as String,
         obs: map['obs'] != null ? map['obs'] as String : null,
       );
