@@ -75,3 +75,6 @@ export 'src/model/services/backup.storage.dart';
 
 //ANALYSIS
 export 'src/model/bible/analysis/count.word.dart';
+
+//UPGRADE
+export 'src/model/services/upgrade.dart';
