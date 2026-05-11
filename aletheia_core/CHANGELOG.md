@@ -177,3 +177,6 @@
   * Available on InterfaceControllerVerse
   * Available on InterfaceRepositoryVerse
 * Add CountWord
+
+## 0.0.43
+* Add TypeModules enum to define the types of modules available in the application  
