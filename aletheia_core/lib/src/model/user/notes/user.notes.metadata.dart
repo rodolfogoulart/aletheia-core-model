@@ -54,10 +54,10 @@ class UserNotesMetaData {
   ///use [TypeUserNotesMetaData] as key for predefined metadata
   ///
   ///but the field is dynamic to allow any custom metadata to be added in the future without changing the model
-  Map<String, dynamic>? data;
+  Map<String, dynamic> data;
 
   UserNotesMetaData({
-    this.data,
+    this.data = const {},
   });
 
   Map<String, dynamic> toMap() {
@@ -70,14 +70,14 @@ class UserNotesMetaData {
     var result = UserNotesMetaData(
       data: map['data'] != null
           ? Map<String, dynamic>.from((map['data'] as Map<String, dynamic>))
-          : null,
+          : const {},
     );
     //decoding the other references on text
     var key = TypeUserNotesMetaData.otherReferencesOnText.name;
     try {
-      if (result.data?[key] != null) {
-        result.data?[key] = List<Reference>.from(
-          (result.data?[key] as List).map(
+      if (result.data[key] != null) {
+        result.data[key] = List<Reference>.from(
+          (result.data[key] as List).map(
             (e) => Reference.fromMap(e),
           ),
         );
@@ -89,9 +89,9 @@ class UserNotesMetaData {
     try {
       //decoding the google docs last sync
       key = TypeUserNotesMetaData.googleDocsLastSync.name;
-      if (result.data?[key] != null) {
-        result.data?[key] = DateTime.tryParse(
-          result.data?[key],
+      if (result.data[key] != null) {
+        result.data[key] = DateTime.tryParse(
+          result.data[key],
         );
       }
     } catch (e) {
