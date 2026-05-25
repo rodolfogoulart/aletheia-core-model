@@ -45,8 +45,8 @@ export 'src/model/user/config/user.open.ai.dart';
 export 'src/model/user/config/user.gemini.api.dart';
 //
 export 'src/model/user/notes/user.notes.dart';
-export 'src/model/user/notes/user.notes.reference.dart';
 export 'src/model/user/notes/user.notes.local.dart';
+export 'src/model/user/notes/user.notes.metadata.dart';
 //
 export 'src/model/user/verse/user.verse.dart';
 export 'src/model/user/verse/user.verse.wordsHighlighted.dart';

@@ -180,3 +180,7 @@
 
 ## 0.0.43
 * Add TypeModules enum to define the types of modules available in the application  
+
+## 0.0.44
+* Add UserNotesMetaData to store additional information about the note
+* Add field [metadata] to UserNotesMetaData to store the metadata as a map of key-value pairs

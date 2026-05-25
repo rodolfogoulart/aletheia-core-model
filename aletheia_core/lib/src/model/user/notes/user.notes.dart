@@ -1,10 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
 
-import 'package:aletheia_core/src/model/user/notes/user.notes.local.dart';
 import 'package:aletheia_core/src/model/bible/verse/referece.dart';
+import 'package:aletheia_core/src/model/user/notes/user.notes.local.dart';
 import 'package:aletheia_core/src/model/user/tag/user.tag.dart';
+
+import 'user.notes.metadata.dart';
+
+export 'user.notes.local.dart';
+export 'user.notes.metadata.dart';
 
 enum TypeNotes {
   devocional,
@@ -55,6 +61,9 @@ class UserNotes {
 
   String? uuid;
   int? hlc;
+
+  ///v1.0.23
+  UserNotesMetaData? metaData;
   //
   DateTime createAt;
   DateTime? updateAt;
@@ -70,6 +79,7 @@ class UserNotes {
     this.locals,
     this.uuid,
     this.hlc,
+    this.metaData,
     required this.createAt,
     this.updateAt,
   });
@@ -85,6 +95,7 @@ class UserNotes {
     List<UserNotesLocal>? locals,
     String? uuid,
     int? hlc,
+    UserNotesMetaData? metaData,
     DateTime? createAt,
     DateTime? updateAt,
   }) {
@@ -99,6 +110,7 @@ class UserNotes {
       locals: locals ?? this.locals,
       uuid: uuid ?? this.uuid,
       hlc: hlc ?? this.hlc,
+      metaData: metaData ?? this.metaData,
       createAt: createAt ?? this.createAt,
       updateAt: updateAt ?? this.updateAt,
     );
@@ -106,7 +118,7 @@ class UserNotes {
 
   @override
   String toString() {
-    return 'UserNotes(title: $title, tags: $tags, notes: $notes, date: $date, type: $type, color: $color, references: $references, locals: $locals, uuid: $uuid, hlc: $hlc, createdAt: $createAt, updatedAt: $updateAt)';
+    return 'UserNotes(title: $title, tags: $tags, notes: $notes, date: $date, type: $type, color: $color, references: $references, locals: $locals, uuid: $uuid, hlc: $hlc, createdAt: $createAt, updatedAt: $updateAt, metaData: $metaData)';
   }
 
   @override
@@ -124,6 +136,7 @@ class UserNotes {
         listEquals(other.locals, locals) &&
         other.uuid == uuid &&
         other.hlc == hlc &&
+        other.metaData == metaData &&
         other.createAt == createAt &&
         other.updateAt == updateAt;
   }
@@ -141,7 +154,8 @@ class UserNotes {
         uuid.hashCode ^
         hlc.hashCode ^
         createAt.hashCode ^
-        updateAt.hashCode;
+        updateAt.hashCode ^
+        metaData.hashCode;
   }
 
   Map<String, dynamic> toMap() {
@@ -156,6 +170,7 @@ class UserNotes {
       'locals': locals?.map((x) => x.toMap()).toList(),
       'uuid': uuid,
       'hlc': hlc,
+      'metaData': metaData?.toMap(),
       'createAt': createAt.millisecondsSinceEpoch,
       'updateAt': updateAt?.millisecondsSinceEpoch,
     };
@@ -193,6 +208,9 @@ class UserNotes {
             : null,
         uuid: map['uuid'],
         hlc: map['hlc'],
+        metaData: map['metaData'] != null
+            ? UserNotesMetaData.fromMap(map['metaData'])
+            : null,
         createAt: DateTime.fromMillisecondsSinceEpoch(map['createAt']),
         updateAt: map['updateAt'] != null
             ? DateTime.fromMillisecondsSinceEpoch(map['updateAt'])
