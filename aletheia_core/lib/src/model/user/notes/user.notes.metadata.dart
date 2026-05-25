@@ -54,11 +54,11 @@ class UserNotesMetaData {
   ///use [TypeUserNotesMetaData] as key for predefined metadata
   ///
   ///but the field is dynamic to allow any custom metadata to be added in the future without changing the model
-  Map<String, dynamic> data;
+  late Map<String, dynamic> data;
 
-  UserNotesMetaData({
-    this.data = const {},
-  });
+  UserNotesMetaData({Map<String, dynamic>? data}) {
+    this.data = data ?? {};
+  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
