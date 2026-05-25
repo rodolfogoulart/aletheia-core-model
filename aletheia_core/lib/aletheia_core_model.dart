@@ -8,7 +8,7 @@ export 'src/model/bible/bible/view/view.bible.version.book.dart';
 export 'src/model/bible/book/book.dart';
 export 'src/model/bible/book/view/view.book.dart';
 //VERSE
-export 'src/model/bible/verse/referece.dart';
+export 'src/model/bible/verse/reference.dart';
 export 'src/model/bible/verse/verse.content.dart';
 export 'src/model/bible/verse/verse.cross.reference.dart';
 export 'src/model/bible/verse/verse.dart';

@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:aletheia_core/src/model/bible/verse/footnote.dart';
 import 'package:aletheia_core/src/model/bible/verse/texts.dart';
 
-import 'referece.dart';
+import 'reference.dart';
 
 ///[TypeAttributes] enum to style the text
 enum TypeAttributes {

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '../../bible/verse/reference.dart';
+
 enum TypeUserNotesMetaData {
   ///string - the id of the google docs, used to link the note with the google docs
   googleDocsId,
@@ -24,6 +26,25 @@ enum TypeUserNotesMetaData {
   otherReferencesOnText,
 }
 
+extension TypeUserNotesMetaDataExtension on TypeUserNotesMetaData {
+  toMap() => name;
+  fromMap(String map) => TypeUserNotesMetaData.values.firstWhere(
+        (e) => e.name == map,
+        orElse: () => throw Exception('Invalid TypeUserNotesMetaData: $map'),
+      );
+
+  bool get isGoogleDocsId => this == TypeUserNotesMetaData.googleDocsId;
+  bool get isGoogleDocsLastSync =>
+      this == TypeUserNotesMetaData.googleDocsLastSync;
+  bool get isGoogleDocsUserInfo =>
+      this == TypeUserNotesMetaData.googleDocsUserInfo;
+  bool get isUrlImportedFromGoogleDocs =>
+      this == TypeUserNotesMetaData.urlImportedFromGoogleDocs;
+  bool get isDocumentType => this == TypeUserNotesMetaData.documentType;
+  bool get isOtherReferencesOnText =>
+      this == TypeUserNotesMetaData.otherReferencesOnText;
+}
+
 /// Metadata for [UserNotes] to store additional information about the note
 ///
 class UserNotesMetaData {
@@ -45,11 +66,30 @@ class UserNotesMetaData {
   }
 
   factory UserNotesMetaData.fromMap(Map<String, dynamic> map) {
-    return UserNotesMetaData(
+    //
+    var result = UserNotesMetaData(
       metadata: map['metadata'] != null
           ? Map<String, dynamic>.from((map['metadata'] as Map<String, dynamic>))
           : null,
     );
+    //decoding the other references on text
+    var key = TypeUserNotesMetaData.otherReferencesOnText.name;
+    if (result.metadata?[key] != null) {
+      result.metadata?[key] = List<Reference>.from(
+        (result.metadata?[key] as List).map(
+          (e) => Reference.fromMap(e),
+        ),
+      );
+    }
+
+    //decoding the google docs last sync
+    key = TypeUserNotesMetaData.googleDocsLastSync.name;
+    if (result.metadata?[key] != null) {
+      result.metadata?[key] = DateTime.tryParse(
+        result.metadata?[key],
+      );
+    }
+    return result;
   }
 
   String toJson() => json.encode(toMap());

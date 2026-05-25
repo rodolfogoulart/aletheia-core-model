@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 
-import 'package:aletheia_core/src/model/bible/verse/referece.dart';
+import 'package:aletheia_core/src/model/bible/verse/reference.dart';
 import 'package:aletheia_core/src/model/user/notes/user.notes.local.dart';
 import 'package:aletheia_core/src/model/user/tag/user.tag.dart';
 

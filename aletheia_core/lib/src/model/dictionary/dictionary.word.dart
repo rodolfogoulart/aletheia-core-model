@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 
-import '../bible/verse/referece.dart';
+import '../bible/verse/reference.dart';
 
 enum TypeWord {
   people,
