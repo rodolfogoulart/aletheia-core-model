@@ -66,7 +66,6 @@ class UserNotesMetaData {
   }
 
   factory UserNotesMetaData.fromMap(Map<String, dynamic> map) {
-    //
     var result = UserNotesMetaData(
       metadata: map['metadata'] != null
           ? Map<String, dynamic>.from((map['metadata'] as Map<String, dynamic>))
@@ -74,21 +73,30 @@ class UserNotesMetaData {
     );
     //decoding the other references on text
     var key = TypeUserNotesMetaData.otherReferencesOnText.name;
-    if (result.metadata?[key] != null) {
-      result.metadata?[key] = List<Reference>.from(
-        (result.metadata?[key] as List).map(
-          (e) => Reference.fromMap(e),
-        ),
-      );
+    try {
+      if (result.metadata?[key] != null) {
+        result.metadata?[key] = List<Reference>.from(
+          (result.metadata?[key] as List).map(
+            (e) => Reference.fromMap(e),
+          ),
+        );
+      }
+    } catch (e) {
+      print('Error decoding other references on text on UserNotesMetaData: $e');
     }
 
-    //decoding the google docs last sync
-    key = TypeUserNotesMetaData.googleDocsLastSync.name;
-    if (result.metadata?[key] != null) {
-      result.metadata?[key] = DateTime.tryParse(
-        result.metadata?[key],
-      );
+    try {
+      //decoding the google docs last sync
+      key = TypeUserNotesMetaData.googleDocsLastSync.name;
+      if (result.metadata?[key] != null) {
+        result.metadata?[key] = DateTime.tryParse(
+          result.metadata?[key],
+        );
+      }
+    } catch (e) {
+      print('Error decoding google docs last sync on UserNotesMetaData: $e');
     }
+
     return result;
   }
 
