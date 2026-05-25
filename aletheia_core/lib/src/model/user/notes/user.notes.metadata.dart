@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import '../../bible/verse/reference.dart';
@@ -53,30 +54,30 @@ class UserNotesMetaData {
   ///use [TypeUserNotesMetaData] as key for predefined metadata
   ///
   ///but the field is dynamic to allow any custom metadata to be added in the future without changing the model
-  Map<String, dynamic>? metadata;
+  Map<String, dynamic>? data;
 
   UserNotesMetaData({
-    this.metadata,
+    this.data,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'metadata': metadata,
+      'data': data,
     };
   }
 
   factory UserNotesMetaData.fromMap(Map<String, dynamic> map) {
     var result = UserNotesMetaData(
-      metadata: map['metadata'] != null
-          ? Map<String, dynamic>.from((map['metadata'] as Map<String, dynamic>))
+      data: map['data'] != null
+          ? Map<String, dynamic>.from((map['data'] as Map<String, dynamic>))
           : null,
     );
     //decoding the other references on text
     var key = TypeUserNotesMetaData.otherReferencesOnText.name;
     try {
-      if (result.metadata?[key] != null) {
-        result.metadata?[key] = List<Reference>.from(
-          (result.metadata?[key] as List).map(
+      if (result.data?[key] != null) {
+        result.data?[key] = List<Reference>.from(
+          (result.data?[key] as List).map(
             (e) => Reference.fromMap(e),
           ),
         );
@@ -88,9 +89,9 @@ class UserNotesMetaData {
     try {
       //decoding the google docs last sync
       key = TypeUserNotesMetaData.googleDocsLastSync.name;
-      if (result.metadata?[key] != null) {
-        result.metadata?[key] = DateTime.tryParse(
-          result.metadata?[key],
+      if (result.data?[key] != null) {
+        result.data?[key] = DateTime.tryParse(
+          result.data?[key],
         );
       }
     } catch (e) {
@@ -104,4 +105,7 @@ class UserNotesMetaData {
 
   factory UserNotesMetaData.fromJson(String source) =>
       UserNotesMetaData.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() => 'UserNotesMetaData(data: $data)';
 }
