@@ -61,9 +61,21 @@ class UserNotesMetaData {
   }
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    var map = <String, dynamic>{
       'data': data,
     };
+
+    try {
+      //DateTime is not directly encodable to json, so we need to convert it to string
+      for (var key in data.keys) {
+        if (data[key] != null && data[key] is DateTime) {
+          map['data'][key] = (data[key] as DateTime).toIso8601String();
+        }
+      }
+    } catch (e) {
+      print('Error encoding data on UserNotesMetaData: $e');
+    }
+    return map;
   }
 
   factory UserNotesMetaData.fromMap(Map<String, dynamic> map) {
