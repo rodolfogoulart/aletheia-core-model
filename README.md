@@ -1,6 +1,8 @@
 # Welcome Aletheia Project!
 This Repository is for *core model* of the ****Aletheia Project**** [*private project yeat*] .
 
+[Aletheia Bible Project Web Site](https://www.biblealetheia.com/)
+
 Aletheia Project is a **Bible Study App** made in Flutter.
 The goal of the project is to give a really useful and easy to use app (shared in different platforms) that you can study the bible more precisely.
 
@@ -8,6 +10,8 @@ The goal of the project is to give a really useful and easy to use app (shared i
 
 ## Download
 Check on [Microsoft Store](https://www.microsoft.com/store/productId/9NC9ZG5799G3?ocid=pdpshare) for oficial install and updates.
+
+Check on [Apple Store](https://apps.apple.com/br/app/b%C3%ADblia-aletheia/id6751730661?mt=12) for oficial install and updates.
 
 Check the [Play Store](https://play.google.com/store/apps/details?id=com.i53.aletheia.bible) for the [*Tablet*] Android version
 
