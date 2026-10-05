@@ -118,6 +118,14 @@ class VerseView extends VerseCore {
     final listEquals = const DeepCollectionEquality().equals;
 
     return other is VerseView &&
+        other.id == id &&
+        other.idBibleVersion == idBibleVersion &&
+        other.idBook == idBook &&
+        other.numberChapter == numberChapter &&
+        other.numberVerse == numberVerse &&
+        other.numberVerseEnd == numberVerseEnd &&
+        listEquals(other.content, content) &&
+        other.contentWithOutFormat == contentWithOutFormat &&
         other.userVerseData == userVerseData &&
         listEquals(other.crossReferences, crossReferences) &&
         listEquals(other.strongReferences, strongReferences) &&
